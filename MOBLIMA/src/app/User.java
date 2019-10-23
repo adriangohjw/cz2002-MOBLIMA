@@ -8,14 +8,21 @@ public class User {
 
     private String email;  // username 
     private String passwordHashed;
+    private int role; 
+    public static final int MOVIE_GOER = 1, ADMIN = 2;
     
-    public User (String email, String password) throws NoSuchAlgorithmException{
+    public User (String email, String password, int role) throws NoSuchAlgorithmException{
         this.email = email;
         this.passwordHashed = PasswordSHA256(password, email);  // using SHA-256 to hash password to ensure security
+        this.role = role;
     }
     
     public boolean validatePassword(String passwordToCompare) throws NoSuchAlgorithmException {
     	return this.passwordHashed.equals(PasswordSHA256(passwordToCompare, this.email));
+    }
+    
+    public int getRole() {
+    	return this.role;
     }
     	
 	public String PasswordSHA256(String passwordToHash, String salt) throws NoSuchAlgorithmException {
