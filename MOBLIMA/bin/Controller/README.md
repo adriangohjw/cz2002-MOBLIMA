@@ -46,7 +46,7 @@ static void deleteByTitle(String title);
 ~~~
 
 
-## movieRatingsController
+## movieReviewsController
 
 create
 ~~~java

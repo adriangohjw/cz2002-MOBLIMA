@@ -4,6 +4,7 @@
 
 ~~~java
 // Attributes
+private int id;
 private String title;
 private String type;
 private String synopsis;
@@ -168,6 +169,7 @@ public Cinema (
 
 ~~~java
 // Attributes
+private int id;
 private Movie movie;
 private Date sessionDate;
 private String sessionTime;
@@ -175,6 +177,7 @@ private SeatingPlan seatsAvailability;
 
 // Constructor
 public Session(
+  int id,
   Movie movie, 
   Date sessionDate, 
   String sessionTime, 
