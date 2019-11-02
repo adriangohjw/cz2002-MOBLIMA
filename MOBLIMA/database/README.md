@@ -35,7 +35,7 @@
 ## sessions
 
 0. row_id
-2. cinema
+2. cinemaCode
 3. movie
 4. sessionDate
 5. sessionTime
@@ -44,5 +44,12 @@
 ## cineplexes
 
 0. row_id
-1. cineplex
-2. cinema
+1. name
+2. cinemas
+
+## cinemas
+
+0. row_id
+1. code
+2. class
+3. sessions
