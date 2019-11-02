@@ -1,4 +1,4 @@
-package cineplex;
+package Model;
 
 public class SeatingPlan {
 	private Seat [][] layout;

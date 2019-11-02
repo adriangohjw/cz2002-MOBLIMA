@@ -1,4 +1,4 @@
-package cineplex;
+package Model;
 
 public class Seat {
 	private int seatID;

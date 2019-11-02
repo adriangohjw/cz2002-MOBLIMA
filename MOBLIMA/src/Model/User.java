@@ -21,6 +21,10 @@ public class User {
     	return this.passwordHashed.equals(PasswordSHA256(passwordToCompare, this.email));
     }
     
+    public String getEmail() {
+    	return this.email;
+    }
+    
     public int getRole() {
     	return this.role;
     }

@@ -5,26 +5,20 @@ import java.util.Date;
 
 public class Session {
 
-	private Cinema cinema;
 	private Movie movie;
 	private Date sessionDate;
 	private String sessionTime;
-	private SeatsAvailability seatsAvailability;
+	private SeatingPlan seatsAvailability;
 
-    public Session(Cinema cinema, Movie movie, Date sessionDate, String sessionTime){
-    	this.cinema = cinema;
+    public Session(Movie movie, Date sessionDate, String sessionTime, SeatingPlan seatingPlan){
     	this.movie = movie;
     	this.sessionDate = sessionDate;
     	this.sessionTime = sessionTime;
-    	this.seatsAvailability = new SeatsAvailability;
+    	this.seatsAvailability = seatingPlan;
     }
 
     public Movie getMovie() {
         return movie;
-    }
-
-    public Cinema getCinema() {
-        return cinema;
     }
 
     public Date getSessionDate() {
@@ -40,7 +34,4 @@ public class Session {
         return sdf.format(sessionDate);
     }
 
-    public String getSessionDetails(){
-        return getSessionDateToString() + ", " + movie.getTitle() + ", " + cinema.getName();
-    }
 }

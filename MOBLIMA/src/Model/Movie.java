@@ -9,6 +9,7 @@ import java.util.logging.SimpleFormatter;
 
 public class Movie {
 
+	private int id;  // PRIMARY KEY, FOREIGN KEY (movieReviews)
     private String title;
     private String type;
     private String synopsis;
@@ -25,7 +26,8 @@ public class Movie {
         END_OF_SHOWING
     }
 
-    public Movie(String title, String type, String synopsis, String rating, Date movieReleaseDate, String director, ArrayList<String> cast){
+    public Movie(int id, String title, String type, String synopsis, String rating, Date movieReleaseDate, String director, ArrayList<String> cast){
+    	this.id = id;
         this.title = title;
         this.type = type;
         this.synopsis = synopsis;
@@ -36,7 +38,11 @@ public class Movie {
         // no ratings when movie is instantiated
     }
 
-    public String getTitle(){
+    public int getId() {
+		return id;
+	}
+
+	public String getTitle(){
         return title;
     }
 
