@@ -2,7 +2,9 @@
 
 ## movies
 KEY (`id`)
+
 FOREIGN KEY `id` REFERENCES (`movieReviews`)
+
 0. row_id
 1. (int) id 
 2. (String) title
@@ -16,6 +18,7 @@ FOREIGN KEY `id` REFERENCES (`movieReviews`)
 
 ## movieReviews
 KEY (`movie_id`, `username`)
+
 0. row_id
 1. (int) movie_id  // not an attribute 
 2. (String) username
@@ -24,13 +27,16 @@ KEY (`movie_id`, `username`)
 
 ## transactions
 KEY(`TID`, `movieGoerUsername`)
+
 0. row_id
 1. (String) TID 
 2. (String) movieGoerUsername
 
 ## users
 KEY(`email`)
+
 FOREIGN KEY `email` REFERENCES (`movieGoer`)
+
 0. row_id
 1. (String) email
 2. (String) passwordHashed
@@ -41,7 +47,9 @@ no additional attributes from superclass `Users`
 
 ## movieGoers
 KEY(`email`)
+
 FOREIGN KEY `email` REFERENCES (`transactions`, `movieReviews`)
+
 0. row_id
 1. (String) email
 2. (String) name
@@ -49,13 +57,16 @@ FOREIGN KEY `email` REFERENCES (`transactions`, `movieReviews`)
 
 ## cineplexes
 KEY `name`
+
 0. row_id
 1. (String) name
 2. (String[]) cinemas  // return list of `cinemaCode`
 
 ## cinemas
 KEY `code`
+
 FOREIGN KEY `code` REFERENCES (`cineplexes`, `sessions`, `transactions`)
+
 0. row_id
 1. (String) code 
 2. (String) cinemaClass
@@ -64,7 +75,9 @@ FOREIGN KEY `code` REFERENCES (`cineplexes`, `sessions`, `transactions`)
 
 ## sessions
 KEY (`id`)
+
 FOREIGN KEY `id` REFERENCES (`cinemas`, `seatsAvailability`)
+
 0. row_id
 1. (int) id
 2. (Cinema) cinemaCode  // not an attribute
@@ -75,6 +88,7 @@ FOREIGN KEY `id` REFERENCES (`cinemas`, `seatsAvailability`)
 
 ## seatsAvailability
 KEY (`sessionID`)
+
 0. row_id
 1. (int) sessionID  // not an attribute
 2. (int) row
