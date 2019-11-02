@@ -11,7 +11,6 @@ public class Movie {
 
     private String title;
     private String type;
-    private String movieRating;
     private String synopsis;
     private Date movieReleaseDate;
     private String director;
@@ -25,15 +24,14 @@ public class Movie {
         END_OF_SHOWING
     }
 
-    public Movie(String title, String type, String movieRating, String synopsis, Date movieReleaseDate, String director, ArrayList<String> cast){
+    public Movie(String title, String type, String synopsis, Date movieReleaseDate, String director, ArrayList<String> cast){
         this.title = title;
         this.type = type;
-        this.movieRating = movieRating;
         this.synopsis = synopsis;
         this.movieReleaseDate = movieReleaseDate;
         this.director = director;
         this.cast = cast;
-        this.ratings = new ArrayList<Rating>();
+        // no ratings when movie is instantiated
     }
 
     public String getTitle(){
@@ -42,10 +40,6 @@ public class Movie {
 
     public String getType(){
         return type;
-    }
-
-    public String getMovieRating(){
-        return movieRating;
     }
 
     public String getSynopsis(){
@@ -82,7 +76,7 @@ public class Movie {
         details += "Title: " + title + "\n"
                 + "Director: " + director +"\n"
                 + "Type: " + type + "\n"
-                + "Rating: " + movieRating + "\n"
+                + "Rating: " + getOverallRating() + "\n"
                 + "Release date: " + getMovieReleaseDateToString() + "\n"
                 + "Synopsis: " + synopsis + "\n"
                 + "Overall review rating: " + getOverallRating() + "\n"
