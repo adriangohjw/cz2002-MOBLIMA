@@ -86,7 +86,7 @@ create
 ~~~java
 static void create (
     String cinemaCode
-    String movieGoer
+    String movieGoerUsername
 )
 ~~~
 
@@ -94,11 +94,11 @@ read
 ~~~java
 static Transaction[] read(int[] rows);  // accept an array of Int to be read
 static Transaction[] readByTID(String TID);
-static Transaction[] readByMovieGoer(String movieGoer);
+static Transaction[] readByMovieGoerUsername(String movieGoerUsername);
 ~~~
 
 update
-- `TID` and `movieGoer` are both KEYs that should not be updated
+- `TID` and `movieGoerUsername` are both KEYs that should not be updated
 
 delete
 ~~~java
@@ -147,7 +147,7 @@ create
 ~~~java
 static void create (
     String cinemaCode,
-    Movie movie,
+    Movie movieTitle,
     Date sessionDate,
     String sessionTime,
     SeatsAvailability seatsAvailability
