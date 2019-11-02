@@ -12,10 +12,11 @@ public class Movie {
     private String title;
     private String type;
     private String synopsis;
+    private String rating;
     private Date movieReleaseDate;
     private String director;
     private ArrayList<String> cast;
-    private ArrayList<Rating> ratings;
+    private ArrayList<Review> reviews;
 
     public enum MovieStatus{
         COMING_SOON,
@@ -24,10 +25,11 @@ public class Movie {
         END_OF_SHOWING
     }
 
-    public Movie(String title, String type, String synopsis, Date movieReleaseDate, String director, ArrayList<String> cast){
+    public Movie(String title, String type, String synopsis, String rating, Date movieReleaseDate, String director, ArrayList<String> cast){
         this.title = title;
         this.type = type;
         this.synopsis = synopsis;
+        this.rating = rating;
         this.movieReleaseDate = movieReleaseDate;
         this.director = director;
         this.cast = cast;
@@ -44,6 +46,10 @@ public class Movie {
 
     public String getSynopsis(){
         return synopsis;
+    }
+    
+    public String getRating() {
+    	return rating;
     }
 
     public Date getMovieReleaseDate(){
@@ -63,12 +69,12 @@ public class Movie {
         return cast;
     }
 
-    public void addRating(Rating rating){
-        ratings.add(rating);
+    public void addReview(Review review){
+        reviews.add(review);
     }
 
-    public ArrayList<Rating> getRatings(){
-        return ratings;
+    public ArrayList<Review> getReviews(){
+        return reviews;
     }
 
     public String getDetailsToString(){
@@ -89,11 +95,11 @@ public class Movie {
 
     public String getOverallRating(){
         double sum = 0;
-        if(ratings.size()>1){
-            for(Rating rating : ratings){
-                sum += rating.getNumOfStars();
+        if(reviews.size()>1){
+            for(Review review : reviews){
+                sum += review.getNumOfStars();
             }
-            return String.valueOf(sum/ratings.size());
+            return String.valueOf(sum/reviews.size());
         }
         else{
             return "N/A";

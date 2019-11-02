@@ -1,12 +1,12 @@
 package Model;
 
-public class Rating {
+public class Review {
 
 	private String username;
     private double numOfStars;
     private String additionalComment;
 
-    public Rating(String username, double numOfStars, String additionalComment){
+    public Review(String username, double numOfStars, String additionalComment){
     	this.username = username;
         this.numOfStars = numOfStars;
         this.additionalComment = additionalComment;
