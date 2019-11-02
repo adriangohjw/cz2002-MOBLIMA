@@ -19,7 +19,7 @@
   2. numOfStars
   3. additionalComment
 
-## userTransactions
+## transactions
  
  0. row_id
  1. TID
@@ -35,11 +35,10 @@
 ## sessions
 
 0. row_id
-1. cineplex
 2. cinema
 3. movie
-4. date
-5. time
+4. sessionDate
+5. sessionTime
 6. seatsAvailability
 
 ## cineplexes
