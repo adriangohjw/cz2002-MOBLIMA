@@ -39,8 +39,10 @@ static void updateCast(int position, String cast);  // position of cast to be up
 ~~~
 
 delete
+- NO NEED to delete by `type`, `synopsis`, `movieReleaseDate`, `director`, `cast`, `ratings`
 ~~~java
 static void delete(int[] row);  // accept an array of Int to be deleted
+static void deleteByTitle(String title);
 ~~~
 
 
@@ -71,8 +73,10 @@ static void updateAdditionalComment(String additionalComment);
 ~~~
 
 delete
+- NO NEED to delete by `numOfStars`, `additionalComment`
 ~~~java
 static void delete(int[] row);  // accept an array of Int to be deleted
+static void deleteByUsername(String username);
 ~~~
 
 
@@ -89,6 +93,8 @@ static void create (
 read
 ~~~java
 static Transaction[] read(int[] rows);  // accept an array of Int to be read
+static Transaction[] readByTID(String TID);
+static Transaction[] readByMovieGoer(String movieGoer);
 ~~~
 
 update
@@ -97,6 +103,7 @@ update
 delete
 ~~~java
 static void delete(int[] row);  // accept an array of Int to be deleted
+static void deleteByTID(String TID);
 ~~~
 
 
@@ -112,8 +119,11 @@ static void create (
 ~~~
 
 read
+- no need to retrieve users by password (security bleach)
 ~~~java
 static User[] read(int[] rows);  // accept an array of Int to be read
+static User[] readByEmail(String email);
+static User[] readByRole(int role);
 ~~~
 
 update
@@ -124,8 +134,10 @@ static void updatePasswordHashed(String passwordHashed);
 ~~~
 
 delete
+- NO NEED to delete by `passwordHashed`, `role`
 ~~~java
 static void delete(int[] row);  // accept an array of Int to be deleted
+static void deleteByEmail(String email);
 ~~~
 
 
@@ -134,7 +146,7 @@ static void delete(int[] row);  // accept an array of Int to be deleted
 create
 ~~~java
 static void create (
-    Cinema cinema,
+    String cinemaCode,
     Movie movie,
     Date sessionDate,
     String sessionTime,
@@ -143,21 +155,29 @@ static void create (
 ~~~
 
 read
+- No need to implement search by `seatsAvailability`
 ~~~java
 static Session[] read(int[] rows);  // accept an array of Int to be read
-
+static Session[] readByCinemaCode(String cinemaCode);
+static Session[] readByMovie(Movie movie);
+static Session[] readBySessionDate(Date sessionDate);
+static Session[] readBySessionTime(String sessionTime);
 ~~~
 
 update
 ~~~java
-
+static void updateCinemaCode(String cinemaCode);
+static void updateMovie(Movie movie);
+static void updateSessionDate(Date date);
+static void updateSessionTime(String time);
+static void updateSeatsAvailability(SeatsAvailability seatsAvailability);  // to REVISED after seatsAvailability is created
 ~~~
 
-
-
 delete
+- NO NEED to delete by `movie`, `sessionDate`, `sessionTime`, `seatsAvailability`
 ~~~java
 static void delete(int[] row);  // accept an array of Int to be deleted
+static void deleteByCinemaCode(String cinemaCode);
 ~~~
 
 
@@ -165,21 +185,62 @@ static void delete(int[] row);  // accept an array of Int to be deleted
 
 create
 ~~~java
-
-~~~
-
-update
-~~~java
-
+static void create (
+    String name,
+    Cinema[] cinemas
+)
 ~~~
 
 read
+- no need to implement reading by cinemas as it is not as useful
 ~~~java
-static Movie[] read(int[] rows);  // accept an array of Int to be read
+static Cineplexes[] read(int[] rows);  // accept an array of Int to be read
+static Cineplex[] readByName(String name);
+~~~
 
+update
+- `cinemas` to be handled by `cinemaControllers`
+~~~java
+static void updateName();
 ~~~
 
 delete
+- NO NEED to delete by `cinemas`
 ~~~java
 static void delete(int[] row);  // accept an array of Int to be deleted
+static void deleteByName(String name);
+~~~
+
+
+## cinemasControllers
+
+create
+~~~java
+static void create (
+    String code,
+    String class,
+    Sessions[] sessions
+)
+~~~
+
+read
+- `sessions` to be handled by `sessionsControllers`
+~~~java
+static Cinema[] read(int[] rows);  // accept an array of Int to be read
+static Cinema[] readByCode(String code);
+static Cinema[] readByClass(String class);
+~~~
+
+update
+- `sessions` to be handled by `sessionsControllers`
+~~~java
+static void updateCode(String code);
+static void updateClass(String class);
+~~~
+
+delete
+- NO NEED to delete by `class`, `sessions`
+~~~java
+static void delete(int[] row);  // accept an array of Int to be deleted
+static void deleteByCode(String code);
 ~~~
