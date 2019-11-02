@@ -39,4 +39,6 @@ public class Movie_Goer extends User {
 	public void setMobileNumber(String mobileNumber) {
 		this.mobileNumber = mobileNumber;
 	}
+	
+	
 }

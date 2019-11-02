@@ -9,7 +9,7 @@ public class User {
     private String email;  // username 
     private String passwordHashed;
     private int role; 
-    public static final int MOVIE_GOER = 1, ADMIN = 2;
+    public static final int MOVIE_GOER = 1, ADMIN = 2;  // declaring constant
     
     public User (String email, String password, int role) throws NoSuchAlgorithmException{
         this.email = email;
