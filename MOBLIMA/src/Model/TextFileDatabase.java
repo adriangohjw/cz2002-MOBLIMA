@@ -39,7 +39,7 @@ public class TextFileDatabase {
         ArrayList<String> toDelete = new ArrayList<>();
         String[] testLength = allData.get(0).split(",");
         try{
-            if(testLength.length-1<columnId){
+            if(testLength.length-1<columnId || columnId<0){
                 throw new ColumnIndexException("Column index out of bounds!");
             }
             else{
@@ -57,6 +57,7 @@ public class TextFileDatabase {
         }
         catch (ColumnIndexException e){
             e.printStackTrace();
+            return null;
         }
         catch(IOException e){
             e.printStackTrace();
@@ -117,14 +118,14 @@ public class TextFileDatabase {
         ArrayList<String> results = new ArrayList<>();
 
         String[] testLength = allData.get(0).split(",");
-        try{
-            if(testLength.length-1<columnId){
+        try {
+            if (testLength.length - 1 < columnId || columnId < 0) {
                 throw new ColumnIndexException("Column index out of bounds!");
             }
-            else{
-                for(String record : allData){
+            else {
+                for (String record : allData) {
                     String[] tokens = record.split(",");
-                    if(tokens[columnId].equals(value)){
+                    if (tokens[columnId].equals(value)) {
                         results.add(record);
                     }
                 }
@@ -132,6 +133,26 @@ public class TextFileDatabase {
         }
         catch (ColumnIndexException e){
             e.printStackTrace();
+        }
+        return results;
+    }
+
+    public static ArrayList<String> retrieve(int[] columnId, String[] value, ArrayList<String> allData) {
+        ArrayList<String> results = allData;
+        int numOfColumns = columnId.length;
+        try {
+            if(columnId.length!=value.length){
+                throw new ArraysNotEqualException("Number of column ids not equal number of values");
+            }
+            else{
+                for(int i=0;i<numOfColumns;i++){
+                    results = retrieve(columnId[i], value[i], results);
+                }
+            }
+        }
+        catch (ArraysNotEqualException e) {
+            e.printStackTrace();
+            return null;
         }
         return results;
     }
@@ -149,7 +170,7 @@ public class TextFileDatabase {
     public static ArrayList<String> update(int columnId, String oldValue, String newValue, ArrayList<String> allData, String fileName){
         String[] testLength = allData.get(0).split(",");
         try{
-            if(testLength.length-1<columnId){
+            if(testLength.length-1<columnId || columnId<0){
                 throw new ColumnIndexException("Column index out of bounds!");
             }
             else{
@@ -165,6 +186,7 @@ public class TextFileDatabase {
         }
         catch (ColumnIndexException e){
             e.printStackTrace();
+            return null;
         }
         catch (IOException e){
             e.printStackTrace();
@@ -176,6 +198,12 @@ public class TextFileDatabase {
 
 class ColumnIndexException extends Exception{
     public ColumnIndexException(String message){
+        super(message);
+    }
+}
+
+class ArraysNotEqualException extends Exception{
+    public ArraysNotEqualException(String message){
         super(message);
     }
 }
