@@ -28,9 +28,9 @@ public class login {
 
     public void verfify(){
         System.out.println("Please enter your email: ");
-        email = sc.nextLine();
+        email = sc.next();
         System.out.println("Password: ");
-        password = sc.nextLine();
+        password = sc.next();
 
         User user = usersController.readyByEmail(); //should only be an object but not array of object
         correctPassword = user.getPassword().equals(password); //should have one more function getPassword, and should not be hash password
