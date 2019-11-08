@@ -6,12 +6,12 @@ import Model.Movie;
 
 import java.util.*;
 
-public class viewMovieDetail{
+public class ViewMovieDetailUI {
     private String title;
     private int another = 1;
     Scanner sc = new Scanner(System.in);
 
-    viewMovieDetail(){}
+    ViewMovieDetailUI(){};
 
     public void main(){
         while(another==1){

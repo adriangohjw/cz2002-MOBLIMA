@@ -6,9 +6,9 @@ import Model.Movie;
 
 import java.util.*;
 
-public class register{
+public class RegisterUI{
 
-    register(){};
+    RegisterUI() {};
 
     private String email;
     private String password;

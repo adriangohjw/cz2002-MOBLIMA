@@ -7,12 +7,12 @@ import Model.SeatingPlan;
 
 import java.util.*;
 
-public class checkSeat{
+public class CheckSeatUI {
     private String cinemaCode; //the unique code for each session
     Scanner sc = new Scanner(System.in);
-    
-    checkSeat(String _cinemaCode){
-        cinemaCode = _cinemaCode;
+
+    public CheckSeatUI(String _cinemaCode){
+        this.cinemaCode = _cinemaCode;
     }
 
     public void main(){

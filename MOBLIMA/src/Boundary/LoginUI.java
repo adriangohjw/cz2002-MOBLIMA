@@ -6,13 +6,13 @@ import Model.Movie;
 
 import java.util.*;
 
-public class login {
+public class LoginUI {
     private String email;
     private String password;
     private boolean correctPassword = false;
     Scanner sc = new Scanner(System.in);
 
-    login(){}
+    LoginUI(){}
 
     public void main(){
         do{

@@ -5,18 +5,18 @@ import Model.*;
 
 import java.util.*;
 
-public class searchMovie {
+public class SearchMovieUI {
     private String title;
     private String type;
-    //private String synopsis;
-    //private Date movieReleaseDate;
+    // private String synopsis;
+    // private Date movieReleaseDate;
     private String director;
     private String cast;
     private int option;
 
     Scanner sc = new Scanner(System.in);
 
-    searchMovie(){}
+    SearchMovieUI (){};
 
     public void main(){
         while(option!=5){
