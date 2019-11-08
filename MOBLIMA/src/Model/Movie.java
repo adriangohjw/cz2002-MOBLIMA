@@ -1,23 +1,21 @@
 package Model;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.Duration;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.concurrent.TimeUnit;
-import java.util.logging.SimpleFormatter;
+import java.io.Serializable;
 
-public class Movie {
+public class Movie implements Serializable {
 
-	private int id;  // PRIMARY KEY, FOREIGN KEY (movieReviews)
     private String title;
     private String type;
     private String synopsis;
     private String rating;
-    private Date movieReleaseDate;
+    private String movieReleaseDate;
     private String director;
-    private ArrayList<String> cast;
-    private ArrayList<Review> reviews;
+    private ArrayList<String> cast;  // stored in DB as String, delimited by ||
+    private ArrayList<Review> reviews;  // stored in DB as String, delimited by ||s
 
     public enum MovieStatus{
         COMING_SOON,
@@ -26,8 +24,7 @@ public class Movie {
         END_OF_SHOWING
     }
 
-    public Movie(int id, String title, String type, String synopsis, String rating, Date movieReleaseDate, String director, ArrayList<String> cast){
-    	this.id = id;
+    public Movie(String title, String type, String synopsis, String rating, String movieReleaseDate, String director, ArrayList<String> cast){
         this.title = title;
         this.type = type;
         this.synopsis = synopsis;
@@ -35,71 +32,52 @@ public class Movie {
         this.movieReleaseDate = movieReleaseDate;
         this.director = director;
         this.cast = cast;
-        // no ratings when movie is instantiated
+        this.reviews = new ArrayList<Review>();
     }
 
-    public int getId() {
-		return id;
-	}
+	public String getTitle() {return this.title;}
+    public void setTitle(String title){this.title = title;}
 
-	public String getTitle(){
-        return title;
-    }
+    public String getType(){return this.type;}
+    public void setType(String type){this.type = type;}
 
-    public String getType(){
-        return type;
-    }
-
-    public String getSynopsis(){
-        return synopsis;
-    }
+    public String getSynopsis(){return this.synopsis;}
+    public void setSynopsis(String synopsis){this.synopsis = synopsis;}
     
-    public String getRating() {
-    	return rating;
-    }
+    public String getRating() {return this.rating;}
+    public void setRating(String rating){this.rating = rating;}
 
-    public Date getMovieReleaseDate(){
-        return movieReleaseDate;
-    }
+    public String getMovieReleaseDate(){return this.movieReleaseDate;}
+    public void setMovieReleaseDate(String movieReleaseDate){this.movieReleaseDate = movieReleaseDate;}
 
-    public String getMovieReleaseDateToString(){
-        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-        return sdf.format(movieReleaseDate);
-    }
+    public String getDirector(){return this.director;}
+    public void setDirector(String director){this.director = director;}
 
-    public String getDirector(){
-        return director;
-    }
+    public ArrayList<String> getCast(){return this.cast;}
+    public void setCast(ArrayList<String> cast){this.cast = cast;}
 
-    public ArrayList<String> getCast(){
-        return cast;
-    }
+    public ArrayList<Review> getReviews(){return this.reviews;}
+    public void setReviews(ArrayList<Review> reviews){this.reviews = reviews;}
 
-    public void addReview(Review review){
-        reviews.add(review);
-    }
+    public String toString(){
+        String castString = "";
+        for (int i=0; i<getCast().size(); i++)
+            castString = castString.concat(getCast().get(i) + ",");
+        castString = castString.substring(0, castString.length()-1);
 
-    public ArrayList<Review> getReviews(){
-        return reviews;
-    }
-
-    public String getDetailsToString(){
         String details = "";
-        details += "Title: " + title + "\n"
-                + "Director: " + director +"\n"
-                + "Type: " + type + "\n"
-                + "Rating: " + getOverallRating() + "\n"
-                + "Release date: " + getMovieReleaseDateToString() + "\n"
-                + "Synopsis: " + synopsis + "\n"
-                + "Overall review rating: " + getOverallRating() + "\n"
-                + "Cast: ";
-        for(String actor : cast){
-            details += actor + ", ";
-        }
+        details += "Title: " + getTitle() + "\n"
+                + "Type: " + getType() + "\n"
+                + "Synopsis: " + getSynopsis() + "\n"
+                + "Rating: " + getRating() + "\n"
+                + "Release date: " +  getMovieReleaseDate() + "\n"
+                + "Director: " + getDirector() + "\n"
+                + "Cast: " + castString + "\n"
+                + "Overall review rating: " + getOverallReviews();       
         return details + "\n";
     }
 
-    public String getOverallRating(){
+    public String getOverallReviews(){
         double sum = 0;
         if(reviews.size()>1){
             for(Review review : reviews){
@@ -107,21 +85,23 @@ public class Movie {
             }
             return String.valueOf(sum/reviews.size());
         }
-        else{
+        else {
             return "N/A";
         }
     }
 
-    public MovieStatus getShowStatus(){
+    public MovieStatus getShowStatus() throws ParseException{
         Date current = new Date();
-        long differenceInDays = TimeUnit.MILLISECONDS.toDays(movieReleaseDate.getTime() - current.getTime());
-        if(differenceInDays>7){
+        Date Date_movieReleaseDate = new SimpleDateFormat("YYYY-mm-dd").parse(getMovieReleaseDate());
+        long difference = Date_movieReleaseDate.getTime() - current.getTime();
+	    float daysBetween = (difference / (1000*60*60*24));
+        if(daysBetween>7){
             return MovieStatus.PREVIEW;
         }
-        else if(differenceInDays<=7 && differenceInDays>0){
+        else if(daysBetween<=7 && daysBetween>0){
             return MovieStatus.COMING_SOON;
         }
-        else if(differenceInDays<-30){
+        else if(daysBetween<-30){
             return MovieStatus.END_OF_SHOWING;
         }
         else{

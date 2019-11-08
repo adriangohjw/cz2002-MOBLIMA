@@ -1,6 +1,8 @@
 package Model;
 
-public class Review {
+import java.io.Serializable;
+
+public class Review implements Serializable {
 
 	private String username;
     private double numOfStars;
@@ -22,5 +24,21 @@ public class Review {
 
     public String getAdditionalComment(){
         return this.additionalComment;
+    }
+
+    public void setNumOfStars(double numOfStars){
+        this.numOfStars = numOfStars;
+    }
+
+    public void setAdditionalComent(String additionalComment){
+        this.additionalComment = additionalComment;
+    }
+
+    public String toString(){
+        String details = "";
+        details += "username: " + getUsername() + "\n"
+                + "numOfStars: " + String.valueOf(getNumOfStars()) + "\n"
+                + "additionalComment: " + getAdditionalComment();     
+        return details;
     }
 }

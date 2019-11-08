@@ -1,41 +1,29 @@
 # Database Schema explained
 
 ## movies
-KEY (`id`)
 
-FOREIGN KEY `id` REFERENCES (`movieReviews`)
+0. (String) title
+1. (String) type
+2. (String) synopsis
+3. (String) rating
+4. (String) movieReleaseDate
+5. (String) director
+6. (ArrayList<String>) cast
+7. (ArrayList<Review>) reviews
 
-0. row_id
-1. (int) id 
-2. (String) title
-3. (String) type
-4. (String) synopsis
-5. (String) rating
-6. (Date) movieReleaseDate
-7. (String) director
-8. (ArrayList<String>) cast
-9. (ArrayList<String>) reviewsUsernameArray
+## reviews
 
-## movieReviews
-KEY (`movie_id`, `username`)
-
-0. row_id
-1. (int) movie_id  // not an attribute 
-2. (String) username
-3. (double) numOfStars
-4. (String) additionalComment
+0. (User) user
+1. (double) numOfStars
+2. (String) additionalComment
 
 ## transactions
-KEY(`TID`, `movieGoerUsername`)
 
 0. row_id
 1. (String) TID 
 2. (String) movieGoerUsername
 
 ## users
-KEY(`email`)
-
-FOREIGN KEY `email` REFERENCES (`movieGoer`)
 
 0. row_id
 1. (String) email
@@ -46,9 +34,6 @@ FOREIGN KEY `email` REFERENCES (`movieGoer`)
 no additional attributes from superclass `Users`
 
 ## movieGoers
-KEY(`email`)
-
-FOREIGN KEY `email` REFERENCES (`transactions`, `movieReviews`)
 
 0. row_id
 1. (String) email
@@ -56,7 +41,6 @@ FOREIGN KEY `email` REFERENCES (`transactions`, `movieReviews`)
 3. (String) mobileNumber
 
 ## cineplexes
-KEY `name`
 
 0. row_id
 1. (String) name
@@ -74,9 +58,6 @@ FOREIGN KEY `code` REFERENCES (`cineplexes`, `sessions`, `transactions`)
 4. (int[]) sessions  // return list of `sessionID`
 
 ## sessions
-KEY (`id`)
-
-FOREIGN KEY `id` REFERENCES (`cinemas`, `seatsAvailability`)
 
 0. row_id
 1. (int) id
@@ -87,7 +68,6 @@ FOREIGN KEY `id` REFERENCES (`cinemas`, `seatsAvailability`)
 6. (SeatingPlan) seatsAvailability
 
 ## seatsAvailability
-KEY (`sessionID`)
 
 0. row_id
 1. (int) sessionID  // not an attribute

@@ -4,81 +4,25 @@
 
 create
 ~~~java
-static void create (
-    String title, 
-    String type, 
-    String synopsis, 
-    Date movieReleaseDate, 
-    String director, 
-    ArrayList<String> cast, 
-    ArrayList<Rating> ratings
-);
-~~~
-
-read
-- `ratings` to be handled by `movieRatingsController`
-~~~java
-static Movie[] read(int[] rows);  // accept an array of Int to be read
-static Movie[] readByTitle(String title);
-static Movie[] readByType(String type);
-static Movie[] readBySynopsis(String synopsis);
-static Movie[] readByMovieReleaseDate(Date movieReleaseDate);
-static Movie[] readByDirector(String director);
-static Movie[] readByCast(String cast);
-~~~
-
-update
-- `ratings` to be handled by `movieRatingsController`
-~~~java
-static void updateTitle(String title);
-static void updateType(String type);
-static void updateSynopsis(String synopsis);
-static void updateMovieReleaseDate(Date movieReleaseDate);
-static void updateDirector(String director);
-static void updateCast(int position, String cast);  // position of cast to be updated
-~~~
-
-delete
-- NO NEED to delete by `type`, `synopsis`, `movieReleaseDate`, `director`, `cast`, `ratings`
-~~~java
-static void delete(int[] row);  // accept an array of Int to be deleted
-static void deleteByTitle(String title);
-~~~
-
-
-## movieReviewsController
-
-create
-~~~java
-static void create (
-    String username,
-    double numOfStars,
-    String additionComment
-);
+public void create (Movie movie);
 ~~~
 
 read
 ~~~java
-static Rating[] read(int[] rows);  // accept an array of Int to be read
-static Rating[] readByUsername(String username);
-static Rating[] readByNumOfStars(double numOfStars);
-static Rating[] readByAdditionComment(String additionComment);
+public ArrayList<Movie> read(int[] rows);  // accept an array of Int to be read
+public ArrayList<Movie> readByAttribute(int col, String valueToSearch);
+public ArrayList<Movie> readByAttribute(int col, String valueToSearch, ArrayList<Movie> movieList);
 ~~~
 
 update
-- DO NOT allow users to update `username` as it is the KEY
 ~~~java
-static void updateNumOfStars(double numOfStars);
-static void updateAdditionalComment(String additionalComment);
+public void updateByAttribute(int col, Object oldValue, Object newValue);
 ~~~
 
 delete
-- NO NEED to delete by `numOfStars`, `additionalComment`
 ~~~java
-static void delete(int[] row);  // accept an array of Int to be deleted
-static void deleteByUsername(String username);
+public void deleteByAttribute(int col, Object valueToSearch);
 ~~~
-
 
 ## transactionsController
 
