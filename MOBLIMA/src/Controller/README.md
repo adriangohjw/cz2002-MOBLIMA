@@ -9,9 +9,9 @@ public void create (Movie movie);
 
 read
 ~~~java
-public ArrayList<Movie> read(int[] rows);  // accept an array of Int to be read
+public ArrayList<Movie> read(); 
 public ArrayList<Movie> readByAttribute(int col, String valueToSearch);
-public ArrayList<Movie> readByAttribute(int col, String valueToSearch, ArrayList<Movie> movieList);
+public ArrayList<Movie> readByAttribute(int col, String valueToSearch, ArrayList<Movie>);movieList);
 ~~~
 
 update
@@ -28,17 +28,14 @@ public void deleteByAttribute(int col, Object valueToSearch);
 
 create
 ~~~java
-static void create (
-    String cinemaCode
-    String movieGoerUsername
-)
+static void create (Transaction transaction);
 ~~~
 
 read
 ~~~java
-static Transaction[] read(int[] rows);  // accept an array of Int to be read
-static Transaction[] readByTID(String TID);
-static Transaction[] readByMovieGoerUsername(String movieGoerUsername);
+static ArrayList<Transaction> read(int[] rows);  // accept an array of Int to be read
+static ArrayList<Transaction> readByTID(String TID);
+static ArrayList<Transaction> readByMovieGoerUsername(String movieGoerUsername);
 ~~~
 
 update
@@ -51,37 +48,31 @@ static void deleteByTID(String TID);
 ~~~
 
 
-## usersController
+## UsersController
 
 create
 ~~~java
-static void create (
-    String email,
-    String password,
-    int role
-)
+static void create (User user);
 ~~~
 
 read
 - no need to retrieve users by password (security bleach)
 ~~~java
-static User[] read(int[] rows);  // accept an array of Int to be read
-static User[] readByEmail(String email);
-static User[] readByRole(int role);
+public ArrayList<User> read(); 
+public User readByEmail(String valueToSearch);
 ~~~
 
 update
 - Currently do NOT allow for `email` to be updated as it's a foreign KEY
 - DO NOT allow users to change the `role` of an user at the moment
 ~~~java
-static void updatePasswordHashed(String passwordHashed);
+public void updatePasswordHashed(String username, String currentPassword, String newPassword);
 ~~~
 
 delete
 - NO NEED to delete by `passwordHashed`, `role`
 ~~~java
-static void delete(int[] row);  // accept an array of Int to be deleted
-static void deleteByEmail(String email);
+public void deleteByEmail(String email);
 ~~~
 
 

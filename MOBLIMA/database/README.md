@@ -19,13 +19,11 @@
 
 ## transactions
 
-0. row_id
 1. (String) TID 
 2. (String) movieGoerUsername
 
 ## users
 
-0. row_id
 1. (String) email
 2. (String) passwordHashed
 3. (int) role

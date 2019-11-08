@@ -27,7 +27,12 @@ public class User {
     
     public int getRole() {
     	return this.role;
-    }
+	}
+	
+	public void updatePassword(String currentPassword, String newPassword) throws NoSuchAlgorithmException {
+		if (this.validatePassword(currentPassword))
+			this.passwordHashed = PasswordSHA256(newPassword, this.getEmail());		
+	}
     	
 	public String PasswordSHA256(String passwordToHash, String salt) throws NoSuchAlgorithmException {
 		String generatedPassword = null;
