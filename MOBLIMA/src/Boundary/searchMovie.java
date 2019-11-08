@@ -1,7 +1,7 @@
-package MOBILA.Boundary;
+package Boundary;
 
-import MOBILA.Controller.*;
-import MOBILA.Model.*;
+import Controller.*;
+import Model.*;
 
 import java.util.*;
 
