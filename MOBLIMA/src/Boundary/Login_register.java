@@ -1,82 +1,38 @@
-package Boundary;
-import java.util.Scanner;
+package MOBILA.Boundary;
 
-import sun.security.util.Password;
+import MOBILA.Controller.*;
+import MOBILA.Model.*;
+import Model.Movie;
 
-public class UserInterface {
-    public static void Menu(){
-        System.out.println("Welcome to MOBILA Cineplex");
-        System.out.println("--------------------------");
-        System.out.println("Choose one option: ");
-        System.out.println("1: Log in");
-        System.out.println("2: Sign up");
-        System.out.println("3: Explore movies");
+import java.util.*;
 
-        Scanner sc = new Scanner(System.in);
-        int option = sc.nextInt();
-        switch(option){
-            case 1: login();
-                    break;
-            case 2: signup();
-                    break;
-            case 3: explore();
-                    break;
-        }
-    }
+public class login {
+    private String email;
+    private String password;
+    private boolean correctPassword = false;
+    Scanner sc = new Scanner(System.in);
 
-    public static void login(){
-        String email;
-        String password;
-        boolean checkPassword;
-        int role;
-        Scanner sc = new Scanner(System.in);
-        do {
-            System.out.println("Your email: ");
-            email = sc.next();
-            System.out.println("Password: ");
-            password = sc.next();
-            System.out.println("1 for admin and 2 for movie-goer");
-            role = sc.nextInt();
-            User user = new User(email, password, role); //search for User given email and then return password
-            checkPassword = user.validatePassword(password);
-            if(!checkPassword){
-                System.out.println("Your email or password is incorrect");
+    login(){}
+
+    public void main(){
+        do{
+            verfify();
+            if(correctPassword==false){
+                System.out.println("Wrong password or email. Please enter again.");
             }
-        } while (!checkPassword);
-
-        System.out.println("You have logged in!");
+            else {
+                System.out.println("You have login sucessfully.");
+            }
+        } while(correctPassword == false);
     }
 
-
-
-    public static void signup(){
-        String email;
-        String password;
-        String password2;
-        int role;
-
-        Scanner sc = new Scanner(System.in);
-        System.out.println("Your email: ");
-        do {
-            email = sc.next();
+    public void verfify(){
+        System.out.println("Please enter your email: ");
+        email = sc.nextLine();
         System.out.println("Password: ");
-        password = sc.next();
-        System.out.println("Check password again");
-        password2 = sc.next();
-        }
-        while(password!=password2);
+        password = sc.nextLine();
 
-        System.out.println("1 for admin and 2 for movie-goer");
-        role = sc.nextInt();
-        User user = new User(email, password, role); // store into the database
-        System.out.println("You have registered!");
+        User user = usersController.readyByEmail(); //should only be an object but not array of object
+        correctPassword = user.getPassword().equals(password); //should have one more function getPassword, and should not be hash password
     }
-
-
-
-    public static void explore(){
-        //Call from the Movie Controller
-    }
-
-
 }
