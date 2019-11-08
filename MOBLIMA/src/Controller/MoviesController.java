@@ -41,9 +41,9 @@ public class MoviesController {
     public ArrayList<Movie> read() {
         try {
             ObjectInputStream ois = new ObjectInputStream(new FileInputStream(FILENAME));   
-            ArrayList<Movie> movieList = (ArrayList<Movie>) ois.readObject();
+            ArrayList<Movie> movieListing = (ArrayList<Movie>) ois.readObject();
             ois.close();
-            return movieList;
+            return movieListing;
         } catch (ClassNotFoundException | IOException e) {
             e.printStackTrace();
         }
@@ -207,7 +207,7 @@ public class MoviesController {
         replaceExistingFile(FILENAME, returnData);
     }
 
-    private void replaceExistingFile(String filename, ArrayList<Movie> data){
+    public void replaceExistingFile(String filename, ArrayList<Movie> data){
         File tempFile = new File(filename);
         if (tempFile.exists()) 
             tempFile.delete();

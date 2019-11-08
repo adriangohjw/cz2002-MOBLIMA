@@ -84,7 +84,7 @@ public class UsersController {
         replaceExistingFile(FILENAME, returnData);
     }
 
-    private void replaceExistingFile(String filename, ArrayList<User> returnData) {
+    public void replaceExistingFile(String filename, ArrayList<User> returnData) {
         File tempFile = new File(filename);
         if (tempFile.exists())
             tempFile.delete();
