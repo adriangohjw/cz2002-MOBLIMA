@@ -40,8 +40,10 @@ public class MoviesController {
 
     public ArrayList<Movie> read() {
         try {
-            ObjectInputStream ois = new ObjectInputStream(new FileInputStream(FILENAME));
-            return (ArrayList<Movie>) ois.readObject();
+            ObjectInputStream ois = new ObjectInputStream(new FileInputStream(FILENAME));   
+            ArrayList<Movie> movieList = (ArrayList<Movie>) ois.readObject();
+            ois.close();
+            return movieList;
         } catch (ClassNotFoundException | IOException e) {
             e.printStackTrace();
         }

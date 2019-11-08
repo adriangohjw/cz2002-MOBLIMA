@@ -37,7 +37,9 @@ public class UsersController {
     public ArrayList<User> read() {
         try {
             ObjectInputStream ois = new ObjectInputStream(new FileInputStream(FILENAME));
-            return (ArrayList<User>) ois.readObject();
+            ArrayList<User> userListing = (ArrayList<User>) ois.readObject();
+            ois.close();
+            return userListing;
         } catch (ClassNotFoundException | IOException e) {
             e.printStackTrace();
         }
