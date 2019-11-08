@@ -1,10 +1,11 @@
 package Model;
 
+import java.io.Serializable;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
-public class User {
+public class User implements Serializable {
 
     private String email;  // username 
     private String passwordHashed;
@@ -23,7 +24,11 @@ public class User {
     
     public String getEmail() {
     	return this.email;
-    }
+	}
+	
+	public String getPasswordHashed() {
+		return this.passwordHashed;
+	}
     
     public int getRole() {
     	return this.role;
@@ -49,6 +54,14 @@ public class User {
 	        e.printStackTrace();
 	    }
 	    return generatedPassword;
+	}
+
+	public String toString(){
+		String toReturn = "";
+		toReturn 	+= "Username: " + getEmail() + "\n"
+					+ "Hashed Password: " + getPasswordHashed() + "\n"
+					+ "Role: " + getRole();
+		return toReturn; 
 	}
     
 }

@@ -6,6 +6,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "CodeLens (Launch) - UsersControllerTest",
+            "request": "launch",
+            "mainClass": "Test.UsersControllerTest",
+            "projectName": "MOBLIMA"
+        },
+        {
+            "type": "java",
             "name": "CodeLens (Launch) - ReviewsControllerSTest",
             "request": "launch",
             "mainClass": "Test.ReviewsControllerSTest",
