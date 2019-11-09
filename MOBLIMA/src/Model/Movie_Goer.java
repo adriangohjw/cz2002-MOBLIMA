@@ -1,19 +1,6 @@
 package Model;
 
 import java.security.NoSuchAlgorithmException;
-
-/*
- * Movie_Goer is able to do the following:
- * - See seat availability
- * - See ratings
- * - see movie details
- * - See list of movies 
- * - Search for movies
- * - CR transactions
- * - R top movies (by ticket sales/listing)
- * - C Rating
- */
-
 public class Movie_Goer extends User {
 	
 	private String name;
@@ -40,5 +27,13 @@ public class Movie_Goer extends User {
 		this.mobileNumber = mobileNumber;
 	}
 	
-	
+	public String toString(){
+		String toReturn = "";
+		toReturn 	+= "Username: " + getEmail() + "\n"
+					+ "Hashed Password: " + getPasswordHashed() + "\n"
+					+ "Role: " + getRole() + "\n"
+					+ "Name: " + getName() + "\n"
+					+ "Mobile number: " + getMobileNumber();
+		return toReturn; 
+	}
 }
