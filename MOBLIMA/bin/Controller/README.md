@@ -28,23 +28,23 @@ public void deleteByAttribute(int col, Object valueToSearch);
 
 create
 ~~~java
-static void create (Transaction transaction);
+public void create (Transaction transaction);
 ~~~
 
 read
 ~~~java
-static ArrayList<Transaction> read(int[] rows);  // accept an array of Int to be read
-static ArrayList<Transaction> readByTID(String TID);
-static ArrayList<Transaction> readByMovieGoerUsername(String movieGoerUsername);
+public ArrayList<Transaction> read();
+public Transaction readByTID(String TID);
+public ArrayList<Transaction> readByMovieGoerUsername(String movieGoerUsername);
 ~~~
 
 update
-- `TID` and `movieGoerUsername` are both KEYs that should not be updated
+- `TID` should not need to be updated
+- Do not allow for updating of `email` of `Movie_Goer` for now
 
 delete
 ~~~java
-static void delete(int[] row);  // accept an array of Int to be deleted
-static void deleteByTID(String TID);
+public void deleteByTID(String TID);
 ~~~
 
 

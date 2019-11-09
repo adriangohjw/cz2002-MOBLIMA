@@ -20,7 +20,7 @@
 ## transactions
 
 1. (String) TID 
-2. (String) movieGoerUsername
+2. (Movie_Goer) movieGoer
 
 ## users
 

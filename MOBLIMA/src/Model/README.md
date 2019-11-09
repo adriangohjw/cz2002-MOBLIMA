@@ -48,12 +48,12 @@ public Review(
 ~~~java
 // Attributes
 private String TID; 
-private String movieGoer; 
+private Movie_Goer movieGoer; 
 
 // Constructor
 public Transaction(
   String cinemaCode, 
-  String movieGoer
+  Movie_Goer movieGoer
 ){...};
 ~~~
 
