@@ -155,7 +155,7 @@ public Cineplex(
 private String code;
 private String cinemaClass;
 protected SeatingPlan seatingPlan;
-private Session[] sessions;
+private ArrayList<Session> sessions;
 
 // Constructor
 public Cinema (

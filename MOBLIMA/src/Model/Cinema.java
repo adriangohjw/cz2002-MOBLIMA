@@ -1,16 +1,19 @@
 package Model;
 
+import java.util.ArrayList;
+
 public class Cinema {
 
 	private String code;
 	private String cinemaClass;
 	protected SeatingPlan seatingPlan;
-	private Session[] sessions;
+	private ArrayList<Session> sessions;
 	
 	public Cinema (String code, String cinemaClass, SeatingPlan seatingPlan) {
 		this.code = code;
 		this.cinemaClass = cinemaClass;
 		this.seatingPlan = seatingPlan;
+		this.sessions = new ArrayList<Session>();
 	}
 	
 	public String getCode() {
@@ -37,11 +40,11 @@ public class Cinema {
 		this.seatingPlan = seatingPlan;
 	}
 
-	public Session[] getSessions() {
+	public ArrayList<Session> getSessions() {
 		return sessions;
 	}
 
-	public void setSessions(Session[] sessions) {
+	public void setSessions(ArrayList<Session> sessions) {
 		this.sessions = sessions;
 	}
 	

@@ -181,33 +181,17 @@ public void deleteByName(String name);
 
 ## cinemasControllers
 
+constructor
+~~~java
+public CinemasController(CineplexesController cineplexesCtrl);
+~~~
+
 create
 ~~~java
-static void create (
-    String code,
-    String class,
-    Sessions[] sessions
-)
-~~~
-
-read
-- `sessions` to be handled by `sessionsControllers`
-~~~java
-static Cinema[] read(int[] rows);  // accept an array of Int to be read
-static Cinema[] readByCode(String code);
-static Cinema[] readByClass(String class);
-~~~
-
-update
-- `sessions` to be handled by `sessionsControllers`
-~~~java
-static void updateCode(String code);
-static void updateClass(String class);
+public void create (Cineplex cineplex, Cinema cinema);
 ~~~
 
 delete
-- NO NEED to delete by `class`, `sessions`
 ~~~java
-static void delete(int[] row);  // accept an array of Int to be deleted
-static void deleteByCode(String code);
+public void deleteByCode(Cineplex cineplex, String code);
 ~~~
