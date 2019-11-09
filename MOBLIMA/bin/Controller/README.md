@@ -24,6 +24,18 @@ delete
 public void deleteByAttribute(int col, Object valueToSearch);
 ~~~
 
+## reviewsController
+
+constructor
+~~~java
+public ReviewsController(MoviesController movieCtrl);
+~~~
+
+create
+~~~java
+public void create (Movie movie, Review review);
+~~~
+
 ## transactionsController
 
 create
@@ -46,7 +58,6 @@ delete
 ~~~java
 public void delete(String TID, String username);
 ~~~
-
 
 ## AdminsController
 
