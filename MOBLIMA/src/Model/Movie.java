@@ -109,4 +109,20 @@ public class Movie implements Serializable {
         }
     }
 
+    @Override
+    public boolean equals(Object movie) {
+        if (!(movie instanceof Movie)) {
+            return false;
+        }
+        Movie other = (Movie) movie;
+        return 
+            this.title.equals(other.getTitle()) 
+            && this.type.equals(other.getType()) 
+            && this.synopsis.equals(other.getSynopsis()) 
+            && this.rating.equals(other.getRating())
+            && this.movieReleaseDate.equals(other.getMovieReleaseDate()) 
+            && this.director.equals(other.getDirector()) 
+            && this.cast.equals(other.getCast()) 
+            && this.reviews.equals(other.getReviews());
+    }
 }

@@ -41,4 +41,16 @@ public class Review implements Serializable {
                 + "additionalComment: " + getAdditionalComment();     
         return details;
     }
+
+    @Override
+    public boolean equals(Object review) {
+        if (!(review instanceof Review)) {
+            return false;
+        }
+        Review other = (Review) review;        
+        return 
+            this.username.equals(other.getUsername()) 
+            && this.numOfStars == other.getNumOfStars()
+            && this.additionalComment.equals(other.getAdditionalComment());
+    }
 }
