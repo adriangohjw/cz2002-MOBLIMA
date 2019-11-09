@@ -20,7 +20,7 @@ public class Movie_Goer extends User {
 	private String mobileNumber;
 
 	// user can create account without name and mobile number 
-	public Movie_Goer(String username, String password, int role) throws NoSuchAlgorithmException {
+	public Movie_Goer(String username, String password) throws NoSuchAlgorithmException {
 		super(username, password, MOVIE_GOER);
 	}
 
