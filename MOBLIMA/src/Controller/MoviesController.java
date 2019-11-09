@@ -212,7 +212,7 @@ public class MoviesController {
         if (tempFile.exists()) 
             tempFile.delete();
         try {
-            ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(FILENAME));
+            ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(filename));
             out.writeObject(data);
             out.flush();
             out.close();
