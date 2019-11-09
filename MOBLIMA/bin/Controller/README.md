@@ -44,7 +44,7 @@ update
 
 delete
 ~~~java
-public void deleteByTID(String TID);
+public void delete(String TID, String username);
 ~~~
 
 

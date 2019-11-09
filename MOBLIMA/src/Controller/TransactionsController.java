@@ -42,17 +42,18 @@ public class TransactionsController {
         return new ArrayList<Transaction>();
     }
 
-    public Transaction readByTID(String TID) 
+    public ArrayList<Transaction> readByTID(String TID) 
             throws ClassNotFoundException, IOException {
         ArrayList<Transaction> allData = read();
         Transaction transaction = null;
+        ArrayList<Transaction> returnData = new ArrayList<Transaction>();
 
         for (int i=0; i<allData.size(); i++) {
             transaction = allData.get(i);
             if (transaction.getTID().equals(TID))
-                return transaction;
+                returnData.add(transaction);
         }
-        return null;
+        return returnData;
     }
 
     public ArrayList<Transaction> readByMovieGoerUsername(String movieGoerUsername) 
@@ -71,7 +72,7 @@ public class TransactionsController {
         return returnData;
     }
 
-    public void deleteByTID(String TID)
+    public void delete(String TID, String username)
             throws ClassNotFoundException, IOException {
         ArrayList<Transaction> allData = read();
         Transaction transaction = null;
@@ -79,8 +80,10 @@ public class TransactionsController {
 
         for (int i=0; i<allData.size(); i++){
             transaction = allData.get(i);
-            if (!transaction.getTID().equals(TID))
-                returnData.add(transaction);                
+            if (transaction.getTID().equals(TID) 
+                    && transaction.getMovieGoer().getEmail().equals(username))
+                continue;
+            returnData.add(transaction);                
         }
         replaceExistingFile(FILENAME, returnData);
     }

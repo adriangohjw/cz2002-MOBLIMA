@@ -1,9 +1,10 @@
 package Model;
 
 import java.util.Date;
+import java.io.Serializable;
 import java.text.SimpleDateFormat;
 
-public class Transaction {
+public class Transaction implements Serializable {
 
 	private String TID; 		// XXXYYYYMMDDhhmm (XXX is cinema code and YYYYDDMMhhmm is datetime)
 	private Movie_Goer movieGoer;
@@ -20,5 +21,14 @@ public class Transaction {
 
 	public Movie_Goer getMovieGoer() {
 		return movieGoer;
+	}
+
+	public String toString(){
+		String toReturn = "";
+		toReturn 	+= "TID: " + getTID() + "\n"
+					+ "Name: " + getMovieGoer().getName() + "\n"
+					+ "Mobile number: " + getMovieGoer().getMobileNumber() + "\n"
+					+ "Email: " + getMovieGoer().getEmail();
+		return toReturn; 
 	}
 }
