@@ -18,8 +18,8 @@ public class AdminsControllerTest {
         Admin admin = null;
 
         // creating test values
-        Admin admin1 = new Admin("adrian1@gmail.com", "myUnhashedPassword", 2);
-        Admin admin2 = new Admin("adrian2@gmail.com", "myUnhashedPassword", 2);
+        Admin admin1 = new Admin("adrian1@gmail.com", "myUnhashedPassword");
+        Admin admin2 = new Admin("adrian2@gmail.com", "myUnhashedPassword");
         userListing.add(admin1);
         userListing.add(admin2);
 
