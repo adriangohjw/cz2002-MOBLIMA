@@ -158,30 +158,24 @@ static void deleteByCinemaCode(String cinemaCode);
 
 create
 ~~~java
-static void create (
-    String name,
-    Cinema[] cinemas
-)
+public void create (Cineplex cineplex);
 ~~~
 
 read
 - no need to implement reading by cinemas as it is not as useful
 ~~~java
-static Cineplexes[] read(int[] rows);  // accept an array of Int to be read
-static Cineplex[] readByName(String name);
+public ArrayList<Cineplex> read(); 
+public Cineplex readByName(String name);
 ~~~
 
 update
-- `cinemas` to be handled by `cinemaControllers`
 ~~~java
-static void updateName();
+public void updateByName(String oldName, String newName);
 ~~~
 
 delete
-- NO NEED to delete by `cinemas`
 ~~~java
-static void delete(int[] row);  // accept an array of Int to be deleted
-static void deleteByName(String name);
+public void deleteByName(String name);
 ~~~
 
 

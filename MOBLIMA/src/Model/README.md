@@ -139,12 +139,12 @@ public void unassignSeats(int id){...};
 ~~~java
 // Attribute
 private String name;
-private Cinema[] cinemas;
+private ArrayList<Cinema> cinemas;
 
 // Constructor
 public Cineplex(
   String name, 
-  Cinema[] cinemas
+  ArrayList<Cinema> cinemas
 ){...};
 ~~~
 

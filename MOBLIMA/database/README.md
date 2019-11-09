@@ -41,34 +41,19 @@
 
 ## cineplexes
 
-0. row_id
-1. (String) name
-2. (String[]) cinemas  // return list of `cinemaCode`
+0. (String) name
+1. (ArrayList<Cinema>) cinemas  // at least 3 cinemas
 
 ## cinemas
-KEY `code`
 
-FOREIGN KEY `code` REFERENCES (`cineplexes`, `sessions`, `transactions`)
-
-0. row_id
-1. (String) code 
+0. (String) code  // 3 characterss 
 2. (String) cinemaClass
 3. (SeatingPlan) seatingPlan
-4. (int[]) sessions  // return list of `sessionID`
+4. (ArrayList<Session>) sessions 
 
 ## sessions
 
-0. row_id
-1. (int) id
-2. (Cinema) cinemaCode  // not an attribute
-3. (Movie) movie
-4. (Date) sessionDate
-5. (String) sessionTime
-6. (SeatingPlan) seatsAvailability
-
-## seatsAvailability
-
-0. row_id
-1. (int) sessionID  // not an attribute
-2. (int) row
-3. (int) column
+0. (Movie) movie
+1. (String) sessionDate
+2. (String) sessionTime
+3. (SeatingPlan) seatsAvailability

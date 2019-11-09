@@ -1,11 +1,14 @@
 package Model;
 
-public class Cineplex {
+import java.io.Serializable;
+import java.util.ArrayList;
+
+public class Cineplex implements Serializable {
 
 	private String name;
-	private Cinema[] cinemas;
+	private ArrayList<Cinema> cinemas;  // at least 3 cinemas
 	
-	public Cineplex(String name, Cinema[] cinemas) {
+	public Cineplex(String name, ArrayList<Cinema> cinemas) {
 		this.name = name;
 		this.cinemas = cinemas;
 	}
@@ -18,12 +21,23 @@ public class Cineplex {
 		this.name = name;
 	}
 	
-	public Cinema[] getCinemas() {
+	public ArrayList<Cinema> getCinemas() {
 		return cinemas;
 	}
 	
-	public void setCinemas(Cinema[] cinemas) {
+	public void setCinemas(ArrayList<Cinema> cinemas) {
 		this.cinemas = cinemas;
 	}
-	
+
+	public String toString(){
+        String cinemaString = "";
+        for (int i=0; i<getCinemas().size(); i++)
+			cinemaString = cinemaString.concat(getCinemas().get(i) + ",");
+		cinemaString = cinemaString.substring(0, cinemaString.length()-1);
+
+        String details = "";
+        details += "Name: " + getName() + "\n"
+				+ "List of Cinemas (by code): " + cinemaString; 
+        return details;
+    }
 }
