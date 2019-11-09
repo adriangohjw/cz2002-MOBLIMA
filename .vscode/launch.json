@@ -6,6 +6,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "CodeLens (Launch) - MovieGoersControllerTest",
+            "request": "launch",
+            "mainClass": "Test.MovieGoersControllerTest",
+            "projectName": "MOBLIMA"
+        },
+        {
+            "type": "java",
             "name": "CodeLens (Launch) - AdminsControllerTest",
             "request": "launch",
             "mainClass": "Test.AdminsControllerTest",
