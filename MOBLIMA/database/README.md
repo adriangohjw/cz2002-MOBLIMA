@@ -23,20 +23,21 @@
 2. (Movie_Goer) movieGoer
 
 ## users
+- no need for a file as subclasses have their own attributes
 
-1. (String) email
-2. (String) passwordHashed
-3. (int) role
+## admin
 
-## admins
-no additional attributes from superclass `Users`
+0. (String) email
+1. (String) passwordHashed
+2. (int) role
 
 ## movieGoers
 
-0. row_id
-1. (String) email
-2. (String) name
-3. (String) mobileNumber
+0. (String) email
+1. (String) passwordHashed
+2. (int) role
+3. (String) name
+4. (String) mobileNumber
 
 ## cineplexes
 

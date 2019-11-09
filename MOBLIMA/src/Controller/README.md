@@ -48,18 +48,18 @@ public void delete(String TID, String username);
 ~~~
 
 
-## UsersController
+## AdminsController
 
 create
 ~~~java
-static void create (User user);
+static void create (Admin admin);
 ~~~
 
 read
 - no need to retrieve users by password (security bleach)
 ~~~java
-public ArrayList<User> read(); 
-public User readByEmail(String valueToSearch);
+public ArrayList<Admin> read(); 
+public Admin readByEmail(String valueToSearch);
 ~~~
 
 update
@@ -75,6 +75,33 @@ delete
 public void deleteByEmail(String email);
 ~~~
 
+## MovieGoersController
+
+create
+~~~java
+static void create (Movie_Goer movieGoer);
+~~~
+
+read
+- no need to retrieve users by password (security bleach)
+~~~java
+public ArrayList<Movie_Goer> read(); 
+public Movie_Goer readByEmail(String valueToSearch);
+~~~
+
+update
+- Currently do NOT allow for `email` to be updated as it's a foreign KEY
+- DO NOT allow users to change the `role` of an user at the moment
+~~~java
+public void updatePasswordHashed(String username, String currentPassword, String newPassword);
+public void updateByAttribute(int col, Object oldValue, Object newValue);
+~~~
+
+delete
+- NO NEED to delete by `passwordHashed`, `role`, `name`, `mobileNumber`
+~~~java
+public void deleteByEmail(String email);
+~~~
 
 ## sessionsController
 

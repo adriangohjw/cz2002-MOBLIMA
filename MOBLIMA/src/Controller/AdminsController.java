@@ -11,21 +11,21 @@ import java.util.ArrayList;
 
 import Model.*;
 
-public class UsersController {
+public class AdminsController {
 
-    public final static String FILENAME = "MOBLIMA/database/users.txt";
+    public final static String FILENAME = "MOBLIMA/database/admins.txt";
     public final static int EMAIL = 0;
     public final static int PASSWORDHASHED = 1;
     public final static int ROLE = 2;
 
-    public void create(User user) {
-        ArrayList<User> allData = new ArrayList<User>();
+    public void create(Admin admin) {
+        ArrayList<Admin> allData = new ArrayList<Admin>();
         File tempFile = new File(FILENAME);
         if (tempFile.exists())
             allData = read();
         try {
             ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(FILENAME));
-            allData.add(user);
+            allData.add(admin);
             out.writeObject(allData);
             out.flush();
             out.close();
@@ -34,22 +34,22 @@ public class UsersController {
         }
     }
 
-    public ArrayList<User> read() {
+    public ArrayList<Admin> read() {
         try {
             ObjectInputStream ois = new ObjectInputStream(new FileInputStream(FILENAME));
-            ArrayList<User> userListing = (ArrayList<User>) ois.readObject();
+            ArrayList<Admin> adminListing = (ArrayList<Admin>) ois.readObject();
             ois.close();
-            return userListing;
+            return adminListing;
         } catch (ClassNotFoundException | IOException e) {
             e.printStackTrace();
         }
-        return new ArrayList<User>();
+        return new ArrayList<Admin>();
     }
 
-    public User readByEmail(String valueToSearch) throws ClassNotFoundException, IOException {
-        ArrayList<User> allData = read();
+    public Admin readByEmail(String valueToSearch) throws ClassNotFoundException, IOException {
+        ArrayList<Admin> allData = read();
         for (int i=0; i<allData.size(); i++){
-            User u = allData.get(i);
+            Admin u = allData.get(i);
             if (u.getEmail().equals(valueToSearch))  
                 return u;
         }
@@ -58,11 +58,11 @@ public class UsersController {
 
     public void updatePasswordHashed(String email, String currentPassword, String newPassword)
             throws ClassNotFoundException, IOException, NoSuchAlgorithmException {
-        ArrayList<User> allData = read();
-        ArrayList<User> returnData = new ArrayList<User>();
+        ArrayList<Admin> allData = read();
+        ArrayList<Admin> returnData = new ArrayList<Admin>();
         
         for (int i=0; i<allData.size(); i++){
-            User u = allData.get(i);
+            Admin u = allData.get(i);
             if (u.getEmail().equals(email))
                 u.updatePassword(currentPassword, newPassword);
             returnData.add(u);
@@ -72,11 +72,11 @@ public class UsersController {
     }
 
     public void deleteByEmail(String email) throws ClassNotFoundException, IOException {
-        ArrayList<User> allData = read();
-        ArrayList<User> returnData = new ArrayList<User>();
+        ArrayList<Admin> allData = read();
+        ArrayList<Admin> returnData = new ArrayList<Admin>();
         
         for (int i=0; i<allData.size(); i++){
-            User u = allData.get(i);
+            Admin u = allData.get(i);
             if (!u.getEmail().equals(email))
                 returnData.add(u);        
         }
@@ -84,7 +84,7 @@ public class UsersController {
         replaceExistingFile(FILENAME, returnData);
     }
 
-    public void replaceExistingFile(String filename, ArrayList<User> returnData) {
+    public void replaceExistingFile(String filename, ArrayList<Admin> returnData) {
         File tempFile = new File(filename);
         if (tempFile.exists())
             tempFile.delete();
