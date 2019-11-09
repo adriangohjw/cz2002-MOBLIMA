@@ -1,6 +1,7 @@
 package Model;
 
 import java.security.NoSuchAlgorithmException;
+
 public class Movie_Goer extends User {
 	
 	private String name;
