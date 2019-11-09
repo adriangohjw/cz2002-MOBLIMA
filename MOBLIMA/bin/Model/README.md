@@ -4,7 +4,6 @@
 
 ~~~java
 // Attributes
-private int id;
 private String title;
 private String type;
 private String synopsis;
@@ -21,7 +20,7 @@ public Movie(
   String type, 
   String synopsis, 
   String rating, 
-  Date movieReleaseDate, 
+  String movieReleaseDate, 
   String director, 
   ArrayList<String> cast
 ){...};
@@ -76,6 +75,7 @@ public User (
 // password validation and encryption
 public boolean validatePassword(String passwordToCompare){...};
 public String PasswordSHA256(String passwordToHash, String salt){...}
+public void updatePassword(String currentPassword, String newPassword){...}
 ~~~
 
 <b>Movie_Goer</b>
