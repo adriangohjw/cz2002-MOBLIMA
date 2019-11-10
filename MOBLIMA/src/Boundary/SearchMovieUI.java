@@ -8,11 +8,10 @@ import java.util.*;
 public class SearchMovieUI {
     private String title;
     private String type;
-    // private String synopsis;
-    // private Date movieReleaseDate;
     private String director;
     private String cast;
     private int option;
+    private MoviesController moviesController = new MoviesController();
 
     Scanner sc = new Scanner(System.in);
 
@@ -44,7 +43,7 @@ public class SearchMovieUI {
     public void searchByTitle(){
         System.out.println("Enter movie title: ");
         title = sc.next();
-        ArrayList<Movie> movieList = MoviesController.readByAttribute(0, title); //there are two readByAttribute, which to be used?
+        ArrayList<Movie> movieList = moviesController.readByAttribute(0, title); //there are two readByAttribute, which to be used?
         movieList.forEach(movie -> printMovie(movie));
     }
 
@@ -52,7 +51,7 @@ public class SearchMovieUI {
     public void searchByType(){
         System.out.println("Enter movie type: ");
         type = sc.next();
-        ArrayList<Movie> movieList = MoviesController.readByAttribute(1, type);
+        ArrayList<Movie> movieList = moviesController.readByAttribute(1, type);
         movieList.forEach(movie -> printMovie(movie));
     }
 
