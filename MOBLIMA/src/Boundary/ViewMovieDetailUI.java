@@ -12,7 +12,9 @@ public class ViewMovieDetailUI {
     private MoviesController moviesController = new MoviesController();
     Scanner sc = new Scanner(System.in);
 
-    ViewMovieDetailUI(){};
+    ViewMovieDetailUI(String _title){
+        this.title = _title;    
+    };
 
     public void main(){
         while(another==1){
@@ -22,8 +24,6 @@ public class ViewMovieDetailUI {
 
 
     public void display(){
-        System.out.println("Enter the movie title");
-        title = sc.next();
         ArrayList<Movie> movieList = moviesController.readByAttribute(0, title);
         movieList.forEach(movie -> System.out.println(movie.toString()));
         
