@@ -9,6 +9,7 @@ import java.util.*;
 public class ViewMovieDetailUI {
     private String title;
     private int another = 1;
+    private MoviesController moviesController = new MoviesController();
     Scanner sc = new Scanner(System.in);
 
     ViewMovieDetailUI(){};
@@ -23,7 +24,7 @@ public class ViewMovieDetailUI {
     public void display(){
         System.out.println("Enter the movie title");
         title = sc.next();
-        ArrayList<Movie> movieList = MoviesController.readByAttribute(0, title);
+        ArrayList<Movie> movieList = moviesController.readByAttribute(0, title);
         movieList.forEach(movie -> printMovie(movie));
         
         System.out.println("Another movie? 1 for [y] and 0 for [no]");
