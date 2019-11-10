@@ -21,7 +21,14 @@ public class RegisterUI{
         do {
             inputRegister();
             if(consistenPassword==true){
-                usersController.create(email, password, role);
+                if(role == 1){
+                    Movie_Goer movieGoer = new Movie_Goer(email, password); //email = userName?
+                    MovieGoersController.create(movieGoer);
+                }
+                else {
+                    Admin admin = new Admin(email, password); //email = userName
+                    AdminsController.create(admin);
+                };
                 System.out.println("You have registered successfully");
             }
             else {
@@ -31,6 +38,7 @@ public class RegisterUI{
         }
         while(consistenPassword==false);
     }
+
 
     public void inputRegister(){
         System.out.println("Please enter your email: ");
