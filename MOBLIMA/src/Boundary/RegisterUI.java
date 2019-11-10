@@ -15,19 +15,21 @@ public class RegisterUI{
     private String password2;
     private int role;
     private boolean consistenPassword = false;
+    private MovieGoersController movieGoersController = new MovieGoersController();
+    private AdminsController adminsController = new AdminsController();
     Scanner sc = new Scanner(System.in);
-
+    
     public void main(){
         do {
             inputRegister();
             if(consistenPassword==true){
                 if(role == 1){
                     Movie_Goer movieGoer = new Movie_Goer(email, password); //email = userName?
-                    MovieGoersController.create(movieGoer);
+                    movieGoersController.create(movieGoer);
                 }
                 else {
                     Admin admin = new Admin(email, password); //email = userName
-                    AdminsController.create(admin);
+                    adminsController.create(admin);
                 };
                 System.out.println("You have registered successfully");
             }
