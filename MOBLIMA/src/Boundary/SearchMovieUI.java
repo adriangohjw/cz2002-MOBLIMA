@@ -44,7 +44,7 @@ public class SearchMovieUI {
     public void searchByTitle(){
         System.out.println("Enter movie title: ");
         title = sc.next();
-        ArrayList<Movie> movieList = MoviesController.readByAttribute(0, title);
+        ArrayList<Movie> movieList = MoviesController.readByAttribute(0, title); //there are two readByAttribute, which to be used?
         movieList.forEach(movie -> printMovie(movie));
     }
 
