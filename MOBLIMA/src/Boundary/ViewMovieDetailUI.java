@@ -23,7 +23,7 @@ public class ViewMovieDetailUI {
     public void display(){
         System.out.println("Enter the movie title");
         title = sc.next();
-        Movie[] movieList = movieRatingsController.readByTitle(title);
+        ArrayList<Movie> movieList = MoviesController.readByAttribute(0, title);
         movieList.forEach(movie -> printMovie(movie));
         
         System.out.println("Another movie? 1 for [y] and 0 for [no]");
@@ -35,15 +35,32 @@ public class ViewMovieDetailUI {
     }
 
     public void printMovie(Movie movie){
-        System.out.println(movie.getTitle());
-        System.out.println(movie.getType());
-        System.out.println(movie.getSynopsis());
-        System.out.println(movie.getShowStatus());
-        System.out.println(movie.getOverallRating());
-        System.out.println(movie.getReviews());
-        System.out.println(movie.getDirector());
-        System.out.println(movie.getCast());
+        System.out.println("Title: "+ movie.getTitle());
+        System.out.println("Type: " + movie.getType());
+        System.out.println("Synopsis: " + movie.getSynopsis());
+        System.out.println("Status: " + movie.getShowStatus());
+        System.out.print("Director: " + movie.getDirector() + "  |  Cast: ");
+        movie.getCast().forEach(cast -> System.out.print(cast + "   "));
+        System.out.println("Rating: " + movie.getRating());
+        System.out.println("Review: ");
+        ArrayList<Review> reviews = movie.getReviews();
+        int size = reviews.size();
+        if(size <=3 ){
+            reviews.forEach(review->printReview(review));
+        } else {
+            for (int i=0; i<3; i++){
+                printReview(reviews.get(i));
+            }
+        }
+        
         System.out.println("---------------------");
+    }
+    
+    public void printReview(Review review){
+        System.out.print("Star: " + review.getNumOfStars());
+        if(review.getAdditionalComment() != null){
+            System.out.println(" | " + review.getAdditionalComment());
+        }
     }
     
 }
