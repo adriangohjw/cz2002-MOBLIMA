@@ -52,17 +52,7 @@ public class SearchMovieUI {
         System.out.println("Enter movie type: ");
         type = sc.next();
         ArrayList<Movie> movieList = moviesController.readByAttribute(1, type);
-        movieList.forEach(movie -> printMovie(movie));
+        movieList.forEach(movie -> movie.toString());
     }
-
-    public void printMovie(Movie movie){
-        System.out.println("Title: "+ movie.getTitle());
-        System.out.println("Type: " + movie.getType());
-        System.out.println("Synopsis: " + movie.getSynopsis());
-        System.out.println("Status: " + movie.getShowStatus());
-        System.out.print("Director: " + movie.getDirector() + "  |  Cast: ");
-        movie.getCast().forEach(cast -> System.out.print(cast + "   "));
-        System.out.println("---------------------");
-    }   
 
 }
