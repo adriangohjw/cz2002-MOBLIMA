@@ -31,9 +31,12 @@ public class LoginUI {
         email = sc.next();
         System.out.println("Password: ");
         password = sc.next();
-
-        Admin admin = AdminsController.readByEmail(email);
-        Movie_Goer movieGoer = MovieGoersController.readByEmail(email);
+        
+        AdminsController adminsController = new AdminsController();
+        MovieGoersController movieGoersController = new MovieGoersController();
+        
+        Admin admin = adminsController.readByEmail(email);
+        Movie_Goer movieGoer = movieGoersController.readByEmail(email);
 
         if(admin!=null){
             user = admin;
