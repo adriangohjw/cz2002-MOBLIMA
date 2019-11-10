@@ -25,7 +25,7 @@ public class ViewMovieDetailUI {
         System.out.println("Enter the movie title");
         title = sc.next();
         ArrayList<Movie> movieList = moviesController.readByAttribute(0, title);
-        movieList.forEach(movie -> movie.toString());
+        movieList.forEach(movie -> System.out.println(movie.toString()));
         
         System.out.println("Another movie? 1 for [y] and 0 for [no]");
         another = sc.nextInt();
