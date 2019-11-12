@@ -32,13 +32,20 @@ public class SearchMovieUI {
         System.out.println("4. Exit");
         option = sc.nextInt();
             switch(option){
-            case 1: searchByTitle();
-                    break;
-            case 2: searchByType();
-                    break;
-            case 3: listAllMovies();
-                    break;         
-            case 4: System.out.println("Exit!");
+            case 1: 
+            	searchByTitle();
+                break;
+            case 2: 
+            	searchByType();
+                break;
+            case 3: 
+            	listAllMovies();
+            	break;         
+            case 4: 
+            	System.out.println("Exit!");
+            	break;
+            default: 
+            	System.out.println("Invalid input! Please try again.");
         }
     }
 
