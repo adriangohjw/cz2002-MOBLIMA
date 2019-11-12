@@ -15,9 +15,11 @@ public class LoginUI {
     MovieGoersController movieGoersController = new MovieGoersController();
     Scanner sc = new Scanner(System.in);
 
-    LoginUI(){}
+    LoginUI(int _role){
+        role = _role;    
+    }
 
-    public void main(){
+    public void main(user){
         do{
             verify();
             if(correctPassword==false){
@@ -34,9 +36,7 @@ public class LoginUI {
         email = sc.next();
         System.out.println("Password: ");
         password = sc.next();
-        
-        System.out.println("Your role: 1 for [movie-goer], 2 for [admin]");
-        
+
         if(role==1){
             Admin user = adminsController.readByEmail(email);
         }
