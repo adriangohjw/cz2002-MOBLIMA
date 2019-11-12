@@ -15,13 +15,14 @@ public class ListTopMovieUI {
     ListTopMovieUI(){}
     
     public void main() {
-    	while(choice!=2)
+    	while(choice!=3)
     		display();
     }
     
     public void display() {
     	System.out.println("Select 1 to list top 5 movies according to ratings.");
     	System.out.println("Select 2 to list top 5 movies according to ticket sales.");
+    	System.out.println("Select 3 to go back.");
     	
     	choice = sc.nextInt();
     	switch(choice) {
@@ -30,6 +31,9 @@ public class ListTopMovieUI {
     			break;
     		case 2: 
     			listWithSales();
+    			break;
+    		case 3: 
+    			System.out.println("Going back...");
     			break;
     		default:
     			System.out.println("Invalid input! Please try again.");
