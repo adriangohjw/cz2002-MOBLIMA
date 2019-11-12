@@ -99,105 +99,58 @@ public class MoviesController {
         return returnData;
     }
 
-    public void updateByAttribute(int col, Object oldValue, Object newValue)
+    public void updateById(int col, int id, Object newValue)
             throws ClassNotFoundException, IOException {
         ArrayList<Movie> allData = read();
         ArrayList<Movie> returnData = new ArrayList<Movie>();
                 
         for (int i=0; i<allData.size(); i++){
             Movie m = allData.get(i);
-            switch(col) {
-                case ID:
-                    if (m.getId() == (int) oldValue)
+            if (m.getId() == id){
+                switch(col) {
+                    case ID:
                         m.setId((int) newValue);
-                    returnData.add(m);
-                    break;
-                case TITLE:
-                    if (m.getTitle().equals((String) oldValue))
+                        break;
+                    case TITLE:
                         m.setTitle((String) newValue);
-                    returnData.add(m);
-                    break;
-                case TYPE:
-                    if (m.getType().equals((String) oldValue))
+                        break;
+                    case TYPE:
                         m.setType((String) newValue);
-                    returnData.add(m);
-                    break;
-                case RATING:
-                    if (m.getRating().equals((String) oldValue))
+                        break;
+                    case RATING:
                         m.setRating((String) newValue);
-                    returnData.add(m);
-                    break;
-                case MOVIE_RELEASE_DATE:
-                    if (m.getMovieReleaseDate().equals((String) oldValue))
+                        break;
+                    case MOVIE_RELEASE_DATE:
                         m.setMovieReleaseDate((String) newValue);
-                    returnData.add(m);
-                    break;
-                case DIRECTOR:
-                    if (m.getDirector().equals((String) oldValue))
+                        break;
+                    case DIRECTOR:
                         m.setDirector((String) newValue);
-                    returnData.add(m);
-                    break;
-                case CAST:
-                    if (m.getCast().equals((ArrayList<String>) oldValue))
+                        break;
+                    case CAST:
                         m.setCast((ArrayList<String>) newValue);
-                    returnData.add(m);
-                    break;
-                case REVIEWS:
-                    if (m.getReviews().equals((ArrayList<Review>) oldValue))
+                        break;
+                    case REVIEWS:
                         m.setReviews((ArrayList<Review>) newValue);
-                    returnData.add(m);
-                    break;
-                default:   
-                    break;
+                        break;
+                    default:   
+                        break;
+                }
             }
+            returnData.add(m);
         }
 
         replaceExistingFile(FILENAME, returnData);
     }
 
-    public void deleteByAttribute(int col, Object valueToSearch)
+    public void deleteById(int id)
             throws ClassNotFoundException, IOException {
         ArrayList<Movie> allData = read();
         ArrayList<Movie> returnData = new ArrayList<Movie>();
         
         for (int i=0; i<allData.size(); i++){
             Movie m = allData.get(i);
-            switch(col) {
-                case ID:
-                    if (!(m.getId() == (int) valueToSearch))
-                        returnData.add(m);
-                    break;
-                case TITLE:
-                    if (!m.getTitle().equals((String) valueToSearch))
-                        returnData.add(m);
-                    break;
-                case TYPE:
-                    if (!m.getType().equals((String) valueToSearch))
-                        returnData.add(m);
-                    break;
-                case RATING:
-                    if (!m.getRating().equals((String) valueToSearch))
-                        returnData.add(m);
-                    break;
-                case MOVIE_RELEASE_DATE:
-                    if (!m.getMovieReleaseDate().equals((String) valueToSearch))
-                        returnData.add(m);
-                    break;
-                case DIRECTOR:
-                    if (!m.getDirector().equals((String) valueToSearch))
-                        returnData.add(m);
-                    break;
-                case CAST:
-                    if (!m.getCast().equals((ArrayList<String>) valueToSearch))
-                        returnData.add(m);
-                    break;
-                case REVIEWS:
-                    if (!m.getReviews().equals((ArrayList<Review>) valueToSearch))
-                        returnData.add(m);
-                    break;
-                default:   
-                    break;
-            }
+            if (!(m.getId() == id))
+                returnData.add(m);
         }
 
         replaceExistingFile(FILENAME, returnData);
