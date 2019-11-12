@@ -31,8 +31,19 @@ public class LoginUI {
         email = sc.next();
         System.out.println("Password: ");
         password = sc.next();
+        
+        AdminsController adminsController = new AdminsController();
+        MovieGoersController movieGoersController = new MovieGoersController();
+        
+        Admin admin = adminsController.readByEmail(email);
+        Movie_Goer movieGoer = movieGoersController.readByEmail(email);
 
-        User user = usersController.readyByEmail(); //should only be an object but not array of object
-        correctPassword = user.getPassword().equals(password); //should have one more function getPassword, and should not be hash password
+        if(admin!=null){
+            user = admin;
+        } else{
+            user = movieGoer;
+        }
+
+        correctPassword = user.getPasswordHashed().equals(user.PasswordSHA256(email, password));
     }
 }

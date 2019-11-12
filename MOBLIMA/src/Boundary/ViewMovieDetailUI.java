@@ -8,42 +8,31 @@ import java.util.*;
 
 public class ViewMovieDetailUI {
     private String title;
-    private int another = 1;
+//  private int another = 1;
+    private MoviesController moviesController = new MoviesController();
     Scanner sc = new Scanner(System.in);
 
-    ViewMovieDetailUI(){};
+    ViewMovieDetailUI(String _title){
+        this.title = _title;    
+    };
 
-    public void main(){
-        while(another==1){
-            display();
-        }
-    }
+//     public void main(){
+//         while(another==1){
+//             display();
+//         }
+//     }
 
 
     public void display(){
-        System.out.println("Enter the movie title");
-        title = sc.next();
-        Movie[] movieList = movieRatingsController.readByTitle(title);
-        movieList.forEach(movie -> printMovie(movie));
+        ArrayList<Movie> movieList = moviesController.readByAttribute(0, title);
+        movieList.forEach(movie -> System.out.println(movie.toString()));
         
-        System.out.println("Another movie? 1 for [y] and 0 for [no]");
-        another = sc.nextInt();
+//         System.out.println("Another movie? 1 for [y] and 0 for [no]");
+//         another = sc.nextInt();
 
-        if(another==0){
-            System.out.println("Exit!");
-        }
-    }
-
-    public void printMovie(Movie movie){
-        System.out.println(movie.getTitle());
-        System.out.println(movie.getType());
-        System.out.println(movie.getSynopsis());
-        System.out.println(movie.getShowStatus());
-        System.out.println(movie.getOverallRating());
-        System.out.println(movie.getReviews());
-        System.out.println(movie.getDirector());
-        System.out.println(movie.getCast());
-        System.out.println("---------------------");
+//         if(another==0){
+//             System.out.println("Exit!");
+//         }
     }
     
 }
