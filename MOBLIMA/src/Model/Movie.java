@@ -18,13 +18,7 @@ public class Movie implements Serializable {
     private String director;
     private ArrayList<String> cast;
     private ArrayList<Review> reviews; 
-
-    public enum MovieStatus{
-        COMING_SOON,
-        PREVIEW,
-        NOW_SHOWING,
-        END_OF_SHOWING
-    }
+    
 
     public Movie(
             int id, String title, String type, String synopsis, String rating, String movieReleaseDate, String movieEndDate, String director, ArrayList<String> cast

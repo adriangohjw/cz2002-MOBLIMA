@@ -8,6 +8,7 @@ public class SeatingPlan {
 	public SeatingPlan(int row, int column) {
 		this.row = row;
 		this.column = column;
+		layout = new Seat [row][column];
 		for (int i = 0; i < row; i++) {
 			for(int j = 0; j < column; j++)
 				layout[i][j] = new Seat(i*this.row+j);

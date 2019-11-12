@@ -6,13 +6,13 @@ import java.util.ArrayList;
 public class Cinema implements Serializable {
 
 	private String code;
-	private String cinemaClass;
+	private CinemaType cinemaType;
 	protected SeatingPlan seatingPlan;
 	private ArrayList<Session> sessions;
 	
-	public Cinema (String code, String cinemaClass, SeatingPlan seatingPlan) {
+	public Cinema (String code, CinemaType cinemaType, SeatingPlan seatingPlan) {
 		this.code = code;
-		this.cinemaClass = cinemaClass;
+		this.cinemaType = cinemaType;
 		this.seatingPlan = seatingPlan;
 		this.sessions = new ArrayList<Session>();
 	}
@@ -25,12 +25,12 @@ public class Cinema implements Serializable {
 		this.code = code;
 	}
 	
-	public String getCinemaClass() {
-		return cinemaClass;
+	public CinemaType getCinemaType() {
+		return cinemaType;
 	}
 	
-	public void setCinemaClass(String cinemaClass) {
-		this.cinemaClass = cinemaClass;
+	public void setCinemaType(CinemaType cinemaClass) {
+		this.cinemaType = cinemaClass;
 	}
 
 	public SeatingPlan getSeatingPlan() {
