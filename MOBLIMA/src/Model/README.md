@@ -169,7 +169,6 @@ public Cinema (
 
 ~~~java
 // Attributes
-private int id;
 private Movie movie;
 private Date sessionDate;
 private String sessionTime;
@@ -177,10 +176,13 @@ private SeatingPlan seatsAvailability;
 
 // Constructor
 public Session(
-  int id,
   Movie movie, 
-  Date sessionDate, 
+  String sessionDate, 
   String sessionTime, 
   SeatingPlan seatingPlan
 ){...}
+
+// methods
+public String getSessionDateToString(){...};
+public double getPrice(){...};
 ~~~

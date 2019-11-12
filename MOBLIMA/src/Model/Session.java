@@ -1,38 +1,54 @@
 package Model;
 
+import java.io.Serializable;
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.util.Calendar;
 
-public class Session {
+public class Session implements Serializable {
 
-	private int id;
 	private Movie movie;
-	private Date sessionDate;
-	private String sessionTime;
-	private SeatingPlan seatsAvailability;
+	private String sessionDate;  // dd/MM/yyyy
+	private String sessionTime;  // hh:mm
+    private SeatingPlan seatsAvailability;
 
-    public Session(int id, Movie movie, Date sessionDate, String sessionTime, SeatingPlan seatingPlan){
-    	this.id = id;
+    public Session(Movie movie, String sessionDate, String sessionTime, SeatingPlan seatingPlan){
     	this.movie = movie;
     	this.sessionDate = sessionDate;
     	this.sessionTime = sessionTime;
-    	this.seatsAvailability = seatingPlan;
+        this.seatsAvailability = seatingPlan;
     }
     
-    public int getId() {
-    	return id;
-    }
-
     public Movie getMovie() {
         return movie;
     }
 
-    public Date getSessionDate() {
+    public void setMovie(Movie movie) {
+        this.movie = movie;
+    }
+
+    public String getSessionDate() {
         return sessionDate;
+    }
+
+    public void setSessionDate(String sessionDate) {
+        this.sessionDate = sessionDate;
     }
     
     public String getSessionTime() {
     	return sessionTime;
+    }
+
+    public void setSessionTime(String sessionTime) {
+        this.sessionTime = sessionTime;
+    }
+
+    public SeatingPlan getSeatsAvailability(){
+        return this.seatsAvailability;
+    }
+
+    public void setSeatsAvailability(SeatingPlan seatsAvailability){
+        this.seatsAvailability = seatsAvailability;
     }
 
     public String getSessionDateToString(){
@@ -40,4 +56,26 @@ public class Session {
         return sdf.format(sessionDate);
     }
 
+    /* INCOMPLETE
+    public double getPrice(){
+        double basePrice = 8.5;
+        boolean hasWeekendMarkup;
+
+        Calendar c1, c2 = Calendar.getInstance();
+        c1.setTime(new SimpleDateFormat("dd/MM/yyyy").parse(this.sessionDate));
+        int dayOfWeek = c1.get(Calendar.DAY_OF_WEEK);
+        c2.setTime(new SimpleDateFormat("hh:mm").parse(this.sessionTime));
+        Time time = c2.get(Calendar.TIME);
+        if (dayOfWeek == 5 || dayOfWeek == 6){
+            hasWeekendMarkup = true;
+        } else if (dayOfWeek == 4) {
+
+        } else {
+            hasWeekendMarkup = false;
+        }
+
+
+        if (this.sessionDate.get())
+    }
+    */
 }

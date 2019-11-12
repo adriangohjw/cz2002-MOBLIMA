@@ -116,41 +116,30 @@ public void deleteByEmail(String email);
 
 ## sessionsController
 
+constructor
+~~~java
+public SessionsController(CinemasController cinemasCtrl);
+~~~
+
 create
 ~~~java
-static void create (
-    String cinemaCode,
-    Movie movieTitle,
-    Date sessionDate,
-    String sessionTime,
-    SeatsAvailability seatsAvailability
-)
+public void create(Cinema cinema, Session session);
 ~~~
 
 read
-- No need to implement search by `seatsAvailability`
 ~~~java
-static Session[] read(int[] rows);  // accept an array of Int to be read
-static Session[] readByCinemaCode(String cinemaCode);
-static Session[] readByMovie(Movie movie);
-static Session[] readBySessionDate(Date sessionDate);
-static Session[] readBySessionTime(String sessionTime);
+public ArrayList<Session> read(); 
+public ArrayList<Session> readByAttributes(int col, Object valueToSearch);
 ~~~
 
 update
 ~~~java
-static void updateCinemaCode(String cinemaCode);
-static void updateMovie(Movie movie);
-static void updateSessionDate(Date date);
-static void updateSessionTime(String time);
-static void updateSeatsAvailability(SeatsAvailability seatsAvailability);  // to REVISED after seatsAvailability is created
+public void updateByAttribute(int col, Object oldValue, Object newValue);
 ~~~
 
 delete
-- NO NEED to delete by `movie`, `sessionDate`, `sessionTime`, `seatsAvailability`
 ~~~java
-static void delete(int[] row);  // accept an array of Int to be deleted
-static void deleteByCinemaCode(String cinemaCode);
+public void delete(Cinema cinema, String sessionDate, String sessionTime);
 ~~~
 
 

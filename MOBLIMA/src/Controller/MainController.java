@@ -9,15 +9,15 @@ import Model.*;
 public class MainController {
 
     private MoviesController movieCtrl;
-    private UsersController userCtrl;
+    private AdminsController adminCtrl;
 
     private AppController appCtrl;
     
     public final static String movieFileName = MoviesController.FILENAME;
-    public final static String userFileName = UsersController.FILENAME;
+    public final static String userFileName = AdminsController.FILENAME;
 
     private ArrayList<Movie> movieListing;
-    private ArrayList<User> userListing;
+    private ArrayList<Admin> adminListing;
     
     public MainController() {
 
@@ -29,7 +29,7 @@ public class MainController {
     
     private void openFromDB() {
         movieListing = movieCtrl.read();
-        userListing = userCtrl.read();
+        adminListing = adminCtrl.read();
     }
 
     private void setAllCtrl() {
@@ -38,9 +38,8 @@ public class MainController {
     }
 
 	private void saveToDB() {
-
         movieCtrl.replaceExistingFile(movieFileName, movieListing);
-        userCtrl.replaceExistingFile(movieFileName, userListing);
+        adminCtrl.replaceExistingFile(movieFileName, adminListing);
     }
 
     public int chooseAction(int choice) {
@@ -53,5 +52,6 @@ public class MainController {
                 break;
             
         }
+        return 1;
     }
 }
