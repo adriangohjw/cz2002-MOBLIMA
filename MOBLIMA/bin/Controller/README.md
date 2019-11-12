@@ -10,6 +10,7 @@ public void create(String title, String type, String synopsis, String rating, St
 read
 ~~~java
 public ArrayList<Movie> read(); 
+public Movie readByID(int valueToSearch);
 public ArrayList<Movie> readByAttribute(int col, String valueToSearch);
 public ArrayList<Movie> readByAttribute(int col, String valueToSearch, ArrayList<Movie>);movieList);
 ~~~
@@ -24,6 +25,11 @@ delete
 public void deleteByAttribute(int col, Object valueToSearch);
 ~~~
 
+others
+~~~java
+public int getLastId();
+~~~
+
 ## reviewsController
 
 constructor
@@ -34,6 +40,11 @@ public ReviewsController(MoviesController movieCtrl);
 create
 ~~~java
 public void create (Movie movie, Review review);
+~~~
+
+others
+~~~java
+public MoviesController getMovieCtrl();
 ~~~
 
 ## transactionsController

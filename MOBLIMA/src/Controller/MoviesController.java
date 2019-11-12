@@ -52,6 +52,17 @@ public class MoviesController {
         return new ArrayList<Movie>();
     }
 
+    public Movie readByID(int valueToSearch) 
+            throws ClassNotFoundException, IOException {
+        ArrayList<Movie> allData = read();
+        for (int i=0; i<allData.size(); i++){
+            Movie m = allData.get(i);
+            if (m.getId() == valueToSearch)
+                return m;
+        }
+        return null;
+    }
+
     public ArrayList<Movie> readByAttribute(int col, Object valueToSearch) 
             throws ClassNotFoundException, IOException {
         ArrayList<Movie> allData = read();

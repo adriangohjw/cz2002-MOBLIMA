@@ -27,4 +27,8 @@ public class ReviewsController {
         }
         this.movieCtrl.replaceExistingFile(FILENAME, returnData);
     } 
+
+    public MoviesController getMovieCtrl(){
+        return this.movieCtrl;
+    };
 }
