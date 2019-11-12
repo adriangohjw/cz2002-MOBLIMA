@@ -8,13 +8,8 @@ import java.util.Date;
 import Controller.*;
 import static Controller.MoviesController.FILENAME;
 import static Controller.MoviesController.TITLE;
-import static Controller.MoviesController.TYPE;
-import static Controller.MoviesController.SYNOPSIS;
 import static Controller.MoviesController.RATING;
 import static Controller.MoviesController.MOVIE_RELEASE_DATE;
-import static Controller.MoviesController.DIRECTOR;
-import static Controller.MoviesController.CAST;
-import static Controller.MoviesController.REVIEWS;
 
 import Model.*;
 
@@ -57,12 +52,12 @@ public class MoviesControllerTest {
 
         // testing MoviesController.updateByAttribute()
         System.out.println(".....Testing MoviesController.updateByAttribute()");
-        moviesController.updateByAttribute(MOVIE_RELEASE_DATE, "2019-11-08", "2019-12-08");
+        moviesController.updateById(MOVIE_RELEASE_DATE, 0, "2019-12-08");
         readAllAndPrint(moviesController.read());
 
         // testing MoviesController.delete()
         System.out.println(".....Testing MoviesController.delete()");
-        moviesController.deleteByAttribute(DIRECTOR, "B_director");
+        moviesController.deleteById(0);
         readAllAndPrint(moviesController.read());
     }
 

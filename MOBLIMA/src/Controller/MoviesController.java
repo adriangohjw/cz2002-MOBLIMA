@@ -2,6 +2,7 @@ package Controller;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -24,7 +25,7 @@ public class MoviesController {
     public final static int REVIEWS = 8;
 
     public void create(String title, String type, String synopsis, String rating, String movieReleaseDate, String director, ArrayList<String> cast) {
-        Movie movie = new Movie(getLastId(), title, type, synopsis, rating, movieReleaseDate, director, cast);
+        Movie movie = new Movie(getLastId()+1, title, type, synopsis, rating, movieReleaseDate, director, cast);
         ArrayList<Movie> allData = new ArrayList<Movie>();
         File tempFile = new File(FILENAME);
         if (tempFile.exists()) 
@@ -48,7 +49,7 @@ public class MoviesController {
             return movieListing;
         } catch (ClassNotFoundException | IOException e) {
             e.printStackTrace();
-        }
+        } 
         return new ArrayList<Movie>();
     }
 
@@ -71,10 +72,6 @@ public class MoviesController {
             Movie m = allData.get(i);
 
             switch(col) {
-                case ID:
-                    if (m.getId() == (int) valueToSearch)
-                        returnData.add(m);
-                    break;
                 case TITLE:
                     if (m.getTitle().equals((String) valueToSearch))
                         returnData.add(m);
@@ -157,7 +154,7 @@ public class MoviesController {
     }
 
     public int getLastId(){
-        int lastId = 0;
+        int lastId = -1;
         int movieID;
         ArrayList<Movie> allData = read();
         for (int i=0; i<allData.size(); i++){

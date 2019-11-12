@@ -12,17 +12,16 @@ read
 public ArrayList<Movie> read(); 
 public Movie readByID(int valueToSearch);
 public ArrayList<Movie> readByAttribute(int col, String valueToSearch);
-public ArrayList<Movie> readByAttribute(int col, String valueToSearch, ArrayList<Movie>);movieList);
 ~~~
 
 update
 ~~~java
-public void updateByAttribute(int col, Object oldValue, Object newValue);
+public void updateById(int col, int id, Object newValue);
 ~~~
 
 delete
 ~~~java
-public void deleteByAttribute(int col, Object valueToSearch);
+public void deleteById(int id);
 ~~~
 
 others
