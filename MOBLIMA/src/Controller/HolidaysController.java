@@ -59,7 +59,7 @@ public class HolidaysController {
     public boolean isHoliday(String valueToSearch) {
         ArrayList<Holiday> allData = read();
         for (int i=0; i<allData.size(); i++){
-            if (allData.get(i).getHolidayDate() == valueToSearch)
+            if (allData.get(i).getHolidayDate().equals(valueToSearch))
                 return true;
         }
         return false;

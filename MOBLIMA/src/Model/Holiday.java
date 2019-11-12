@@ -17,4 +17,8 @@ public class Holiday implements Serializable {
     public void setHolidayDate(String holidayDate) {
         this.holidayDate = holidayDate;
     }
+
+    public String toString() {
+        return "The holiday is on " + this.getHolidayDate();
+    }
 }
