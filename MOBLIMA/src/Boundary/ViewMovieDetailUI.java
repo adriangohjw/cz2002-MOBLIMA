@@ -2,7 +2,6 @@ package Boundary;
 
 import Controller.*;
 import Model.*;
-import Model.Movie;
 
 import java.util.*;
 
