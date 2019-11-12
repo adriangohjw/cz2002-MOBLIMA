@@ -98,8 +98,11 @@ public class MainMenuUI {
 				case 5:
 					break;
 				case 6:
+					ListTopMovieUI listTopMovieUI = new ListTopMovieUI();
+					listTopMovieUI.main();
 					break;
 				case 7:
+					System.out.println("Exiting...");
 					break;
 				default:
 					System.out.println("Try again!");
