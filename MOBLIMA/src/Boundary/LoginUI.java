@@ -9,7 +9,10 @@ import java.util.*;
 public class LoginUI {
     private String email;
     private String password;
+    private int role;
     private boolean correctPassword = false;
+    AdminsController adminsController = new AdminsController();
+    MovieGoersController movieGoersController = new MovieGoersController();
     Scanner sc = new Scanner(System.in);
 
     LoginUI(){}
@@ -32,18 +35,15 @@ public class LoginUI {
         System.out.println("Password: ");
         password = sc.next();
         
-        AdminsController adminsController = new AdminsController();
-        MovieGoersController movieGoersController = new MovieGoersController();
+        System.out.println("Your role: 1 for [movie-goer], 2 for [admin]");
         
-        Admin admin = adminsController.readByEmail(email);
-        Movie_Goer movieGoer = movieGoersController.readByEmail(email);
-
-        if(admin!=null){
-            user = admin;
-        } else{
-            user = movieGoer;
+        if(role==1){
+            Admin user = adminsController.readByEmail(email);
         }
-
+        else {
+            Movie_Goer user = movieGoersController.readByEmail(email);
+        }
+       
         correctPassword = user.getPasswordHashed().equals(user.PasswordSHA256(email, password));
     }
 }
