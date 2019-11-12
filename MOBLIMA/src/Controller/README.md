@@ -145,7 +145,7 @@ public ArrayList<Session> readByAttributes(int col, Object valueToSearch);
 
 update
 ~~~java
-public void updateByAttribute(int col, Object oldValue, Object newValue);
+public void updateByAttribute(int col, String code, Object newValue);
 ~~~
 
 delete
@@ -189,6 +189,17 @@ public CinemasController(CineplexesController cineplexesCtrl);
 create
 ~~~java
 public void create (Cineplex cineplex, Cinema cinema);
+~~~
+
+read
+~~~java
+public ArrayList<Cinema> read();
+public ArrayList<Cinema> readByAttribute(int col, Object valueToSearch);
+~~~
+
+update
+~~~java
+public void updateByAttribute(int col, String code, Object newValue);
 ~~~
 
 delete

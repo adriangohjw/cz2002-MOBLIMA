@@ -17,36 +17,16 @@ public class Cinema implements Serializable {
 		this.sessions = new ArrayList<Session>();
 	}
 	
-	public String getCode() {
-		return code;
-	}
+	public String getCode() {return code;}
+	public void setCode(String code) {this.code = code;}
 	
-	public void setCode(String code) {
-		this.code = code;
-	}
-	
-	public CinemaType getCinemaType() {
-		return cinemaType;
-	}
-	
-	public void setCinemaType(CinemaType cinemaClass) {
-		this.cinemaType = cinemaClass;
-	}
+	public CinemaType getCinemaType() {return cinemaType;}
+	public void setCinemaType(CinemaType cinemaClass) {this.cinemaType = cinemaClass;}
 
-	public SeatingPlan getSeatingPlan() {
-		return seatingPlan;
-	}
+	public SeatingPlan getSeatingPlan() {return seatingPlan;}
+	public void setSeatingPlan(SeatingPlan seatingPlan) {this.seatingPlan = seatingPlan;}
 
-	public void setSeatingPlan(SeatingPlan seatingPlan) {
-		this.seatingPlan = seatingPlan;
-	}
-
-	public ArrayList<Session> getSessions() {
-		return sessions;
-	}
-
-	public void setSessions(ArrayList<Session> sessions) {
-		this.sessions = sessions;
-	}
-	
+	public ArrayList<Session> getSessions() {return sessions;}
+	public void setSessions(ArrayList<Session> sessions) {this.sessions = sessions;}
+		
 }
