@@ -7,11 +7,11 @@ import java.util.Map;
 
 public class PriceController {
 
-    private HolidayController holidayController;
+    private HolidaysController holidaysCtrl;
     private Map<PriceChanger,Double> priceMap = new HashMap<>();
 
     public PriceController(){
-        this.holidayController = new HolidayController();
+        this.holidaysCtrl = new HolidaysController();
         populateDefaultPrices(priceMap);
     }
 
@@ -59,7 +59,7 @@ public class PriceController {
 
     public double computePrice(Session session, Cinema cinema, PriceType priceType){
         double addToPrice = getPrice(session.getMovie().getType()) + getPrice(cinema.getCinemaType());
-        if(holidayController.isHoliday(session.getSessionDate())){
+        if(holidaysCtrl.isHoliday(session.getSessionDate())){
             return getPrice(PriceType.HOLIDAY) + addToPrice;
         }
         else{
