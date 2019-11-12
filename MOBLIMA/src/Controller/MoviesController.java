@@ -25,7 +25,7 @@ public class MoviesController {
     public final static int REVIEWS = 9;
 
     public void create(
-            String title, String type, String synopsis, String rating, String movieReleaseDate, String movieEndDate, String director, ArrayList<String> cast
+            String title, MovieType type, String synopsis, String rating, String movieReleaseDate, String movieEndDate, String director, ArrayList<String> cast
     ) {
         Movie movie = new Movie(getLastId()+1, title, type, synopsis, rating, movieReleaseDate, movieEndDate, director, cast);
         ArrayList<Movie> allData = new ArrayList<Movie>();
@@ -114,7 +114,7 @@ public class MoviesController {
                         m.setTitle((String) newValue);
                         break;
                     case TYPE:
-                        m.setType((String) newValue);
+                        m.setType((MovieType) newValue);
                         break;
                     case RATING:
                         m.setRating((String) newValue);

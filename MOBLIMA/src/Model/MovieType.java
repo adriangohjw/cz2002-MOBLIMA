@@ -1,7 +1,5 @@
 package Model;
 
-import com.sun.tools.javac.code.Attribute;
-
 public enum MovieType implements PriceChanger {
     TWO_D("2D"),
     THREE_D("3D"),

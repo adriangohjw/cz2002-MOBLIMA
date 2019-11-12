@@ -10,7 +10,7 @@ public class Movie implements Serializable {
 
     private int id;
     private String title;
-    private String type;
+    private MovieType type;
     private String synopsis;
     private String rating;
     private String movieReleaseDate;
@@ -21,7 +21,7 @@ public class Movie implements Serializable {
     
 
     public Movie(
-            int id, String title, String type, String synopsis, String rating, String movieReleaseDate, String movieEndDate, String director, ArrayList<String> cast
+            int id, String title, MovieType type, String synopsis, String rating, String movieReleaseDate, String movieEndDate, String director, ArrayList<String> cast
     ){
         this.id = id;
         this.title = title;
@@ -41,8 +41,8 @@ public class Movie implements Serializable {
 	public String getTitle() {return this.title;}
     public void setTitle(String title){this.title = title;}
 
-    public String getType(){return this.type;}
-    public void setType(String type){this.type = type;}
+    public MovieType getType(){return this.type;}
+    public void setType(MovieType type){this.type = type;}
 
     public String getSynopsis(){return this.synopsis;}
     public void setSynopsis(String synopsis){this.synopsis = synopsis;}

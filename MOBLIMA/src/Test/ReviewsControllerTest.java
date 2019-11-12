@@ -1,7 +1,5 @@
 package Test;
 
-import static Controller.MoviesController.ID;
-
 import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -25,13 +23,13 @@ public class ReviewsControllerTest {
         ArrayList<String> listCast =  new ArrayList<String>();
         listCast.add("A_cast1");
         listCast.add("A_cast2");
-        movieCtrl.create("A", "Blockbuster", "A_synopsis", "NC16", currentDate, "2020-01-01", "A_director", listCast);
+        movieCtrl.create("A", MovieType.BLOCKBUSTER, "A_synopsis", "NC16", currentDate, "2020-01-01", "A_director", listCast);
         Movie movie1 = movieCtrl.readByID(0);
 
         listCast.clear();
         listCast.add("B_cast1");
         listCast.add("B_cast2");
-        movieCtrl.create("B", "Blockbuster", "B_synopsis", "NC16", currentDate, "2020-01-01", "B_director", listCast);
+        movieCtrl.create("B", MovieType.BLOCKBUSTER, "B_synopsis", "NC16", currentDate, "2020-01-01", "B_director", listCast);
         Movie movie2 = movieCtrl.readByID(1);
 
         ArrayList<Review> reviewListing = new ArrayList<Review>();
