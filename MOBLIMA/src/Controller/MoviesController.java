@@ -2,7 +2,6 @@ package Controller;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -20,12 +19,15 @@ public class MoviesController {
     public final static int SYNOPSIS = 3;
     public final static int RATING = 4;
     public final static int MOVIE_RELEASE_DATE = 5;
-    public final static int DIRECTOR = 6;
-    public final static int CAST = 7;
-    public final static int REVIEWS = 8;
+    public final static int MOVIE_END_DATE = 6;
+    public final static int DIRECTOR = 7;
+    public final static int CAST = 8;
+    public final static int REVIEWS = 9;
 
-    public void create(String title, String type, String synopsis, String rating, String movieReleaseDate, String director, ArrayList<String> cast) {
-        Movie movie = new Movie(getLastId()+1, title, type, synopsis, rating, movieReleaseDate, director, cast);
+    public void create(
+            String title, String type, String synopsis, String rating, String movieReleaseDate, String movieEndDate, String director, ArrayList<String> cast
+    ) {
+        Movie movie = new Movie(getLastId()+1, title, type, synopsis, rating, movieReleaseDate, movieEndDate, director, cast);
         ArrayList<Movie> allData = new ArrayList<Movie>();
         File tempFile = new File(FILENAME);
         if (tempFile.exists()) 

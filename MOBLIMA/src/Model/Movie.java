@@ -14,9 +14,10 @@ public class Movie implements Serializable {
     private String synopsis;
     private String rating;
     private String movieReleaseDate;
+    private String movieEndDate;
     private String director;
-    private ArrayList<String> cast;  // stored in DB as String, delimited by ||
-    private ArrayList<Review> reviews;  // stored in DB as String, delimited by ||s
+    private ArrayList<String> cast;
+    private ArrayList<Review> reviews; 
 
     public enum MovieStatus{
         COMING_SOON,
@@ -25,13 +26,16 @@ public class Movie implements Serializable {
         END_OF_SHOWING
     }
 
-    public Movie(int id, String title, String type, String synopsis, String rating, String movieReleaseDate, String director, ArrayList<String> cast){
+    public Movie(
+            int id, String title, String type, String synopsis, String rating, String movieReleaseDate, String movieEndDate, String director, ArrayList<String> cast
+    ){
         this.id = id;
         this.title = title;
         this.type = type;
         this.synopsis = synopsis;
         this.rating = rating;
         this.movieReleaseDate = movieReleaseDate;
+        this.movieEndDate = movieEndDate;
         this.director = director;
         this.cast = cast;
         this.reviews = new ArrayList<Review>();
@@ -55,6 +59,9 @@ public class Movie implements Serializable {
     public String getMovieReleaseDate(){return this.movieReleaseDate;}
     public void setMovieReleaseDate(String movieReleaseDate){this.movieReleaseDate = movieReleaseDate;}
 
+    public String getMovieEndDate(){return this.movieEndDate;}
+    public void setMovieEndDate(String movieEndDate){this.movieEndDate = movieEndDate;}
+    
     public String getDirector(){return this.director;}
     public void setDirector(String director){this.director = director;}
 
@@ -77,6 +84,7 @@ public class Movie implements Serializable {
                 + "Synopsis: " + getSynopsis() + "\n"
                 + "Rating: " + getRating() + "\n"
                 + "Release date: " +  getMovieReleaseDate() + "\n"
+                + "End date: " +  getMovieEndDate() + "\n"
                 + "Director: " + getDirector() + "\n"
                 + "Cast: " + castString + "\n"
                 + "Overall review rating: " + getOverallReviews();       
@@ -122,11 +130,13 @@ public class Movie implements Serializable {
         }
         Movie other = (Movie) movie;
         return 
-            this.title.equals(other.getTitle()) 
+            this.id == other.getId()
+            && this.title.equals(other.getTitle()) 
             && this.type.equals(other.getType()) 
             && this.synopsis.equals(other.getSynopsis()) 
             && this.rating.equals(other.getRating())
             && this.movieReleaseDate.equals(other.getMovieReleaseDate()) 
+            && this.movieEndDate.equals(other.getMovieEndDate()) 
             && this.director.equals(other.getDirector()) 
             && this.cast.equals(other.getCast()) 
             && this.reviews.equals(other.getReviews());

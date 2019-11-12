@@ -9,7 +9,8 @@ private String title;
 private String type;
 private String synopsis;
 private String rating;
-private Date movieReleaseDate;
+private String movieReleaseDate;
+private String movieEndDate;
 private String director;
 private ArrayList<String> cast;
 private ArrayList<Review> reviews;
@@ -21,6 +22,7 @@ public Movie(
   String synopsis, 
   String rating, 
   String movieReleaseDate, 
+  String movieEndDate,
   String director, 
   ArrayList<String> cast
 ){...};

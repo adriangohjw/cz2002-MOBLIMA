@@ -29,12 +29,12 @@ public class MoviesControllerTest {
         ArrayList<String> listCast =  new ArrayList<String>();
         listCast.add("A_cast1");
         listCast.add("A_cast2");
-        moviesController.create("A", "Blockbuster", "A_synopsis", "NC16", currentDate, "A_director", listCast);
+        moviesController.create("A", "Blockbuster", "A_synopsis", "NC16", currentDate, "2020-01-01", "A_director", listCast);
 
         listCast.clear();
         listCast.add("B_cast1");
         listCast.add("B_cast2");
-        moviesController.create("B", "Blockbuster", "B_synopsis", "NC16", currentDate, "B_director", listCast);
+        moviesController.create("B", "Blockbuster", "B_synopsis", "NC16", currentDate, "2020-01-01", "B_director", listCast);
         
         readAllAndPrint(moviesController.read());
 
