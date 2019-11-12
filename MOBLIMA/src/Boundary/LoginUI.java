@@ -19,7 +19,7 @@ public class LoginUI {
 
     public void main(){
         do{
-            verfify();
+            verify();
             if(correctPassword==false){
                 System.out.println("Wrong password or email. Please enter again.");
             }
@@ -29,7 +29,7 @@ public class LoginUI {
         } while(correctPassword == false);
     }
 
-    public void verfify(){
+    public void verify(){
         System.out.println("Please enter your email: ");
         email = sc.next();
         System.out.println("Password: ");
