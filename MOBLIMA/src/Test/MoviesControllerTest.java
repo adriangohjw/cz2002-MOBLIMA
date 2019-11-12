@@ -26,25 +26,21 @@ public class MoviesControllerTest {
         MoviesController moviesController = new MoviesController();
         ArrayList<Movie> movieListing = new ArrayList<Movie>();
 
-        // creating test values
+        // creating test values + Testing MoviesController.create()
+        System.out.println(".....Testing MoviesController.create()");
+    
         String currentDate = new SimpleDateFormat("YYYY-MM-dd").format(new Date());
 
         ArrayList<String> listCast =  new ArrayList<String>();
         listCast.add("A_cast1");
         listCast.add("A_cast2");
-        Movie movie1 = new Movie("A", "Blockbuster", "A_synopsis", "NC16", currentDate, "A_director", listCast);
+        moviesController.create("A", "Blockbuster", "A_synopsis", "NC16", currentDate, "A_director", listCast);
 
         listCast.clear();
         listCast.add("B_cast1");
         listCast.add("B_cast2");
-        Movie movie2 = new Movie("B", "Blockbuster", "B_synopsis", "NC16", currentDate, "B_director", listCast);
-
-        movieListing.add(movie1);
-        movieListing.add(movie2);
-
-        // Testing MoviesController.create()
-        System.out.println(".....Testing MoviesController.create()");
-        movieListing.forEach(movie->moviesController.create(movie));
+        moviesController.create("B", "Blockbuster", "B_synopsis", "NC16", currentDate, "B_director", listCast);
+        
         readAllAndPrint(moviesController.read());
 
         // testing MoviesController.read()

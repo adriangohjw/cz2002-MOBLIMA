@@ -4,7 +4,7 @@
 
 create
 ~~~java
-public void create (Movie movie);
+public void create(String title, String type, String synopsis, String rating, String movieReleaseDate, String director, ArrayList<String> cast);
 ~~~
 
 read

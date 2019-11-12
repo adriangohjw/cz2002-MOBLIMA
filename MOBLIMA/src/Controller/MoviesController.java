@@ -22,7 +22,8 @@ public class MoviesController {
     public final static int CAST = 6;
     public final static int REVIEWS = 7;
 
-    public void create(Movie movie) {
+    public void create(String title, String type, String synopsis, String rating, String movieReleaseDate, String director, ArrayList<String> cast) {
+        Movie movie = new Movie(title, type, synopsis, rating, movieReleaseDate, director, cast);
         ArrayList<Movie> allData = new ArrayList<Movie>();
         File tempFile = new File(FILENAME);
         if (tempFile.exists()) 
@@ -56,36 +57,6 @@ public class MoviesController {
         ArrayList<Movie> returnData = new ArrayList<Movie>();
         for (int i=0; i<allData.size(); i++){
             Movie m = allData.get(i);
-
-            switch(col) {
-                case TITLE:
-                    if (m.getTitle().equals(valueToSearch))
-                        returnData.add(m);
-                    break;
-                case TYPE:
-                    if (m.getType().equals(valueToSearch))
-                        returnData.add(m);
-                    break;
-                case RATING:
-                    if (m.getRating().equals(valueToSearch))
-                        returnData.add(m);
-                    break;
-                case MOVIE_RELEASE_DATE:
-                    if (m.getMovieReleaseDate().equals(valueToSearch))
-                        returnData.add(m);
-                    break;
-                default:   
-                    System.out.println(".....readByAttribute NOT ALLOWED");
-                    break;
-            }
-        }
-        return returnData;
-    }
-
-    public ArrayList<Movie> readByAttribute(int col, String valueToSearch, ArrayList<Movie> movieList){
-        ArrayList<Movie> returnData = new ArrayList<Movie>();
-        for (int i=0; i<movieList.size(); i++){
-            Movie m = movieList.get(i);
 
             switch(col) {
                 case TITLE:
