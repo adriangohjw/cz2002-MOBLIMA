@@ -4,6 +4,7 @@
 
 ~~~java
 // Attributes
+private int id;  // automatically genetated
 private String title;
 private String type;
 private String synopsis;
@@ -15,7 +16,6 @@ private ArrayList<Review> reviews;
 
 // Constructor
 public Movie(
-  int id, 
   String title, 
   String type, 
   String synopsis, 

@@ -8,6 +8,7 @@ import java.io.Serializable;
 
 public class Movie implements Serializable {
 
+    private int id;
     private String title;
     private String type;
     private String synopsis;
@@ -24,7 +25,8 @@ public class Movie implements Serializable {
         END_OF_SHOWING
     }
 
-    public Movie(String title, String type, String synopsis, String rating, String movieReleaseDate, String director, ArrayList<String> cast){
+    public Movie(int id, String title, String type, String synopsis, String rating, String movieReleaseDate, String director, ArrayList<String> cast){
+        this.id = id;
         this.title = title;
         this.type = type;
         this.synopsis = synopsis;
@@ -34,6 +36,9 @@ public class Movie implements Serializable {
         this.cast = cast;
         this.reviews = new ArrayList<Review>();
     }
+
+    public int getId() {return this.id;}
+    public void setId(int id) {this.id = id;}
 
 	public String getTitle() {return this.title;}
     public void setTitle(String title){this.title = title;}
@@ -66,7 +71,8 @@ public class Movie implements Serializable {
         castString = castString.substring(0, castString.length()-1);
 
         String details = "";
-        details += "Title: " + getTitle() + "\n"
+        details += "ID: " + getId() + "\n"
+                + "Title: " + getTitle() + "\n"
                 + "Type: " + getType() + "\n"
                 + "Synopsis: " + getSynopsis() + "\n"
                 + "Rating: " + getRating() + "\n"
