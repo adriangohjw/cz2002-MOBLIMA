@@ -6,7 +6,7 @@
 // Attributes
 private int id;  // automatically genetated
 private String title;
-private String type;
+private MovieType type;
 private String synopsis;
 private String rating;
 private String movieReleaseDate;
@@ -18,7 +18,7 @@ private ArrayList<Review> reviews;
 // Constructor
 public Movie(
   String title, 
-  String type, 
+  MovieType type, 
   String synopsis, 
   String rating, 
   String movieReleaseDate, 
@@ -155,7 +155,7 @@ public Cineplex(
 ~~~java
 // Attributes
 private String code;
-private String cinemaClass;
+private CinemaType cinemaClass;
 protected SeatingPlan seatingPlan;
 private ArrayList<Session> sessions;
 
@@ -187,4 +187,14 @@ public Session(
 // methods
 public String getSessionDateToString(){...};
 public double getPrice(){...};
+~~~
+
+## Holiday
+
+~~~java
+// Attributes
+private String holidayDate;
+
+// Constructor
+public Holiday(String holidayDate);
 ~~~
