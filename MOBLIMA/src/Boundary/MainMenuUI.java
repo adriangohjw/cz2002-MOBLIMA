@@ -33,7 +33,7 @@ public class MainMenuUI {
 	}
 	
 	public static void admin_login() throws ClassNotFoundException, IOException {
-		LoginUI admin_login = new LoginUI();
+		LoginUI admin_login = new LoginUI(1);
 		admin_login.main();
 		boolean log_out = false;
 		Scanner input = new Scanner(System.in);
