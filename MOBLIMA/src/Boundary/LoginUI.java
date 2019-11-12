@@ -19,7 +19,7 @@ public class LoginUI {
         role = _role;    
     }
 
-    public void main(user){
+    public void main(){
         do{
             verify();
             if(correctPassword==false){
