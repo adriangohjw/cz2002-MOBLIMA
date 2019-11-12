@@ -195,3 +195,26 @@ delete
 ~~~java
 public void deleteByCode(Cineplex cineplex, String code);
 ~~~
+
+
+## HolidaysController
+
+create
+~~~java
+public void create(String holidayDate);
+~~~
+
+read
+~~~java
+public ArrayList<Holiday> read();
+~~~
+
+delete
+~~~java
+public void delete(String valueToSearch);
+~~~
+
+others
+~~~java
+public boolean isHoliday(String valueToSearch);
+~~~
