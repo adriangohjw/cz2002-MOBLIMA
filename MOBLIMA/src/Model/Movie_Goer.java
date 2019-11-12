@@ -8,8 +8,16 @@ public class Movie_Goer extends User {
 	private String mobileNumber;
 
 	// user can create account without name and mobile number 
-	public Movie_Goer(String username, String password) throws NoSuchAlgorithmException {
+	public Movie_Goer(String username, String password) 
+			throws NoSuchAlgorithmException {
 		super(username, password, MOVIE_GOER);
+	}
+
+	public Movie_Goer(String username, String password, String name, String mobileNumber) 
+			throws NoSuchAlgorithmException {
+		super(username, password, MOVIE_GOER);
+		this.name = name;
+		this.mobileNumber = mobileNumber;
 	}
 
 	public String getName() {

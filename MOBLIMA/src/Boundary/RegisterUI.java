@@ -1,14 +1,14 @@
 package Boundary;
 
 import Controller.*;
-import Model.*;
-import Model.Movie;
 
+import java.security.NoSuchAlgorithmException;
 import java.util.*;
 
-public class RegisterUI{
+public class RegisterUI {
 
-    RegisterUI() {};
+    RegisterUI() {
+    };
 
     private String email;
     private String password;
@@ -18,29 +18,23 @@ public class RegisterUI{
     private MovieGoersController movieGoersController = new MovieGoersController();
     private AdminsController adminsController = new AdminsController();
     Scanner sc = new Scanner(System.in);
-    
-    public void main(){
+
+    public void main() throws NoSuchAlgorithmException {
         do {
             inputRegister();
             if(consistenPassword==true){
-                if(role == 1){
-                    Movie_Goer movieGoer = new Movie_Goer(email, password); //email = userName?
-                    movieGoersController.create(movieGoer);
-                }
-                else {
-                    Admin admin = new Admin(email, password); //email = userName
-                    adminsController.create(admin);
-                };
+                if(role == 1)
+                    movieGoersController.create(email, password);
+                else 
+                    adminsController.create(email, password);
                 System.out.println("You have registered successfully");
             }
             else {
                 System.out.println("Password not consistent. Please enter again");
             }
-
         }
         while(consistenPassword==false);
     }
-
 
     public void inputRegister(){
         System.out.println("Please enter your email: ");

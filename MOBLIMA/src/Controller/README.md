@@ -63,7 +63,7 @@ public void delete(String TID, String username);
 
 create
 ~~~java
-static void create (Admin admin);
+public void create(String username, String password) 
 ~~~
 
 read
@@ -90,7 +90,8 @@ public void deleteByEmail(String email);
 
 create
 ~~~java
-static void create (Movie_Goer movieGoer);
+public void create(String username, String password);
+public void create(String username, String password, String name, String mobileNumber);
 ~~~
 
 read

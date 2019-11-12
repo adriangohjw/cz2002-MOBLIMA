@@ -20,7 +20,27 @@ public class MovieGoersController {
     public final static int NAME = 3;
     public final static int MOBILE_NUMBER = 4;
 
-    public void create(Movie_Goer movieGoer) {
+    public void create(String username, String password) 
+            throws NoSuchAlgorithmException {
+        Movie_Goer movieGoer = new Movie_Goer(username, password);
+        ArrayList<Movie_Goer> allData = new ArrayList<Movie_Goer>();
+        File tempFile = new File(FILENAME);
+        if (tempFile.exists())
+            allData = read();
+        try {
+            ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(FILENAME));
+            allData.add(movieGoer);
+            out.writeObject(allData);
+            out.flush();
+            out.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void create(String username, String password, String name, String mobileNumber) 
+            throws NoSuchAlgorithmException {
+        Movie_Goer movieGoer = new Movie_Goer(username, password, name, mobileNumber);
         ArrayList<Movie_Goer> allData = new ArrayList<Movie_Goer>();
         File tempFile = new File(FILENAME);
         if (tempFile.exists())

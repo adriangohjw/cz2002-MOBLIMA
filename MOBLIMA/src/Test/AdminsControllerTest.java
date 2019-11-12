@@ -17,15 +17,11 @@ public class AdminsControllerTest {
         ArrayList<Admin> userListing = new ArrayList<Admin>();
         Admin admin = null;
 
-        // creating test values
-        Admin admin1 = new Admin("adrian1@gmail.com", "myUnhashedPassword");
-        Admin admin2 = new Admin("adrian2@gmail.com", "myUnhashedPassword");
-        userListing.add(admin1);
-        userListing.add(admin2);
-
-        // Testing AdminsController.create()
+        // creating test values + Testing AdminsController.create()
         System.out.println(".....Testing AdminsController.create()");
-        userListing.forEach(a->adminsController.create(a));
+        adminsController.create("adrian1@gmail.com", "myUnhashedPassword");
+        adminsController.create("adrian2@gmail.com", "myUnhashedPassword");
+
         readAllAndPrint(adminsController.read());
 
         // testing AdminsController.read()

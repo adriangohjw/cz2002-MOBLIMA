@@ -19,21 +19,10 @@ public class MovieGoersControllerTest {
         ArrayList<Movie_Goer> movieGoerListing = new ArrayList<Movie_Goer>();
         Movie_Goer movieGoer = null;
 
-        // creating test values
-        // creating test values
-        Movie_Goer movieGoer1 = new Movie_Goer("adrian1@gmail.com", "myUnhashedPassword");
-        movieGoer1.setName("adrian goh #1");
-        movieGoer1.setMobileNumber("11111111");
-        Movie_Goer movieGoer2 = new Movie_Goer("adrian2@gmail.com", "myUnhashedPassword");
-        movieGoer2.setName("adrian goh #2");
-        movieGoer2.setMobileNumber("22222222");
-
-        movieGoerListing.add(movieGoer1);
-        movieGoerListing.add(movieGoer2);
-
-        // Testing MovieGoersController.create()
+        // creating test values + Testing MovieGoersController.create()
         System.out.println(".....Testing MovieGoersController.create()");
-        movieGoerListing.forEach(a->movieGoersController.create(a));
+        movieGoersController.create("adrian1@gmail.com", "myUnhashedPassword", "adrian goh #1", "11111111");
+        movieGoersController.create("adrian1@gmail.com", "myUnhashedPassword", "adrian goh #1", "11111111");
         readAllAndPrint(movieGoersController.read());
 
         // testing MovieGoersController.read()

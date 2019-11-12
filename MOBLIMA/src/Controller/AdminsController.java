@@ -18,7 +18,8 @@ public class AdminsController {
     public final static int PASSWORDHASHED = 1;
     public final static int ROLE = 2;
 
-    public void create(Admin admin) {
+    public void create(String username, String password) throws NoSuchAlgorithmException {
+        Admin admin = new Admin(username, password);
         ArrayList<Admin> allData = new ArrayList<Admin>();
         File tempFile = new File(FILENAME);
         if (tempFile.exists())
