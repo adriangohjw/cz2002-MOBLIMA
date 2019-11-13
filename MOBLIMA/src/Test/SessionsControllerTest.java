@@ -10,6 +10,11 @@ import Controller.CinemasController;
 import Controller.CineplexesController;
 import Controller.MoviesController;
 import Controller.SessionsController;
+
+import static Controller.SessionsController.MOVIE;
+import static Controller.SessionsController.SESSION_DATETIME;
+import static Controller.SessionsController.SEATS_AVAILABILITY;
+
 import Model.*;
 
 public class SessionsControllerTest {
@@ -79,6 +84,11 @@ public class SessionsControllerTest {
 
             System.out.println(".....Testing SessionsController.read()");
             readAllAndPrintSession(sessionsCtrl.read());
+
+        // testing SessionsController.readByAttributes()
+
+            System.out.println(".....Testing SessionsController.readByAttributes()");
+            readAllAndPrintSession(sessionsCtrl.readByAttributes(SESSION_DATETIME, "2030-01-01 06:00"));
     }
 
     public static void readAllAndPrintSession(ArrayList<Session> sessionsListing){     
