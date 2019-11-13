@@ -5,6 +5,10 @@ import java.util.ArrayList;
 
 import Controller.CineplexesController;
 import Controller.CinemasController;
+
+import static Controller.CinemasController.CODE;
+import static Controller.CinemasController.CINEMA_TYPE;
+
 import Model.*;
 
 public class CinemasControllerTest {
@@ -41,17 +45,25 @@ public class CinemasControllerTest {
             cineplexesCtrl.create("Cineplex 2", cinemaList2);
 
             // compare DB before and after creating cinemas
-            System.out.println(".....Testing CinemeasController.create() - Before");
+            System.out.println(".....Testing CinemasController.create() - Before");
             readAllAndPrintCineplex(cineplexesCtrl.read());
 
-            System.out.println(".....Testing CinemeasController.create() - After");
+            System.out.println(".....Testing CinemasController.create() - After");
             cinemasCtrl.create("Cineplex 2", "DDD", CinemaType.PREMIUM, seatingPlan2);        
             readAllAndPrintCineplex(cineplexesCtrl.read());
         
         // testing CinemasController.read()
 
-            System.out.println(".....Testing CinemeasController.read()");
+            System.out.println(".....Testing CinemasController.read()");
             readAllAndPrintCinema(cinemasCtrl.read());
+
+        // testing CinemasController.readByAttribute()
+
+            System.out.println(".....Testing CinemasController.readByAttribute() - Code");
+            readAllAndPrintCinema(cinemasCtrl.readByAttribute(CODE, "AAA"));
+
+            System.out.println(".....Testing CinemasController.readByAttribute() - Type");
+            readAllAndPrintCinema(cinemasCtrl.readByAttribute(CINEMA_TYPE, CinemaType.PREMIUM));
     }
 
     public static void readAllAndPrintCineplex(ArrayList<Cineplex> cineplexesListing){     
