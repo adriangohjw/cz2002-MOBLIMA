@@ -36,10 +36,12 @@ public class CinemasControllerTest {
             // added cineplex 2
             Cinema cinema2 = new Cinema("BBB", CinemaType.PREMIUM, seatingPlan1);
             Cinema cinema3 = new Cinema("CCC", CinemaType.STANDARD, seatingPlan2);
+            Cinema cinema4 = new Cinema("DDD", CinemaType.STANDARD, seatingPlan2);
             ArrayList<Cinema> cinemaList2 = new ArrayList<Cinema>(){
                 {
                     add(cinema2);
                     add(cinema3);
+                    add(cinema4);
                 }
             };
             cineplexesCtrl.create("Cineplex 2", cinemaList2);
@@ -49,7 +51,7 @@ public class CinemasControllerTest {
             readAllAndPrintCineplex(cineplexesCtrl.read());
 
             System.out.println(".....Testing CinemasController.create() - After");
-            cinemasCtrl.create("Cineplex 2", "DDD", CinemaType.PREMIUM, seatingPlan2);        
+            cinemasCtrl.create("Cineplex 2", "EEE", CinemaType.PREMIUM, seatingPlan2);        
             readAllAndPrintCineplex(cineplexesCtrl.read());
         
         // testing CinemasController.read()
@@ -70,6 +72,14 @@ public class CinemasControllerTest {
             System.out.println(".....Testing CinemasController.updateByAttribute() - Type");
             cinemasCtrl.updateByAttribute(CINEMA_TYPE, "AAA", CinemaType.STANDARD);
             readAllAndPrintCinema(cinemasCtrl.read());
+
+        // testing CinemasController.delete()
+
+            System.out.println(".....Testing CinemasController.delete() - Before");
+            readAllAndPrintCineplex(cineplexesCtrl.read());
+            cinemasCtrl.delete("BBB");
+            System.out.println(".....Testing CinemasController.delete() - After");
+            readAllAndPrintCineplex(cineplexesCtrl.read());
     }
 
     public static void readAllAndPrintCineplex(ArrayList<Cineplex> cineplexesListing){     
