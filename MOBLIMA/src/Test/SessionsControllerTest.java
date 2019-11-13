@@ -95,6 +95,12 @@ public class SessionsControllerTest {
             System.out.println(".....Testing SessionsController.updateByAttributes()");
             sessionsCtrl.updateByAttribute(SESSION_DATETIME, "AAA", "2030-01-01 12:00", "2030-12-12 12:12");
             readAllAndPrintSession(sessionsCtrl.read());
+
+        // testing SessionsController.delete()
+
+            System.out.println(".....Testing SessionsController.delete()");
+            sessionsCtrl.delete("AAA", "2030-01-01 06:00");
+            readAllAndPrintSession(sessionsCtrl.read());
     }
 
     public static void readAllAndPrintSession(ArrayList<Session> sessionsListing){     
