@@ -6,7 +6,6 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
-import Controller.CinemasController;
 import Controller.CineplexesController;
 import Controller.MoviesController;
 import Controller.SessionsController;
@@ -25,8 +24,8 @@ public class SessionsControllerTest {
 
         CineplexesController cineplexesCtrl = new CineplexesController();
         new File(cineplexesCtrl.FILENAME).delete();
-        CinemasController cinemasCtrl = new CinemasController(cineplexesCtrl);
-        SessionsController sessionsCtrl = new SessionsController(cinemasCtrl);
+
+        SessionsController sessionsCtrl = new SessionsController();
 
         // creating test values + testing SessionsController.create()
 
@@ -73,12 +72,12 @@ public class SessionsControllerTest {
 
             // compare DB before and after creating sessions
             System.out.println(".....Testing SessionsController.create() - Before");
-            readAllAndPrintCinema(cinemasCtrl.read());
+            readAllAndPrintCinema(sessionsCtrl.getCinemasController().read());
 
             System.out.println(".....Testing SessionsController.create() - After");
             sessionsCtrl.create("AAA", moviesCtrl.readByID(0), "2030-01-01 06:00");
             sessionsCtrl.create("AAA", moviesCtrl.readByID(0), "2030-01-01 12:00");
-            readAllAndPrintCinema(cinemasCtrl.read());
+            readAllAndPrintCinema(sessionsCtrl.getCinemasController().read());
 
         // testing SessionsController.read()
 

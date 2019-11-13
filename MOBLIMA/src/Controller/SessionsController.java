@@ -9,17 +9,12 @@ import Model.*;
 
 public class SessionsController {
 
-    private CinemasController cinemasCtrl;
-    public static String FILENAME;
+    private static CinemasController cinemasCtrl = new CinemasController();
+    public static String FILENAME = cinemasCtrl.FILENAME;
     
     public final static int MOVIE = 0;
     public final static int SESSION_DATETIME = 1;
     public final static int SEATS_AVAILABILITY = 2;
-
-    public SessionsController(CinemasController cinemasCtrl){
-        this.cinemasCtrl = cinemasCtrl;
-        this.FILENAME = cinemasCtrl.FILENAME;
-    }
 
     public CinemasController getCinemasController(){
         return this.cinemasCtrl;
@@ -75,6 +70,19 @@ public class SessionsController {
             }           
         }
         return returnData;
+    }; 
+
+    public Session readBySession(String cinemaCode, String sessionDateTime) {
+        Cinema c = this.cinemasCtrl.readByAttribute(cinemasCtrl.CODE, cinemaCode).get(0);
+        ArrayList<Session> allData = c.getSessions();
+        Session s = null;
+
+        for (int i=0; i<allData.size(); i++){
+            s = allData.get(i);
+            if (s.getSessionDateTime().equals(sessionDateTime))
+                return s;
+        }
+        return null;
     }; 
 
     public void updateByAttribute(int col, String cinemaCode, Object oldValue, Object newValue) {
