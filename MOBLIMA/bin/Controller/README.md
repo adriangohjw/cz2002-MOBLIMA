@@ -150,7 +150,7 @@ public void updateByAttribute(int col, String cinemaCode, Object oldValue, Objec
 
 delete
 ~~~java
-public void delete(String cinemaCode, String sessionDate, String sessionTime);
+public void delete(String cinemaCode, String sessionDateTime);
 ~~~
 
 
