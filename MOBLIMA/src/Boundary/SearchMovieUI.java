@@ -1,4 +1,4 @@
-package Boundary;
+/* package Boundary;
 
 import Controller.*;
 import Model.*;
@@ -86,3 +86,4 @@ public class SearchMovieUI {
         System.out.println("-------------------");
     }
 }
+ */

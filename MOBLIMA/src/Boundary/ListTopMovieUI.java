@@ -1,4 +1,4 @@
-package Boundary;
+/* package Boundary;
 
 import Controller.*;
 import Model.*;
@@ -88,3 +88,4 @@ class SortBySales implements Comparator<Movie> {
 		return 0; //implement a way to find the number of ticket sales
 	}
 }
+ */

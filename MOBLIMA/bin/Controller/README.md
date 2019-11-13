@@ -134,7 +134,7 @@ public SessionsController(CinemasController cinemasCtrl);
 
 create
 ~~~java
-public void create(Cinema cinema, Session session);
+public void create(String cinemaCode, Session session);
 ~~~
 
 read
@@ -145,12 +145,12 @@ public ArrayList<Session> readByAttributes(int col, Object valueToSearch);
 
 update
 ~~~java
-public void updateByAttribute(int col, String code, Object newValue);
+public void updateByAttribute(int col, String cinemaCode, Object oldValue, Object newValue);
 ~~~
 
 delete
 ~~~java
-public void delete(Cinema cinema, String sessionDate, String sessionTime);
+public void delete(String cinemaCode, String sessionDate, String sessionTime);
 ~~~
 
 

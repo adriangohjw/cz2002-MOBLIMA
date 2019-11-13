@@ -1,4 +1,4 @@
-package Boundary;
+/* package Boundary;
 
 import Controller.*;
 import Model.*;
@@ -35,3 +35,4 @@ public class ViewMovieDetailUI {
     }
     
 }
+ */

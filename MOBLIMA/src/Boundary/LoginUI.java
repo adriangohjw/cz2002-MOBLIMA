@@ -1,4 +1,4 @@
-package Boundary;
+/* package Boundary;
 
 import Controller.*;
 import Model.*;
@@ -47,3 +47,4 @@ public class LoginUI {
         correctPassword = user.getPasswordHashed().equals(user.PasswordSHA256(email, password));
     }
 }
+ */

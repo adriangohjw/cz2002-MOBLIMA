@@ -1,4 +1,4 @@
-package Controller;
+/* package Controller;
 
 import Boundary.*;
 
@@ -22,4 +22,4 @@ public class AppController {
 	protected void stop() {
 		quit = true;
 	}
-}
+} */
