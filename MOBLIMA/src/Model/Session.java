@@ -1,24 +1,22 @@
 package Model;
 
 import java.io.Serializable;
-import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
+import java.time.LocalTime;
 
 public class Session implements Serializable {
 
-	private Movie movie;
-	private String sessionDate;  // dd/MM/yyyy
-	private String sessionTime;  // hh:mm
+    private Movie movie;
+    private String sessionDateTime;
     private SeatingPlan seatsAvailability;
 
-    public Session(Movie movie, String sessionDate, String sessionTime, SeatingPlan seatingPlan){
-    	this.movie = movie;
-    	this.sessionDate = sessionDate;
-    	this.sessionTime = sessionTime;
+    public Session(Movie movie, String sessionDateTime, SeatingPlan seatingPlan) {
+        this.movie = movie;
+        this.sessionDateTime = sessionDateTime;
         this.seatsAvailability = seatingPlan;
     }
-    
+
     public Movie getMovie() {
         return movie;
     }
@@ -27,55 +25,60 @@ public class Session implements Serializable {
         this.movie = movie;
     }
 
+    public String getSessionDateTime() {
+        return sessionDateTime;
+    }
+
+    public void setSessionDateTime(String sessionDateTime) {
+        this.sessionDateTime = sessionDateTime;
+    }
+
     public String getSessionDate() {
-        return sessionDate;
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        return simpleDateFormat.format(this.getSessionDateTime());
     }
 
-    public void setSessionDate(String sessionDate) {
-        this.sessionDate = sessionDate;
-    }
-    
-    public String getSessionTime() {
-    	return sessionTime;
-    }
-
-    public void setSessionTime(String sessionTime) {
-        this.sessionTime = sessionTime;
-    }
-
-    public SeatingPlan getSeatsAvailability(){
+    public SeatingPlan getSeatsAvailability() {
         return this.seatsAvailability;
     }
 
-    public void setSeatsAvailability(SeatingPlan seatsAvailability){
+    public void setSeatsAvailability(SeatingPlan seatsAvailability) {
         this.seatsAvailability = seatsAvailability;
     }
-
-    public String getSessionDateToString(){
-        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-        return sdf.format(sessionDate);
+    
+    public boolean isWeekend(){
+        String dayOfWeek = getDayOfWeekString();
+        if (dayOfWeek.equals("Sat") || dayOfWeek.equals("Sun"))
+            return true;
+        else if (dayOfWeek.equals("Fri") && getTime().isBefore(LocalTime.of(18, 0)))
+            return true;
+        else
+            return false;
     }
 
-    /* INCOMPLETE
-    public double getPrice(){
-        double basePrice = 8.5;
-        boolean hasWeekendMarkup;
-
-        Calendar c1, c2 = Calendar.getInstance();
-        c1.setTime(new SimpleDateFormat("dd/MM/yyyy").parse(this.sessionDate));
-        int dayOfWeek = c1.get(Calendar.DAY_OF_WEEK);
-        c2.setTime(new SimpleDateFormat("hh:mm").parse(this.sessionTime));
-        Time time = c2.get(Calendar.TIME);
-        if (dayOfWeek == 5 || dayOfWeek == 6){
-            hasWeekendMarkup = true;
-        } else if (dayOfWeek == 4) {
-
-        } else {
-            hasWeekendMarkup = false;
+    private String getDayOfWeekString() {
+        SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm");
+        SimpleDateFormat outputFormat = new SimpleDateFormat("E");
+        try {
+            String dayOfWeek_Str = outputFormat.format(inputFormat.parse(this.sessionDateTime));
+            return dayOfWeek_Str;
+        } catch (ParseException e) {
+            e.printStackTrace();
+            return null;
         }
-
-
-        if (this.sessionDate.get())
     }
-    */
+
+    private LocalTime getTime() {
+        SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm");
+        SimpleDateFormat newFormat = new SimpleDateFormat("hh:mm");
+        String hourMin = null;
+        try {
+            hourMin = newFormat.format(inputFormat.parse(this.sessionDateTime));
+            LocalTime returnData = LocalTime.parse(hourMin);
+        return returnData;
+        } catch (ParseException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
 }

@@ -172,21 +172,20 @@ public Cinema (
 ~~~java
 // Attributes
 private Movie movie;
-private Date sessionDate;
-private String sessionTime;
+private String sessionDateTime;
 private SeatingPlan seatsAvailability;
 
 // Constructor
 public Session(
   Movie movie, 
-  String sessionDate, 
-  String sessionTime, 
+  String sessionDateTime,
   SeatingPlan seatingPlan
 ){...}
 
 // methods
-public String getSessionDateToString(){...};
-public double getPrice(){...};
+public boolean isWeekend(){...}';
+private String getDayOfWeekString(){...};
+private LocalTime getTime(){...}
 ~~~
 
 ## Holiday
