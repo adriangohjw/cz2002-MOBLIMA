@@ -10,11 +10,13 @@ public class Session implements Serializable {
     private Movie movie;
     private String sessionDateTime;
     private SeatingPlan seatsAvailability;
+    private int id;
 
-    public Session(Movie movie, String sessionDateTime, SeatingPlan seatingPlan) {
+    public Session(Movie movie, String sessionDateTime, SeatingPlan seatingPlan, int id) {
         this.movie = movie;
         this.sessionDateTime = sessionDateTime;
         this.seatsAvailability = seatingPlan;
+        this.id = id;
     }
 
     public Movie getMovie() {
@@ -45,7 +47,15 @@ public class Session implements Serializable {
     public void setSeatsAvailability(SeatingPlan seatsAvailability) {
         this.seatsAvailability = seatsAvailability;
     }
-    
+
+    public int getId(){
+        return this.id;
+    }
+
+    public void setId(int id){
+        this.id = id;
+    }
+
     public boolean isWeekend(){
         String dayOfWeek = getDayOfWeekString();
         if (dayOfWeek.equals("Sat") || dayOfWeek.equals("Sun"))
@@ -83,6 +93,6 @@ public class Session implements Serializable {
     }
 
     public String toString() {
-        return "Title: " + movie.getTitle() + ", DateTime: " + sessionDateTime;
+        return "id: " + this.getId() + "Title: " + movie.getTitle() + ", DateTime: " + this.getSessionDateTime();
     }
 }

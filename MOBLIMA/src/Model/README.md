@@ -18,6 +18,7 @@ private ArrayList<Review> reviews;
 
 // Constructor
 public Movie(
+  int id,
   String title, 
   MovieType type, 
   String synopsis, 
@@ -176,16 +177,18 @@ public Cinema (
 private Movie movie;
 private String sessionDateTime;
 private SeatingPlan seatsAvailability;
+private int id;
 
 // Constructor
 public Session(
   Movie movie, 
   String sessionDateTime,
   SeatingPlan seatingPlan
+  int id
 ){...}
 
 // methods
-public boolean isWeekend(){...}';
+public boolean isWeekend(){...};
 private String getDayOfWeekString(){...};
 private LocalTime getTime(){...}
 ~~~
