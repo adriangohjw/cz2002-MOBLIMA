@@ -134,7 +134,7 @@ public SessionsController(CinemasController cinemasCtrl);
 
 create
 ~~~java
-public void create(String cinemaCode, Session session);
+public void create(String cinemaCode, Movie movie, String sessionDateTime, SeatingPlan seatingPlan);
 ~~~
 
 read

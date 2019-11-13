@@ -74,6 +74,11 @@ public class SessionsControllerTest {
             sessionsCtrl.create("AAA", moviesCtrl.readByID(0), "2030-01-01 06:00");
             sessionsCtrl.create("AAA", moviesCtrl.readByID(0), "2030-01-01 12:00");
             readAllAndPrintCinema(cinemasCtrl.read());
+
+        // testing SessionsController.read()
+
+            System.out.println(".....Testing SessionsController.read()");
+            readAllAndPrintSession(sessionsCtrl.read());
     }
 
     public static void readAllAndPrintSession(ArrayList<Session> sessionsListing){     
