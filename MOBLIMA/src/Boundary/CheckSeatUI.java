@@ -1,4 +1,4 @@
-/* package Boundary;
+package Boundary;
 
 import Controller.*;
 import Model.*;
@@ -9,6 +9,7 @@ import java.util.*;
 
 public class CheckSeatUI {
     private String cinemaCode; //the unique code for each session
+    SessionsController sessionsCtrl = new SessionsController();
     Scanner sc = new Scanner(System.in);
 
     public CheckSeatUI(String _cinemaCode){
@@ -21,9 +22,9 @@ public class CheckSeatUI {
         selectSeats();
     }
 
-    public void printLayout(String cinemaCode){
-        Session session = sessionsController.readByCinemaCode(cinemaCode); //only 1 session but not array of session
-        SeatingPlan seatsAvailability = session.getseatsAvailability(); //have one more function
+    public void printLayout(String cinemaCode, String sessionDateTime){
+        Session session = sessionsCtrl.readBySession(cinemaCode, sessionDateTime); //only 1 session but not array of session
+        SeatingPlan seatsAvailability = session.getSeatsAvailability(); // have one more function
         seatsAvailability.printLayout();
     }
 
@@ -37,6 +38,4 @@ public class CheckSeatUI {
         }
         while(temp!=-1);
     }
-
 }
- */
