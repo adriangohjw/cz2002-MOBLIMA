@@ -101,19 +101,24 @@ public class Movie implements Serializable {
     public MovieStatus getShowStatus() throws ParseException{
         Date current = new Date();
         Date Date_movieReleaseDate = new SimpleDateFormat("YYYY-mm-dd").parse(getMovieReleaseDate());
-        long difference = Date_movieReleaseDate.getTime() - current.getTime();
-	    float daysBetween = (difference / (1000*60*60*24));
-        if(daysBetween>7){
-            return MovieStatus.PREVIEW;
-        }
-        else if(daysBetween<=7 && daysBetween>0){
-            return MovieStatus.COMING_SOON;
-        }
-        else if(daysBetween<-30){
+        Date Date_movieEndDate = new SimpleDateFormat("YYYY-mm-dd").parse(getMovieEndDate());
+        if(current.after(Date_movieEndDate))
             return MovieStatus.END_OF_SHOWING;
-        }
         else{
-            return MovieStatus.NOW_SHOWING;
+            long difference = Date_movieReleaseDate.getTime() - current.getTime();
+            float daysBetween = (difference / (1000*60*60*24));
+            if(daysBetween>7){
+                return MovieStatus.PREVIEW;
+            }
+            else if(daysBetween<=7 && daysBetween>0){
+                return MovieStatus.COMING_SOON;
+            }
+            else if(daysBetween<-30){
+                return MovieStatus.END_OF_SHOWING;
+            }
+            else{
+                return MovieStatus.NOW_SHOWING;
+            }
         }
     }
 
