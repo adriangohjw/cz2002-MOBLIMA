@@ -30,7 +30,16 @@ public class Cinema implements Serializable {
 	public void setSessions(ArrayList<Session> sessions) {this.sessions = sessions;}
 
 	public String toString(){
-		return 	"Cinema code: " + getCode() + "\n"
-				+ "Cinema type: " + getCinemaType();
+		String sessionsString = "";
+		for (int i=0; i<sessions.size(); i++)
+			sessionsString = sessionsString.concat("-----" + sessions.get(i) + "\n");
+		sessionsString = sessionsString.substring(0, sessionsString.length());
+		
+		String details = "";
+		details += "Cinema code: " + getCode() + "\n"
+				+ "Cinema type: " + getCinemaType() + "\n"
+				+ "Sessions: " + getSessions().size() +"\n" 
+				+ sessionsString;
+		return details;
 	}	
 }
