@@ -167,7 +167,7 @@ public static void removeMovie() throws ClassNotFoundException, IOException {
 	
 	System.out.println("Deleting movie...");
 	SearchMovieUI listMovie = SearchMovieUI();
-	System.out.println("Select movie to be updated: ");
+	System.out.println("Select movie to be deleted: ");
 	listMovie.listAllMovies();
 	System.out.println("Movie Id: ");
 	int movieId = input.nextInt();
