@@ -28,5 +28,9 @@ public class Cinema implements Serializable {
 
 	public ArrayList<Session> getSessions() {return sessions;}
 	public void setSessions(ArrayList<Session> sessions) {this.sessions = sessions;}
-		
+
+	public String toString(){
+		return 	"Cinema code: " + getCode() + "\n"
+				+ "Cinema type: " + getCinemaType();
+	}	
 }
