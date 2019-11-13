@@ -32,12 +32,12 @@ public class Cineplex implements Serializable {
 	public String toString(){
         String cinemaString = "";
         for (int i=0; i<getCinemas().size(); i++)
-			cinemaString = cinemaString.concat(getCinemas().get(i) + ",");
-		cinemaString = cinemaString.substring(0, cinemaString.length()-1);
+			cinemaString = cinemaString.concat(getCinemas().get(i) + ",\n");
+		cinemaString = cinemaString.substring(0, cinemaString.length()-2);
 
         String details = "";
         details += "Name: " + getName() + "\n"
-				+ "List of Cinemas (by code): " + cinemaString; 
+				+ cinemaString; 
         return details;
     }
 }
