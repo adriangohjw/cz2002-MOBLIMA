@@ -3,13 +3,14 @@ package Controller;
 import java.util.ArrayList;
 
 import static Controller.CinemasController.SESSIONS;
+import static Controller.CinemasController.CODE;
 
 import Model.*;
 
 public class SessionsController {
 
     private CinemasController cinemasCtrl;
-    final String FILENAME = cinemasCtrl.FILENAME;
+    public static String FILENAME;
     
     public final static int MOVIE = 0;
     public final static int SESSION_DATETIME = 1;
@@ -17,9 +18,16 @@ public class SessionsController {
 
     public SessionsController(CinemasController cinemasCtrl){
         this.cinemasCtrl = cinemasCtrl;
+        this.FILENAME = cinemasCtrl.FILENAME;
     }
 
-    public void create(String cinemaCode, Session session) {
+    public CinemasController getCinemasController(){
+        return this.cinemasCtrl;
+    }
+
+    public void create(String cinemaCode, Movie movie, String sessionDateTime) {
+        SeatingPlan seatingPlan = cinemasCtrl.readByAttribute(CODE, cinemaCode).get(0).getSeatingPlan();
+        Session session = new Session(movie, sessionDateTime, seatingPlan);
         ArrayList<Cinema> allData  = this.cinemasCtrl.read();
         ArrayList<Session> sessions = new ArrayList<Session>();
         for (int i=0; i<allData.size(); i++){
@@ -28,9 +36,10 @@ public class SessionsController {
                 sessions = cinema_i.getSessions();
                 sessions.add(session);
                 cinema_i.setSessions(sessions);
+                this.cinemasCtrl.updateByAttribute(SESSIONS, cinemaCode, sessions);
+                sessions.clear();
+                break;
             }
-            this.cinemasCtrl.updateByAttribute(SESSIONS, cinemaCode, sessions);
-            sessions.clear();
         }
     }
 
