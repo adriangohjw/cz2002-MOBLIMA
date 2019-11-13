@@ -108,7 +108,7 @@ public class SessionsController {
                 }
 
                 // update DB and break (stop searching other cinema if already found one with matching code)
-                this.cinemasCtrl.updateByAttribute(col, cinemaCode, returnSessions);
+                this.cinemasCtrl.updateByAttribute(cinemasCtrl.SESSIONS, cinemaCode, returnSessions);
                 break; 
             }
         }
