@@ -81,4 +81,8 @@ public class Session implements Serializable {
             return null;
         }
     }
+
+    public String toString() {
+        return "Title: " + movie.getTitle() + ", DateTime: " + sessionDateTime;
+    }
 }
