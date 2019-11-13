@@ -1,6 +1,8 @@
 package Model;
 
-public class SeatingPlan {
+import java.io.Serializable;
+
+public class SeatingPlan implements Serializable {
 	private Seat [][] layout;
 	private int row;
 	private int column;
