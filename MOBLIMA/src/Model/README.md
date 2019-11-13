@@ -9,6 +9,7 @@ private String title;
 private MovieType type;
 private String synopsis;
 private String rating;
+private double duration;
 private String movieReleaseDate;
 private String movieEndDate;
 private String director;
@@ -21,6 +22,7 @@ public Movie(
   MovieType type, 
   String synopsis, 
   String rating, 
+  double duration,
   String movieReleaseDate, 
   String movieEndDate,
   String director, 

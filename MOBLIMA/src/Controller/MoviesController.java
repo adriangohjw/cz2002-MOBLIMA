@@ -18,16 +18,17 @@ public class MoviesController {
     public final static int TYPE = 2;
     public final static int SYNOPSIS = 3;
     public final static int RATING = 4;
-    public final static int MOVIE_RELEASE_DATE = 5;
-    public final static int MOVIE_END_DATE = 6;
-    public final static int DIRECTOR = 7;
-    public final static int CAST = 8;
-    public final static int REVIEWS = 9;
+    public final static int DURATION = 5;
+    public final static int MOVIE_RELEASE_DATE = 6;
+    public final static int MOVIE_END_DATE = 7;
+    public final static int DIRECTOR = 8;
+    public final static int CAST = 9;
+    public final static int REVIEWS = 10;
 
     public void create(
-            String title, MovieType type, String synopsis, String rating, String movieReleaseDate, String movieEndDate, String director, ArrayList<String> cast
+            String title, MovieType type, String synopsis, String rating, double duration, String movieReleaseDate, String movieEndDate, String director, ArrayList<String> cast
     ) {
-        Movie movie = new Movie(getLastId()+1, title, type, synopsis, rating, movieReleaseDate, movieEndDate, director, cast);
+        Movie movie = new Movie(getLastId()+1, title, type, synopsis, rating, duration, movieReleaseDate, movieEndDate, director, cast);
         ArrayList<Movie> allData = new ArrayList<Movie>();
         File tempFile = new File(FILENAME);
         if (tempFile.exists()) 
@@ -90,6 +91,10 @@ public class MoviesController {
                     if (m.getMovieReleaseDate().equals((String) valueToSearch))
                         returnData.add(m);
                     break;
+                case MOVIE_END_DATE:
+                    if (m.getMovieEndDate().equals((String) valueToSearch))
+                        returnData.add(m);
+                    break;
                 default:   
                     System.out.println(".....readByAttribute NOT ALLOWED");
                     break;
@@ -116,11 +121,20 @@ public class MoviesController {
                     case TYPE:
                         m.setType((MovieType) newValue);
                         break;
+                    case SYNOPSIS:
+                        m.setSynopsis((String) newValue);
+                        break;
                     case RATING:
                         m.setRating((String) newValue);
                         break;
+                    case DURATION:
+                        m.setDuration((double) newValue);
+                        break;
                     case MOVIE_RELEASE_DATE:
                         m.setMovieReleaseDate((String) newValue);
+                        break;
+                    case MOVIE_END_DATE:
+                        m.setMovieEndDate((String) newValue);
                         break;
                     case DIRECTOR:
                         m.setDirector((String) newValue);

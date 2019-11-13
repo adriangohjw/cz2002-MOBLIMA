@@ -13,6 +13,7 @@ public class Movie implements Serializable {
     private MovieType type;
     private String synopsis;
     private String rating;
+    private double duration;
     private String movieReleaseDate;
     private String movieEndDate;
     private String director;
@@ -21,13 +22,14 @@ public class Movie implements Serializable {
     
 
     public Movie(
-            int id, String title, MovieType type, String synopsis, String rating, String movieReleaseDate, String movieEndDate, String director, ArrayList<String> cast
+            int id, String title, MovieType type, String synopsis, String rating, double duration, String movieReleaseDate, String movieEndDate, String director, ArrayList<String> cast
     ){
         this.id = id;
         this.title = title;
         this.type = type;
         this.synopsis = synopsis;
         this.rating = rating;
+        this.duration = duration;  // in hours e.g. 1.5 == 1hours 30mins
         this.movieReleaseDate = movieReleaseDate;
         this.movieEndDate = movieEndDate;
         this.director = director;
@@ -49,6 +51,9 @@ public class Movie implements Serializable {
     
     public String getRating() {return this.rating;}
     public void setRating(String rating){this.rating = rating;}
+
+    public double getDuration() {return this.duration;}
+    public void setDuration(double duration) {this.duration = duration;}
 
     public String getMovieReleaseDate(){return this.movieReleaseDate;}
     public void setMovieReleaseDate(String movieReleaseDate){this.movieReleaseDate = movieReleaseDate;}
@@ -77,6 +82,7 @@ public class Movie implements Serializable {
                 + "Type: " + getType() + "\n"
                 + "Synopsis: " + getSynopsis() + "\n"
                 + "Rating: " + getRating() + "\n"
+                + "Duration: " + String.valueOf(getRating()) + "\n"
                 + "Release date: " +  getMovieReleaseDate() + "\n"
                 + "End date: " +  getMovieEndDate() + "\n"
                 + "Director: " + getDirector() + "\n"
