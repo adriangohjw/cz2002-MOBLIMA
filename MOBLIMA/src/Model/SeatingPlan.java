@@ -41,4 +41,8 @@ public class SeatingPlan implements Serializable {
 		int i = id/row;
 		layout[i][id - row*i].unassign();
 	}
+	public boolean checkSeats(int id) {
+		int i = id/row;
+		return layout[i][id - row*i].isOccupied();
+	}
 }
