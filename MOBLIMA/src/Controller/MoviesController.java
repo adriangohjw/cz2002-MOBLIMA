@@ -39,7 +39,7 @@ public class MoviesController {
             out.flush();
             out.close();
         } catch (IOException e) {
-            e.printStackTrace();
+            //
         }
     } 
 
@@ -50,7 +50,7 @@ public class MoviesController {
             ois.close();
             return movieListing;
         } catch (ClassNotFoundException | IOException e) {
-            e.printStackTrace();
+            //
         } 
         return new ArrayList<Movie>();
     }
@@ -177,7 +177,7 @@ public class MoviesController {
             out.flush();
             out.close();
         } catch (IOException e) {
-            e.printStackTrace();
+            //
         }
     }
 }
