@@ -64,6 +64,12 @@ public class CinemasControllerTest {
 
             System.out.println(".....Testing CinemasController.readByAttribute() - Type");
             readAllAndPrintCinema(cinemasCtrl.readByAttribute(CINEMA_TYPE, CinemaType.PREMIUM));
+
+        // testing CinemasController.updateByAttribute()
+
+            System.out.println(".....Testing CinemasController.updateByAttribute() - Type");
+            cinemasCtrl.updateByAttribute(CINEMA_TYPE, "AAA", CinemaType.STANDARD);
+            readAllAndPrintCinema(cinemasCtrl.read());
     }
 
     public static void readAllAndPrintCineplex(ArrayList<Cineplex> cineplexesListing){     
