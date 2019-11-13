@@ -158,7 +158,7 @@ public void delete(String cinemaCode, String sessionDateTime);
 
 create
 ~~~java
-public void create (Cineplex cineplex);
+public void create(String name, ArrayList<Cinema> cinemas);
 ~~~
 
 read

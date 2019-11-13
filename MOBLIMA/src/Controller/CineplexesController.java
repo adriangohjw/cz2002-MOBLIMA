@@ -16,7 +16,8 @@ public class CineplexesController {
     public final static int NAME = 0;
     public final static int CINEMAS = 1;
 
-    public void create(Cineplex cineplex) {
+    public void create(String name, ArrayList<Cinema> cinemas) {
+        Cineplex cineplex = new Cineplex(name, cinemas);
         ArrayList<Cineplex> allData = new ArrayList<Cineplex>();
         File tempFile = new File(FILENAME);
         if (tempFile.exists()) 
