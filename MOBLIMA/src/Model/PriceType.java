@@ -4,7 +4,8 @@ public enum PriceType implements PriceChanger{
     STUDENT("Student"),
     SENIOR_CITIZEN("Senior"),
     NORMAL("Normal"),
-    HOLIDAY("Holiday");
+    HOLIDAY("Holiday"), 
+    WEEKEND("Weekend");
 
     private final String text;
 

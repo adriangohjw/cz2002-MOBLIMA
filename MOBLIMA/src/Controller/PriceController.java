@@ -25,6 +25,7 @@ public class PriceController {
         priceMap.put(PriceType.HOLIDAY, 12.0);
         priceMap.put(PriceType.NORMAL, 10.0);
         priceMap.put(PriceType.SENIOR_CITIZEN, 6.0);
+        priceMap.put(PriceType.WEEKEND, 3.0);
     }
 
     public void addPriceChanger(PriceChanger priceChanger, double value){
@@ -58,7 +59,10 @@ public class PriceController {
     }
 
     public double computePrice(Session session, Cinema cinema, PriceType priceType){
-        double addToPrice = getPrice(session.getMovie().getType()) + getPrice(cinema.getCinemaType());
+        double addToPrice   = getPrice(session.getMovie().getType()) 
+                            + getPrice(cinema.getCinemaType());
+        if (session.isWeekend())
+            addToPrice += 2.0;
         if(holidaysCtrl.isHoliday(session.getSessionDate())){
             return getPrice(PriceType.HOLIDAY) + addToPrice;
         }
