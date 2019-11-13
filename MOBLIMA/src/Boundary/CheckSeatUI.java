@@ -9,7 +9,20 @@ import java.util.*;
 
 public class CheckSeatUI {
     private String cinemaCode; //the unique code for each session
-    SessionsController sessionsCtrl = new SessionsController();
+    private SessionsController sessionsCtrl;
+
+    public CheckSeatUI(){
+        this.sessionsCtrl = new SessionsController();
+    }
+
+    public CheckSeatUI(SessionsController sessionsCtrl){
+        this.sessionsCtrl = sessionsCtrl;
+    }
+
+    public void setSessionsController(SessionsController sessionsCtrl){
+        this.sessionsCtrl = sessionsCtrl;
+    }
+
     Scanner sc = new Scanner(System.in);
 
     public CheckSeatUI(String _cinemaCode){

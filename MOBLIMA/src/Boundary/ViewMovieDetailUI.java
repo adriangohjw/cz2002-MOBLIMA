@@ -1,38 +1,28 @@
-/* package Boundary;
+package Boundary;
 
 import Controller.*;
 import Model.*;
 
+import java.io.IOException;
 import java.util.*;
 
 public class ViewMovieDetailUI {
     private String title;
-//  private int another = 1;
-    private MoviesController moviesController = new MoviesController();
+    private MoviesController moviesCtrl;
     Scanner sc = new Scanner(System.in);
 
-    ViewMovieDetailUI(String _title){
-        this.title = _title;    
+    ViewMovieDetailUI(String _title) {
+        this.title = _title;
+        this.moviesCtrl = new MoviesController();
     };
 
-//     public void main(){
-//         while(another==1){
-//             display();
-//         }
-//     }
-
-
-    public void display(){
-        ArrayList<Movie> movieList = moviesController.readByAttribute(0, title);
-        movieList.forEach(movie -> System.out.println(movie.toString()));
-        
-//         System.out.println("Another movie? 1 for [y] and 0 for [no]");
-//         another = sc.nextInt();
-
-//         if(another==0){
-//             System.out.println("Exit!");
-//         }
+    ViewMovieDetailUI(MoviesController moviesCtrl, String _title) {
+        this.title = _title;
+        this.moviesCtrl = moviesCtrl;
     }
-    
+
+    public void display() throws ClassNotFoundException, IOException {
+        ArrayList<Movie> movieList = moviesCtrl.readByAttribute(moviesCtrl.TITLE, title);
+        movieList.forEach(movie -> System.out.println(movie.toString()));
+    }   
 }
- */

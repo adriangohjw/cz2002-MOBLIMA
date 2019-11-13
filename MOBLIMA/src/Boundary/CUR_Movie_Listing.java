@@ -7,7 +7,15 @@ import java.io.IOException;
 import java.util.*;
 
 public class CUR_Movie_Listing {
-	private static MoviesController movieCtrl = new MoviesController();
+	private static MoviesController moviesCtrl;
+
+	public CUR_Movie_Listing(){
+        moviesCtrl = new MoviesController();
+    }
+
+	public void getMoviesCtrl(MoviesController moviesCtrl){
+		this.moviesCtrl = moviesCtrl;
+	}
 
 	public static void main() throws ClassNotFoundException, IOException{
 		Scanner input = new Scanner(System.in);
@@ -63,7 +71,7 @@ public class CUR_Movie_Listing {
 			cast.add(input.nextLine());		
 			}
 		
-		movieCtrl.create(title, type, synopsis, rating, movieReleaseDate, director, cast);
+		moviesCtrl.create(title, type, synopsis, rating, movieReleaseDate, director, cast);
 		System.out.println("Movie listing created....");
 	}
 
@@ -73,7 +81,7 @@ public class CUR_Movie_Listing {
 		String attr = ""; int i; 
 		
 		System.out.println("Updating movie...");
-		SearchMovieUI listMovie = SearchMovieUI();
+		SearchMovieUI listMovie = new SearchMovieUI();
 		System.out.println("Select movie to be updated: ");
 		listMovie.listAllMovies();
 		System.out.println("Movie id: ");
@@ -95,43 +103,43 @@ public class CUR_Movie_Listing {
 			case 1:
 				System.out.println("Enter new Title:");
 				String title = input.nextLine();
-				movieCtrl.updateById(MoviesController.TITLE, movie_id, title);
+				moviesCtrl.updateById(MoviesController.TITLE, movie_id, title);
 				break;
 
 			case 2:
 				System.out.println("Enter new Type:");
 				String type = input.nextLine();
-				movieCtrl.updateById(MoviesController.TYPE, movie_id, type);
+				moviesCtrl.updateById(MoviesController.TYPE, movie_id, type);
 				break;
 				
 			case 3:
 				System.out.println("Enter new Synopsis:");
 				String synopsis = input.nextLine();
-				movieCtrl.updateById(MoviesController.SYNOPSIS, movie_id, synopsis);
+				moviesCtrl.updateById(MoviesController.SYNOPSIS, movie_id, synopsis);
 				break;
 				
 			case 4:
 				System.out.println("Enter new Rating:");
 				String rating = input.nextLine();
-				movieCtrl.updateById(MoviesController.RATING, movie_id, rating);
+				moviesCtrl.updateById(MoviesController.RATING, movie_id, rating);
 				break;
 				
 			case 5:
 				System.out.println("Enter new Movie Release date:");
 				String movieReleaseDate = input.nextLine();
-				movieCtrl.updateById(MoviesController.MOVIE_RELEASE_DATE, movie_id, movieReleaseDate);
+				moviesCtrl.updateById(MoviesController.MOVIE_RELEASE_DATE, movie_id, movieReleaseDate);
 				break;
 				
 			case 6: 
 				System.out.println("Enter new End of Showing date:");
 				String endOfShowing = input.nextLine();
-				movieCtrl.updateById(MoviesController.MOVIE_END_DATE, movie_id, endOfShowing);
+				moviesCtrl.updateById(MoviesController.MOVIE_END_DATE, movie_id, endOfShowing);
 				break;
 				
 			case 7: 
 				System.out.println("Enter new Director:");
 				String director = input.nextLine();
-				movieCtrl.updateById(MoviesController.DIRECTOR, movie_id, director);
+				moviesCtrl.updateById(MoviesController.DIRECTOR, movie_id, director);
 				break;
 			
 			case 8:
@@ -142,7 +150,7 @@ public class CUR_Movie_Listing {
 					System.out.println("Enter cast " + j + " :");
 					cast.add(input.nextLine());
 				}
-				movieCtrl.updateById(MoviesController.CAST, movie_id, cast);
+				moviesCtrl.updateById(MoviesController.CAST, movie_id, cast);
 				break;
 				
 			case 9:
@@ -153,7 +161,7 @@ public class CUR_Movie_Listing {
 					System.out.println("Enter cast " + j + " :");
 					reviews.add(input.nextLine());
 				}
-				movieCtrl.updateById(MoviesController.REVIEWS, movie_id, reviews);
+				moviesCtrl.updateById(MoviesController.REVIEWS, movie_id, reviews);
 				break;
 		}
 	}
@@ -162,11 +170,11 @@ public class CUR_Movie_Listing {
 		Scanner input = new Scanner(System.in);
 		
 		System.out.println("Deleting movie...");
-		SearchMovieUI listMovie = SearchMovieUI();
+		SearchMovieUI listMovie = new SearchMovieUI();
 		System.out.println("Select movie to be deleted: ");
 		listMovie.listAllMovies();
 		System.out.println("Movie Id: ");
 		int movieId = input.nextInt();
-		movieCtrl.deleteById(movieId);
+		moviesCtrl.deleteById(movieId);
 	}
 }

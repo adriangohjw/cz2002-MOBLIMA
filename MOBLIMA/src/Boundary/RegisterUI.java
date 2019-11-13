@@ -7,26 +7,33 @@ import java.util.*;
 
 public class RegisterUI {
 
-    RegisterUI() {
-    };
-
     private String email;
     private String password;
     private String password2;
     private int role;
     private boolean consistenPassword = false;
-    private MovieGoersController movieGoersController = new MovieGoersController();
-    private AdminsController adminsController = new AdminsController();
+    private MovieGoersController movieGoersCtrl;
+    private AdminsController adminsCtrl;
     Scanner sc = new Scanner(System.in);
+
+    RegisterUI() {
+        this.movieGoersCtrl = new MovieGoersController();
+        this.adminsCtrl = new AdminsController();
+    };
+
+    RegisterUI(MovieGoersController movieGoersCtrl, AdminsController adminsCtrl){
+        this.movieGoersCtrl = movieGoersCtrl;
+        this.adminsCtrl = adminsCtrl;
+    }
 
     public void main() throws NoSuchAlgorithmException {
         do {
             inputRegister();
             if(consistenPassword==true){
                 if(role == 1)
-                    movieGoersController.create(email, password);
+                    movieGoersCtrl.create(email, password);
                 else 
-                    adminsController.create(email, password);
+                    adminsCtrl.create(email, password);
                 System.out.println("You have registered successfully");
             }
             else {
