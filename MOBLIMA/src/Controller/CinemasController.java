@@ -6,17 +6,13 @@ import Model.*;
 
 public class CinemasController {
 
-    private CineplexesController cineplexesCtrl;
-    public final String FILENAME = cineplexesCtrl.FILENAME;
+    private static CineplexesController cineplexesCtrl = new CineplexesController();
+    public final static String FILENAME = cineplexesCtrl.FILENAME;
 
     public final static int CODE = 0;
     public final static int CINEMA_TYPE = 1;
     public final static int SEATING_PLAN = 2;
     public final static int SESSIONS = 3;
-
-    public CinemasController(CineplexesController cineplexesCtrl){
-        this.cineplexesCtrl = cineplexesCtrl;
-    }
 
     public CineplexesController getCineplexesController(){
         return this.cineplexesCtrl;

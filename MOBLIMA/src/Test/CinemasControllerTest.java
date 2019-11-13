@@ -16,7 +16,7 @@ public class CinemasControllerTest {
 
         CineplexesController cineplexesCtrl = new CineplexesController();
         new File(cineplexesCtrl.FILENAME).delete();
-        CinemasController cinemasCtrl = new CinemasController(cineplexesCtrl);
+        CinemasController cinemasCtrl = new CinemasController();
 
         // creating test values + testing CinemasController.create()
 
