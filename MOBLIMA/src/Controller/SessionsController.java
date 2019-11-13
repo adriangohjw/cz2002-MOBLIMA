@@ -139,6 +139,29 @@ public class SessionsController {
         }
     } 
 
+    public void updateSeatsAvailability(int id, SeatingPlan newSeatsAvailabiity) {
+        ArrayList<Cinema> allCinemas  = this.cinemasCtrl.read();
+        ArrayList<Session> allSessions = new ArrayList<Session>();
+        ArrayList<Session> returnSessions = new ArrayList<Session>();
+        Session s = null;
+
+        for (int i=0; i<allCinemas.size(); i++) {
+            Cinema cinema_i = allCinemas.get(i);
+            allSessions = cinema_i.getSessions();
+            returnSessions.clear();  // ensure it started without existing session
+            for (int j=0; j<allSessions.size(); j++){
+                s = allSessions.get(j);
+                if (s.getId == id)
+                    s.setSeatsAvailability(newSeatsAvailabiity);
+                returnSessions.add(s);
+            }
+
+            // update DB and break (stop searching other cinema if already found one with matching code)
+            this.cinemasCtrl.updateByAttribute(cinemasCtrl.SESSIONS, cinema_i.getCode(), returnSessions);
+            break; 
+        }
+    } 
+
     public void delete(String cinemaCode, String sessionDateTime){
         ArrayList<Cinema> allCinemas  = this.cinemasCtrl.read();
         ArrayList<Session> allSessions = new ArrayList<Session>();
