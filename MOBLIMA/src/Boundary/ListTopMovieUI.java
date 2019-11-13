@@ -86,7 +86,10 @@ class SortByRating implements Comparator<Movie> {
 		if(ratingA == "N/A" && ratingB == "N/A") return 0;
 		if(ratingA == "N/A") return -1;
 		if(ratingB == "N/A") return 1;
-		return Integer.parseInt(ratingA) - Integer.parseInt(ratingB);
+		double difference = Double.parseDouble(ratingA) - Double.parseDouble(ratingB);
+		if (difference > 0) return 1;
+		if (difference < 0) return -1;
+		return 0;
 	}
 }
 
