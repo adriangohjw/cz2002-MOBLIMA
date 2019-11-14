@@ -186,7 +186,7 @@ public class SessionsController {
             returnSessions.clear();  // ensure it started without existing session
             for (int j=0; j<allSessions.size(); j++){
                 s = allSessions.get(j);
-                if (s.getId == id)
+                if (s.getId() == id)
                     s.setSeatsAvailability(newSeatsAvailabiity);
                 returnSessions.add(s);
             }
