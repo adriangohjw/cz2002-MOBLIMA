@@ -9,10 +9,7 @@ import java.util.*;
 public class SearchMovieUI {
     private String title;
     private String type;
-    private String director;
-    private String cast;
     private int option;
-    private int id;
     private MoviesController moviesCtrl;
 
     SearchMovieUI() {
@@ -76,7 +73,7 @@ public class SearchMovieUI {
     }
     
     public void printMovie(Movie movie){
-        System.out.println("Movie ID: " + movie.getID());
+        System.out.println("Movie ID: " + movie.getId());
         System.out.println("Title: " + movie.getTitle());
         System.out.println("Release Date: " + movie.getMovieReleaseDate());
         System.out.println("-------------------");
