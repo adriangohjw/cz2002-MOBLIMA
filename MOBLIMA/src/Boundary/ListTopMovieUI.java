@@ -8,7 +8,6 @@ import java.util.*;
 
 public class ListTopMovieUI {
 	private int choice;
-	private String title;
 	private MoviesController moviesCtrl;
 
 	public ListTopMovieUI() {
@@ -53,7 +52,8 @@ public class ListTopMovieUI {
 		for (int i = 0; i < 5; i++) {
 			printMovie(movieList.get(i));
 		}
-		viewMovieDetail();
+		ViewMovieDetailUI view = new ViewMovieDetailUI();
+		view.main();
 	}
 
 	public void listWithSales() throws ClassNotFoundException, IOException {
@@ -62,15 +62,9 @@ public class ListTopMovieUI {
 		for (int i = 0; i < 5; i++) {
 			printMovie(movieList.get(i));
 		}
-		viewMovieDetail();
+		ViewMovieDetailUI view = new ViewMovieDetailUI();
+		view.main();
 	}
-
-	public void viewMovieDetail() throws ClassNotFoundException, IOException {
-        System.out.println("Choose movie to view detail: ");
-        title = sc.next();
-        ViewMovieDetailUI viewMovieDetailUI = new ViewMovieDetailUI(title);
-        viewMovieDetailUI.display();            
-    }
     
     public void printMovie(Movie movie){
         System.out.println("Title: " + movie.getTitle());
@@ -95,6 +89,13 @@ class SortByRating implements Comparator<Movie> {
 
 class SortBySales implements Comparator<Movie> {
 	public int compare(Movie a, Movie b) {
-		return 0; //implement a way to find the number of ticket sales
+		TransactionsController transCtrl = new TransactionsController();
+		ArrayList<Transaction> transList = transCtrl.read();
+		int salesA = 0, salesB = 0;
+		for (int i = 0; i < transList.size(); i++) {
+			if (transList.get(i).getMovie().equals(a)) salesA++;
+			if (transList.get(i).getMovie().equals(b)) salesB++;
+		}
+		return salesA - salesB;
 	}
 }
