@@ -58,7 +58,7 @@ public class SearchMovieUI {
     public void searchByTitle() throws ClassNotFoundException, IOException {
         System.out.println("Enter movie title: ");
         title = sc.next();
-        ArrayList<Movie> movieList = moviesCtrl.readByAttribute(moviesCtrl.TITLE, title); //there are two readByAttribute, which to be used?
+        ArrayList<Movie> movieList = moviesCtrl.readByAttribute(moviesCtrl.TITLE, title);
         movieList.forEach(movie -> printMovie(movie));
         viewMovieDetail();
     }
