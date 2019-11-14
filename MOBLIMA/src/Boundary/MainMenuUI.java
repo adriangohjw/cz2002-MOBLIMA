@@ -10,7 +10,8 @@ public class MainMenuUI {
 		System.out.println("Welcome to MOBLIMA!\n" +
 						   "1. Admin\n" +
 						   "2. Movie Goer\n" +
-						   "3. Exit");
+				   		   "3. New user\n" +
+						   "4. Exit");
 		int choice = input.nextInt();
 		boolean exit = false;
 		while (!exit) {
@@ -21,7 +22,9 @@ public class MainMenuUI {
 			case 2:
 				movie_goer();
 				break;
-			case 3:
+			case 3: 
+				break;
+			case 4:
 				exit = true;
 				System.out.println("Exiting MOBLIMA");
 				break;
@@ -69,7 +72,7 @@ public class MainMenuUI {
 	}
 	
 	public static void movie_goer() {
-		LoginUI admin_login = new LoginUI(0);
+		LoginUI movie_goer_login = new LoginUI(0);
 		Scanner input = new Scanner(System.in);
 		boolean exit = false;
 		while (!exit) {
@@ -84,13 +87,16 @@ public class MainMenuUI {
 			int choice = input.nextInt();
 			switch(choice) {
 				case 1:
-					
+					SearchMovieUI search_movie_ui = new SearchMovieUI();
+					search_movie_ui.main();
 					break;
 				case 2:
-
+					ViewMovieDetailUI view_movie_detail_ui = new ViewMovieDetailUI();
+					view_movie_detail_ui.main();
 					break;
 				case 3:
-
+					CheckSeatUI check_seat_ui = new CheckSeatUI();
+					check_seat_ui.main();
 					break;
 				case 4:
 
