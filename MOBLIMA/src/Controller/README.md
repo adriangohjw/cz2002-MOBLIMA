@@ -148,6 +148,7 @@ public Session readById(int id);
 update
 ~~~java
 public void updateByAttribute(int col, String cinemaCode, Object oldValue, Object newValue);
+public void updateById(int col, int id, Object newValue);
 public void updateSeatsAvailability(int id, SeatingPlan newSeatsAvailabiity);
 ~~~
 
