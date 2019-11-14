@@ -29,7 +29,7 @@ public class RegisterUI {
     public void main() throws NoSuchAlgorithmException {
         do {
             inputRegister();
-            if(consistenPassword==true){
+            if(consistentPassword==true){
                 if(role == 1)
                     movieGoersCtrl.create(email, password);
                 else 
