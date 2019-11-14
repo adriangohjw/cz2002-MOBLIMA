@@ -11,7 +11,7 @@ public class RegisterUI {
     private String password;
     private String password2;
     private int role;
-    private boolean consistenPassword = false;
+    private boolean consistentPassword = false;
     private MovieGoersController movieGoersCtrl;
     private AdminsController adminsCtrl;
     Scanner sc = new Scanner(System.in);
@@ -40,7 +40,7 @@ public class RegisterUI {
                 System.out.println("Password not consistent. Please enter again");
             }
         }
-        while(consistenPassword==false);
+        while(consistentPassword==false);
     }
 
     public void inputRegister(){
@@ -52,6 +52,6 @@ public class RegisterUI {
         password = sc.next();
         System.out.println("Password again to verify: ");
         password2 = sc.next();
-        consistenPassword = password.equals(password2);
+        consistentPassword = password.equals(password2);
     }
 }
