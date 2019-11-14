@@ -23,6 +23,7 @@ public class MainMenuUI {
 				movie_goer();
 				break;
 			case 3: 
+				register();
 				break;
 			case 4:
 				exit = true;
@@ -117,5 +118,11 @@ public class MainMenuUI {
 					
 		}
 
+	}
+	
+	public static void register(){
+		RegisterUI register_ui = new RegisterUI();
+		register_ui.main();
+		
 	}
 }
