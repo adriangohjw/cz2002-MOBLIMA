@@ -11,7 +11,7 @@ public class ViewMovieDetailUI {
     private MoviesController moviesCtrl;
     Scanner sc = new Scanner(System.in);
 
-    ViewMovieDetailUI(int) {
+    ViewMovieDetailUI() {
         this.moviesCtrl = new MoviesController();
     };
 
