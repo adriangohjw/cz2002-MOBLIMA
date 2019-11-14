@@ -18,7 +18,7 @@ public class CheckSeatUI {
         this.sessionsCtrl = new SessionsController();
     }
 
-    public CheckSeatUI(SessionsController sessionsCtrl){
+    public CheckSeatUI(String _cinemaCode, String _sessionDateTime, SessionsController sessionsCtrl){
         this.cinemaCode = _cinemaCode;
         this.sessionDateTime = _sessionDateTime;
         this.sessionsCtrl = sessionsCtrl;
