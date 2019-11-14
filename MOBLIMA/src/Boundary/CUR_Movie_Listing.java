@@ -47,6 +47,9 @@ public void createMovie()
 	System.out.println("Enter movie rating: ");
 	String rating = input.nextLine();
 	
+	System.out.println("Enter movie duration: ");
+	double duration = input.nextDouble();
+	
 	System.out.println("Enter movie release date: ");
 	String movieReleaseDate = input.nextLine();
 	
@@ -70,15 +73,15 @@ public void createMovie()
 			movieType=m;
 			break;
 		}
-	movieCtrl.create(title, movieType, synopsis, rating, movieReleaseDate, movieEndDate, director, cast);
+	
+	movieCtrl.create(title, movieType, synopsis, rating, duration, movieReleaseDate, movieEndDate, director, cast);
 	System.out.println("Movie listing created....");
 	}
 
 
 public void updateMovie() 
 		throws ClassNotFoundException, IOException {
-	String attr = ""; int i; 
-	
+    
 	System.out.println("Updating movie...");
 	SearchMovieUI listMovie = new SearchMovieUI();
 	System.out.println("Select movie to be updated: ");
@@ -86,14 +89,15 @@ public void updateMovie()
 	System.out.println("Movie id: ");
 	int movie_id = input.nextInt();
 	System.out.println("Select movie attribute to update");
-	System.out.printf("1. Title\n" + 
+	System.out.printf( "1. Title\n" + 
 					   "2. Type\n" +
 					   "3. Synopsis\n" +
 					   "4. Rating\n" +
-					   "5. Movie Release date\n" +
-					   "6. End of Showing date\n" +
-					   "7. Director\n" +
-					   "8. Cast\n" +
+					   "5. Duration \n" +
+					   "6. Movie Release date\n" +
+					   "7. End of Showing date\n" +
+					   "8. Director\n" +
+					   "9. Cast\n" +
 					   "Enter option: ");
 	int choice = input.nextInt();
 	
@@ -122,32 +126,38 @@ public void updateMovie()
 		break;
 		
 	case 5:
-		System.out.println("Enter new Movie Release date:");
-		String movieReleaseDate = input.nextLine();
-		movieCtrl.updateById(5, movie_id, movieReleaseDate);
+		System.out.println("Enter new Duration:");
+		double duration = input.nextDouble();
+		movieCtrl.updateById(5, movie_id, duration);
 		break;
 		
-	case 6: 
-		System.out.println("Enter new End of Showing date:");
-		String endOfShowing = input.nextLine();
-		movieCtrl.updateById(6, movie_id, endOfShowing);
+	case 6:
+		System.out.println("Enter new Movie Release date:");
+		String movieReleaseDate = input.nextLine();
+		movieCtrl.updateById(6, movie_id, movieReleaseDate);
 		break;
 		
 	case 7: 
-		System.out.println("Enter new Director:");
-		String director = input.nextLine();
-		movieCtrl.updateById(6, movie_id, director);
+		System.out.println("Enter new End of Showing date:");
+		String endOfShowing = input.nextLine();
+		movieCtrl.updateById(7, movie_id, endOfShowing);
 		break;
 		
-	case 8:
+	case 8: 
+		System.out.println("Enter new Director:");
+		String director = input.nextLine();
+		movieCtrl.updateById(8, movie_id, director);
+		break;
+		
+	case 9:
 		ArrayList<String> cast = null;
 		System.out.println("Enter number of new cast members: ");
-		i = input.nextInt();
+		int i = input.nextInt();
 		for (int j = 1; j <= i; j++) {
 			System.out.println("Enter cast " + j + " :");
 			cast.add(input.nextLine());
 		}
-		movieCtrl.updateById(8,movie_id, cast);
+		movieCtrl.updateById(9,movie_id, cast);
 		break;
 	}
 }
