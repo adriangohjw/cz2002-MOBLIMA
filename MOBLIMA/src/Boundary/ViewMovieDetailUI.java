@@ -7,22 +7,22 @@ import java.io.IOException;
 import java.util.*;
 
 public class ViewMovieDetailUI {
-    private String title;
+    private int id;
     private MoviesController moviesCtrl;
     Scanner sc = new Scanner(System.in);
 
-    ViewMovieDetailUI(String _title) {
-        this.title = _title;
+    ViewMovieDetailUI(int _id) {
+        this.id = _id;
         this.moviesCtrl = new MoviesController();
     };
 
-    ViewMovieDetailUI(MoviesController moviesCtrl, String _title) {
-        this.title = _title;
+    ViewMovieDetailUI(MoviesController moviesCtrl, int _id) {
+        this.id = _id;
         this.moviesCtrl = moviesCtrl;
     }
 
     public void display() throws ClassNotFoundException, IOException {
-        ArrayList<Movie> movieList = moviesCtrl.readByAttribute(moviesCtrl.TITLE, title);
-        movieList.forEach(movie -> System.out.println(movie.toString()));
+        Movie movie = moviesCtrl.readByID(id);
+        movie.toString();
     }   
 }

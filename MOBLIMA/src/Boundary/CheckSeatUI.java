@@ -8,35 +8,32 @@ import Model.SeatingPlan;
 import java.util.*;
 
 public class CheckSeatUI {
-    private String cinemaCode; //the unique code for each session
+    private String cinemaCode;
+    private String sessionDateTime;
     private SessionsController sessionsCtrl;
 
-    public CheckSeatUI(){
+    public CheckSeatUI(String _cinemaCode, String _sessionDateTime){
+        this.cinemaCode = _cinemaCode;
+        this.sessionDateTime = _sessionDateTime;
         this.sessionsCtrl = new SessionsController();
     }
 
     public CheckSeatUI(SessionsController sessionsCtrl){
-        this.sessionsCtrl = sessionsCtrl;
-    }
-
-    public void setSessionsController(SessionsController sessionsCtrl){
+        this.cinemaCode = _cinemaCode;
+        this.sessionDateTime = _sessionDateTime;
         this.sessionsCtrl = sessionsCtrl;
     }
 
     Scanner sc = new Scanner(System.in);
 
-    public CheckSeatUI(String _cinemaCode){
-        this.cinemaCode = _cinemaCode;
-    }
-
     public void main(){
         System.out.println("Seating layout");
-        printLayout(cinemaCode);
+        printLayout();
         selectSeats();
     }
 
-    public void printLayout(String cinemaCode, String sessionDateTime){
-        Session session = sessionsCtrl.readBySession(cinemaCode, sessionDateTime); //only 1 session but not array of session
+    public void printLayout(){
+        Session session = sessionsCtrl.readBySession(cinemaCode, sessionDateTime);
         SeatingPlan seatsAvailability = session.getSeatsAvailability(); // have one more function
         seatsAvailability.printLayout();
     }

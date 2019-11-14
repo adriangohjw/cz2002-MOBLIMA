@@ -48,10 +48,10 @@ public class LoginUI {
 
         if (role == 1) {
             Admin user = adminsCtrl.readByEmail(email);
-            correctPassword = user.getPasswordHashed().equals(user.PasswordSHA256(email, password));
+            correctPassword = user.validatePassword(password);
         } else {
             Movie_Goer user = movieGoersCtrl.readByEmail(email);
-            correctPassword = user.getPasswordHashed().equals(user.PasswordSHA256(email, password));
+            correctPassword = user.validatePassword(password);
         }
     }
 }
