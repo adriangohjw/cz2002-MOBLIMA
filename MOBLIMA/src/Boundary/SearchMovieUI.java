@@ -26,18 +26,16 @@ public class SearchMovieUI {
     Scanner sc = new Scanner(System.in);
 
     public void main() throws ClassNotFoundException, IOException {
-        while (option != 5) {
+        while (option != 4) {
             display();
         }
     }
 
     public void display() throws ClassNotFoundException, IOException {
-        System.out.println("Hello, you can search for movie by: ");
         System.out.println("1. Search by movie title");
         System.out.println("2. Search by movie type");
         System.out.println("3. List all movie title");
-        System.out.println("4. View movie detail");
-        System.out.println("5. Exit");
+        System.out.println("4. Exit");
         option = sc.nextInt();
         switch (option) {
         case 1:
@@ -50,9 +48,6 @@ public class SearchMovieUI {
             listAllMovies();
             break;
         case 4:
-             viewMovieDetail();
-             break;
-        case 5:
             System.out.println("Exit!");
             break;
         default:
@@ -74,12 +69,6 @@ public class SearchMovieUI {
         movieList.forEach(movie -> printMovie(movie));
     }
    
-    public void viewMovieDetail() throws ClassNotFoundException, IOException {
-        System.out.println("Enter movie ID to view movie detail: ");
-        id = sc.nextInt();
-        ViewMovieDetailUI viewMovieDetailUI = new ViewMovieDetailUI(id);
-        viewMovieDetailUI.display();            
-    }
     
     public void listAllMovies(){
         ArrayList<Movie> movieList = moviesCtrl.read();
