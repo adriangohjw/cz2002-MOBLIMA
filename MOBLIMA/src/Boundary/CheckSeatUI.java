@@ -11,6 +11,7 @@ public class CheckSeatUI {
     private String cinemaCode;
     private String sessionDateTime;
     private SessionsController sessionsCtrl;
+    private SeatingPlan seatsAvailability;
 
     public CheckSeatUI(String _cinemaCode, String _sessionDateTime){
         this.cinemaCode = _cinemaCode;
@@ -28,13 +29,13 @@ public class CheckSeatUI {
 
     public void main(){
         System.out.println("Seating layout");
+        Session session = sessionsCtrl.readBySession(cinemaCode, sessionDateTime);
+        seatsAvailability = session.getSeatsAvailability(); 
         printLayout();
         selectSeats();
     }
 
     public void printLayout(){
-        Session session = sessionsCtrl.readBySession(cinemaCode, sessionDateTime);
-        SeatingPlan seatsAvailability = session.getSeatsAvailability(); // have one more function
         seatsAvailability.printLayout();
     }
 
