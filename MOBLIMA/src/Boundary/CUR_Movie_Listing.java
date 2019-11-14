@@ -7,7 +7,7 @@ import java.util.*;
 
 public class CUR_Movie_Listing {
 	private static MoviesController movieCtrl = new MoviesController();
-	private Scanner input = new Scanner(System.in);
+	Scanner input = new Scanner(System.in);
 
 	public void main() throws ClassNotFoundException, IOException{
 		System.out.printf("Create/Update/Remove movie listing: \n" +
