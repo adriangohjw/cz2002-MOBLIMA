@@ -11,17 +11,17 @@ public class ViewMovieDetailUI {
     private MoviesController moviesCtrl;
     Scanner sc = new Scanner(System.in);
 
-    ViewMovieDetailUI(int _id) {
-        this.id = _id;
+    ViewMovieDetailUI(int) {
         this.moviesCtrl = new MoviesController();
     };
 
-    ViewMovieDetailUI(MoviesController moviesCtrl, int _id) {
-        this.id = _id;
+    ViewMovieDetailUI(MoviesController moviesCtrl) {
         this.moviesCtrl = moviesCtrl;
     }
 
-    public void display() throws ClassNotFoundException, IOException {
+    public void main() throws ClassNotFoundException, IOException {
+        System.out.println("Enter movie ID to view movie detail: ");
+        id = sc.nextInt();
         Movie movie = moviesCtrl.readByID(id);
         movie.toString();
     }   
