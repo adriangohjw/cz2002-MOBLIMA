@@ -12,6 +12,7 @@ public class SearchMovieUI {
     private String director;
     private String cast;
     private int option;
+    private int id;
     private MoviesController moviesCtrl;
 
     SearchMovieUI() {
@@ -25,7 +26,7 @@ public class SearchMovieUI {
     Scanner sc = new Scanner(System.in);
 
     public void main() throws ClassNotFoundException, IOException {
-        while (option != 4) {
+        while (option != 5) {
             display();
         }
     }
@@ -35,7 +36,8 @@ public class SearchMovieUI {
         System.out.println("1. Search by movie title");
         System.out.println("2. Search by movie type");
         System.out.println("3. List all movie title");
-        System.out.println("4. Exit");
+        System.out.println("4. View movie detail");
+        System.out.println("5. Exit");
         option = sc.nextInt();
         switch (option) {
         case 1:
@@ -48,6 +50,9 @@ public class SearchMovieUI {
             listAllMovies();
             break;
         case 4:
+             viewMovieDetail();
+             break;
+        case 5:
             System.out.println("Exit!");
             break;
         default:
@@ -60,7 +65,6 @@ public class SearchMovieUI {
         title = sc.next();
         ArrayList<Movie> movieList = moviesCtrl.readByAttribute(moviesCtrl.TITLE, title);
         movieList.forEach(movie -> printMovie(movie));
-        viewMovieDetail();
     }
 
     public void searchByType() throws ClassNotFoundException, IOException {
@@ -68,13 +72,12 @@ public class SearchMovieUI {
         type = sc.next();
         ArrayList<Movie> movieList = moviesCtrl.readByAttribute(moviesCtrl.TYPE, type);
         movieList.forEach(movie -> printMovie(movie));
-        viewMovieDetail();
     }
    
     public void viewMovieDetail() throws ClassNotFoundException, IOException {
-        System.out.println("Choose movie to view detail: ");
-        title = sc.next();
-        ViewMovieDetailUI viewMovieDetailUI = new ViewMovieDetailUI(title);
+        System.out.println("Enter movie ID to view movie detail: ");
+        id = sc.nextInt();
+        ViewMovieDetailUI viewMovieDetailUI = new ViewMovieDetailUI(id);
         viewMovieDetailUI.display();            
     }
     
@@ -84,6 +87,7 @@ public class SearchMovieUI {
     }
     
     public void printMovie(Movie movie){
+        System.out.println("Movie ID: " + movie.getID());
         System.out.println("Title: " + movie.getTitle());
         System.out.println("Release Date: " + movie.getMovieReleaseDate());
         System.out.println("-------------------");
