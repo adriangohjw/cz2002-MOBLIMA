@@ -26,7 +26,7 @@ public class TransactionsController {
             out.flush();
             out.close();
         } catch (IOException e) {
-            e.printStackTrace();
+            // ignore error
         }
     }
 
@@ -37,13 +37,12 @@ public class TransactionsController {
             ois.close();
             return allData;
         } catch (ClassNotFoundException | IOException e) {
-            e.printStackTrace();
+            // ignore error
         }
         return new ArrayList<Transaction>();
     }
 
-    public ArrayList<Transaction> readByTID(String TID) 
-            throws ClassNotFoundException, IOException {
+    public ArrayList<Transaction> readByTID(String TID) {
         ArrayList<Transaction> allData = read();
         Transaction transaction = null;
         ArrayList<Transaction> returnData = new ArrayList<Transaction>();
@@ -56,8 +55,7 @@ public class TransactionsController {
         return returnData;
     }
 
-    public ArrayList<Transaction> readByMovieGoerUsername(String movieGoerUsername) 
-            throws ClassNotFoundException, IOException {
+    public ArrayList<Transaction> readByMovieGoerUsername(String movieGoerUsername) {
         ArrayList<Transaction> allData = read();
         Transaction transaction = null;
         String dbUsername = null;
@@ -72,8 +70,7 @@ public class TransactionsController {
         return returnData;
     }
 
-    public void delete(String TID, String username)
-            throws ClassNotFoundException, IOException {
+    public void delete(String TID, String username) {
         ArrayList<Transaction> allData = read();
         Transaction transaction = null;
         ArrayList<Transaction> returnData = new ArrayList<Transaction>();

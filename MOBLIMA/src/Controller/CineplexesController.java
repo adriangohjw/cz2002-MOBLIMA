@@ -29,7 +29,7 @@ public class CineplexesController {
             out.flush();
             out.close();
         } catch (IOException e) {
-            e.printStackTrace();
+            // ignore error
         }
     }
 
@@ -40,7 +40,7 @@ public class CineplexesController {
             ois.close();
             return cineplexListing;
         } catch (ClassNotFoundException | IOException e) {
-            e.printStackTrace();
+            // ignore error
         }
         return new ArrayList<Cineplex>();
     }; 
@@ -92,7 +92,7 @@ public class CineplexesController {
             out.flush();
             out.close();
         } catch (IOException e) {
-            e.printStackTrace();
+            // ignore error
         }
     }
 }

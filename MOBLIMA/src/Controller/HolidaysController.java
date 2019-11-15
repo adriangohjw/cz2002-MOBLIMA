@@ -27,7 +27,7 @@ public class HolidaysController {
             out.flush();
             out.close();
         } catch (IOException e) {
-            e.printStackTrace();
+            // ignore error
         }
     } 
 
@@ -38,7 +38,7 @@ public class HolidaysController {
             ois.close();
             return holidayListing;
         } catch (ClassNotFoundException | IOException e) {
-            e.printStackTrace();
+            // ignore error
         } 
         return new ArrayList<Holiday>();
     }
@@ -75,7 +75,7 @@ public class HolidaysController {
             out.flush();
             out.close();
         } catch (IOException e) {
-            e.printStackTrace();
+            // ignore error
         }
     }
 }

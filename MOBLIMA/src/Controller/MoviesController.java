@@ -51,13 +51,12 @@ public class MoviesController {
             ois.close();
             return movieListing;
         } catch (ClassNotFoundException | IOException e) {
-            //
+            // ignore error
         } 
         return new ArrayList<Movie>();
     }
 
-    public Movie readByID(int valueToSearch) 
-            throws ClassNotFoundException, IOException {
+    public Movie readByID(int valueToSearch) {
         ArrayList<Movie> allData = read();
         for (int i=0; i<allData.size(); i++){
             Movie m = allData.get(i);
@@ -67,8 +66,7 @@ public class MoviesController {
         return null;
     }
 
-    public ArrayList<Movie> readByAttribute(int col, Object valueToSearch) 
-            throws ClassNotFoundException, IOException {
+    public ArrayList<Movie> readByAttribute(int col, Object valueToSearch) {
         ArrayList<Movie> allData = read();
         ArrayList<Movie> returnData = new ArrayList<Movie>();
         for (int i=0; i<allData.size(); i++){
@@ -103,8 +101,7 @@ public class MoviesController {
         return returnData;
     }
 
-    public void updateById(int col, int id, Object newValue)
-            throws ClassNotFoundException, IOException {
+    public void updateById(int col, int id, Object newValue) {
         ArrayList<Movie> allData = read();
         ArrayList<Movie> returnData = new ArrayList<Movie>();
                 
@@ -155,8 +152,7 @@ public class MoviesController {
         replaceExistingFile(FILENAME, returnData);
     }
 
-    public void deleteById(int id)
-            throws ClassNotFoundException, IOException {
+    public void deleteById(int id) {
         ArrayList<Movie> allData = read();
         ArrayList<Movie> returnData = new ArrayList<Movie>();
         

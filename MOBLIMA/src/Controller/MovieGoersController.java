@@ -20,39 +20,37 @@ public class MovieGoersController {
     public final static int NAME = 3;
     public final static int MOBILE_NUMBER = 4;
 
-    public void create(String username, String password) 
-            throws NoSuchAlgorithmException {
-        Movie_Goer movieGoer = new Movie_Goer(username, password);
-        ArrayList<Movie_Goer> allData = new ArrayList<Movie_Goer>();
-        File tempFile = new File(FILENAME);
-        if (tempFile.exists())
-            allData = read();
+    public void create(String username, String password) {
         try {
+            Movie_Goer movieGoer = new Movie_Goer(username, password);
+            ArrayList<Movie_Goer> allData = new ArrayList<Movie_Goer>();
+            File tempFile = new File(FILENAME);
+            if (tempFile.exists())
+                allData = read();
             ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(FILENAME));
             allData.add(movieGoer);
             out.writeObject(allData);
             out.flush();
             out.close();
-        } catch (IOException e) {
-            e.printStackTrace();
+        } catch (IOException | NoSuchAlgorithmException e) {
+            // ignore error
         }
     }
 
-    public void create(String username, String password, String name, String mobileNumber) 
-            throws NoSuchAlgorithmException {
-        Movie_Goer movieGoer = new Movie_Goer(username, password, name, mobileNumber);
-        ArrayList<Movie_Goer> allData = new ArrayList<Movie_Goer>();
-        File tempFile = new File(FILENAME);
-        if (tempFile.exists())
-            allData = read();
+    public void create(String username, String password, String name, String mobileNumber) {   
         try {
+            Movie_Goer movieGoer = new Movie_Goer(username, password, name, mobileNumber);
+            ArrayList<Movie_Goer> allData = new ArrayList<Movie_Goer>();
+            File tempFile = new File(FILENAME);
+            if (tempFile.exists())
+                allData = read();
             ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(FILENAME));
             allData.add(movieGoer);
             out.writeObject(allData);
             out.flush();
             out.close();
-        } catch (IOException e) {
-            e.printStackTrace();
+        } catch (IOException | NoSuchAlgorithmException e) {
+            // ignore error
         }
     }
 
@@ -63,12 +61,12 @@ public class MovieGoersController {
             ois.close();
             return movieGoerListing;
         } catch (ClassNotFoundException | IOException e) {
-            e.printStackTrace();
+            // ignore error
         }
         return new ArrayList<Movie_Goer>();
     }
 
-    public Movie_Goer readByEmail(String valueToSearch) throws ClassNotFoundException, IOException {
+    public Movie_Goer readByEmail(String valueToSearch) {
         ArrayList<Movie_Goer> allData = read();
         for (int i=0; i<allData.size(); i++){
             Movie_Goer u = allData.get(i);
@@ -78,23 +76,25 @@ public class MovieGoersController {
         return null;
     }
 
-    public void updatePasswordHashed(String email, String currentPassword, String newPassword)
-            throws ClassNotFoundException, IOException, NoSuchAlgorithmException {
+    public void updatePasswordHashed(String email, String currentPassword, String newPassword) {
         ArrayList<Movie_Goer> allData = read();
         ArrayList<Movie_Goer> returnData = new ArrayList<Movie_Goer>();
         
         for (int i=0; i<allData.size(); i++){
             Movie_Goer u = allData.get(i);
             if (u.getEmail().equals(email))
-                u.updatePassword(currentPassword, newPassword);
+                try {
+                    u.updatePassword(currentPassword, newPassword);
+                } catch (NoSuchAlgorithmException e) {
+                    // ignore error
+                }
             returnData.add(u);
         }
 
         replaceExistingFile(FILENAME, returnData);
     }
 
-    public void updateByAttribute(int col, Object oldValue, Object newValue)
-            throws ClassNotFoundException, IOException {
+    public void updateByAttribute(int col, Object oldValue, Object newValue) {
         ArrayList<Movie_Goer> allData = read();
         ArrayList<Movie_Goer> returnData = new ArrayList<Movie_Goer>();
                 
@@ -119,7 +119,7 @@ public class MovieGoersController {
         replaceExistingFile(FILENAME, returnData);
     }
 
-    public void deleteByEmail(String email) throws ClassNotFoundException, IOException {
+    public void deleteByEmail(String email) {
         ArrayList<Movie_Goer> allData = read();
         ArrayList<Movie_Goer> returnData = new ArrayList<Movie_Goer>();
         
