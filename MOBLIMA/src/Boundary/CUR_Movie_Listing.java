@@ -50,10 +50,10 @@ public void createMovie() {
 	double duration = InputController.getDoubleFromUser();
 	
 	System.out.println("Enter movie release date: ");
-	String movieReleaseDate = InputController.getStringFromUser();
+	Date movieReleaseDate = InputController.getDateFromUser();
 	
 	System.out.println("Enter movie end date: ");
-	String movieEndDate = InputController.getStringFromUser();
+	Date movieEndDate = InputController.getDateFromUser();
 	
 	System.out.println("Enter movie director: ");
 	String director = InputController.getStringFromUser();
@@ -132,13 +132,13 @@ public void updateMovie() {
 
 			case 6:
 				System.out.println("Enter new Movie Release date:");
-				String movieReleaseDate = InputController.getStringFromUser();
+				Date movieReleaseDate = InputController.getDateFromUser();
 				movieCtrl.updateById(6, movie_id, movieReleaseDate);
 				break;
 
 			case 7:
 				System.out.println("Enter new End of Showing date:");
-				String endOfShowing = InputController.getStringFromUser();
+				Date endOfShowing = InputController.getDateFromUser();
 				movieCtrl.updateById(7, movie_id, endOfShowing);
 				break;
 

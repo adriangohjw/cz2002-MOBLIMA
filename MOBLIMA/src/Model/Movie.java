@@ -14,15 +14,15 @@ public class Movie implements Serializable {
     private String synopsis;
     private String rating;
     private double duration;
-    private String movieReleaseDate;
-    private String movieEndDate;
+    private Date movieReleaseDate;
+    private Date movieEndDate;
     private String director;
     private ArrayList<String> cast;
     private ArrayList<Review> reviews; 
     
 
     public Movie(
-            int id, String title, MovieType type, String synopsis, String rating, double duration, String movieReleaseDate, String movieEndDate, String director, ArrayList<String> cast
+            int id, String title, MovieType type, String synopsis, String rating, double duration, Date movieReleaseDate, Date movieEndDate, String director, ArrayList<String> cast
     ){
         this.id = id;
         this.title = title;
@@ -55,11 +55,19 @@ public class Movie implements Serializable {
     public double getDuration() {return this.duration;}
     public void setDuration(double duration) {this.duration = duration;}
 
-    public String getMovieReleaseDate(){return this.movieReleaseDate;}
-    public void setMovieReleaseDate(String movieReleaseDate){this.movieReleaseDate = movieReleaseDate;}
+    public Date getMovieReleaseDate(){return this.movieReleaseDate;}
+    public void setMovieReleaseDate(Date movieReleaseDate){this.movieReleaseDate = movieReleaseDate;}
 
-    public String getMovieEndDate(){return this.movieEndDate;}
-    public void setMovieEndDate(String movieEndDate){this.movieEndDate = movieEndDate;}
+    public String getMovieReleaseDateToString(){
+        return new SimpleDateFormat("EEEE dd-MM-YYYY").format(movieReleaseDate);
+    }
+
+    public String getMovieEndDateToString(){
+        return new SimpleDateFormat("EEEE dd-MM-YYYY").format(movieEndDate);
+    }
+
+    public Date getMovieEndDate(){return this.movieEndDate;}
+    public void setMovieEndDate(Date movieEndDate){this.movieEndDate = movieEndDate;}
     
     public String getDirector(){return this.director;}
     public void setDirector(String director){this.director = director;}
@@ -104,34 +112,23 @@ public class Movie implements Serializable {
         }
     }
 
-    public MovieStatus getShowStatus(){
+    public MovieStatus getShowStatus() {
         Date current = new Date();
-        try{
-            Date Date_movieReleaseDate = new SimpleDateFormat("YYYY-mm-dd").parse(getMovieReleaseDate());
-            Date Date_movieEndDate = new SimpleDateFormat("YYYY-mm-dd").parse(getMovieEndDate());
-            if(current.after(Date_movieEndDate))
+        if (current.after(movieEndDate))
+            return MovieStatus.END_OF_SHOWING;
+        else {
+            long difference = movieReleaseDate.getTime() - current.getTime();
+            float daysBetween = (difference / (1000 * 60 * 60 * 24));
+            if (daysBetween > 7) {
+                return MovieStatus.PREVIEW;
+            } else if (daysBetween <= 7 && daysBetween > 0) {
+                return MovieStatus.COMING_SOON;
+            } else if (daysBetween < -30) {
                 return MovieStatus.END_OF_SHOWING;
-            else{
-                long difference = Date_movieReleaseDate.getTime() - current.getTime();
-                float daysBetween = (difference / (1000*60*60*24));
-                if(daysBetween>7){
-                    return MovieStatus.PREVIEW;
-                }
-                else if(daysBetween<=7 && daysBetween>0){
-                    return MovieStatus.COMING_SOON;
-                }
-                else if(daysBetween<-30){
-                    return MovieStatus.END_OF_SHOWING;
-                }
-                else{
-                    return MovieStatus.NOW_SHOWING;
-                }
+            } else {
+                return MovieStatus.NOW_SHOWING;
             }
         }
-        catch(ParseException e){
-            e.printStackTrace();
-        }
-        return null;
     }
 
     @Override

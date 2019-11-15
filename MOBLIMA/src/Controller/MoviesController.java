@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
+import java.util.Date;
 
 import Model.*;
 
@@ -26,7 +27,7 @@ public class MoviesController {
     public final static int REVIEWS = 10;
 
     public void create(
-            String title, MovieType type, String synopsis, String rating, double duration, String movieReleaseDate, String movieEndDate, String director, ArrayList<String> cast
+            String title, MovieType type, String synopsis, String rating, double duration, Date movieReleaseDate, Date movieEndDate, String director, ArrayList<String> cast
     ) {
         Movie movie = new Movie(getLastId()+1, title, type, synopsis, rating, duration, movieReleaseDate, movieEndDate, director, cast);
         ArrayList<Movie> allData = new ArrayList<Movie>();
@@ -86,11 +87,11 @@ public class MoviesController {
                         returnData.add(m);
                     break;
                 case MOVIE_RELEASE_DATE:
-                    if (m.getMovieReleaseDate().equals((String) valueToSearch))
+                    if (m.getMovieReleaseDate().equals((Date) valueToSearch))
                         returnData.add(m);
                     break;
                 case MOVIE_END_DATE:
-                    if (m.getMovieEndDate().equals((String) valueToSearch))
+                    if (m.getMovieEndDate().equals((Date) valueToSearch))
                         returnData.add(m);
                     break;
                 default:   
@@ -128,10 +129,10 @@ public class MoviesController {
                         m.setDuration((double) newValue);
                         break;
                     case MOVIE_RELEASE_DATE:
-                        m.setMovieReleaseDate((String) newValue);
+                        m.setMovieReleaseDate((Date) newValue);
                         break;
                     case MOVIE_END_DATE:
-                        m.setMovieEndDate((String) newValue);
+                        m.setMovieEndDate((Date) newValue);
                         break;
                     case DIRECTOR:
                         m.setDirector((String) newValue);

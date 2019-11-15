@@ -94,7 +94,7 @@ public class SearchMovieUI {
     public void printMovie(Movie movie){
         System.out.println("Movie ID: " + movie.getId());
         System.out.println("Title: " + movie.getTitle());
-        System.out.println("Release Date: " + movie.getMovieReleaseDate());
+        System.out.println("Release Date: " + movie.getMovieReleaseDateToString());
         System.out.println("-------------------");
     }
 }

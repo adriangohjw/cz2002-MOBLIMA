@@ -1,5 +1,8 @@
 package Controller;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -32,6 +35,23 @@ public class InputController {
             }
         }
         return input;
+    }
+
+    public static Date getDateFromUser(){
+        Date result = null;
+        String date;
+        boolean validInput = false;
+        while(!validInput){
+            try{
+                date = sc.nextLine();
+                result = new SimpleDateFormat("dd-MM-yyyy").parse(date);
+                validInput = true;
+            }
+            catch(ParseException e){
+                System.out.println("Must be in DD-MM-YYYY format!");
+            }
+        }
+        return result;
     }
 
     public static double getDoubleFromUser(){
