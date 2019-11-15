@@ -63,7 +63,7 @@ public class PriceController {
                             + getPrice(cinema.getCinemaType());
         if (session.isWeekend())
             addToPrice += 2.0;
-        if(holidaysCtrl.isHoliday(session.getSessionDateTime())){
+        if(holidaysCtrl.isHoliday(session.getSessionDateTime().toLocalDate())){
             return getPrice(PriceType.HOLIDAY) + addToPrice;
         }
         else{

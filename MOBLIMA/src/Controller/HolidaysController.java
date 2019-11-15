@@ -58,10 +58,10 @@ public class HolidaysController {
         replaceExistingFile(FILENAME, returnData);
     }
 
-    public boolean isHoliday(LocalDateTime valueToSearch) {
+    public boolean isHoliday(LocalDate valueToSearch) {
         ArrayList<Holiday> allData = read();
         for (int i=0; i<allData.size(); i++){
-            if (allData.get(i).getHolidayDate().equals(valueToSearch.toLocalDate()))
+            if (allData.get(i).getHolidayDate().equals(valueToSearch))
                 return true;
         }
         return false;
