@@ -41,6 +41,27 @@ public class InputController {
         return input;
     }
 
+    public static double getDoubleFromUser(int range){
+        double input = -1;
+        boolean validInput = false;
+        while(!validInput) {
+            if(sc.hasNextDouble()){
+                input = sc.nextDouble();
+                if(input>=0 && input<=5){
+                    validInput = true;
+                    sc.nextLine();
+                }
+                else{
+                    System.out.println("Must be within range 0-5! ");
+                }
+            }
+            else{
+                System.out.println("Must be double type! (decimal number)");
+            }
+        }
+        return input;
+    }
+
     public static LocalDateTime getDateTimeFromUser(){
         LocalDateTime result = null;
         String date;

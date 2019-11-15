@@ -115,7 +115,8 @@ public class MainMenuUI {
 					   "4.Book ticket\n" +
 					   "5.View booking history\n" +
 					   "6.List Top 5 movies\n" +
-					   "7.exit");
+					   "7.Rate Movie\n" +
+					   "8.Exit");
 			switch(InputController.getIntFromUser()) {
 				case 1:
 					SearchMovieUI search_movie_ui = new SearchMovieUI();
@@ -139,7 +140,11 @@ public class MainMenuUI {
 					listTopMovieUI.main();
 					break;
 				case 7:
+					RateMovieUI rateMovieUI = new RateMovieUI();
+					rateMovieUI.display();
+				case 8:
 					System.out.println("Exiting...");
+					exit = true;
 					break;
 				default:
 					System.out.println("Try again!");

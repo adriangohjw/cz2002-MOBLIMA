@@ -1,12 +1,10 @@
 package Model;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
+import java.text.DecimalFormat;
 import java.time.Duration;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Date;
 import java.io.Serializable;
 
 public class Movie implements Serializable {
@@ -87,6 +85,13 @@ public class Movie implements Serializable {
             castString = castString.concat(getCast().get(i) + ",");
         castString = castString.substring(0, castString.length()-1);
 
+        String reviews = "";
+        for(int i = 0; i<getReviews().size();i++){
+            reviews += getReviews().get(i).toString() + "\n\n";
+        }
+        if(reviews.equals(""))
+            reviews = "N/A";
+
         String details = "";
         details += "ID: " + getId() + "\n"
                 + "Title: " + getTitle() + "\n"
@@ -99,7 +104,8 @@ public class Movie implements Serializable {
                 + "End date: " +  getMovieEndDateToString() + "\n"
                 + "Director: " + getDirector() + "\n"
                 + "Cast: " + castString + "\n"
-                + "Overall review rating: " + getOverallReviews();       
+                + "Overall review rating: " + getOverallReviews() + "\n"
+                + "Reviews: \n\n" + reviews;
         return details + "\n";
     }
 
@@ -109,7 +115,8 @@ public class Movie implements Serializable {
             for(Review review : reviews){
                 sum += review.getNumOfStars();
             }
-            return String.valueOf(sum/reviews.size());
+            DecimalFormat df = new DecimalFormat("#.##");
+            return df.format(sum/reviews.size());
         }
         else {
             return "N/A";
