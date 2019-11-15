@@ -6,16 +6,30 @@ import Model.*;
 
 public class CinemasController {
 
-    private static CineplexesController cineplexesCtrl = new CineplexesController();
-    public final static String FILENAME = cineplexesCtrl.FILENAME;
+    private CineplexesController cineplexesCtrl;
+    public String FILENAME;
 
     public final static int CODE = 0;
     public final static int CINEMA_TYPE = 1;
     public final static int SEATING_PLAN = 2;
     public final static int SESSIONS = 3;
 
+    public CinemasController() {
+        this.cineplexesCtrl = new CineplexesController();
+        this.FILENAME = cineplexesCtrl.FILENAME;
+    }
+
+    public CinemasController(CineplexesController cineplexesCtrl) {
+        this.cineplexesCtrl = cineplexesCtrl;
+        this.FILENAME = cineplexesCtrl.FILENAME;
+    }
+
     public CineplexesController getCineplexesController(){
         return this.cineplexesCtrl;
+    }
+
+    public void setCineplexesController(CineplexesController cineplexesCtrl){
+        this.cineplexesCtrl = cineplexesCtrl;
     }
 
     public void create(
