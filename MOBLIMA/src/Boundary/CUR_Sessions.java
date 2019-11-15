@@ -48,7 +48,7 @@ public class CUR_Sessions {
 		
 		System.out.println("Enter cinema code: ");
 		String cinemaCode = InputController.getStringFromUser();
-		if (cinemaCtrl.readByAttribute(0, cinemaCode) == null) {
+		if (cinemaCtrl.readByAttribute(0, cinemaCode).isEmpty()) {
 			System.out.println("Cinema does not exist!\n"+
 							   "Returning to menu...");
 			return;
