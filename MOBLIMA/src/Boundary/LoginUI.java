@@ -29,15 +29,15 @@ public class LoginUI {
 
     Scanner sc = new Scanner(System.in);
 
-    public void main() {
-        do {
+    public boolean main() {
+        do{
             verify();
-            if (correctPassword == false) {
+            if(!correctPassword){
                 System.out.println("Wrong password or email. Please enter again.");
-            } else {
-                System.out.println("You have login sucessfully.");
             }
-        } while (correctPassword == false);
+        } while (!correctPassword);
+        System.out.println("You have login sucessfully.");
+        return true;
     }
 
     public void verify() {

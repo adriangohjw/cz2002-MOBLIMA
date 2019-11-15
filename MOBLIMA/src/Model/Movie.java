@@ -82,7 +82,7 @@ public class Movie implements Serializable {
                 + "Type: " + getType() + "\n"
                 + "Synopsis: " + getSynopsis() + "\n"
                 + "Rating: " + getRating() + "\n"
-                + "Duration: " + String.valueOf(getRating()) + "\n"
+                + "Duration: " + String.valueOf(getDuration()) + " hour(s)\n"
                 + "Release date: " +  getMovieReleaseDate() + "\n"
                 + "End date: " +  getMovieEndDate() + "\n"
                 + "Director: " + getDirector() + "\n"
@@ -131,9 +131,7 @@ public class Movie implements Serializable {
         catch(ParseException e){
             e.printStackTrace();
         }
-        finally {
-            return null;
-        }
+        return null;
     }
 
     @Override

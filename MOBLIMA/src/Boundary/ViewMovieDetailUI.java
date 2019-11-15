@@ -23,6 +23,6 @@ public class ViewMovieDetailUI {
         System.out.println("Enter movie ID to view movie detail: ");
         id = sc.nextInt();
         Movie movie = moviesCtrl.readByID(id);
-        movie.toString();
+        System.out.println(movie.toString());
     }   
 }

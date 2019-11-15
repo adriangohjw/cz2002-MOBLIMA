@@ -6,16 +6,16 @@ import java.util.Scanner;
 public class MainMenuUI {
 	
 	public static void main(String[] args) {
+		int choice;
 		Scanner input = new Scanner(System.in);
-		System.out.println("Welcome to MOBLIMA!\n" +
-						   "1. Admin\n" +
-						   "2. Movie Goer\n" +
-				   		   "3. New user\n" +
-						   "4. Exit");
-		int choice = input.nextInt();
 		boolean exit = false;
 		while (!exit) {
-		switch(choice) {
+			System.out.println("Welcome to MOBLIMA!\n" +
+					"1. Admin\n" +
+					"2. Movie Goer\n" +
+					"3. New user\n" +
+					"4. Exit");
+		switch(choice = input.nextInt()) {
 			case 1:
 				admin_login();
 				break;
@@ -38,10 +38,9 @@ public class MainMenuUI {
 	
 	public static void admin_login(){
 		LoginUI admin_login = new LoginUI(1);
-		admin_login.main();
-		boolean log_out = false;
+		boolean loggedIn = admin_login.main();
 		Scanner input = new Scanner(System.in);
-		while (log_out) {
+		while (loggedIn) {
 			System.out.println("Select action:\n"+
 					   "1.Create/Update/Remove movie listing\n"+
 					   "2.Create/Update/Remove movie session\n"+
@@ -62,14 +61,15 @@ public class MainMenuUI {
 					Conf.main();
 					break;
 				case 4:
-					log_out = true;
+					loggedIn = false;
 					System.out.println("Logged out successfully!");
+					System.out.println();
+					System.out.println();
 					break;
 				default:
 					System.out.println("Try again!");
 					break;
 			}
-					
 		}
 	}
 	

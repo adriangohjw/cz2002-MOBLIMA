@@ -35,39 +35,39 @@ public void createMovie() {
 	System.out.println("Creating movie listing....");
 	
 	System.out.println("Enter movie title: ");
-	String title = input.nextLine();
+	String title = InputController.getStringFromUser();
 	
 	System.out.println("Enter movie type: ");
-	String type = input.nextLine();
+	String type = InputController.getStringFromUser();
 	
 	System.out.println("Enter movie synopsis: ");
-	String synopsis = input.nextLine();
+	String synopsis = InputController.getStringFromUser();
 	
 	System.out.println("Enter movie rating: ");
-	String rating = input.nextLine();
+	String rating = InputController.getStringFromUser();
 	
 	System.out.println("Enter movie duration: ");
-	double duration = input.nextDouble();
+	double duration = InputController.getNumberFromUser(InputController.INTEGER);
 	
 	System.out.println("Enter movie release date: ");
-	String movieReleaseDate = input.nextLine();
+	String movieReleaseDate = InputController.getStringFromUser();
 	
 	System.out.println("Enter movie end date: ");
-	String movieEndDate = input.nextLine();
+	String movieEndDate = InputController.getStringFromUser();
 	
 	System.out.println("Enter movie director: ");
-	String director = input.nextLine();
+	String director = InputController.getStringFromUser();
 	
 	System.out.println("Enter number of casts: ");
 	int numCast = input.nextInt();
-	ArrayList<String> cast = null;
+	ArrayList<String> cast = new ArrayList<>();
 	for (int i = 0; i < numCast; i++) {
 		System.out.println("Enter name of cast " + i+1 + ":");
-		cast.add(input.nextLine());		
+		cast.add(InputController.getStringFromUser());
 		}
 	MovieType movieType = null;
 	for(MovieType m: MovieType.values())
-		if(m.toString()==type)
+		if(m.toString().equals(type))
 		{
 			movieType=m;
 			break;
