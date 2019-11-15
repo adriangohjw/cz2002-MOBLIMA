@@ -68,8 +68,12 @@ public class ConfigureSystemSetting {
 	public void DeleteHoliday() {
 		System.out.println("Enter holiday date: ");
 		ArrayList<Holiday> holList = holCtrl.read();
-		holList.forEach(Holiday -> System.out.println(Holiday.getHolidayDateToString()));
+		holList.forEach(Holiday -> printHol(Holiday));
 		LocalDate holiday = InputController.getDateFromUser();
+		if (!holCtrl.isHoliday(holiday)) {
+			System.out.println("Holiday does not exist!");
+			return;
+		}
 		holCtrl.delete(holiday);
 	}
 	
