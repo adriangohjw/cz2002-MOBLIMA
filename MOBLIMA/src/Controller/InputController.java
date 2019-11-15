@@ -3,6 +3,7 @@ package Controller;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.Date;
@@ -38,6 +39,23 @@ public class InputController {
             }
         }
         return input;
+    }
+
+    public static LocalDateTime getDateTimeFromUser(){
+        LocalDateTime result = null;
+        String date;
+        boolean validInput = false;
+        while(!validInput){
+            try{
+                date = sc.nextLine();
+                result = LocalDateTime.parse(date, DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm"));
+                validInput = true;
+            }
+            catch(DateTimeParseException e){
+                System.out.println("Must be of pattern DD/MM/YYYY HH:MM!");
+            }
+        }
+        return result;
     }
 
     public static LocalDate getDateFromUser(){

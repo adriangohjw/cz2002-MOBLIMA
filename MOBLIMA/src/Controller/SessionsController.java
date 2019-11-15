@@ -1,5 +1,6 @@
 package Controller;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 import static Controller.CinemasController.SESSIONS;
@@ -35,7 +36,7 @@ public class SessionsController {
         return this.cinemasCtrl;
     }
 
-    public void create(String cinemaCode, Movie movie, String sessionDateTime) {
+    public void create(String cinemaCode, Movie movie, LocalDateTime sessionDateTime) {
         SeatingPlan seatingPlan = cinemasCtrl.readByAttribute(CODE, cinemaCode).get(0).getSeatingPlan();
         Session session = new Session(movie, sessionDateTime, seatingPlan, getLastId()+1);
         ArrayList<Cinema> allData  = this.cinemasCtrl.read();
@@ -134,7 +135,7 @@ public class SessionsController {
                             break;
                         case SESSION_DATETIME:
                             if (s.getSessionDateTime().equals((String) oldValue))
-                                s.setSessionDateTime((String) newValue);
+                                s.setSessionDateTime((LocalDateTime) newValue);
                             break;
                         case ID:
                             if (s.getId() == (int) oldValue)
@@ -171,7 +172,7 @@ public class SessionsController {
                             s.setMovie((Movie) newValue);
                             break;
                         case SESSION_DATETIME:
-                            s.setSessionDateTime((String) newValue);
+                            s.setSessionDateTime((LocalDateTime) newValue);
                             break;
                         case SEATS_AVAILABILITY:
                             s.setSeatsAvailability((SeatingPlan) newValue);

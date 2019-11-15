@@ -5,6 +5,7 @@ import Controller.*;
 import Model.Movie;
 import Model.Session;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Scanner;
@@ -40,7 +41,7 @@ public class CUR_Sessions {
 		System.out.println("Enter movie id: ");
 	    int movie_id = InputController.getIntFromUser();
 	    System.out.println("Enter session date and time: ");
-	    String sessionDateTime = InputController.getStringFromUser();
+	    LocalDateTime sessionDateTime = InputController.getDateTimeFromUser();
 	    Movie movie = movieCtrl.readByID(movie_id);
 	    sessionCtrl.create(cinemaCode, movie, sessionDateTime);
 
@@ -68,8 +69,8 @@ public class CUR_Sessions {
 			
 		case 2:
 			System.out.println("Enter new Date & Time: ");
-			String DateTime = InputController.getStringFromUser();
-			sessionCtrl.updateById(1, session_id, DateTime);
+			LocalDateTime dateTime = InputController.getDateTimeFromUser();
+			sessionCtrl.updateById(1, session_id, dateTime);
 			break;
 		}
 	}
@@ -90,6 +91,7 @@ public class CUR_Sessions {
 	public void printSession(Session session) {
 		System.out.println("Session id: " + session.getId() + "\n" +
 						   "Movie Title: " + session.getMovie().getTitle() + "\n" +
-						   "Session DateTime: " + session.getSessionDateTime());
+						   "Session DateTime: " + session.getSessionDateTimeToString() + "\n" +
+							"Is Weekend: " + session.isWeekend());
 	}
 }

@@ -3,16 +3,19 @@ package Model;
 import java.io.Serializable;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.DayOfWeek;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 
 public class Session implements Serializable {
 
     private Movie movie;
-    private String sessionDateTime;
+    private LocalDateTime sessionDateTime;
     private SeatingPlan seatsAvailability;
     private int id;
 
-    public Session(Movie movie, String sessionDateTime, SeatingPlan seatingPlan, int id) {
+    public Session(Movie movie, LocalDateTime sessionDateTime, SeatingPlan seatingPlan, int id) {
         this.movie = movie;
         this.sessionDateTime = sessionDateTime;
         this.seatsAvailability = seatingPlan;
@@ -27,17 +30,16 @@ public class Session implements Serializable {
         this.movie = movie;
     }
 
-    public String getSessionDateTime() {
+    public LocalDateTime getSessionDateTime() {
         return sessionDateTime;
     }
 
-    public void setSessionDateTime(String sessionDateTime) {
+    public void setSessionDateTime(LocalDateTime sessionDateTime) {
         this.sessionDateTime = sessionDateTime;
     }
 
-    public String getSessionDate() {
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
-        return simpleDateFormat.format(this.getSessionDateTime());
+    public String getSessionDateTimeToString() {
+        return sessionDateTime.format(DateTimeFormatter.ofPattern("EEEE, dd/MM/yyyy HH:mm"));
     }
 
     public SeatingPlan getSeatsAvailability() {
@@ -57,42 +59,18 @@ public class Session implements Serializable {
     }
 
     public boolean isWeekend(){
-        String dayOfWeek = getDayOfWeekString();
-        if (dayOfWeek.equals("Sat") || dayOfWeek.equals("Sun"))
+        if(sessionDateTime.getDayOfWeek() == DayOfWeek.SATURDAY || sessionDateTime.getDayOfWeek() == DayOfWeek.SUNDAY){
             return true;
-        else if (dayOfWeek.equals("Fri") && getTime().isBefore(LocalTime.of(18, 0)))
-            return true;
-        else
-            return false;
-    }
-
-    private String getDayOfWeekString() {
-        SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm");
-        SimpleDateFormat outputFormat = new SimpleDateFormat("E");
-        try {
-            String dayOfWeek_Str = outputFormat.format(inputFormat.parse(this.sessionDateTime));
-            return dayOfWeek_Str;
-        } catch (ParseException e) {
-            e.printStackTrace();
-            return null;
         }
-    }
-
-    private LocalTime getTime() {
-        SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm");
-        SimpleDateFormat newFormat = new SimpleDateFormat("hh:mm");
-        String hourMin = null;
-        try {
-            hourMin = newFormat.format(inputFormat.parse(this.sessionDateTime));
-            LocalTime returnData = LocalTime.parse(hourMin);
-        return returnData;
-        } catch (ParseException e) {
-            e.printStackTrace();
-            return null;
+        else if(sessionDateTime.getDayOfWeek() == DayOfWeek.FRIDAY && sessionDateTime.getHour()>18){
+            return true;
+        }
+        else{
+            return false;
         }
     }
 
     public String toString() {
-        return "id: " + this.getId() + " Title: " + movie.getTitle() + ", DateTime: " + this.getSessionDateTime();
+        return "id: " + this.getId() + " Title: " + movie.getTitle() + ", DateTime: " + this.getSessionDateTime() + "is Weekend: " + isWeekend();
     }
 }

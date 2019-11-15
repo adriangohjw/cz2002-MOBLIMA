@@ -59,9 +59,9 @@ public class MainMenuUI {
 			ArrayList<Cinema> cinemas = cinemasController.read();
 			cineplexesController.create("First", cinemas);
 		}
-		for(Cineplex cineplex: cineplexesController.read()){
+		/*for(Cineplex cineplex: cineplexesController.read()){
 			System.out.println(cineplex.toString());
-		}
+		}*/
 	}
 
 	public static void admin_login(){

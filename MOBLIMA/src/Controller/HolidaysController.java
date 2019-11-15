@@ -6,6 +6,8 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 import Model.*;
@@ -14,7 +16,7 @@ public class HolidaysController {
     
     public final static String FILENAME = "MOBLIMA/database/holidays.txt";
 
-    public void create(String holidayDate) {
+    public void create(LocalDate holidayDate) {
         Holiday holiday = new Holiday(holidayDate);
         ArrayList<Holiday> allData = new ArrayList<Holiday>();
         File tempFile = new File(FILENAME);
@@ -43,7 +45,7 @@ public class HolidaysController {
         return new ArrayList<Holiday>();
     }
 
-    public void delete(String valueToSearch) {
+    public void delete(LocalDate valueToSearch) {
         ArrayList<Holiday> allData = read();
         ArrayList<Holiday> returnData = new ArrayList<Holiday>();
         
@@ -56,10 +58,10 @@ public class HolidaysController {
         replaceExistingFile(FILENAME, returnData);
     }
 
-    public boolean isHoliday(String valueToSearch) {
+    public boolean isHoliday(LocalDateTime valueToSearch) {
         ArrayList<Holiday> allData = read();
         for (int i=0; i<allData.size(); i++){
-            if (allData.get(i).getHolidayDate().equals(valueToSearch))
+            if (allData.get(i).getHolidayDate().equals(valueToSearch.toLocalDate()))
                 return true;
         }
         return false;

@@ -1,24 +1,31 @@
 package Model;
 
 import java.io.Serializable;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class Holiday implements Serializable {
 
-    private String holidayDate;
+    private LocalDate holidayDate;
 
-    public Holiday(String holidayDate){
+    public Holiday(LocalDate holidayDate){
         this.holidayDate = holidayDate;
     }
 
-    public String getHolidayDate(){
+    public LocalDate getHolidayDate(){
         return this.holidayDate;
     }
     
-    public void setHolidayDate(String holidayDate) {
+    public void setHolidayDate(LocalDate holidayDate) {
         this.holidayDate = holidayDate;
     }
 
+    public String getHolidayDateToString(){
+        return holidayDate.format(DateTimeFormatter.ofPattern("EEEE, dd/MM/yyyy"));
+    }
+
     public String toString() {
-        return "The holiday is on " + this.getHolidayDate();
+        return "The holiday is on " + this.getHolidayDateToString();
     }
 }

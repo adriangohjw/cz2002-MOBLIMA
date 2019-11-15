@@ -1,5 +1,6 @@
 package Boundary;
 
+import java.time.LocalDate;
 import java.util.Scanner;
 
 import Controller.*;
@@ -56,13 +57,13 @@ public class ConfigureSystemSetting {
 	
 	public void	CreateHoliday() {
 		System.out.println("Enter holiday date: ");
-		String holiday = input.nextLine();
+		LocalDate holiday = InputController.getDateFromUser();
 		holCtrl.create(holiday);
 	}
 	
 	public void DeleteHoliday() {
 		System.out.println("Enter holiday date: ");
-		String holiday = input.nextLine();
+		LocalDate holiday = InputController.getDateFromUser();
 		holCtrl.delete(holiday);
 	}
 	
