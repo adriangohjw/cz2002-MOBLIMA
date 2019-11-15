@@ -17,7 +17,7 @@ public class CUR_Movie_Listing {
 								"1. Create Movie Listing\n" +
 								"2. Update Movie Listing\n" +
 								"3. Remove Movie Listing\n" +
-								"4. Return to Main Menu" +
+								"4. Return to Main Menu\n" +
 								"Enter option: ");
 			int option = input.nextInt();
 			switch(option) {

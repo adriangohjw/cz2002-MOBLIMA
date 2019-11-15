@@ -18,7 +18,7 @@ public class SeatingPlan implements Serializable {
 	}
 	
 	public void printLayout( ) {
-		System.out.print("\nx means occupied, o means not occupied.\n");
+		System.out.print("\nX means occupied, 0 means not occupied.\n");
 		for (int i = 0; i < row; i++) {
 			System.out.print("Seats " + (i * column) + " - " + (i * (column + 1) - 1) + ": ");
 			for (int j = 0; j < column; j++) {

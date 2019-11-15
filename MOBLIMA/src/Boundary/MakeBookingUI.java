@@ -79,15 +79,16 @@ public class MakeBookingUI {
     	for (int i = 0; i < movieList.size(); i++) {
     		if (movieList.get(i).getShowStatus() == MovieStatus.NOW_SHOWING) {
     			System.out.println(movieList.get(i).getTitle());
-    			System.out.println();
     		}
     	}
+    	System.out.println();
     }
     
     public ArrayList<Cinema> showAvailableSessions(String cineplexName) {
     	Session tempSession;
     	Cinema tempCinema;
     	boolean printedCinemaCode =  false;
+    	boolean printSeparator = false;
     	ArrayList<Cinema> tempCinemaList = new ArrayList<Cinema>();
     	System.out.println();
     	System.out.println("Enter movie title to view available sessions: ");
@@ -110,9 +111,13 @@ public class MakeBookingUI {
     				System.out.println("	Date: " + tempSession.getSessionDateTimeToString());
     				System.out.println();
     				tempCinemaList.add(tempCinema);
+    				printSeparator = true;
     			}
     		}
-    		System.out.println("------------------------------------------------------");
+    		if(printSeparator){
+    			System.out.println("------------------------------------------------------");
+    			printSeparator = false;
+			}
     	}
     	return tempCinemaList;
     }
