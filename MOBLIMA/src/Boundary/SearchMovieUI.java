@@ -20,10 +20,9 @@ public class SearchMovieUI {
         this.moviesCtrl = moviesCtrl;
     }
 
-    Scanner sc = new Scanner(System.in);
 
     public void main(){
-        while (option != 4) {
+        while (option!=4) {
             display();
         }
     }
@@ -33,8 +32,7 @@ public class SearchMovieUI {
         System.out.println("2. Search by movie type");
         System.out.println("3. List all movie title");
         System.out.println("4. Exit");
-        option = sc.nextInt();
-        switch (option) {
+        switch (option = InputController.getIntFromUser()) {
         case 1:
             searchByTitle();
             break;
@@ -46,30 +44,51 @@ public class SearchMovieUI {
             break;
         case 4:
             System.out.println("Exit!");
-            break;
+            return;
         default:
             System.out.println("Invalid input! Please try again.");
         }
     }
 
-    public void searchByTitle(){
+    public boolean searchByTitle(){
         System.out.println("Enter movie title: ");
-        title = sc.next();
+        title = InputController.getStringFromUser();
         ArrayList<Movie> movieList = moviesCtrl.readByAttribute(moviesCtrl.TITLE, title);
-        movieList.forEach(movie -> printMovie(movie));
+        if(movieList.isEmpty()){
+            System.out.println("No search results matching given title!");
+            return false;
+        }
+        else{
+            movieList.forEach(movie -> printMovie(movie));
+            return true;
+        }
     }
 
-    public void searchByType(){
+    public boolean searchByType(){
         System.out.println("Enter movie type: ");
-        type = sc.next();
+        type = InputController.getStringFromUser();
         ArrayList<Movie> movieList = moviesCtrl.readByAttribute(moviesCtrl.TYPE, type);
-        movieList.forEach(movie -> printMovie(movie));
+        if(movieList.isEmpty()){
+            System.out.println("No search results matching given type!");
+            return false;
+        }
+        else{
+            movieList.forEach(movie -> printMovie(movie));
+            return true;
+        }
     }
    
     
-    public void listAllMovies(){
+    public boolean listAllMovies(){
         ArrayList<Movie> movieList = moviesCtrl.read();
-        movieList.forEach(movie -> printMovie(movie));
+        if(movieList.isEmpty()){
+            System.out.println("No movies to be listed!");
+            return false;
+        }
+        else{
+            movieList.forEach(movie -> printMovie(movie));
+            return true;
+        }
     }
     
     public void printMovie(Movie movie){

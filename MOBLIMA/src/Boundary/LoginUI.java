@@ -30,17 +30,18 @@ public class LoginUI {
     Scanner sc = new Scanner(System.in);
 
     public boolean main() {
+        boolean result;
         do{
-            verify();
-            if(!correctPassword){
+            result = verify();
+            if(!result){
                 System.out.println("Wrong password or email. Please enter again.");
             }
-        } while (!correctPassword);
+        } while (!result);
         System.out.println("You have login sucessfully.");
         return true;
     }
 
-    public void verify() {
+    public boolean verify() {
         System.out.println("Please enter your email: ");
         email = sc.next();
         System.out.println("Password: ");
@@ -48,10 +49,21 @@ public class LoginUI {
 
         if (role == 1) {
             Admin user = adminsCtrl.readByEmail(email);
-            correctPassword = user.validatePassword(password);
+            if(user == null){
+                return false;
+            }
+            else{
+                return user.validatePassword(password);
+            }
         } else {
             Movie_Goer user = movieGoersCtrl.readByEmail(email);
-            correctPassword = user.validatePassword(password);
+            if(user == null){
+                return false;
+            }
+            else{
+                return user.validatePassword(password);
+
+            }
         }
     }
 }

@@ -46,7 +46,8 @@ public class MainMenuUI {
 					   "1.Create/Update/Remove movie listing\n"+
 					   "2.Create/Update/Remove movie session\n"+
 					   "3.Configure system settings\n" +
-					   "4.Log out");
+					   "4.Search/List movies\n" +
+					   "5.Log out");
 			switch(InputController.getIntFromUser()) {
 				case 1:
 					CUR_Movie_Listing curMovieListing = new CUR_Movie_Listing();
@@ -61,6 +62,10 @@ public class MainMenuUI {
 					Conf.main();
 					break;
 				case 4:
+					SearchMovieUI searchMovieUI = new SearchMovieUI();
+					searchMovieUI.main();
+					break;
+				case 5:
 					loggedIn = false;
 					System.out.println("Logged out successfully!");
 					System.out.println();

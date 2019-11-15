@@ -9,7 +9,7 @@ public class InputController {
 
     public static String getStringFromUser(){
         String input = "";
-        while(input.equals("") || input == null){
+        while(input.equals("")){
             input = sc.nextLine();
             if(input.equals("")){
                 System.out.println("Cannot be empty, try again!");
@@ -25,6 +25,7 @@ public class InputController {
             if(sc.hasNextInt()){
                 input = sc.nextInt();
                 validInput = true;
+                sc.nextLine();
             }
             else{
                 System.out.println("Must be a non-decimal number!");
