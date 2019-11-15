@@ -1,14 +1,12 @@
 package Boundary;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 import Controller.*;
-import Model.CinemaType;
-import Model.Movie;
-import Model.MovieType;
-import Model.PriceChanger;
-import Model.PriceType;
+import Model.*;
 
 public class ConfigureSystemSetting {
 	private Scanner input = new Scanner(System.in);
@@ -20,17 +18,16 @@ public class ConfigureSystemSetting {
 		int choice;
 		while (!exit){
 			System.out.println("Configure System Settings: \n" +
-					"1. Add Holiday \n" +
-					"2. Delete Holiday \n" +
-					"3. Update Movie Type Price \n" +
-					"4. Update Cinema Type Price \n" +
-					"5. Update Student Price \n" +
-					"6. Update Senior Citizen Price \n" +
-					"7. Update Standard Price \n" +
-					"8. Update Weekend Price \n" +
-					"9. Update Holiday Price \n" +
-					"10. Add Promotion \n " +
-					"11. Update Promotion \n");
+					"1.  Add Holiday \n" +
+					"2.  Delete Holiday \n" +
+					"3.  Update Movie Type Price \n" +
+					"4.  Update Cinema Type Price \n" +
+					"5.  Update Student Price \n" +
+					"6.  Update Senior Citizen Price \n" +
+					"7.  Update Standard Price \n" +
+					"8.  Update Weekend Price \n" +
+					"9.  Update Holiday Price \n" +
+					"10. Return to Main Menu");
 			choice = InputController.getIntFromUser();
 			switch (choice) {
 				case 1:
@@ -50,6 +47,9 @@ public class ConfigureSystemSetting {
 				case 9:
 					UpdatePriceType(choice);
 					break;
+				case 10:
+					exit = true;
+					break;
 			}
 		}
 
@@ -58,12 +58,22 @@ public class ConfigureSystemSetting {
 	public void	CreateHoliday() {
 		System.out.println("Enter holiday date: ");
 		LocalDate holiday = InputController.getDateFromUser();
+		if (holCtrl.isHoliday(holiday)) {
+			System.out.println("Holiday already exists!");
+			return;
+		}
 		holCtrl.create(holiday);
 	}
 	
 	public void DeleteHoliday() {
 		System.out.println("Enter holiday date: ");
+		ArrayList<Holiday> holList = holCtrl.read();
+		holList.forEach(Holiday -> printHol(Holiday));
 		LocalDate holiday = InputController.getDateFromUser();
+		if (!holCtrl.isHoliday(holiday)) {
+			System.out.println("Holiday does not exist!");
+			return;
+		}
 		holCtrl.delete(holiday);
 	}
 	
@@ -86,6 +96,9 @@ public class ConfigureSystemSetting {
 			case 3:
 				priceCtrl.changePriceChanger(MovieType.BLOCKBUSTER, newPrice);
 				break;
+			default:
+				System.out.println("invalid choice!\n" +
+								   "Returning to menu...");
 		}
 	}
 	
@@ -104,6 +117,9 @@ public class ConfigureSystemSetting {
 			case 2:
 				priceCtrl.changePriceChanger(CinemaType.PREMIUM, newPrice);
 				break;
+			default:
+				System.out.println("invalid choice!\n" +
+								   "Returning to menu...");
 		}
 	}
 	
@@ -127,5 +143,9 @@ public class ConfigureSystemSetting {
 			priceCtrl.changePriceChanger(PriceType.HOLIDAY, newPrice);
 			break;
 		}
+	}
+	
+	public void printHol(Holiday holiday) {
+		System.out.println(holiday.getHolidayDateToString());
 	}
 }
