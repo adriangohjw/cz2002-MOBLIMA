@@ -26,7 +26,7 @@ public class RegisterUI {
         this.adminsCtrl = adminsCtrl;
     }
 
-    public void main() throws NoSuchAlgorithmException {
+    public void main(){
         do {
             inputRegister();
             if(consistentPassword==true){

@@ -5,7 +5,7 @@ import java.util.Scanner;
 
 public class MainMenuUI {
 	
-	public static void main(String[] args) throws ClassNotFoundException, IOException {
+	public static void main(String[] args) {
 		Scanner input = new Scanner(System.in);
 		System.out.println("Welcome to MOBLIMA!\n" +
 						   "1. Admin\n" +
@@ -36,7 +36,7 @@ public class MainMenuUI {
 		}
 	}
 	
-	public static void admin_login() throws ClassNotFoundException, IOException {
+	public static void admin_login(){
 		LoginUI admin_login = new LoginUI(1);
 		admin_login.main();
 		boolean log_out = false;
@@ -50,11 +50,12 @@ public class MainMenuUI {
 			int choice = input.nextInt();
 			switch(choice) {
 				case 1:
-					CUR_Movie_Listing.main();
+					CUR_Movie_Listing curMovieListing = new CUR_Movie_Listing();
+					curMovieListing.main();
 					break;
 				case 2:
-					CURshowtimes CUR2 = new CURshowtimes();
-					CUR2.main();
+					CUR_Sessions curSessions = new CUR_Sessions();
+					curSessions.main();
 					break;
 				case 3:
 					ConfigureSystemSetting Conf = new ConfigureSystemSetting();
@@ -96,8 +97,8 @@ public class MainMenuUI {
 					view_movie_detail_ui.main();
 					break;
 				case 3:
-					CheckSeatUI check_seat_ui = new CheckSeatUI();
-					check_seat_ui.main();
+					//CheckSeatUI check_seat_ui = new CheckSeatUI();
+					//check_seat_ui.main();
 					break;
 				case 4:
 

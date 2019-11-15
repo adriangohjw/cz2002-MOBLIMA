@@ -19,7 +19,7 @@ public class ViewMovieDetailUI {
         this.moviesCtrl = moviesCtrl;
     }
 
-    public void main() throws ClassNotFoundException, IOException {
+    public void main(){
         System.out.println("Enter movie ID to view movie detail: ");
         id = sc.nextInt();
         Movie movie = moviesCtrl.readByID(id);

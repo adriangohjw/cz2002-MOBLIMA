@@ -9,6 +9,7 @@ private String title;
 private MovieType type;
 private String synopsis;
 private String rating;
+private double duration;
 private String movieReleaseDate;
 private String movieEndDate;
 private String director;
@@ -17,10 +18,12 @@ private ArrayList<Review> reviews;
 
 // Constructor
 public Movie(
+  int id,
   String title, 
   MovieType type, 
   String synopsis, 
   String rating, 
+  double duration,
   String movieReleaseDate, 
   String movieEndDate,
   String director, 
@@ -174,16 +177,18 @@ public Cinema (
 private Movie movie;
 private String sessionDateTime;
 private SeatingPlan seatsAvailability;
+private int id;
 
 // Constructor
 public Session(
   Movie movie, 
   String sessionDateTime,
   SeatingPlan seatingPlan
+  int id
 ){...}
 
 // methods
-public boolean isWeekend(){...}';
+public boolean isWeekend(){...};
 private String getDayOfWeekString(){...};
 private LocalTime getTime(){...}
 ~~~

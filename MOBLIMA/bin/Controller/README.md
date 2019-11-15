@@ -142,18 +142,26 @@ read
 public ArrayList<Session> read(); 
 public ArrayList<Session> readByAttributes(int col, Object valueToSearch);
 public Session readBySession(String cinemaCode, String sessionDateTime);
+public Session readById(int id);
 ~~~
 
 update
 ~~~java
 public void updateByAttribute(int col, String cinemaCode, Object oldValue, Object newValue);
+public void updateById(int col, int id, Object newValue);
+public void updateSeatsAvailability(int id, SeatingPlan newSeatsAvailabiity);
 ~~~
 
 delete
 ~~~java
 public void delete(String cinemaCode, String sessionDateTime);
+public void delete(int id);
 ~~~
 
+others
+~~~java
+public int getLastId();
+~~~
 
 ## cineplexesControllers
 

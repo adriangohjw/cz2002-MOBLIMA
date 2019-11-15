@@ -1,4 +1,4 @@
-package Test;
+/*package Test;
 
 import java.io.File;
 import java.io.IOException;
@@ -38,15 +38,15 @@ public class SessionsControllerTest {
 
             ArrayList<String> listCast =  new ArrayList<String>();
             listCast.add("A_cast1");
-            moviesCtrl.create("A", MovieType.BLOCKBUSTER, "A_synopsis", "NC16", currentDate, "2020-01-01", "A_director", listCast);
+            //moviesCtrl.create("A", MovieType.BLOCKBUSTER, "A_synopsis", "NC16", currentDate, "2020-01-01", "A_director", listCast);
 
             listCast.clear();
             listCast.add("B_cast1");
-            moviesCtrl.create("B", MovieType.BLOCKBUSTER, "B_synopsis", "NC16", currentDate, "2020-01-01", "B_director", listCast);
+            //moviesCtrl.create("B", MovieType.BLOCKBUSTER, "B_synopsis", "NC16", currentDate, "2020-01-01", "B_director", listCast);
 
             listCast.clear();
             listCast.add("C_cast1");
-            moviesCtrl.create("C", MovieType.BLOCKBUSTER, "C_synopsis", "NC16", currentDate, "2020-01-01", "C_director", listCast);
+            //moviesCtrl.create("C", MovieType.BLOCKBUSTER, "C_synopsis", "NC16", currentDate, "2020-01-01", "C_director", listCast);
 
             // added cineplex 1
             Cinema cinema1 = new Cinema("AAA", CinemaType.PREMIUM, seatingPlan1);
@@ -109,4 +109,4 @@ public class SessionsControllerTest {
     public static void readAllAndPrintCinema(ArrayList<Cinema> cinemasListing){     
         cinemasListing.forEach(n->System.out.println(n));
     }
-}
+}*/

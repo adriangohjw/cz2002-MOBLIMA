@@ -1,4 +1,4 @@
-package Test;
+/*package Test;
 
 import java.io.File;
 import java.io.IOException;
@@ -27,11 +27,11 @@ public class TransactionsControllerTest {
         movieGoer2.setName("adrian goh #2");
         movieGoer2.setMobileNumber("22222222");
 
-        Transaction transaction1 = new Transaction("AAA", movieGoer1);
-        Transaction transaction2 = new Transaction("BBB", movieGoer2);
+        //Transaction transaction1 = new Transaction("AAA", movieGoer1);
+       // Transaction transaction2 = new Transaction("BBB", movieGoer2);
 
-        transactionListing.add(transaction1);
-        transactionListing.add(transaction2);
+        //transactionListing.add(transaction1);
+        //transactionListing.add(transaction2);
 
         // Testing TransactionsController.create()
         System.out.println(".....Testing TransactionsController.create()");
@@ -59,4 +59,4 @@ public class TransactionsControllerTest {
     public static void readAllAndPrint(ArrayList<Transaction> transactionListing){     
         transactionListing.forEach(n->System.out.println(n));
     }
-}
+}*/

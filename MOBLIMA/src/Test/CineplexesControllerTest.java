@@ -1,4 +1,4 @@
-package Test;
+/*package Test;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -70,4 +70,4 @@ public class CineplexesControllerTest {
     public static void readAllAndPrint(ArrayList<Cineplex> cineplexListing){     
         cineplexListing.forEach(n->System.out.println(n));
     }
-}
+}*/

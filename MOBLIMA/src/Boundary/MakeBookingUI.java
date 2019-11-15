@@ -40,7 +40,7 @@ public class MakeBookingUI {
     
     public void main() throws ClassNotFoundException, IOException {
         System.out.println("Here are the available movies: "); 
-        showAvailableMovies();
+        //showAvailableMovies();
         ArrayList<Cinema> cinemaList = showAvailableSessions();
         pickDateTimeCode(cinemaList);
         reserveSeat();
@@ -48,7 +48,7 @@ public class MakeBookingUI {
         makeTransaction();
     }
     
-    public void showAvailableMovies() throws ClassNotFoundException, IOException, ParseException {
+    public void showAvailableMovies() {
     	ArrayList<Movie> movieList = movieCtrl.read();
     	for (int i = 0; i < movieList.size(); i++) {
     		if (movieList.get(i).getShowStatus() == MovieStatus.NOW_SHOWING) {
@@ -57,7 +57,7 @@ public class MakeBookingUI {
     	}
     }
     
-    public ArrayList<Cinema> showAvailableSessions() throws ClassNotFoundException, IOException {
+    public ArrayList<Cinema> showAvailableSessions() {
     	Session tempSession;
     	ArrayList<Cinema> tempCinemaList = new ArrayList<Cinema>();
     	System.out.println("Choose movie to view available sessions: ");
@@ -76,7 +76,7 @@ public class MakeBookingUI {
     	return tempCinemaList;
     }
     
-    public void pickDateTimeCode(ArrayList<Cinema>mainCinemaList) throws ClassNotFoundException, IOException {
+    public void pickDateTimeCode(ArrayList<Cinema>mainCinemaList) {
     	sc.nextLine();
     	Session tempSession;
     	Cinema tempCinema;
@@ -101,7 +101,7 @@ public class MakeBookingUI {
     }
     
     
-    public void reserveSeat() throws ClassNotFoundException, IOException {
+    public void reserveSeat() {
     	sc.nextLine();
     	int id;
     	seatAvailability.printLayout();
@@ -118,7 +118,7 @@ public class MakeBookingUI {
     
     public void makeTransaction() {
     	// need to find a way to get username???
-    	Transaction newTransaction = new Transaction();
-    	transCtrl.create(newTransaction);
+    	//Transaction newTransaction = new Transaction();
+    	//transCtrl.create(newTransaction);
     }
 }

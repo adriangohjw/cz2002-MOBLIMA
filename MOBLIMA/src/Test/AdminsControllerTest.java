@@ -1,4 +1,4 @@
-package Test;
+/*package Test;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -49,4 +49,4 @@ public class AdminsControllerTest {
     public static void readAllAndPrint(ArrayList<Admin> userListing){     
         userListing.forEach(n->System.out.println(n));
     }
-}
+}*/

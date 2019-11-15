@@ -20,12 +20,12 @@ public class ListTopMovieUI {
 
 	Scanner sc = new Scanner(System.in);
 
-	public void main() throws ClassNotFoundException, IOException {
+	public void main(){
 		while (choice != 3)
 			display();
 	}
 
-	public void display() throws ClassNotFoundException, IOException {
+	public void display() {
 		System.out.println("Select 1 to list top 5 movies according to ratings.");
 		System.out.println("Select 2 to list top 5 movies according to ticket sales.");
 		System.out.println("Select 3 to go back.");
@@ -46,7 +46,7 @@ public class ListTopMovieUI {
 		}
 	}
 
-	public void listWithRatings() throws ClassNotFoundException, IOException {
+	public void listWithRatings(){
 		ArrayList<Movie> movieList = moviesCtrl.read(); // there are two readByAttribute, which to be used?
 		Collections.sort(movieList, new SortByRating());
 		for (int i = 0; i < 5; i++) {
@@ -56,7 +56,7 @@ public class ListTopMovieUI {
 		view.main();
 	}
 
-	public void listWithSales() throws ClassNotFoundException, IOException {
+	public void listWithSales(){
 		ArrayList<Movie> movieList = moviesCtrl.read(); // there are two readByAttribute, which to be used?
 		Collections.sort(movieList, new SortBySales());
 		for (int i = 0; i < 5; i++) {

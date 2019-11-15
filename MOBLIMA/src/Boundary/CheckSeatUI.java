@@ -12,11 +12,13 @@ public class CheckSeatUI {
     private String sessionDateTime;
     private SessionsController sessionsCtrl;
     private SeatingPlan seatsAvailability;
+    private PriceController priceController;
 
     public CheckSeatUI(String _cinemaCode, String _sessionDateTime){
         this.cinemaCode = _cinemaCode;
         this.sessionDateTime = _sessionDateTime;
         this.sessionsCtrl = new SessionsController();
+        this.priceController = new PriceController();
     }
 
     public CheckSeatUI(String _cinemaCode, String _sessionDateTime, SessionsController sessionsCtrl){
@@ -33,6 +35,7 @@ public class CheckSeatUI {
         seatsAvailability = session.getSeatsAvailability(); 
         printLayout();
         selectSeats();
+        priceController.changePriceChanger(MovieType.TWO_D,10.0);
     }
 
     public void printLayout(){

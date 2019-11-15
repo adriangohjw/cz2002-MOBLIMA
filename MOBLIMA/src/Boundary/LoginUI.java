@@ -29,7 +29,7 @@ public class LoginUI {
 
     Scanner sc = new Scanner(System.in);
 
-    public void main() throws ClassNotFoundException, NoSuchAlgorithmException, IOException {
+    public void main() {
         do {
             verify();
             if (correctPassword == false) {
@@ -40,7 +40,7 @@ public class LoginUI {
         } while (correctPassword == false);
     }
 
-    public void verify() throws ClassNotFoundException, IOException, NoSuchAlgorithmException {
+    public void verify() {
         System.out.println("Please enter your email: ");
         email = sc.next();
         System.out.println("Password: ");

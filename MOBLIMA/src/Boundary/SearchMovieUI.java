@@ -22,13 +22,13 @@ public class SearchMovieUI {
 
     Scanner sc = new Scanner(System.in);
 
-    public void main() throws ClassNotFoundException, IOException {
+    public void main(){
         while (option != 4) {
             display();
         }
     }
 
-    public void display() throws ClassNotFoundException, IOException {
+    public void display(){
         System.out.println("1. Search by movie title");
         System.out.println("2. Search by movie type");
         System.out.println("3. List all movie title");
@@ -52,14 +52,14 @@ public class SearchMovieUI {
         }
     }
 
-    public void searchByTitle() throws ClassNotFoundException, IOException {
+    public void searchByTitle(){
         System.out.println("Enter movie title: ");
         title = sc.next();
         ArrayList<Movie> movieList = moviesCtrl.readByAttribute(moviesCtrl.TITLE, title);
         movieList.forEach(movie -> printMovie(movie));
     }
 
-    public void searchByType() throws ClassNotFoundException, IOException {
+    public void searchByType(){
         System.out.println("Enter movie type: ");
         type = sc.next();
         ArrayList<Movie> movieList = moviesCtrl.readByAttribute(moviesCtrl.TYPE, type);

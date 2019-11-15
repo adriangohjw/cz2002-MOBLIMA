@@ -24,12 +24,12 @@ public class ViewBookingUI {
         this.movieGoer = userName;
     }
 
-    public void main() throws ClassNotFoundException, IOException {
+    public void main(){
         System.out.println("Here is your booking history:");
         display();
     }
 
-    public void display() throws ClassNotFoundException, IOException {
+    public void display(){
         ArrayList<Transaction> transactionList = transCtrl.readByMovieGoerUsername(movieGoer);
         transactionList.forEach(transaction -> System.out.println(transaction.toString()));
     }

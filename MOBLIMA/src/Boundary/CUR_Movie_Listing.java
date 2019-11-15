@@ -9,7 +9,7 @@ public class CUR_Movie_Listing {
 	private static MoviesController movieCtrl = new MoviesController();
 	Scanner input = new Scanner(System.in);
 
-	public void main() throws ClassNotFoundException, IOException{
+	public void main() {
 		System.out.printf("Create/Update/Remove movie listing: \n" +
 							"1. Create Movie Listing\n" +
 							"2. Update Movie Listing\n" +
@@ -30,8 +30,7 @@ public class CUR_Movie_Listing {
 	}
 	
 	
-public void createMovie()
-	throws ClassNotFoundException, IOException{
+public void createMovie() {
 
 	System.out.println("Creating movie listing....");
 	
@@ -79,8 +78,7 @@ public void createMovie()
 	}
 
 
-public void updateMovie() 
-		throws ClassNotFoundException, IOException {
+public void updateMovie() {
     
 	System.out.println("Updating movie...");
 	SearchMovieUI listMovie = new SearchMovieUI();
@@ -164,7 +162,7 @@ public void updateMovie()
 	
 	
 
-public void removeMovie() throws ClassNotFoundException, IOException {
+public void removeMovie(){
 	System.out.println("Deleting movie...");
 	SearchMovieUI listMovie = new SearchMovieUI();
 	System.out.println("Select movie to be deleted: ");

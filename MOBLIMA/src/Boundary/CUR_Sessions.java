@@ -14,7 +14,7 @@ public class CUR_Sessions {
 	private MoviesController movieCtrl = new MoviesController();
 	private SessionsController sessionCtrl = new SessionsController();
 	
-	public void main() throws ClassNotFoundException, IOException{
+	public void main(){
 		System.out.println("Create/Update/Remove session: /n" +
 						   "1. Create Movie Session/n" +
 						   "2. Update Movie Session/n" +
@@ -33,8 +33,7 @@ public class CUR_Sessions {
 		}
 		}
 
-	public void createSession() 
-			throws ClassNotFoundException, IOException {
+	public void createSession() {
 		
 		System.out.println("Creating Session...");
 		System.out.println("Enter cinema code: ");
@@ -48,8 +47,7 @@ public class CUR_Sessions {
 
 	}
 	
-	public void updateSession() 
-			throws ClassNotFoundException, IOException{
+	public void updateSession() {
 		
 		System.out.println("Updating Movie..");
 		System.out.println("Select session to be updated: ");

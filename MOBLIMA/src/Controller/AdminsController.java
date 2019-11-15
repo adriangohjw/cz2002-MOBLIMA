@@ -64,11 +64,7 @@ public class AdminsController {
         for (int i=0; i<allData.size(); i++){
             Admin u = allData.get(i);
             if (u.getEmail().equals(email))
-                try {
-                    u.updatePassword(currentPassword, newPassword);
-                } catch (NoSuchAlgorithmException e) {
-                    // ignore error
-                }
+                u.updatePassword(currentPassword, newPassword);
             returnData.add(u);
         }
 

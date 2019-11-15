@@ -1,4 +1,4 @@
-package Test;
+/*package Test;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -89,4 +89,4 @@ public class CinemasControllerTest {
     public static void readAllAndPrintCinema(ArrayList<Cinema> cinemasListing){     
         cinemasListing.forEach(n->System.out.println(n));
     }
-}
+}*/
