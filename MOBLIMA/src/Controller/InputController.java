@@ -6,8 +6,6 @@ import java.util.Scanner;
 public class InputController {
 
     private static Scanner sc = new Scanner(System.in);
-    public static final int INTEGER = 0;
-    public static final int DOUBLE = 1;
 
     public static String getStringFromUser(){
         String input = "";
@@ -20,21 +18,32 @@ public class InputController {
         return input;
     }
 
-    public static double getNumberFromUser(int type){
-        double input = -1;
+    public static int getIntFromUser(){
+        int input = -1;
         boolean validInput = false;
-        while(!validInput){
-            try{
-                if(type==INTEGER){
-                    input=sc.nextInt();
-                }
-                else if(type==DOUBLE){
-                    input = sc.nextDouble();
-                }
+        while(!validInput) {
+            if(sc.hasNextInt()){
+                input = sc.nextInt();
                 validInput = true;
             }
-            catch(InputMismatchException e){
-                System.out.println("Must be a number!");
+            else{
+                System.out.println("Must be a non-decimal number!");
+            }
+        }
+        return input;
+    }
+
+    public static double getDoubleFromUser(){
+        double input = -1;
+        boolean validInput = false;
+        while(!validInput) {
+            if(sc.hasNextDouble()){
+                input = sc.nextDouble();
+                validInput = true;
+                sc.nextLine();
+            }
+            else{
+                System.out.println("Must be a double type! (decimal number)");
             }
         }
         return input;

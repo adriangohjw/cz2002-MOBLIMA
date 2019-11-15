@@ -1,13 +1,15 @@
 package Boundary;
 
+import Controller.InputController;
+
 import java.io.IOException;
-import java.util.Scanner; 
+import java.util.Scanner;
+
+import static Controller.InputController.*;
 
 public class MainMenuUI {
 	
 	public static void main(String[] args) {
-		int choice;
-		Scanner input = new Scanner(System.in);
 		boolean exit = false;
 		while (!exit) {
 			System.out.println("Welcome to MOBLIMA!\n" +
@@ -15,7 +17,7 @@ public class MainMenuUI {
 					"2. Movie Goer\n" +
 					"3. New user\n" +
 					"4. Exit");
-		switch(choice = input.nextInt()) {
+		switch(InputController.getIntFromUser()) {
 			case 1:
 				admin_login();
 				break;
@@ -39,15 +41,13 @@ public class MainMenuUI {
 	public static void admin_login(){
 		LoginUI admin_login = new LoginUI(1);
 		boolean loggedIn = admin_login.main();
-		Scanner input = new Scanner(System.in);
 		while (loggedIn) {
 			System.out.println("Select action:\n"+
 					   "1.Create/Update/Remove movie listing\n"+
 					   "2.Create/Update/Remove movie session\n"+
 					   "3.Configure system settings\n" +
 					   "4.Log out");
-			int choice = input.nextInt();
-			switch(choice) {
+			switch(InputController.getIntFromUser()) {
 				case 1:
 					CUR_Movie_Listing curMovieListing = new CUR_Movie_Listing();
 					curMovieListing.main();
@@ -75,7 +75,6 @@ public class MainMenuUI {
 	
 	public static void movie_goer() {
 		LoginUI movie_goer_login = new LoginUI(0);
-		Scanner input = new Scanner(System.in);
 		boolean exit = false;
 		while (!exit) {
 			System.out.println("Select action:\n"+
@@ -86,8 +85,7 @@ public class MainMenuUI {
 					   "5.View booking history\n" +
 					   "6.List Top 5 movies\n" +
 					   "7.exit");
-			int choice = input.nextInt();
-			switch(choice) {
+			switch(InputController.getIntFromUser()) {
 				case 1:
 					SearchMovieUI search_movie_ui = new SearchMovieUI();
 					search_movie_ui.main();

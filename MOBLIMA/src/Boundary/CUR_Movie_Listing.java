@@ -47,7 +47,7 @@ public void createMovie() {
 	String rating = InputController.getStringFromUser();
 	
 	System.out.println("Enter movie duration: ");
-	double duration = InputController.getNumberFromUser(InputController.INTEGER);
+	double duration = InputController.getDoubleFromUser();
 	
 	System.out.println("Enter movie release date: ");
 	String movieReleaseDate = InputController.getStringFromUser();
