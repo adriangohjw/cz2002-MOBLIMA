@@ -162,12 +162,12 @@ public class SessionsController {
         for (int i=0; i<allCinemas.size(); i++) {
             Cinema cinema_i = allCinemas.get(i);
             allSessions = cinema_i.getSessions();
-            returnSessions.clear();  // ensure it started without existing session
+            returnSessions.clear();// ensure it started without existing session
             for (int j=0; j<allSessions.size(); j++){
                 s = allSessions.get(j);
                 if (s.getId() == id)
                     switch (col){
-                        case MOVIE: 
+                        case MOVIE:
                             s.setMovie((Movie) newValue);
                             break;
                         case SESSION_DATETIME:
@@ -184,7 +184,6 @@ public class SessionsController {
 
             // update DB and break (stop searching other cinema if already found one with matching code)
             this.cinemasCtrl.updateByAttribute(cinemasCtrl.SESSIONS, cinema_i.getCode(), returnSessions);
-            break; 
         }
     }
 
