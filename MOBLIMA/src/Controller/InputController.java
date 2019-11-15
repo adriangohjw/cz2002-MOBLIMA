@@ -25,6 +25,21 @@ public class InputController {
         return input;
     }
 
+    public static int getYesOrNoFromUser(){
+        int input = -1;
+        boolean validInput = false;
+        while (!validInput){
+            input = getIntFromUser();
+            if(input==0 || input==1){
+                validInput = true;
+            }
+            else{
+                System.out.println("Must be either 0 or 1");
+            }
+        }
+        return input;
+    }
+
     public static int getIntFromUser(){
         int input = -1;
         boolean validInput = false;
@@ -32,11 +47,11 @@ public class InputController {
             if(sc.hasNextInt()){
                 input = sc.nextInt();
                 validInput = true;
-                sc.nextLine();
             }
             else{
-                System.out.println("Must be a non-decimal number!");
+                System.out.println("Wrong input!");
             }
+            sc.nextLine();
         }
         return input;
     }

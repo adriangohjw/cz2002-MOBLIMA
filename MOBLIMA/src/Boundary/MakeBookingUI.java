@@ -61,59 +61,72 @@ public class MakeBookingUI {
     public void main() {
         System.out.println("Here are the available movies: "); 
         showAvailableMovies();
-        ArrayList<Cinema> cinemaList = showAvailableSessions();
+        System.out.println("Choose cineplex: ");
+        System.out.println();
+        CineplexesController cineplexesController = new CineplexesController();
+        ArrayList<Cineplex> cineplexes = cineplexesController.read();
+        for(int i=0;i<cineplexes.size();i++){
+        	System.out.println((i+1) + ". " + cineplexes.get(i).getName());
+		}
+        int choice = InputController.getIntFromUser();
+        ArrayList<Cinema> cinemaList = showAvailableSessions(cineplexes.get(choice-1).getName());
         pickDateTimeCode(cinemaList);
-        reserveSeat();   
-        priceShowcase();     
-        makeTransaction();
     }
     
     public void showAvailableMovies() {
+		System.out.println();
     	ArrayList<Movie> movieList = movieCtrl.read();
     	for (int i = 0; i < movieList.size(); i++) {
     		if (movieList.get(i).getShowStatus() == MovieStatus.NOW_SHOWING) {
     			System.out.println(movieList.get(i).getTitle());
+    			System.out.println();
     		}
     	}
     }
     
-    public ArrayList<Cinema> showAvailableSessions() {
+    public ArrayList<Cinema> showAvailableSessions(String cineplexName) {
     	Session tempSession;
     	Cinema tempCinema;
     	boolean printedCinemaCode =  false;
     	ArrayList<Cinema> tempCinemaList = new ArrayList<Cinema>();
-    	System.out.println("Choose movie to view available sessions: ");
+    	System.out.println();
+    	System.out.println("Enter movie title to view available sessions: ");
     	movieTitle = InputController.getStringFromUser();
-    	ArrayList<Cinema> cinemaList = cinemaCtrl.read();
-    	for (int i = 0; i < cinemaList.size(); i++) {
+    	ArrayList<Cinema> cinemaList = cinemaCtrl.readByCineplexName(cineplexName);
+		System.out.println("------------------------------------------------------");
+		for (int i = 0; i < cinemaList.size(); i++) {
     		printedCinemaCode = false;
     		tempCinema = cinemaList.get(i);
     		for(int j = 0; j < tempCinema.getSessions().size(); j++) {
     			tempSession = tempCinema.getSessions().get(j);
     			if (tempSession.getMovie().getTitle().equals(movieTitle)) {
     				if (!printedCinemaCode) {
-    					System.out.println("Cinema code: " + tempCinema.getCode() + "; cinema type: " + tempCinema.getCinemaType());
-    					System.out.println("Available sessions for this cinema:");
+    					System.out.println("Cinema code: " + tempCinema.getCode() + "		Cinema type: " + tempCinema.getCinemaType());
+    					System.out.println();
+    					System.out.println("Available screening times of " + movieTitle+ " in this cinema:");
+    					System.out.println();
     				}
     				printedCinemaCode = true;
-    				System.out.println("DateTime: " + tempSession.getSessionDateTime());
+    				System.out.println("	Date: " + tempSession.getSessionDateTimeToString());
+    				System.out.println();
+    				tempCinemaList.add(tempCinema);
     			}
     		}
+    		System.out.println("------------------------------------------------------");
     	}
     	return tempCinemaList;
     }
     
-    public void pickDateTimeCode(ArrayList<Cinema>mainCinemaList) {
+    public void pickDateTimeCode(ArrayList<Cinema> mainCinemaList) {
     	Session tempSession;
     	Cinema tempCinema;
     	System.out.println("Choose your cinema code: ");
     	cinemaCode = InputController.getStringFromUser();
-    	System.out.println("Choose your viewing date and time (in format yyyy-MM-dd hh:mm): ");
+    	System.out.println("Choose your viewing date and time (in format DD/MM/YYYY HH:MM): ");
     	viewingDateTime = InputController.getDateTimeFromUser();
-    	
     	for (int i = 0; i < mainCinemaList.size(); i++) {
     		tempCinema = mainCinemaList.get(i);
-    		if (tempCinema.getCode() == cinemaCode) {
+    		if (tempCinema.getCode().equals(cinemaCode)) {
     			for(int j = 0; j < tempCinema.getSessions().size(); j++) {
     				tempSession = tempCinema.getSessions().get(j);
     				if (tempSession.getSessionDateTime().equals(viewingDateTime)) {
@@ -125,7 +138,8 @@ public class MakeBookingUI {
     			}
     		}
     	}
-    }
+		priceShowcase();
+	}
     
     public void reserveSeat() {
     	int id;
@@ -139,19 +153,46 @@ public class MakeBookingUI {
     	}
     	seatAvailability.assignSeats(id);
     	sessCtrl.updateSeatsAvailability(queriedSession.getId(), seatAvailability);
+		makeTransaction();
     }
     
     public void priceShowcase() {
-    	System.out.println("Enter your age type (Student, Senior): ");
-    	String priceTypeString = InputController.getStringFromUser();
-    	if (priceTypeString.equals("Student")) priceCtrl.computePrice(queriedSession, queriedCinema, PriceType.STUDENT);
-    	if (priceTypeString.equals("Senior")) priceCtrl.computePrice(queriedSession, queriedCinema, PriceType.SENIOR_CITIZEN);
+    	double price = 0;
+    	boolean validInput = false;
+    	while(!validInput){
+			System.out.println("Enter your age type (Student, Senior, Standard): ");
+			String priceTypeString = InputController.getStringFromUser();
+			if (priceTypeString.equals("Student")){
+				price = priceCtrl.computePrice(queriedSession, queriedCinema, PriceType.STUDENT);
+				validInput = true;
+			}
+			else if (priceTypeString.equals("Senior")){
+				price = priceCtrl.computePrice(queriedSession, queriedCinema, PriceType.SENIOR_CITIZEN);
+				validInput = true;
+			}
+			else if(priceTypeString.equals("Standard")){
+				price = priceCtrl.computePrice(queriedSession, queriedCinema, PriceType.NORMAL);
+				validInput = true;
+			}
+			else{
+				System.out.println("Wrong input!");
+			}
+		}
+    	System.out.println("Total price is equal: " + price + " SGD");
+    	System.out.print("Do you want to continue? Yes (0)/ No (1): ");
+    	int choice = InputController.getYesOrNoFromUser();
+    	if(choice == 0){
+    		reserveSeat();
+		}
+    	else{
+    		return;
+		}
     }
     
     public void makeTransaction() {
     	Movie_Goer user = movieGoerCtrl.readByEmail(email);
     	Movie movie = queriedSession.getMovie();
-    	String TID = cinemaCode + viewingDateTime.format(DateTimeFormatter.ofPattern("YYYYDDMMhhmm"));;
+    	String TID = cinemaCode + viewingDateTime.format(DateTimeFormatter.ofPattern("YYYYddMMhhmm"));;
     	Transaction newTransaction = new Transaction(TID, user, movie);
     	transCtrl.create(newTransaction);
     }

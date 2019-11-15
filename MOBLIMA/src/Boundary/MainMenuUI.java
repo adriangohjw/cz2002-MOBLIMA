@@ -131,7 +131,8 @@ public class MainMenuUI {
 					//check_seat_ui.main();
 					break;
 				case 4:
-
+					MakeBookingUI makeBookingUI = new MakeBookingUI();
+					makeBookingUI.main();
 					break;
 				case 5:
 					break;
