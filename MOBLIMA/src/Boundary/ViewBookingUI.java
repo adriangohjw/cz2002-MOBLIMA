@@ -9,21 +9,23 @@ import java.util.*;
 public class ViewBookingUI {
     private String movieGoer;
     private TransactionsController transCtrl;
+    
+    Scanner sc = new Scanner(System.in);
 
     public ViewBookingUI() {
         this.transCtrl = new TransactionsController();
     }
 
-    public ViewBookingUI(TransactionsController transCtrl) {
-        this.transCtrl = transCtrl;
-    }
-
-    Scanner sc = new Scanner(System.in);
-
     public ViewBookingUI(String userName) {
+        this.transCtrl = new TransactionsController();
         this.movieGoer = userName;
     }
 
+    
+    public void setTransCtrl(TransactionsController transCtrl) {
+        this.transCtrl = transCtrl;
+    }
+    
     public void main(){
         System.out.println("Here is your booking history:");
         display();
