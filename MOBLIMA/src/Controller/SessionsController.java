@@ -9,13 +9,27 @@ import Model.*;
 
 public class SessionsController {
 
-    private static CinemasController cinemasCtrl = new CinemasController();
-    public static String FILENAME = cinemasCtrl.FILENAME;
+    private CinemasController cinemasCtrl = new CinemasController();
+    public String FILENAME;
     
     public final static int MOVIE = 0;
     public final static int SESSION_DATETIME = 1;
     public final static int SEATS_AVAILABILITY = 2;
     public final static int ID = 3;
+
+    public SessionsController(){
+        this.cinemasCtrl = new CinemasController();
+        this.FILENAME = cinemasCtrl.FILENAME;
+    }
+
+    public SessionsController(CinemasController cinemasCtrl){
+        this.cinemasCtrl = cinemasCtrl;
+        this.FILENAME = cinemasCtrl.FILENAME;
+    }
+
+    public void setCinemasController(CinemasController cinemasCtrl) {
+        this.cinemasCtrl = cinemasCtrl;
+    }
 
     public CinemasController getCinemasController(){
         return this.cinemasCtrl;
@@ -124,7 +138,7 @@ public class SessionsController {
                             break;
                         case ID:
                             if (s.getId() == (int) oldValue)
-                                s.setI((String) newValue);
+                                s.setId((int) newValue);
                             break;
                         default:
                             break;
@@ -151,7 +165,7 @@ public class SessionsController {
             returnSessions.clear();  // ensure it started without existing session
             for (int j=0; j<allSessions.size(); j++){
                 s = allSessions.get(j);
-                if (s.getId == id)
+                if (s.getId() == id)
                     switch (col){
                         case MOVIE: 
                             s.setMovie((Movie) newValue);
