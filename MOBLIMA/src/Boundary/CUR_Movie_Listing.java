@@ -3,6 +3,7 @@ package Boundary;
 import Controller.*;
 import Model.*;
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.*;
 
 public class CUR_Movie_Listing {
@@ -50,10 +51,10 @@ public void createMovie() {
 	double duration = InputController.getDoubleFromUser();
 	
 	System.out.println("Enter movie release date: ");
-	Date movieReleaseDate = InputController.getDateFromUser();
+	LocalDate movieReleaseDate = InputController.getDateFromUser();
 	
 	System.out.println("Enter movie end date: ");
-	Date movieEndDate = InputController.getDateFromUser();
+	LocalDate movieEndDate = InputController.getDateFromUser();
 	
 	System.out.println("Enter movie director: ");
 	String director = InputController.getStringFromUser();
@@ -132,13 +133,13 @@ public void updateMovie() {
 
 			case 6:
 				System.out.println("Enter new Movie Release date:");
-				Date movieReleaseDate = InputController.getDateFromUser();
+				LocalDate movieReleaseDate = InputController.getDateFromUser();
 				movieCtrl.updateById(6, movie_id, movieReleaseDate);
 				break;
 
 			case 7:
 				System.out.println("Enter new End of Showing date:");
-				Date endOfShowing = InputController.getDateFromUser();
+				LocalDate endOfShowing = InputController.getDateFromUser();
 				movieCtrl.updateById(7, movie_id, endOfShowing);
 				break;
 

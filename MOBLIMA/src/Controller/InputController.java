@@ -2,6 +2,9 @@ package Controller;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.Date;
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -37,18 +40,18 @@ public class InputController {
         return input;
     }
 
-    public static Date getDateFromUser(){
-        Date result = null;
+    public static LocalDate getDateFromUser(){
+        LocalDate result = null;
         String date;
         boolean validInput = false;
         while(!validInput){
             try{
                 date = sc.nextLine();
-                result = new SimpleDateFormat("dd/MM/yyyy").parse(date);
+                result = LocalDate.parse(date, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
                 validInput = true;
             }
-            catch(ParseException e){
-                System.out.println("Must be in DD/MM/YYYY format!");
+            catch(DateTimeParseException e){
+                System.out.println("Must be of pattern DD/MM/YYYY!");
             }
         }
         return result;

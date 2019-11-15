@@ -2,6 +2,9 @@ package Model;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.Duration;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
 import java.io.Serializable;
@@ -14,15 +17,15 @@ public class Movie implements Serializable {
     private String synopsis;
     private String rating;
     private double duration;
-    private Date movieReleaseDate;
-    private Date movieEndDate;
+    private LocalDate movieReleaseDate;
+    private LocalDate movieEndDate;
     private String director;
     private ArrayList<String> cast;
     private ArrayList<Review> reviews; 
     
 
     public Movie(
-            int id, String title, MovieType type, String synopsis, String rating, double duration, Date movieReleaseDate, Date movieEndDate, String director, ArrayList<String> cast
+            int id, String title, MovieType type, String synopsis, String rating, double duration, LocalDate movieReleaseDate, LocalDate movieEndDate, String director, ArrayList<String> cast
     ){
         this.id = id;
         this.title = title;
@@ -55,19 +58,19 @@ public class Movie implements Serializable {
     public double getDuration() {return this.duration;}
     public void setDuration(double duration) {this.duration = duration;}
 
-    public Date getMovieReleaseDate(){return this.movieReleaseDate;}
-    public void setMovieReleaseDate(Date movieReleaseDate){this.movieReleaseDate = movieReleaseDate;}
+    public LocalDate getMovieReleaseDate(){return this.movieReleaseDate;}
+    public void setMovieReleaseDate(LocalDate movieReleaseDate){this.movieReleaseDate = movieReleaseDate;}
 
     public String getMovieReleaseDateToString(){
-        return new SimpleDateFormat("EEEE dd/MM/YYYY").format(movieReleaseDate);
+        return movieReleaseDate.format(DateTimeFormatter.ofPattern("EEEE, dd/MM/yyyy"));
     }
 
     public String getMovieEndDateToString(){
-        return new SimpleDateFormat("EEEE dd/MM/YYYY").format(movieEndDate);
+        return movieEndDate.format(DateTimeFormatter.ofPattern("EEEE, dd/MM/yyyy"));
     }
 
-    public Date getMovieEndDate(){return this.movieEndDate;}
-    public void setMovieEndDate(Date movieEndDate){this.movieEndDate = movieEndDate;}
+    public LocalDate getMovieEndDate(){return this.movieEndDate;}
+    public void setMovieEndDate(LocalDate movieEndDate){this.movieEndDate = movieEndDate;}
     
     public String getDirector(){return this.director;}
     public void setDirector(String director){this.director = director;}
@@ -88,6 +91,7 @@ public class Movie implements Serializable {
         details += "ID: " + getId() + "\n"
                 + "Title: " + getTitle() + "\n"
                 + "Type: " + getType() + "\n"
+                + "Status: " + getShowStatus().toString() + "\n"
                 + "Synopsis: " + getSynopsis() + "\n"
                 + "Rating: " + getRating() + "\n"
                 + "Duration: " + String.valueOf(getDuration()) + " hour(s)\n"
@@ -113,12 +117,11 @@ public class Movie implements Serializable {
     }
 
     public MovieStatus getShowStatus() {
-        Date current = new Date();
-        if (current.after(movieEndDate))
+        LocalDate current = LocalDate.now();
+        if (current.isAfter(movieEndDate))
             return MovieStatus.END_OF_SHOWING;
         else {
-            long difference = movieReleaseDate.getTime() - current.getTime();
-            float daysBetween = (difference / (1000 * 60 * 60 * 24));
+            float daysBetween = Duration.between(current.atStartOfDay(), movieReleaseDate.atStartOfDay()).toDays();
             if (daysBetween > 7) {
                 return MovieStatus.PREVIEW;
             } else if (daysBetween <= 7 && daysBetween > 0) {
