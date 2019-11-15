@@ -3,22 +3,20 @@ package Boundary;
 import Controller.*;
 import Model.*;
 
-import java.io.IOException;
 import java.util.*;
 
 public class ViewBookingUI {
-    private String movieGoer;
+    private String email;
     private TransactionsController transCtrl;
     
-    Scanner sc = new Scanner(System.in);
 
     public ViewBookingUI() {
         this.transCtrl = new TransactionsController();
     }
 
-    public ViewBookingUI(String userName) {
+    public ViewBookingUI(String email) {
         this.transCtrl = new TransactionsController();
-        this.movieGoer = userName;
+        this.email = email;
     }
 
     
@@ -32,7 +30,7 @@ public class ViewBookingUI {
     }
 
     public void display(){
-        ArrayList<Transaction> transactionList = transCtrl.readByMovieGoerUsername(movieGoer);
+        ArrayList<Transaction> transactionList = transCtrl.readByMovieGoerUsername(email);
         transactionList.forEach(transaction -> System.out.println(transaction.toString()));
     }
 }
