@@ -35,7 +35,6 @@ public class CheckSeatUI {
         seatsAvailability = session.getSeatsAvailability(); 
         printLayout();
         selectSeats();
-        priceController.changePriceChanger(MovieType.TWO_D,10.0);
     }
 
     public void printLayout(){
