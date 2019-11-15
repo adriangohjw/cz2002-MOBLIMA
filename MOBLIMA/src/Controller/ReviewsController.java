@@ -7,10 +7,16 @@ import Model.*;
 public class ReviewsController {
 
     private MoviesController movieCtrl;
-    final String FILENAME = movieCtrl.FILENAME;
+    public String FILENAME;
+
+    public ReviewsController(){
+        this.movieCtrl = new MoviesController();
+        this.FILENAME = movieCtrl.FILENAME;
+    }
 
     public ReviewsController(MoviesController movieCtrl){
         this.movieCtrl = movieCtrl;
+        this.FILENAME = movieCtrl.FILENAME;
     }
 
     public void create(Movie movie, Review review) {
