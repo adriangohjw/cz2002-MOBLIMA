@@ -142,6 +142,7 @@ public class MainMenuUI {
 				case 7:
 					RateMovieUI rateMovieUI = new RateMovieUI();
 					rateMovieUI.display();
+					break;
 				case 8:
 					System.out.println("Exiting...");
 					exit = true;

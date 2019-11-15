@@ -47,9 +47,15 @@ public class ListTopMovieUI {
 	}
 
 	public void listWithRatings(){
+		int amount = 0;
 		ArrayList<Movie> movieList = moviesCtrl.read(); // there are two readByAttribute, which to be used?
 		Collections.sort(movieList, new SortByRating());
-		for (int i = 0; i < 5; i++) {
+
+		if(amount < 5){
+			amount = movieList.size();
+		}
+
+		for (int i = 0; i < amount; i++) {
 			printMovie(movieList.get(i));
 		}
 		ViewMovieDetailUI view = new ViewMovieDetailUI();
@@ -57,9 +63,15 @@ public class ListTopMovieUI {
 	}
 
 	public void listWithSales(){
+		int amount = 0;
 		ArrayList<Movie> movieList = moviesCtrl.read(); // there are two readByAttribute, which to be used?
 		Collections.sort(movieList, new SortBySales());
-		for (int i = 0; i < 5; i++) {
+
+		if(movieList.size()<5){
+			amount = movieList.size();
+		}
+
+		for (int i = 0; i < amount; i++) {
 			printMovie(movieList.get(i));
 		}
 		ViewMovieDetailUI view = new ViewMovieDetailUI();
@@ -77,12 +89,12 @@ class SortByRating implements Comparator<Movie> {
 	public int compare(Movie a, Movie b) {
 		String ratingA = a.getOverallReviews();
 		String ratingB = b.getOverallReviews();
-		if(ratingA == "N/A" && ratingB == "N/A") return 0;
-		if(ratingA == "N/A") return -1;
-		if(ratingB == "N/A") return 1;
+		if(ratingA.equals("N/A") && ratingB.equals("N/A")) return 0;
+		if(ratingA.equals("N/A")) return -1;
+		if(ratingB.equals("N/A")) return 1;
 		double difference = Double.parseDouble(ratingA) - Double.parseDouble(ratingB);
-		if (difference > 0) return 1;
-		if (difference < 0) return -1;
+		if (difference > 0) return -1;
+		if (difference < 0) return 1;
 		return 0;
 	}
 }
