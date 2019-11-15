@@ -43,9 +43,9 @@ public class LoginUI {
 
     public boolean verify() {
         System.out.println("Please enter your email: ");
-        email = sc.next();
+        email = InputController.getStringFromUser();
         System.out.println("Password: ");
-        password = sc.next();
+        password = InputController.getStringFromUser();
 
         if (role == 1) {
             Admin user = adminsCtrl.readByEmail(email);

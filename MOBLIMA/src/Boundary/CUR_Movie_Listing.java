@@ -86,7 +86,7 @@ public void updateMovie() {
 	if(listMovie.listAllMovies()){
 		System.out.println("Select movie to be updated: ");
 		System.out.println("Movie id: ");
-		int movie_id = input.nextInt();
+		int movie_id = InputController.getIntFromUser();
 		System.out.println("Select movie attribute to update");
 		System.out.printf( "1. Title\n" +
 				"2. Type\n" +
@@ -98,63 +98,63 @@ public void updateMovie() {
 				"8. Director\n" +
 				"9. Cast\n" +
 				"Enter option: ");
-		int choice = input.nextInt();
+		int choice = InputController.getIntFromUser();
 
 		switch(choice) {
 			case 1:
 				System.out.println("Enter new Title:");
-				String title = input.nextLine();
+				String title = InputController.getStringFromUser();
 				movieCtrl.updateById(1, movie_id, title);
 				break;
 			case 2:
 				System.out.println("Enter new Type:");
-				String type = input.nextLine();
+				String type = InputController.getStringFromUser();
 				movieCtrl.updateById(2, movie_id, type);
 				break;
 
 			case 3:
 				System.out.println("Enter new Synopsis:");
-				String synopsis = input.nextLine();
+				String synopsis = InputController.getStringFromUser();
 				movieCtrl.updateById(3, movie_id, synopsis);
 				break;
 
 			case 4:
 				System.out.println("Enter new Rating:");
-				String rating = input.nextLine();
+				String rating = InputController.getStringFromUser();
 				movieCtrl.updateById(4, movie_id, rating);
 				break;
 
 			case 5:
 				System.out.println("Enter new Duration:");
-				double duration = input.nextDouble();
+				double duration = InputController.getDoubleFromUser();
 				movieCtrl.updateById(5, movie_id, duration);
 				break;
 
 			case 6:
 				System.out.println("Enter new Movie Release date:");
-				String movieReleaseDate = input.nextLine();
+				String movieReleaseDate = InputController.getStringFromUser();
 				movieCtrl.updateById(6, movie_id, movieReleaseDate);
 				break;
 
 			case 7:
 				System.out.println("Enter new End of Showing date:");
-				String endOfShowing = input.nextLine();
+				String endOfShowing = InputController.getStringFromUser();
 				movieCtrl.updateById(7, movie_id, endOfShowing);
 				break;
 
 			case 8:
 				System.out.println("Enter new Director:");
-				String director = input.nextLine();
+				String director = InputController.getStringFromUser();
 				movieCtrl.updateById(8, movie_id, director);
 				break;
 
 			case 9:
 				ArrayList<String> cast = null;
 				System.out.println("Enter number of new cast members: ");
-				int i = input.nextInt();
+				int i = InputController.getIntFromUser();
 				for (int j = 1; j <= i; j++) {
 					System.out.println("Enter cast " + j + " :");
-					cast.add(input.nextLine());
+					cast.add(InputController.getStringFromUser());
 				}
 				movieCtrl.updateById(9,movie_id, cast);
 				break;
@@ -173,7 +173,7 @@ public void removeMovie(){
 	if(listMovie.listAllMovies()){
 		System.out.println("Select movie to be deleted: ");
 		System.out.println("Movie Id: ");
-		int movieId = input.nextInt();
+		int movieId = InputController.getIntFromUser();
 		movieCtrl.deleteById(movieId);
 	}
 	else{

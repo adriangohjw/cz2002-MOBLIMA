@@ -23,7 +23,7 @@ public class MakeBookingUI {
     private TransactionsController transCtrl;
     
     Scanner sc = new Scanner(System.in);
-    
+
     public MakeBookingUI() {
         this.cinemaCtrl = new CinemasController();
         this.movieCtrl = new MoviesController();

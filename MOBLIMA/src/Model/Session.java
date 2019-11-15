@@ -93,6 +93,6 @@ public class Session implements Serializable {
     }
 
     public String toString() {
-        return "id: " + this.getId() + "Title: " + movie.getTitle() + ", DateTime: " + this.getSessionDateTime();
+        return "id: " + this.getId() + " Title: " + movie.getTitle() + ", DateTime: " + this.getSessionDateTime();
     }
 }

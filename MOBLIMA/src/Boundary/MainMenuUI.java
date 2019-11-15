@@ -1,8 +1,15 @@
 package Boundary;
 
+import Controller.CinemasController;
+import Controller.CineplexesController;
 import Controller.InputController;
+import Model.Cinema;
+import Model.CinemaType;
+import Model.Cineplex;
+import Model.SeatingPlan;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 import static Controller.InputController.*;
@@ -10,6 +17,8 @@ import static Controller.InputController.*;
 public class MainMenuUI {
 	
 	public static void main(String[] args) {
+		initializeSystem();
+
 		boolean exit = false;
 		while (!exit) {
 			System.out.println("Welcome to MOBLIMA!\n" +
@@ -37,7 +46,24 @@ public class MainMenuUI {
 			
 		}
 	}
-	
+
+	private static void initializeSystem() {
+		CineplexesController cineplexesController = new CineplexesController();
+		CinemasController cinemasController = new CinemasController();
+		if(cinemasController.read().size()==0){
+			cinemasController.create("First",String.valueOf(100),CinemaType.PREMIUM,new SeatingPlan(10,10));
+			cinemasController.create("First",String.valueOf(101),CinemaType.PREMIUM,new SeatingPlan(10,10));
+			cinemasController.create("First",String.valueOf(102),CinemaType.STANDARD,new SeatingPlan(10,10));
+		}
+		if(cineplexesController.read().size()==0){
+			ArrayList<Cinema> cinemas = cinemasController.read();
+			cineplexesController.create("First", cinemas);
+		}
+		for (Cineplex cineplex : cineplexesController.read()) {
+			System.out.println(cineplex.toString());
+		}
+	}
+
 	public static void admin_login(){
 		LoginUI admin_login = new LoginUI(1);
 		boolean loggedIn = admin_login.main();

@@ -62,6 +62,20 @@ public class CinemasController {
         return returnData;
     }
 
+    public ArrayList<Cinema> readByCineplexName(String name){
+        ArrayList<Cinema> returnData = new ArrayList<Cinema>();
+        ArrayList<Cineplex> cineplexListing = this.cineplexesCtrl.read();
+        Cineplex cineplex = null;
+
+        for (int i=0; i<cineplexListing.size(); i++){
+            cineplex = cineplexListing.get(i);
+            if(cineplex.getName().equals(name)){
+                cineplex.getCinemas().forEach(n->returnData.add(n));
+            }
+        }
+        return returnData;
+    }
+
     public ArrayList<Cinema> readByAttribute(int col, Object valueToSearch) {
         ArrayList<Cinema> returnData = new ArrayList<Cinema>();
         ArrayList<Cinema> cinemaListing = read();

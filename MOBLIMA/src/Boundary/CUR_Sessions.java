@@ -10,38 +10,37 @@ import java.util.Date;
 import java.util.Scanner;
 
 public class CUR_Sessions {
-	Scanner input = new Scanner(System.in);
 	private MoviesController movieCtrl = new MoviesController();
 	private SessionsController sessionCtrl = new SessionsController();
 	
 	public void main(){
-		System.out.println("Create/Update/Remove session: /n" +
-						   "1. Create Movie Session/n" +
-						   "2. Update Movie Session/n" +
+		System.out.println("Create/Update/Remove session: \n" +
+						   "1. Create Movie Session\n" +
+						   "2. Update Movie Session\n" +
 						   "3. Remove Movie Session");
-		int option = input.nextInt();
+		int option = InputController.getIntFromUser();
 		switch(option) {
-		case 1: 
-			createSession();
-			break;
-		case 2:
-			updateSession();
-			break;
-		case 3:
-			removeSession();
-			break;
-		}
+			case 1:
+				createSession();
+				break;
+			case 2:
+				updateSession();
+				break;
+			case 3:
+				removeSession();
+				break;
+			}
 		}
 
 	public void createSession() {
 		
 		System.out.println("Creating Session...");
 		System.out.println("Enter cinema code: ");
-		String cinemaCode = input.nextLine();
+		String cinemaCode = InputController.getStringFromUser();
 		System.out.println("Enter movie id: ");
-	    int movie_id = input.nextInt();
+	    int movie_id = InputController.getIntFromUser();
 	    System.out.println("Enter session date and time: ");
-	    String sessionDateTime = input.nextLine();
+	    String sessionDateTime = InputController.getStringFromUser();
 	    Movie movie = movieCtrl.readByID(movie_id);
 	    sessionCtrl.create(cinemaCode, movie, sessionDateTime);
 
@@ -49,32 +48,30 @@ public class CUR_Sessions {
 	
 	public void updateSession() {
 		
-		System.out.println("Updating Movie..");
+		System.out.println("Updating Session...");
 		System.out.println("Select session to be updated: ");
 		ArrayList<Session> allSessions = sessionCtrl.read();
 		allSessions.forEach(Session -> printSession(Session));
 		System.out.print("Enter session id: ");
-		int session_id = input.nextInt();
+		int session_id = InputController.getIntFromUser();
 		
 		System.out.println("Select attribute to update: \n" +
 						   "1. Movie\n" +
 						   "2. Date & Time");
-		int choice = input.nextInt();
+		int choice = InputController.getIntFromUser();
 		switch(choice) {
 		case 1:
 			System.out.println("Enter new Movie id: ");
-			int movie_id = input.nextInt();
+			int movie_id = InputController.getIntFromUser();
 			sessionCtrl.updateById(0, session_id, movieCtrl.readByID(movie_id));
 			break;
 			
 		case 2:
 			System.out.println("Enter new Date & Time: ");
-			String DateTime = input.nextLine();
+			String DateTime = InputController.getStringFromUser();
 			sessionCtrl.updateById(1, session_id, DateTime);
 			break;
 		}
-
-		
 	}
 	
 		
@@ -85,7 +82,7 @@ public class CUR_Sessions {
 		ArrayList<Session> allSessions = sessionCtrl.read();
 		allSessions.forEach(Session -> printSession(Session));
 		System.out.print("Enter session id: ");
-		int sessionId = input.nextInt();
+		int sessionId = InputController.getIntFromUser();
 		
 		sessionCtrl.delete(sessionId);
 	}
