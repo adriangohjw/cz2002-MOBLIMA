@@ -79,17 +79,24 @@ public class MakeBookingUI {
     
     public ArrayList<Cinema> showAvailableSessions() {
     	Session tempSession;
+    	Cinema tempCinema;
+    	boolean printedCinemaCode =  false;
     	ArrayList<Cinema> tempCinemaList = new ArrayList<Cinema>();
     	System.out.println("Choose movie to view available sessions: ");
     	movieTitle = InputController.getStringFromUser();
     	ArrayList<Cinema> cinemaList = cinemaCtrl.read();
     	for (int i = 0; i < cinemaList.size(); i++) {
-    		for(int j = 0; j < cinemaList.get(i).getSessions().size(); j++) {
-    			tempSession = cinemaList.get(i).getSessions().get(j);
-    			if (tempSession.getMovie().getTitle() == movieTitle) {
-    				System.out.println(tempSession.toString());
-    				System.out.println(cinemaList.get(i).toString());
-    				tempCinemaList.add(cinemaList.get(i));
+    		printedCinemaCode = false;
+    		tempCinema = cinemaList.get(i);
+    		for(int j = 0; j < tempCinema.getSessions().size(); j++) {
+    			tempSession = tempCinema.getSessions().get(j);
+    			if (tempSession.getMovie().getTitle().equals(movieTitle)) {
+    				if (!printedCinemaCode) {
+    					System.out.println("Cinema code: " + tempCinema.getCode() + "; cinema type: " + tempCinema.getCinemaType());
+    					System.out.println("Available sessions for this cinema:");
+    				}
+    				printedCinemaCode = true;
+    				System.out.println("DateTime: " + tempSession.getSessionDateTime());
     			}
     		}
     	}
