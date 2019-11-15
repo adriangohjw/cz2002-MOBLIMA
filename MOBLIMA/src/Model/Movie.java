@@ -59,11 +59,11 @@ public class Movie implements Serializable {
     public void setMovieReleaseDate(Date movieReleaseDate){this.movieReleaseDate = movieReleaseDate;}
 
     public String getMovieReleaseDateToString(){
-        return new SimpleDateFormat("EEEE dd-MM-YYYY").format(movieReleaseDate);
+        return new SimpleDateFormat("EEEE dd/MM/YYYY").format(movieReleaseDate);
     }
 
     public String getMovieEndDateToString(){
-        return new SimpleDateFormat("EEEE dd-MM-YYYY").format(movieEndDate);
+        return new SimpleDateFormat("EEEE dd/MM/YYYY").format(movieEndDate);
     }
 
     public Date getMovieEndDate(){return this.movieEndDate;}
@@ -91,8 +91,8 @@ public class Movie implements Serializable {
                 + "Synopsis: " + getSynopsis() + "\n"
                 + "Rating: " + getRating() + "\n"
                 + "Duration: " + String.valueOf(getDuration()) + " hour(s)\n"
-                + "Release date: " +  getMovieReleaseDate() + "\n"
-                + "End date: " +  getMovieEndDate() + "\n"
+                + "Release date: " +  getMovieReleaseDateToString() + "\n"
+                + "End date: " +  getMovieEndDateToString() + "\n"
                 + "Director: " + getDirector() + "\n"
                 + "Cast: " + castString + "\n"
                 + "Overall review rating: " + getOverallReviews();       

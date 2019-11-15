@@ -44,11 +44,11 @@ public class InputController {
         while(!validInput){
             try{
                 date = sc.nextLine();
-                result = new SimpleDateFormat("dd-MM-yyyy").parse(date);
+                result = new SimpleDateFormat("dd/MM/yyyy").parse(date);
                 validInput = true;
             }
             catch(ParseException e){
-                System.out.println("Must be in DD-MM-YYYY format!");
+                System.out.println("Must be in DD/MM/YYYY format!");
             }
         }
         return result;
