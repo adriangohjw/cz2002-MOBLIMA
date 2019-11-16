@@ -42,19 +42,21 @@ public class MovieGoersController {
     }
 
     public void create(String username, String password, String name, String mobileNumber) {   
-        try {
-            Movie_Goer movieGoer = new Movie_Goer(username, password, name, mobileNumber);
-            ArrayList<Movie_Goer> allData = new ArrayList<Movie_Goer>();
-            File tempFile = new File(FILENAME);
-            if (tempFile.exists())
-                allData = read();
-            ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(FILENAME));
-            allData.add(movieGoer);
-            out.writeObject(allData);
-            out.flush();
-            out.close();
-        } catch (IOException | NoSuchAlgorithmException e) {
-            // ignore error
+        if (!(UsersLayer.isExistingUser(username))) {
+            try {
+                Movie_Goer movieGoer = new Movie_Goer(username, password, name, mobileNumber);
+                ArrayList<Movie_Goer> allData = new ArrayList<Movie_Goer>();
+                File tempFile = new File(FILENAME);
+                if (tempFile.exists())
+                    allData = read();
+                ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(FILENAME));
+                allData.add(movieGoer);
+                out.writeObject(allData);
+                out.flush();
+                out.close();
+            } catch (IOException | NoSuchAlgorithmException e) {
+                // ignore error
+            }
         }
     }
 
