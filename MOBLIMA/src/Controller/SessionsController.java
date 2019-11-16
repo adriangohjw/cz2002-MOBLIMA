@@ -37,8 +37,7 @@ public class SessionsController {
         return this.cinemasCtrl;
     }
 
-    public void create(String cinemaCode, int movieId, LocalDateTime sessionDateTime) {
-        Movie movie = movieCtrl.readByID(movieId);
+    public void create(String cinemaCode, Movie movie, LocalDateTime sessionDateTime) {
         SeatingPlan seatingPlan = cinemasCtrl.readByAttribute(CODE, cinemaCode).get(0).getSeatingPlan();
         Session session = new Session(movie, sessionDateTime, seatingPlan, getLastId()+1);
         ArrayList<Cinema> allData  = this.cinemasCtrl.read();
@@ -276,16 +275,4 @@ public class SessionsController {
         }
         return lastId;
     }
-    
-    public void ListSession(){
-    	ArrayList<Session> sessionList = read();
-    	sessionList.forEach(Session -> printSession(Session));
-        
-    }
-    
-    public void printSession(Session session) {
-    System.out.println("Session id: " + session.getId() + "\n" +
-                       "Movie Title: " + session.getMovie().getTitle() + "\n" +
-                       "Session DateTime: " + session.getSessionDateTime());
-	}
 }
