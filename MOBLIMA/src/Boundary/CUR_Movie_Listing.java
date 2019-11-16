@@ -77,10 +77,10 @@ public void createMovie() {
 	System.out.println("Enter movie duration: ");
 	double duration = InputController.getDoubleFromUser();
 	
-	System.out.println("Enter movie release date: ");
+	System.out.println("Enter movie release date (DD/MM/YYYY) : ");
 	LocalDate movieReleaseDate = InputController.getDateFromUser();
 	
-	System.out.println("Enter movie end date: ");
+	System.out.println("Enter movie end date (DD/MM/YYYY) : ");
 	LocalDate movieEndDate = InputController.getDateFromUser();
 	
 	if (movieEndDate.isBefore(movieReleaseDate)) {
@@ -117,9 +117,9 @@ public void updateMovie() {
     
 	System.out.println("Updating movie...");
 	SearchMovieUI listMovie = new SearchMovieUI();
-
+	System.out.println("Select movie to be updated: ");
+	
 	if(listMovie.listAllMovies()){
-		System.out.println("Select movie to be updated: ");
 		System.out.println("Movie id: ");
 		int movie_id = InputController.getIntFromUser();
 		if (movieCtrl.readByID(movie_id) == null) {
@@ -192,7 +192,7 @@ public void updateMovie() {
 				break;
 
 			case 6:
-				System.out.println("Enter new Movie Release date:");
+				System.out.println("Enter new Movie Release date (DD/MM/YYYY) :");
 				LocalDate movieReleaseDate = InputController.getDateFromUser();
 				if (movieReleaseDate.isAfter(movieCtrl.readByID(movie_id).getMovieEndDate())) {
 					System.out.println("Invalid movie release date! \n" +
@@ -203,7 +203,7 @@ public void updateMovie() {
 				break;
 
 			case 7:
-				System.out.println("Enter new End of Showing date:");
+				System.out.println("Enter new End of Showing date (DD/MM/YYYY) :");
 				LocalDate endOfShowing = InputController.getDateFromUser();
 				if (endOfShowing.isBefore(movieCtrl.readByID(movie_id).getMovieReleaseDate())){
 					System.out.println("Invalid movie release date! \n" +
@@ -249,8 +249,9 @@ public void updateMovie() {
 public void removeMovie(){
 	System.out.println("Deleting movie...");
 	SearchMovieUI listMovie = new SearchMovieUI();
+	System.out.println("Select movie to be deleted: ");
+	
 	if(listMovie.listAllMovies()){
-		System.out.println("Select movie to be deleted: ");
 		System.out.println("Movie Id: ");
 		int movieId = InputController.getIntFromUser();
 		if (movieCtrl.readByID(movieId) == null) {
