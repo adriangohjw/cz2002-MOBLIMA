@@ -15,4 +15,11 @@ public class MoviesExceptions {
             super("Duration is negative");
         }
     }
+
+    @SuppressWarnings("serial")
+    public static class EmptyCastException extends Exception {
+        public EmptyCastException() {
+            super("Cast list is empty");
+        }
+    }
 }

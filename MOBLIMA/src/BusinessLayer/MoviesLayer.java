@@ -3,6 +3,7 @@ package BusinessLayer;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
+import CustomException.MoviesExceptions.EmptyCastException;
 import CustomException.MoviesExceptions.EndBeforeReleaseException;
 import CustomException.MoviesExceptions.NegativeDurationException;
 
@@ -32,6 +33,15 @@ public class MoviesLayer {
                 System.out.println(e.toString());
             } 
         }
+
+        if (isCastEmpty(cast)){
+            isValid = false;
+            try {
+                throw new EmptyCastException();
+            } catch (EmptyCastException e) {
+                System.out.println(e.toString());
+            }
+        }
         
         return isValid;
     }
@@ -42,5 +52,9 @@ public class MoviesLayer {
 
     private static boolean isDurationPositive(double duration){
         return duration > 0;
+    }
+
+    private static boolean isCastEmpty(ArrayList<String> cast){
+        return cast.isEmpty();
     }
 }
