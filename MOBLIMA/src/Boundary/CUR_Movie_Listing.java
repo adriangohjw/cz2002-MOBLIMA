@@ -1,6 +1,7 @@
 package Boundary;
 
 import Controller.*;
+import CustomException.MoviesExceptions;
 import Model.*;
 import java.io.IOException;
 import java.time.LocalDate;
@@ -104,8 +105,9 @@ public void createMovie() {
 		System.out.println("Enter name of cast " + i+1 + ":");
 		cast.add(InputController.getStringFromUser());
 		}
-	
+
 	movieCtrl.create(title, movieType, synopsis, rating, duration, movieReleaseDate, movieEndDate, director, cast);
+
 	if (movieCtrl.read().isEmpty())
 		return;
 	System.out.println("Movie listing created....");

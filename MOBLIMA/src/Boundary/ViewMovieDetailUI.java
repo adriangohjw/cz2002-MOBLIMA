@@ -21,8 +21,14 @@ public class ViewMovieDetailUI {
 
     public void main(){
         System.out.println("Enter movie ID to view movie detail: ");
-        id = sc.nextInt();
+        id = InputController.getIntFromUser();
         Movie movie = moviesCtrl.readByID(id);
-        System.out.println(movie.toString());
+        if(movie == null){
+            System.out.println("Movie with this id doesn't exist!\n     Returning to main menu...");
+        }
+        else{
+            String movieString = movie.toString();
+            System.out.println(movieString);
+        }
     }   
 }
