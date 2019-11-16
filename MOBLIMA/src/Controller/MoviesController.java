@@ -8,7 +8,6 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 
 import Model.*;
 
@@ -46,6 +45,7 @@ public class MoviesController {
         }
     } 
 
+    @SuppressWarnings("unchecked")
     public ArrayList<Movie> read() {
         try {
             ObjectInputStream ois = new ObjectInputStream(new FileInputStream(FILENAME));   
@@ -80,7 +80,7 @@ public class MoviesController {
                         returnData.add(m);
                     break;
                 case TYPE:
-                    if (m.getType().equals((String) valueToSearch))
+                    if (m.getType().equals((MovieType) valueToSearch))
                         returnData.add(m);
                     break;
                 case RATING:
@@ -103,6 +103,7 @@ public class MoviesController {
         return returnData;
     }
 
+    @SuppressWarnings("unchecked")
     public void updateById(int col, int id, Object newValue) {
         ArrayList<Movie> allData = read();
         ArrayList<Movie> returnData = new ArrayList<Movie>();
