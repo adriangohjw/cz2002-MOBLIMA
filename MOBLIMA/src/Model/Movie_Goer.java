@@ -6,6 +6,7 @@ public class Movie_Goer extends User {
 	
 	private String name;
 	private String mobileNumber;
+	private String email;
 
 	// user can create account without name and mobile number 
 	public Movie_Goer(String username, String password) 
@@ -38,10 +39,8 @@ public class Movie_Goer extends User {
 	
 	public String toString(){
 		String toReturn = "";
-		toReturn 	+= "Username: " + getEmail() + "\n"
-					+ "Hashed Password: " + getPasswordHashed() + "\n"
-					+ "Role: " + getRole() + "\n"
-					+ "Name: " + getName() + "\n"
+		toReturn 	+= "Username: " + getName() + "\n"
+					+ "E-mail: " + getEmail() + "\n"
 					+ "Mobile number: " + getMobileNumber();
 		return toReturn; 
 	}

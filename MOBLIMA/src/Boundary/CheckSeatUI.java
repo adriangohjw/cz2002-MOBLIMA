@@ -108,5 +108,5 @@ public class CheckSeatUI {
         }
         return true;
     }
-    
+
 }

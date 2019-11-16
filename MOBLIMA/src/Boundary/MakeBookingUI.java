@@ -95,14 +95,13 @@ public class MakeBookingUI {
 
 		priceShowcase();
 		
-		makeTransaction();
     }
     
     public void showAvailableMovies() {
 		System.out.println();
     	ArrayList<Movie> movieList = movieCtrl.read();
     	for (int i = 0; i < movieList.size(); i++) {
-    		if (movieList.get(i).getShowStatus() == MovieStatus.NOW_SHOWING) {
+    		if (movieList.get(i).getShowStatus() == MovieStatus.NOW_SHOWING || movieList.get(i).getShowStatus() == MovieStatus.PREVIEW) {
     			System.out.println(movieList.get(i).getTitle());
     		}
     	}
@@ -182,7 +181,6 @@ public class MakeBookingUI {
     	}
     	seatAvailability.assignSeats(id);
     	sessCtrl.updateSeatsAvailability(queriedSession.getId(), seatAvailability);
-		makeTransaction();
     }
     
     public void priceShowcase() {
@@ -221,7 +219,7 @@ public class MakeBookingUI {
     public void makeTransaction() {
     	Movie_Goer user = movieGoerCtrl.readByEmail(email);
     	Movie movie = queriedSession.getMovie();
-    	String TID = cinemaCode + viewingDateTime.format(DateTimeFormatter.ofPattern("YYYYddMMhhmm"));;
+    	String TID = cinemaCode + LocalDateTime.now().format(DateTimeFormatter.ofPattern("YYYYddMMhhmm"));;
     	Transaction newTransaction = new Transaction(TID, user, movie);
     	transCtrl.create(newTransaction);
     	System.out.println("Transaction successful! TID: " + TID);
