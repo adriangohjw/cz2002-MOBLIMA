@@ -14,11 +14,13 @@ public class CinemasController {
     public final static int SEATING_PLAN = 2;
     public final static int SESSIONS = 3;
 
+    @SuppressWarnings("static-access")
     public CinemasController() {
         this.cineplexesCtrl = new CineplexesController();
         this.FILENAME = cineplexesCtrl.FILENAME;
     }
 
+    @SuppressWarnings("static-access")
     public CinemasController(CineplexesController cineplexesCtrl) {
         this.cineplexesCtrl = cineplexesCtrl;
         this.FILENAME = cineplexesCtrl.FILENAME;
@@ -99,6 +101,7 @@ public class CinemasController {
         return returnData;
     }
 
+    @SuppressWarnings("unchecked")
     public void updateByAttribute(int col, String code, Object newValue) {
         ArrayList<Cineplex> allData = this.cineplexesCtrl.read();
         ArrayList<Cineplex> returnData = new ArrayList<Cineplex>();
