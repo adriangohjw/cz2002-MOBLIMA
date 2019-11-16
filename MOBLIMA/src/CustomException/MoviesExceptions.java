@@ -22,4 +22,11 @@ public class MoviesExceptions {
             super("Cast list is empty");
         }
     }
+
+    @SuppressWarnings("serial")
+    public static class EmptyStringException extends Exception {
+        public EmptyStringException(String errorMessage){
+            super(errorMessage);
+        }
+    }
 }

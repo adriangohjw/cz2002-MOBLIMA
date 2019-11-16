@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 import CustomException.MoviesExceptions.EmptyCastException;
+import CustomException.MoviesExceptions.EmptyStringException;
 import CustomException.MoviesExceptions.EndBeforeReleaseException;
 import CustomException.MoviesExceptions.NegativeDurationException;
 
@@ -21,7 +22,7 @@ public class MoviesLayer {
             try {
                 throw new EndBeforeReleaseException();
             } catch (EndBeforeReleaseException e) {
-                System.out.println(e.toString());
+                System.out.println(e);
             }
         }
         
@@ -30,7 +31,7 @@ public class MoviesLayer {
             try {
                 throw new NegativeDurationException();
             } catch (NegativeDurationException e) {
-                System.out.println(e.toString());
+                System.out.println(e);
             } 
         }
 
@@ -39,7 +40,43 @@ public class MoviesLayer {
             try {
                 throw new EmptyCastException();
             } catch (EmptyCastException e) {
-                System.out.println(e.toString());
+                System.out.println(e);
+            }
+        }
+
+        if (isStringEmpty(title)){
+            isValid = false;
+            try {
+                throw new EmptyStringException("Title");
+            } catch (EmptyStringException e) {
+                System.out.println(e);  
+            }
+        }
+
+        if (isStringEmpty(synopsis)){
+            isValid = false;
+            try {
+                throw new EmptyStringException("Synopsis");
+            } catch (EmptyStringException e) {
+                System.out.println(e);  
+            }
+        }
+
+        if (isStringEmpty(rating)){
+            isValid = false;
+            try {
+                throw new EmptyStringException("rating");
+            } catch (EmptyStringException e) {
+                System.out.println(e);  
+            }
+        }
+
+        if (isStringEmpty(director)){
+            isValid = false;
+            try {
+                throw new EmptyStringException("director");
+            } catch (EmptyStringException e) {
+                System.out.println(e);  
             }
         }
         
@@ -56,5 +93,9 @@ public class MoviesLayer {
 
     private static boolean isCastEmpty(ArrayList<String> cast){
         return cast.isEmpty();
+    }
+
+    private static boolean isStringEmpty(String item) {
+        return item.equals("");
     }
 }
