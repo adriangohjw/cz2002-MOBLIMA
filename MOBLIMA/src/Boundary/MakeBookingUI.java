@@ -59,23 +59,33 @@ public class MakeBookingUI {
     }
     
     public void main() {
-        ArrayList<Cinema> cinemaList;
+        ArrayList<Cinema> cinemaList = new ArrayList<Cinema>();
+    	int choice;
+    	
         System.out.println("Here are the available movies: "); 
         showAvailableMovies();
-        System.out.println("Choose cineplex (-1 to return): ");
+        
+        System.out.println("Choose cineplex (0 to return): ");
         System.out.println();
+        
         ArrayList<Cineplex> cineplexes = cineplexesCtrl.read();
         for(int i = 0; i < cineplexes.size(); i++) {
         	System.out.println((i+1) + ". " + cineplexes.get(i).getName());
 		}
-        int choice = InputController.getIntFromUser();
-        cinemaList = showAvailableSessions(cineplexes.get(choice-1).getName());
-        if (choice == -1) return;
+        
         while (cinemaList.size() == 0) {
-        	System.out.println("No available sessions for this cineplex! Enter another one.");
-            choice = InputController.getIntFromUser();
-            if (choice == -1) return;
-            cinemaList = showAvailableSessions(cineplexes.get(choice-1).getName());
+        	choice = InputController.getIntFromUser();
+        	if (choice == 0) {
+        		System.out.println("Returning..."); 
+        		return;
+        	}
+        	else if (choice < 0 || choice > cineplexes.size())
+        		System.out.println("Invalid input! Please try again.");
+        	else {
+        		cinemaList = showAvailableSessions(cineplexes.get(choice-1).getName());
+        		if (cinemaList.size() == 0) 
+        			System.out.println("No available sessions for this cineplex! Please choose another.");
+        	}
         }
         pickDateTimeCode(cinemaList);
     }
