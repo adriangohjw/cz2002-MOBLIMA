@@ -43,9 +43,9 @@ public class CUR_Sessions {
 	}
 
 	public void createSession() {
-		
+
 		System.out.println("Creating Session...");
-		
+
 		System.out.println("Enter cinema code: ");
 		String cinemaCode = InputController.getStringFromUser();
 		if (cinemaCtrl.readByAttribute(0, cinemaCode).isEmpty()) {
@@ -53,7 +53,7 @@ public class CUR_Sessions {
 							   "Returning to menu...");
 			return;
 		}
-		
+
 		System.out.println("Enter movie id: ");
 	    int movie_id = InputController.getIntFromUser();
 	    if (movieCtrl.readByID(movie_id) == null) {
@@ -61,12 +61,12 @@ public class CUR_Sessions {
 							   "Returning to menu...");
 			return;
 		};
-		
+
 	    System.out.println("Enter session date and time: ");
 	    LocalDateTime sessionDateTime = InputController.getDateTimeFromUser();
 	    Movie movie = movieCtrl.readByID(movie_id);
 	    sessionCtrl.create(cinemaCode, movie, sessionDateTime);
-	    
+
 	    System.out.println("Session successfully created!");
 
 	}
@@ -76,12 +76,10 @@ public class CUR_Sessions {
 		System.out.println("Updating Session...");
 		
 		System.out.println("Enter Cineplex: ");
-		ArrayList<Cineplex> cineplexList = cineplexCtrl.read();
-		cineplexList.forEach(Cineplex -> printCineplex(Cineplex));
+		cineplexCtrl.ListCineplex();
 		System.out.println("Enter Cineplex Name:");
 		String cineplexName = InputController.getStringFromUser();
-		Cineplex cineplex = cineplexCtrl.readByName(cineplexName);
-		if (cineplex == null) {
+		if (cineplexCtrl.readByName(cineplexName) == null) {
 			System.out.println("Cineplex does not exist!\n" +
 							   "Returning to menu...");
 			return;
