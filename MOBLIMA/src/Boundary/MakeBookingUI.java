@@ -59,17 +59,24 @@ public class MakeBookingUI {
     }
     
     public void main() {
+        ArrayList<Cinema> cinemaList;
         System.out.println("Here are the available movies: "); 
         showAvailableMovies();
-        System.out.println("Choose cineplex: ");
+        System.out.println("Choose cineplex (-1 to return): ");
         System.out.println();
-        CineplexesController cineplexesController = new CineplexesController();
-        ArrayList<Cineplex> cineplexes = cineplexesController.read();
-        for(int i=0;i<cineplexes.size();i++){
+        ArrayList<Cineplex> cineplexes = cineplexesCtrl.read();
+        for(int i = 0; i < cineplexes.size(); i++) {
         	System.out.println((i+1) + ". " + cineplexes.get(i).getName());
 		}
         int choice = InputController.getIntFromUser();
-        ArrayList<Cinema> cinemaList = showAvailableSessions(cineplexes.get(choice-1).getName());
+        cinemaList = showAvailableSessions(cineplexes.get(choice-1).getName());
+        if (choice == -1) return;
+        while (cinemaList.size() == 0) {
+        	System.out.println("No available sessions for this cineplex! Enter another one.");
+            choice = InputController.getIntFromUser();
+            if (choice == -1) return;
+            cinemaList = showAvailableSessions(cineplexes.get(choice-1).getName());
+        }
         pickDateTimeCode(cinemaList);
     }
     
