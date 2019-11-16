@@ -8,7 +8,6 @@ import Model.CinemaType;
 import Model.Cineplex;
 import Model.SeatingPlan;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
