@@ -39,7 +39,9 @@ public class CinemasController {
     public void create(
             String cineplexName, String code, CinemaType cinemaType, SeatingPlan seatingPlan 
     ) {
-        if (!(CinemasLayer.isExistingCinema(code))){
+        if (CinemasLayer.isCinemaValid(cineplexName, code, cinemaType, seatingPlan)){
+            // do nothing 
+        } else {
             Cinema cinema = new Cinema(code, cinemaType, seatingPlan);
             ArrayList<Cineplex> allData = this.cineplexesCtrl.read();
             ArrayList<Cineplex> returnData = new ArrayList<Cineplex>();
