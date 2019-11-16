@@ -94,7 +94,8 @@ public class MakeBookingUI {
         pickDateTimeCode(cinemaList);
 
 		priceShowcase();
-		
+
+		makeTransaction();
     }
     
     public void showAvailableMovies() {
