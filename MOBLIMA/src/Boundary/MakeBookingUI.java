@@ -16,6 +16,7 @@ public class MakeBookingUI {
     private Session queriedSession;
     private SeatingPlan seatAvailability;
 
+    private CineplexesController cineplexesCtrl;
     private CinemasController cinemaCtrl;
     private MoviesController movieCtrl;
     private MovieGoersController movieGoerCtrl;
@@ -24,6 +25,7 @@ public class MakeBookingUI {
     private TransactionsController transCtrl;
     
     public MakeBookingUI() {
+        this.cineplexesCtrl = new CineplexesController();
         this.cinemaCtrl = new CinemasController();
         this.movieCtrl = new MoviesController();
         this.movieGoerCtrl = new MovieGoersController();
@@ -33,6 +35,7 @@ public class MakeBookingUI {
     }
 
     public MakeBookingUI(String email) {
+        this.cineplexesCtrl = new CineplexesController();
         this.cinemaCtrl = new CinemasController();
         this.movieCtrl = new MoviesController();
         this.movieGoerCtrl = new MovieGoersController();
@@ -59,7 +62,7 @@ public class MakeBookingUI {
     }
     
     public void main() {
-        ArrayList<Cinema> cinemaList = new ArrayList<Cinema>();
+    	ArrayList<Cinema> cinemaList = new ArrayList<Cinema>();
     	int choice;
     	
         System.out.println("Here are the available movies: "); 
@@ -88,6 +91,10 @@ public class MakeBookingUI {
         	}
         }
         pickDateTimeCode(cinemaList);
+
+		priceShowcase();
+		
+		makeTransaction();
     }
     
     public void showAvailableMovies() {
@@ -160,7 +167,6 @@ public class MakeBookingUI {
     			}
     		}
     	}
-		priceShowcase();
 	}
     
     public void reserveSeat() {
@@ -217,5 +223,6 @@ public class MakeBookingUI {
     	String TID = cinemaCode + viewingDateTime.format(DateTimeFormatter.ofPattern("YYYYddMMhhmm"));;
     	Transaction newTransaction = new Transaction(TID, user, movie);
     	transCtrl.create(newTransaction);
+    	System.out.println("Transaction successful! TID: " + TID);
     }
 }
