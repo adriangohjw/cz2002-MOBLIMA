@@ -3,7 +3,6 @@ package Boundary;
 import Controller.*;
 import CustomException.MoviesExceptions;
 import Model.*;
-import java.io.IOException;
 import java.time.LocalDate;
 import java.util.*;
 
