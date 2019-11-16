@@ -3,7 +3,6 @@ package Boundary;
 import Controller.*;
 import Model.*;
 
-import java.io.IOException;
 import java.util.*;
 
 public class ViewMovieDetailUI {
