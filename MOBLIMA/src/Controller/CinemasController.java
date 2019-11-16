@@ -2,6 +2,8 @@ package Controller;
 
 import java.util.ArrayList;
 
+import BusinessLayer.CinemasLayer;
+
 import Model.*;
 
 public class CinemasController {
@@ -37,19 +39,21 @@ public class CinemasController {
     public void create(
             String cineplexName, String code, CinemaType cinemaType, SeatingPlan seatingPlan 
     ) {
-        Cinema cinema = new Cinema(code, cinemaType, seatingPlan);
-        ArrayList<Cineplex> allData = this.cineplexesCtrl.read();
-        ArrayList<Cineplex> returnData = new ArrayList<Cineplex>();
-        for (int i=0; i<allData.size(); i++){
-            Cineplex cineplex_i = allData.get(i);
-            if (cineplex_i.getName().equals(cineplexName)){
-                ArrayList<Cinema> cinemas = cineplex_i.getCinemas();
-                cinemas.add(cinema);
-                cineplex_i.setCinemas(cinemas);
+        if (!(CinemasLayer.isExistingCinema(code))){
+            Cinema cinema = new Cinema(code, cinemaType, seatingPlan);
+            ArrayList<Cineplex> allData = this.cineplexesCtrl.read();
+            ArrayList<Cineplex> returnData = new ArrayList<Cineplex>();
+            for (int i=0; i<allData.size(); i++){
+                Cineplex cineplex_i = allData.get(i);
+                if (cineplex_i.getName().equals(cineplexName)){
+                    ArrayList<Cinema> cinemas = cineplex_i.getCinemas();
+                    cinemas.add(cinema);
+                    cineplex_i.setCinemas(cinemas);
+                }
+                returnData.add(cineplex_i);
             }
-            returnData.add(cineplex_i);
+            this.cineplexesCtrl.replaceExistingFile(FILENAME, returnData);
         }
-        this.cineplexesCtrl.replaceExistingFile(FILENAME, returnData);
     } 
 
     public ArrayList<Cinema> read() {
