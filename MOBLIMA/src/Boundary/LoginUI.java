@@ -25,8 +25,6 @@ public class LoginUI {
         this.movieGoersCtrl = moviesGoerCtrl;
     }
 
-    Scanner sc = new Scanner(System.in);
-
     public boolean main() {
         boolean result;
         boolean exit = false;
@@ -36,7 +34,7 @@ public class LoginUI {
                 System.out.println("Wrong password or email.");
                 System.out.println("1. Enter again");
                 System.out.println("2. Exit");
-                if(sc.nextInt()==2){
+                if(InputController.getIntFromUser()==2){
                     exit = true;
                 }
             }
@@ -69,7 +67,6 @@ public class LoginUI {
             }
             else{
                 return user.validatePassword(password);
-
             }
         }
     }

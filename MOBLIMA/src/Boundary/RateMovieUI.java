@@ -11,11 +11,12 @@ import java.util.ArrayList;
 public class RateMovieUI {
     private MoviesController moviesController = new MoviesController();
     private ReviewsController reviewsController = new ReviewsController();
+    private SearchMovieUI searchMovieUI = new SearchMovieUI();
 
     public void display(){
         System.out.println("Input your username: ");
         String username = InputController.getStringFromUser();
-        if(new SearchMovieUI().listAllMovies()){
+        if(searchMovieUI.listAllMovies()){
             System.out.print("Select the title of movie which you want to rate: ");
             String title = InputController.getStringFromUser();
             ArrayList<Movie> movie = moviesController.readByAttribute(MoviesController.TITLE, title);

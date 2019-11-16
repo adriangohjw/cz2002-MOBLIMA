@@ -88,8 +88,15 @@ public class SessionsController {
         return returnData;
     }; 
 
-    public Session readBySession(String cinemaCode, String sessionDateTime) {
-        Cinema c = this.cinemasCtrl.readByAttribute(cinemasCtrl.CODE, cinemaCode).get(0);
+    public Session readBySession(String cinemaCode, LocalDateTime sessionDateTime) {
+        ArrayList<Cinema> cinemas = this.cinemasCtrl.readByAttribute(cinemasCtrl.CODE, cinemaCode);
+        Cinema c = null;
+        if(cinemas.isEmpty())
+            return null;
+        else{
+            c = cinemas.get(0);
+        }
+
         ArrayList<Session> allData = c.getSessions();
         Session s = null;
 

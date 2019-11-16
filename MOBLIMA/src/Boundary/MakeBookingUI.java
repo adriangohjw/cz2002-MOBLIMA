@@ -16,6 +16,7 @@ public class MakeBookingUI {
     private Session queriedSession;
     private SeatingPlan seatAvailability;
 
+    private CineplexesController cineplexesCtrl;
     private CinemasController cinemaCtrl;
     private MoviesController movieCtrl;
     private MovieGoersController movieGoerCtrl;
@@ -30,6 +31,7 @@ public class MakeBookingUI {
         this.transCtrl = new TransactionsController();
         this.priceCtrl = new PriceController();
         this.sessCtrl = new SessionsController();
+        this.cineplexesCtrl = new CineplexesController();
     }
 
     public MakeBookingUI(String email) {

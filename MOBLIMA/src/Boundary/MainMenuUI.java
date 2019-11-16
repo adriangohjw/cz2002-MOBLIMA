@@ -68,11 +68,12 @@ public class MainMenuUI {
 		boolean loggedIn = admin_login.main();
 		while (loggedIn) {
 			System.out.println("Select action:\n"+
-					   "1.Create/Update/Remove movie listing\n"+
-					   "2.Create/Update/Remove movie session\n"+
-					   "3.Configure system settings\n" +
-					   "4.Search/List movies\n" +
-					   "5.Log out");
+					   "1. Create/Update/Remove movie listing\n"+
+					   "2. Create/Update/Remove movie session\n"+
+					   "3. Configure system settings\n" +
+					   "4. Search/List movies\n" +
+					   "5. View move details\n" +
+					   "6. Log out");
 			switch(InputController.getIntFromUser()) {
 				case 1:
 					CUR_Movie_Listing curMovieListing = new CUR_Movie_Listing();
@@ -91,6 +92,10 @@ public class MainMenuUI {
 					searchMovieUI.main();
 					break;
 				case 5:
+					ViewMovieDetailUI viewMovieDetailUI = new ViewMovieDetailUI();
+					viewMovieDetailUI.main();
+					break;
+				case 6:
 					loggedIn = false;
 					System.out.println("Logged out successfully!");
 					System.out.println();
@@ -108,14 +113,14 @@ public class MainMenuUI {
 		boolean exit = false;
 		while (!exit) {
 			System.out.println("Select action:\n"+
-					   "1.Search/List movie\n"+
-					   "2.View movie details\n"+
-					   "3.Check seat availibility\n" +
-					   "4.Book ticket\n" +
-					   "5.View booking history\n" +
-					   "6.List Top 5 movies\n" +
-					   "7.Rate Movie\n" +
-					   "8.Exit");
+					   "1. Search/List movie\n"+
+					   "2. View movie details\n"+
+					   "3. Check seat availibility\n" +
+					   "4. Book ticket\n" +
+					   "5. View booking history\n" +
+					   "6. List Top 5 movies\n" +
+					   "7. Rate Movie\n" +
+					   "8. Exit");
 			switch(InputController.getIntFromUser()) {
 				case 1:
 					SearchMovieUI search_movie_ui = new SearchMovieUI();
@@ -126,8 +131,8 @@ public class MainMenuUI {
 					view_movie_detail_ui.main();
 					break;
 				case 3:
-					//CheckSeatUI check_seat_ui = new CheckSeatUI();
-					//check_seat_ui.main();
+					CheckSeatUI check_seat_ui = new CheckSeatUI();
+					check_seat_ui.main();
 					break;
 				case 4:
 					MakeBookingUI makeBookingUI = new MakeBookingUI();
