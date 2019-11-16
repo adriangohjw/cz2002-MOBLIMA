@@ -9,6 +9,8 @@ import java.io.ObjectOutputStream;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 
+import BusinessLayer.UsersLayer;
+
 import Model.*;
 
 public class AdminsController {
@@ -19,19 +21,21 @@ public class AdminsController {
     public final static int ROLE = 2;
 
     public void create(String username, String password) {
-        try {
-            Admin admin = new Admin(username, password);
-            ArrayList<Admin> allData = new ArrayList<Admin>();
-            File tempFile = new File(FILENAME);
-            if (tempFile.exists())
-                allData = read();
-            ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(FILENAME));
-            allData.add(admin);
-            out.writeObject(allData);
-            out.flush();
-            out.close();
-        } catch (IOException | NoSuchAlgorithmException e) {
-            // ignore error
+        if (!(UsersLayer.isExistingUser(username))){
+            try {
+                Admin admin = new Admin(username, password);
+                ArrayList<Admin> allData = new ArrayList<Admin>();
+                File tempFile = new File(FILENAME);
+                if (tempFile.exists())
+                    allData = read();
+                ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(FILENAME));
+                allData.add(admin);
+                out.writeObject(allData);
+                out.flush();
+                out.close();
+            } catch (IOException | NoSuchAlgorithmException e) {
+                // ignore error
+            }
         }
     }
 
