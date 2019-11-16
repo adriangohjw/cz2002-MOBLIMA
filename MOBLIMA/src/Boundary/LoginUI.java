@@ -31,14 +31,23 @@ public class LoginUI {
 
     public boolean main() {
         boolean result;
+        boolean exit = false;
         do{
             result = verify();
             if(!result){
-                System.out.println("Wrong password or email. Please enter again.");
+                System.out.println("Wrong password or email.");
+                System.out.println("1. Enter again");
+                System.out.println("2. Exit");
+                if(sc.nextInt()==2){
+                    exit = true;
+                }
             }
-        } while (!result);
-        System.out.println("You have login sucessfully.");
-        return true;
+        } while (!result&&!exit);
+        if(result){
+            System.out.println("You have login sucessfully.");
+            return true;
+        }
+        return false;
     }
 
     public boolean verify() {

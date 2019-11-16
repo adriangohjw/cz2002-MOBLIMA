@@ -29,7 +29,7 @@ public class RegisterUI {
     public void main(){
         do {
             inputRegister();
-            if(consistentPassword==true){
+            if(consistentPassword){
                 if(role == 1)
                     movieGoersCtrl.create(email, password);
                 else 
@@ -37,10 +37,10 @@ public class RegisterUI {
                 System.out.println("You have registered successfully");
             }
             else {
-                System.out.println("Password not consistent. Please enter again");
+                System.out.println("Password not consistent. Enter again");
             }
         }
-        while(consistentPassword==false);
+        while(!consistentPassword);
     }
 
     public void inputRegister(){
