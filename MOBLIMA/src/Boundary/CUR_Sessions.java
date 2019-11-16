@@ -19,12 +19,13 @@ public class CUR_Sessions {
 	public void main(){
 		boolean exit = false;
 		while(!exit) {
-		System.out.println("Create/Update/Remove session: \n" +
+		System.out.print("\n\nCreate/Update/Remove session: \n\n" +
 						   "1. Create Movie Session\n" +
 						   "2. Update Movie Session\n" +
 						   "3. Remove Movie Session\n" +
 						   "4. View Movie Sessions\n" +
-						   "5. Return to Main Menu");
+						   "5. Return to Main Menu\n\n" +
+							"Select action: ");
 		int option = InputController.getIntFromUser();
 		switch(option) {
 			case 1:
@@ -37,7 +38,7 @@ public class CUR_Sessions {
 				removeSession();
 				break;
 			case 4:
-				ListSessions();
+				listSessions();
 				break;
 			case 5:
 				exit = true;
@@ -48,16 +49,16 @@ public class CUR_Sessions {
 
 	public void createSession() {
 
-		System.out.println("Creating Session...");
+		System.out.println("Creating Session...\n\n");
 		
-		System.out.println("Cineplex List:");
+		System.out.println("Cineplex List:\n");
 		ArrayList<Cineplex> cineplexList = cineplexCtrl.read();
 		if (cineplexList.isEmpty()) {
 			System.out.println("There are no cineplexes registered!");
 			return;
 		}
 		cineplexList.forEach(Cineplex -> printCineplex(Cineplex));
-		System.out.println("Enter Cineplex Name:");
+		System.out.println("\nEnter Cineplex Name:");
 		String cineplexName = InputController.getStringFromUser();
 		Cineplex cineplex = cineplexCtrl.readByName(cineplexName);
 		if (cineplex == null) {
@@ -66,7 +67,7 @@ public class CUR_Sessions {
 			return;
 		}
 		
-		System.out.println("Cinemas: ");
+		System.out.println("\nCinemas in " + cineplex.getName() + ": \n");
 		ArrayList<Cinema> cinemaList = cineplex.getCinemas();
 		cinemaList.forEach(Cinema -> printCinemaCode(Cinema));
 		
@@ -97,16 +98,16 @@ public class CUR_Sessions {
 	
 	public void updateSession() {
 		
-		System.out.println("Updating Session...");
+		System.out.println("Updating Session...\n\n");
 		
-		System.out.println("Cineplex List:");
+		System.out.println("Cineplex List:\n");
 		ArrayList<Cineplex> cineplexList = cineplexCtrl.read();
 		if (cineplexList.isEmpty()) {
 			System.out.println("There are no cineplexes registered!");
 			return;
 		}
 		cineplexList.forEach(Cineplex -> printCineplex(Cineplex));
-		System.out.println("Enter Cineplex Name:");
+		System.out.println("\nEnter Cineplex Name:");
 		String cineplexName = InputController.getStringFromUser();
 		Cineplex cineplex = cineplexCtrl.readByName(cineplexName);
 		if (cineplex == null) {
@@ -115,13 +116,13 @@ public class CUR_Sessions {
 			return;
 		}
 		
-		System.out.println("Cinemas: ");
+		System.out.println("Cinemas in" + cineplex.getName() + ":\n ");
 		ArrayList<Cinema> cinemaList = cineplex.getCinemas();
 		cinemaList.forEach(Cinema -> printCinema(Cinema));
 		System.out.print("Enter session id: ");
 		int session_id = InputController.getIntFromUser();
 		if (sessionCtrl.readById(session_id) == null) {
-			System.out.println("session id does not exist!\n" +
+			System.out.println("Session id does not exist!\n" +
 							   "Returning to menu...");
 			return;
 		}
@@ -156,8 +157,8 @@ public class CUR_Sessions {
 		
 	public void removeSession() {
 		
-		System.out.println("Deleting Session: ");
-		System.out.println("Cineplex List:");
+		System.out.println("Deleting Session...\n\n");
+		System.out.println("\nCineplex List:");
 		ArrayList<Cineplex> cineplexList = cineplexCtrl.read();
 		if (cineplexList.isEmpty()) {
 			System.out.println("There are no cineplexes registered!");
@@ -172,13 +173,14 @@ public class CUR_Sessions {
 							   "Returning to menu...");
 			return;
 		}
-		
+
+		System.out.println("Cinemas in" + cineplex.getName() + ":\n ");
 		ArrayList<Cinema> cinemaList = cineplex.getCinemas();
 		cinemaList.forEach(Cinema -> printCinema(Cinema));
 		System.out.print("Enter session id: ");
 		int sessionId = InputController.getIntFromUser();
 		if (sessionCtrl.readById(sessionId) == null) {
-			System.out.println("session id does not exist!\n" +
+			System.out.println("Session id does not exist!\n" +
 							   "Returning to menu...");
 			return;
 		}	
@@ -186,15 +188,15 @@ public class CUR_Sessions {
 		System.out.println("Session " + sessionId + " successfully deleted!");
 	}
 	
-	public void ListSessions() {
-		System.out.println("Cineplex List:");
+	public void listSessions() {
+		System.out.println("\nCineplex List:");
 		ArrayList<Cineplex> cineplexList = cineplexCtrl.read();
 		if (cineplexList.isEmpty()) {
 			System.out.println("There are no cineplexes registered!");
 			return;
 		}
 		cineplexList.forEach(Cineplex -> printCineplex(Cineplex));
-		System.out.println("Enter Cineplex Name:");
+		System.out.println("\nEnter Cineplex Name:");
 		String cineplexName = InputController.getStringFromUser();
 		Cineplex cineplex = cineplexCtrl.readByName(cineplexName);
 		if (cineplex == null) {
@@ -208,22 +210,22 @@ public class CUR_Sessions {
 	}
 	
 	public void printCinema(Cinema cinema) {
-		System.out.println("Cinema code" + cinema.getCode());
+		System.out.println("\nCinema code: " + cinema.getCode());
 		ArrayList<Session> sessionList = cinema.getSessions();
 		sessionList.forEach(session -> printSession(session));
 	}
 	
 	public void printCinemaCode(Cinema cinema) {
-		System.out.println("Cinema code" + cinema.getCode());
+		System.out.println("Cinema code: " + cinema.getCode());
 	}
 	
 	public void printSession(Session session) {
-		System.out.println("Session id: " + session.getId() + "\n" +
-						   "Movie Title: " + session.getMovie().getTitle() + "\n" +
-						   "Session DateTime: " + session.getSessionDateTime());
+		System.out.print("\n\tSession id: " + session.getId() + "\n" +
+						   "\tMovie title: " + session.getMovie().getTitle() + "\n" +
+						   "\tDate: " + session.getSessionDateTimeToString() + "\n");
 	}
 	
 	public void printCineplex(Cineplex cineplex) {
-		System.out.println(cineplex.getName());
+		System.out.println("Name: " + cineplex.getName());
 	}
 }

@@ -14,14 +14,14 @@ public class TransactionsController {
 
     public final static String FILENAME = "MOBLIMA/database/transactions.txt";
 
-    public void create(Transaction transaction) {
+    public void create(String cinemaCode, String name, String email, String mobileNumber, Movie movie) {
         ArrayList<Transaction> allData = new ArrayList<Transaction>();
         File tempFile = new File(FILENAME);
         if (tempFile.exists())
             allData = read();
         try {
             ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(FILENAME));
-            allData.add(transaction);
+            allData.add(new Transaction(cinemaCode, name, email, mobileNumber, movie));
             out.writeObject(allData);
             out.flush();
             out.close();
@@ -63,7 +63,7 @@ public class TransactionsController {
 
         for (int i=0; i<allData.size(); i++){
             transaction = allData.get(i);
-            dbUsername = transaction.getMovieGoer().getEmail();
+            dbUsername = transaction.getEmail();
             if (dbUsername.equals(movieGoerUsername))
                 returnData.add(transaction); 
         }
@@ -78,7 +78,7 @@ public class TransactionsController {
         for (int i=0; i<allData.size(); i++){
             transaction = allData.get(i);
             if (transaction.getTID().equals(TID) 
-                    && transaction.getMovieGoer().getEmail().equals(username))
+                    && transaction.getEmail().equals(username))
                 continue;
             returnData.add(transaction);                
         }

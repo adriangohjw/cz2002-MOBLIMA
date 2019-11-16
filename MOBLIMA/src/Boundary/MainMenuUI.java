@@ -20,11 +20,15 @@ public class MainMenuUI {
 
 		boolean exit = false;
 		while (!exit) {
-			System.out.println("Welcome to MOBLIMA!\n" +
+			System.out.println("|======================================|");
+			System.out.println("|=========|Welcome to MOBLIMA|=========|");
+			System.out.println("|======================================|\n" +
+					"\n\n" +
 					"1. Admin\n" +
 					"2. Movie Goer\n" +
 					"3. New user\n" +
-					"4. Exit");
+					"4. Exit\n");
+			System.out.print("Select action: ");
 		switch(InputController.getIntFromUser()) {
 			case 1:
 				admin_login();
@@ -53,10 +57,15 @@ public class MainMenuUI {
 			cinemasController.create("First",String.valueOf(100),CinemaType.PREMIUM,new SeatingPlan(10,10));
 			cinemasController.create("First",String.valueOf(101),CinemaType.PREMIUM,new SeatingPlan(10,10));
 			cinemasController.create("First",String.valueOf(102),CinemaType.STANDARD,new SeatingPlan(10,10));
+			cinemasController.create("Second","XDD",CinemaType.PREMIUM,new SeatingPlan(10,10));
+			cinemasController.create("Second","PUP",CinemaType.PREMIUM,new SeatingPlan(10,10));
+			cinemasController.create("Second","VAL",CinemaType.STANDARD,new SeatingPlan(10,10));
 		}
 		if(cineplexesController.read().size()==0){
-			ArrayList<Cinema> cinemas = cinemasController.read();
-			cineplexesController.create("First", cinemas);
+			ArrayList<Cinema> cinemasOne = cinemasController.readByCineplexName("First");
+			cineplexesController.create("First", cinemasOne);
+			ArrayList<Cinema> cinemasTwo = cinemasController.readByCineplexName("Second");
+			cineplexesController.create("Second", cinemasTwo);
 		}
 		/*for(Cineplex cineplex: cineplexesController.read()){
 			System.out.println(cineplex.toString());
@@ -67,13 +76,17 @@ public class MainMenuUI {
 		LoginUI admin_login = new LoginUI(1);
 		boolean loggedIn = admin_login.main();
 		while (loggedIn) {
-			System.out.println("Select action:\n"+
+			System.out.println("|=========================================|");
+			System.out.println("|=========|MOBLIMA Administrator|=========|");
+			System.out.println("|=========================================|\n" +
+						"\n\n"+
 					   "1. Create/Update/Remove movie listing\n"+
 					   "2. Create/Update/Remove movie session\n"+
 					   "3. Configure system settings\n" +
 					   "4. Search/List movies\n" +
 					   "5. View move details\n" +
-					   "6. Log out");
+					   "6. Log out\n");
+			System.out.print("Select action: ");
 			switch(InputController.getIntFromUser()) {
 				case 1:
 					CUR_Movie_Listing curMovieListing = new CUR_Movie_Listing();
@@ -139,6 +152,8 @@ public class MainMenuUI {
 					makeBookingUI.main();
 					break;
 				case 5:
+					ViewBookingUI viewBookingUI = new ViewBookingUI();
+					viewBookingUI.main();
 					break;
 				case 6:
 					ListTopMovieUI listTopMovieUI = new ListTopMovieUI();

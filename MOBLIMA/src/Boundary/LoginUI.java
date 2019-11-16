@@ -40,7 +40,7 @@ public class LoginUI {
             }
         } while (!result&&!exit);
         if(result){
-            System.out.println("You have login sucessfully.");
+            System.out.println("You have logged in sucessfully.\n\n");
             return true;
         }
         return false;

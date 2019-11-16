@@ -2,6 +2,7 @@ package Boundary;
 
 import Controller.*;
 import Model.*;
+import jdk.internal.util.xml.impl.Input;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -218,11 +219,14 @@ public class MakeBookingUI {
     }
     
     public void makeTransaction() {
-    	Movie_Goer user = movieGoerCtrl.readByEmail(email);
+    	System.out.print("Enter your name: ");
+    	String name = InputController.getStringFromUser();
+    	System.out.print("Enter your email: ");
+    	String email = InputController.getEmailFromUser();
+    	System.out.print("Enter your mobile number: ");
+    	String mobileNumber = InputController.getMobileNumberFromUser();
     	Movie movie = queriedSession.getMovie();
-    	String TID = cinemaCode + LocalDateTime.now().format(DateTimeFormatter.ofPattern("YYYYddMMhhmm"));;
-    	Transaction newTransaction = new Transaction(TID, user, movie);
-    	transCtrl.create(newTransaction);
-    	System.out.println("Transaction successful! TID: " + TID);
+    	transCtrl.create(cinemaCode, name, email, mobileNumber, movie);
+    	System.out.println("Transaction successful!");
     }
 }

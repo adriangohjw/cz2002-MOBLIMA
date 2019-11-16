@@ -6,7 +6,6 @@ import Model.*;
 import java.util.*;
 
 public class ViewMovieDetailUI {
-    private int id;
     private MoviesController moviesCtrl;
     Scanner sc = new Scanner(System.in);
 
@@ -20,7 +19,7 @@ public class ViewMovieDetailUI {
 
     public void main(){
         System.out.println("Enter movie ID to view movie detail: ");
-        id = InputController.getIntFromUser();
+        int id = InputController.getIntFromUser();
         Movie movie = moviesCtrl.readByID(id);
         if(movie == null){
             System.out.println("Movie with this id doesn't exist!\n     Returning to main menu...");

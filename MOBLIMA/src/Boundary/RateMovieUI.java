@@ -24,7 +24,7 @@ public class RateMovieUI {
             double stars = InputController.getDoubleFromUser(5);
             System.out.println("Input additional comment");
             String comment = InputController.getStringFromUser();
-            reviewsController.create(movie.get(0),new Review(username, stars, comment));
+            reviewsController.create(movie.get(0), new Review(username, stars, comment));
         }
     }
 }

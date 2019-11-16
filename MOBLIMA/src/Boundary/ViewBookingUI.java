@@ -14,23 +14,32 @@ public class ViewBookingUI {
         this.transCtrl = new TransactionsController();
     }
 
-    public ViewBookingUI(String email) {
-        this.transCtrl = new TransactionsController();
-        this.email = email;
+    public ViewBookingUI(TransactionsController transCtrl) {
+        this.transCtrl = transCtrl;
     }
-
     
     public void setTransCtrl(TransactionsController transCtrl) {
         this.transCtrl = transCtrl;
     }
     
     public void main(){
-        System.out.println("Here is your booking history:");
+        System.out.print("Enter your email: ");
+        email = InputController.getEmailFromUser();
+        System.out.println("Here is booking history of " + email + ":");
         display();
     }
 
     public void display(){
+        int input;
         ArrayList<Transaction> transactionList = transCtrl.readByMovieGoerUsername(email);
-        transactionList.forEach(transaction -> System.out.println(transaction.toString()));
+        if(transactionList.isEmpty()){
+            System.out.println("Your booking history is empty. Book a ticket now!");
+        }
+        else{
+            transactionList.forEach(transaction -> System.out.println(transaction.toString()));
+        }
+        do{
+            System.out.print("Insert 1 to exit: ");
+        }while((input = InputController.getIntFromUser())!=1);
     }
 }

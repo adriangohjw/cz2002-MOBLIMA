@@ -7,13 +7,17 @@ import java.text.SimpleDateFormat;
 public class Transaction implements Serializable {
 
 	private String TID; // XXXYYYYMMDDhhmm (XXX is cinema code and YYYYDDMMhhmm is datetime)
-	private Movie_Goer movieGoer;
+	private String name;
+	private String email;
+	private String mobileNumber;
 	private Movie movie;
 	
-	public Transaction(String cinemaCode, Movie_Goer movieGoer, Movie movie) {
+	public Transaction(String cinemaCode, String name, String email, String mobileNumber, Movie movie) {
 		String formattedTimestamp = new SimpleDateFormat("YYYYMMddHHmm").format(new Date());
 		this.TID = cinemaCode.concat(formattedTimestamp);
-		this.movieGoer = movieGoer;
+		this.name = name;
+		this.email = email;
+		this.mobileNumber = mobileNumber;
 		this.movie = movie;
 	}
 
@@ -21,8 +25,16 @@ public class Transaction implements Serializable {
 		return TID;
 	}
 
-	public Movie_Goer getMovieGoer() {
-		return movieGoer;
+	public String getName(){
+		return name;
+	}
+
+	public String getEmail(){
+		return email;
+	}
+
+	public String getMobileNumber(){
+		return mobileNumber;
 	}
 
 	public Movie getMovie(){
@@ -31,11 +43,10 @@ public class Transaction implements Serializable {
 
 	public String toString(){
 		String toReturn = "";
-		toReturn 	+= "TID: " + getTID() + "\n"
-					+ "Name: " + getMovieGoer().getName() + "\n"
-					+ "Mobile number: " + getMovieGoer().getMobileNumber() + "\n"
-					+ "Email: " + getMovieGoer().getEmail()+ "\n"
-					+ "Movie: " + getMovie().getTitle();
+		toReturn 	+= "TID: " + getTID() + "\t"
+					+ "Movie: " + getMovie().getTitle() + "\n"
+					+ "Name: " + getName() + "\n"
+					+ "Mobile number: " + getMobileNumber() + "\n";
 		return toReturn; 
 	}
 }

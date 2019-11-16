@@ -48,7 +48,14 @@ public class ListTopMovieUI {
 	public void listWithRatings(){
 		ArrayList<Movie> movieList = moviesCtrl.read(); // there are two readByAttribute, which to be used?
 		Collections.sort(movieList, new SortByRating());
-		for (int i = 0; i < 5; i++) {
+		int amount = 0;
+		if(movieList.size()<5){
+			amount = movieList.size();
+		}
+		else{
+			amount = 5;
+		}
+		for (int i = 0; i < amount; i++) {
 			printMovie(movieList.get(i));
 		}
 		ViewMovieDetailUI view = new ViewMovieDetailUI();
@@ -58,7 +65,14 @@ public class ListTopMovieUI {
 	public void listWithSales(){
 		ArrayList<Movie> movieList = moviesCtrl.read(); // there are two readByAttribute, which to be used?
 		Collections.sort(movieList, new SortBySales());
-		for (int i = 0; i < 5; i++) {
+		int amount = 0;
+		if(movieList.size()<5){
+			amount = movieList.size();
+		}
+		else{
+			amount = 5;
+		}
+		for (int i = 0; i < amount; i++) {
 			printMovie(movieList.get(i));
 		}
 		ViewMovieDetailUI view = new ViewMovieDetailUI();
@@ -66,6 +80,7 @@ public class ListTopMovieUI {
 	}
     
     public void printMovie(Movie movie){
+		System.out.println("ID: " + movie.getId());
         System.out.println("Title: " + movie.getTitle());
         System.out.println("Rating: " + movie.getOverallReviews());
         System.out.println("-------------------");

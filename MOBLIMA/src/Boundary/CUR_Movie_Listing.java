@@ -13,13 +13,13 @@ public class CUR_Movie_Listing {
 	public void main() {
 		boolean exit = false;
 		while (!exit) {
-			System.out.printf("Create/Update/Remove movie listing: \n" +
+			System.out.printf("\n\nCreate/Update/Remove Movie: \n\n" +
 								"1. Create Movie Listing\n" +
 								"2. Update Movie Listing\n" +
 								"3. Remove Movie Listing\n" +
-								"4. Return to Main Menu\n" +
-								"Enter option: ");
-			int option = input.nextInt();
+								"4. Return to Main Menu\n\n" +
+								"Select option: ");
+			int option = InputController.getIntFromUser();
 			switch(option) {
 			case 1: 
 				createMovie();
@@ -45,11 +45,11 @@ public void createMovie() {
 	System.out.println("Enter movie title: ");
 	String title = InputController.getStringFromUser();
 	
-	System.out.print("Movie types: \n" +
-					   "1. 2D\n" +
-					   "2. 3D\n" +
-					   "3. Blockbuster\n" +
-					   "Select movie type:");
+	System.out.print("\nPossible movie types: \n" +
+					   "	1. 2D\n" +
+					   "	2. 3D\n" +
+					   "	3. Blockbuster\n\n" +
+					   "Select movie type (number): ");
 	int typeNo = InputController.getIntFromUser();
 	MovieType movieType;
 	switch(typeNo) {
@@ -92,8 +92,8 @@ public void createMovie() {
 	System.out.println("Enter movie director: ");
 	String director = InputController.getStringFromUser();
 	
-	System.out.println("Enter number of casts (atleast 2): ");
-	int numCast = input.nextInt();
+	System.out.println("Enter number of casts (at least 2): ");
+	int numCast = InputController.getIntFromUser();
 	if (numCast < 2) {
 		System.out.println("Invalid number of casts!\n" +
 						   "Returning to menu");
@@ -101,7 +101,7 @@ public void createMovie() {
 	}
 	ArrayList<String> cast = new ArrayList<>();
 	for (int i = 0; i < numCast; i++) {
-		System.out.println("Enter name of cast " + i+1 + ":");
+		System.out.println("Enter name of cast " + (i+1) + ": ");
 		cast.add(InputController.getStringFromUser());
 		}
 
@@ -109,7 +109,7 @@ public void createMovie() {
 
 	if (movieCtrl.read().isEmpty())
 		return;
-	System.out.println("Movie listing created....");
+	System.out.println("\n\nMovie created....");
 	}
 
 
@@ -120,7 +120,7 @@ public void updateMovie() {
 	System.out.println("Select movie to be updated: ");
 	
 	if(listMovie.listAllMovies()){
-		System.out.println("Movie id: ");
+		System.out.print("Movie id: ");
 		int movie_id = InputController.getIntFromUser();
 		if (movieCtrl.readByID(movie_id) == null) {
 			System.out.println("Movie Id does not exist!" +
@@ -137,7 +137,7 @@ public void updateMovie() {
 							"6. Movie Release date\n" +
 							"7. End of Showing date\n" +
 							"8. Director\n" +
-							"9. Cast\n" +
+							"9. Cast\n\n" +
 							"Enter option: ");
 		int choice = InputController.getIntFromUser();
 
@@ -148,11 +148,11 @@ public void updateMovie() {
 				movieCtrl.updateById(1, movie_id, title);
 				break;
 			case 2:
-				System.out.print(  "Movie types: \n" +
+				System.out.print(  "\nPossible movie types: \n" +
 								   "1. 2D\n" +
 								   "2. 3D\n" +
-								   "3. Blockbuster\n" +
-								   "Select movie type:");
+								   "3. Blockbuster\n\n" +
+								   "Select movie type (number): ");
 				int typeNo = InputController.getIntFromUser();
 				MovieType movieType;
 				switch(typeNo) {
@@ -221,7 +221,7 @@ public void updateMovie() {
 
 			case 9:
 				ArrayList<String> cast = null;
-				System.out.println("Enter number of new cast members (atleast 2): ");
+				System.out.println("Enter number of new cast members (at least 2): ");
 				int i = InputController.getIntFromUser();
 				if (i < 2) {
 					System.out.println("Invalid number of casts!\n" +
@@ -252,7 +252,7 @@ public void removeMovie(){
 	System.out.println("Select movie to be deleted: ");
 	
 	if(listMovie.listAllMovies()){
-		System.out.println("Movie Id: ");
+		System.out.print("Movie Id: ");
 		int movieId = InputController.getIntFromUser();
 		if (movieCtrl.readByID(movieId) == null) {
 			System.out.println("Movie does not exist!" +

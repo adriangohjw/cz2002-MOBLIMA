@@ -91,13 +91,13 @@ public class CheckSeatUI {
         ArrayList<Cinema> cinemas = cineplexes.get(choice-1).getCinemas();
         int counter = 0;
 
-        System.out.println("Here are available sessions in this cineplex " + cineplexes.get(choice-1).getName() + ": ");
+        System.out.println("Here are available sessions in cineplex " + cineplexes.get(choice-1).getName() + ": ");
         for(int i =0;i<cinemas.size();i++){
             Cinema cinema = cinemas.get(i);
             ArrayList<Session> sessions = cinema.getSessions();
             for(int j=0;j<sessions.size();j++){
-                System.out.println("\t" + (counter+1) + ". Cinema: " + cinema.getCode() + " Movie: " + sessions.get(j).getMovie().getTitle()
-                + " Date: " + sessions.get(j).getSessionDateTimeToString());
+                System.out.println("\t" + (counter+1) + ". Cinema: " + cinema.getCode() + "\n\t   Movie: " + sessions.get(j).getMovie().getTitle()
+                + "\n\t   Date: " + sessions.get(j).getSessionDateTimeToString());
                 counter++;
             }
         }
