@@ -9,6 +9,10 @@ import java.io.ObjectOutputStream;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
+import BusinessLayer.MoviesLayer;
+
+import CustomException.Movies.EndBeforeReleaseException;
+
 import Model.*;
 
 public class MoviesController {
@@ -28,20 +32,24 @@ public class MoviesController {
 
     public void create(
             String title, MovieType type, String synopsis, String rating, double duration, LocalDate movieReleaseDate, LocalDate movieEndDate, String director, ArrayList<String> cast
-    ) {
-        Movie movie = new Movie(getLastId()+1, title, type, synopsis, rating, duration, movieReleaseDate, movieEndDate, director, cast);
-        ArrayList<Movie> allData = new ArrayList<Movie>();
-        File tempFile = new File(FILENAME);
-        if (tempFile.exists()) 
-            allData = read();
-        try {
-            ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(FILENAME));
-            allData.add(movie);
-            out.writeObject(allData);
-            out.flush();
-            out.close();
-        } catch (IOException e) {
-            //
+    ) throws EndBeforeReleaseException {
+        if (MoviesLayer.isDatesValid(movieReleaseDate, movieEndDate)){
+            Movie movie = new Movie(getLastId()+1, title, type, synopsis, rating, duration, movieReleaseDate, movieEndDate, director, cast);
+            ArrayList<Movie> allData = new ArrayList<Movie>();
+            File tempFile = new File(FILENAME);
+            if (tempFile.exists()) 
+                allData = read();
+            try {
+                ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(FILENAME));
+                allData.add(movie);
+                out.writeObject(allData);
+                out.flush();
+                out.close();
+            } catch (IOException e) {
+                // ignore error
+            }
+        } else {
+            throw new EndBeforeReleaseException();
         }
     } 
 
