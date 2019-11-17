@@ -91,7 +91,6 @@ public class MakeBookingUI {
 
 		priceShowcase();
 
-		makeTransaction();
     }
     
     public void showAvailableMovies() {
@@ -175,7 +174,8 @@ public class MakeBookingUI {
 			id = InputController.getIntFromUser(); //from 0 to row * column - 1
 			seatReserved = sessCtrl.assignSeat(seatAvailability, id, queriedSession.getId());
 		}while(!seatReserved);
-    }
+		makeTransaction();
+	}
     
     public void priceShowcase() {
     	double price = 0;
@@ -206,6 +206,7 @@ public class MakeBookingUI {
     		reserveSeat();
 		}
     	else{
+    		System.out.println("\nReturning to main menu...\n");
     		return;
 		}
     }
