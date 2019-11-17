@@ -17,8 +17,6 @@ public class ListTopMovieUI {
 		this.moviesCtrl = moviesCtrl;
 	}
 
-	Scanner sc = new Scanner(System.in);
-
 	public void main(){
 		while (choice != 3)
 			display();
@@ -29,7 +27,7 @@ public class ListTopMovieUI {
 		System.out.println("Select 2 to list top 5 movies according to ticket sales.");
 		System.out.println("Select 3 to go back.");
 
-		choice = sc.nextInt();
+		choice = InputController.getIntFromUser();
 		switch (choice) {
 		case 1:
 			listWithRatings();

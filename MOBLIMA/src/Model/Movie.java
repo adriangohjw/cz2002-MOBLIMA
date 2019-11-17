@@ -131,11 +131,9 @@ public class Movie implements Serializable {
         else {
             float daysBetween = Duration.between(current.atStartOfDay(), movieReleaseDate.atStartOfDay()).toDays();
             if (daysBetween > 7) {
-                return MovieStatus.PREVIEW;
-            } else if (daysBetween <= 7 && daysBetween > 0) {
                 return MovieStatus.COMING_SOON;
-            } else if (daysBetween < -30) {
-                return MovieStatus.END_OF_SHOWING;
+            } else if (daysBetween <= 7 && daysBetween > 0) {
+                return MovieStatus.PREVIEW;
             } else {
                 return MovieStatus.NOW_SHOWING;
             }

@@ -7,7 +7,6 @@ import java.time.LocalDateTime;
 import java.util.*;
 
 public class MakeBookingUI {
-    private String email;
     private String movieTitle;
     private String cinemaCode;
     private LocalDateTime viewingDateTime;
@@ -31,16 +30,6 @@ public class MakeBookingUI {
         this.priceCtrl = new PriceController();
         this.sessCtrl = new SessionsController();
         this.cineplexesCtrl = new CineplexesController();
-    }
-
-    public MakeBookingUI(String email) {
-        this.cineplexesCtrl = new CineplexesController();
-        this.cinemaCtrl = new CinemasController();
-        this.movieCtrl = new MoviesController();
-        this.transCtrl = new TransactionsController();
-        this.sessCtrl = new SessionsController();
-        this.priceCtrl = new PriceController();
-        this.email = email;
     }
     
     public void setCinemaCtrl (CinemasController cinemaCtrl) {

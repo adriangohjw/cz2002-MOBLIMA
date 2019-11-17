@@ -3,13 +3,11 @@ package Boundary;
 import Controller.*;
 import Model.*;
 
-import java.util.*;
 
 public class LoginUI {
     private String email;
     private String password;
     private int role;
-    private boolean correctPassword = false;
     private AdminsController adminsCtrl;
     private MovieGoersController movieGoersCtrl;
 
