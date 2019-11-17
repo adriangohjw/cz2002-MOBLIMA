@@ -13,8 +13,20 @@ import Model.*;
 
 public class HolidaysController {
     
+    /**
+     * File name of Database file to access
+     */
     public final static String FILENAME = "MOBLIMA/database/holidays.txt";
 
+    
+    /** 
+     * CREATE a new holiday and add it into the database file
+     * Attributes are validated before creation
+     * If attributes are not allowed, throw error and do nothing
+     * If Database file exist, existing records are read and new holiday object is aopended before saving
+     * If Database file does not exist, holiday object will be written to a new file and saved
+     * @param holidayDate
+     */
     public void create(LocalDate holidayDate) {
         Holiday holiday = new Holiday(holidayDate);
         ArrayList<Holiday> allData = new ArrayList<Holiday>();
@@ -32,6 +44,12 @@ public class HolidaysController {
         }
     } 
 
+    
+    /** 
+     * READ and return every Cineplex in the Database file
+     * If Database file not found, ignore error and return empty list
+     * @return ArrayList<Holiday>   Return list of Holidays if any, else empty list
+     */
     @SuppressWarnings("unchecked")
     public ArrayList<Holiday> read() {
         try {
@@ -45,6 +63,11 @@ public class HolidaysController {
         return new ArrayList<Holiday>();
     }
 
+    
+    /** 
+     * Delete a Holiday in the Database file, based on the date attribute passed
+     * @param valueToSearch     Date of Holiday to be deleted
+     */
     public void delete(LocalDate valueToSearch) {
         ArrayList<Holiday> allData = read();
         ArrayList<Holiday> returnData = new ArrayList<Holiday>();
@@ -58,6 +81,12 @@ public class HolidaysController {
         replaceExistingFile(FILENAME, returnData);
     }
 
+    
+    /** 
+     * Check if a date is an holiday by checking against every records in the Database file
+     * @param valueToSearch     Date of Holiday to be check
+     * @return boolean          Return true if Date passed in is a holiday, else false
+     */
     public boolean isHoliday(LocalDate valueToSearch) {
         ArrayList<Holiday> allData = read();
         for (int i=0; i<allData.size(); i++){
@@ -67,6 +96,12 @@ public class HolidaysController {
         return false;
     }
 
+    
+    /** 
+     * Overwrite Database file with new data of list of Admin
+     * @param filename      Filename to check for
+     * @param returnData    New ArrayList of Holiday to be written to the file
+     */
     public void replaceExistingFile(String filename, ArrayList<Holiday> data){
         File tempFile = new File(filename);
         if (tempFile.exists()) 

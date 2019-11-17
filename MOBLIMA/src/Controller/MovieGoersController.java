@@ -15,13 +15,31 @@ import Model.*;
 
 public class MovieGoersController {
 
+    /**
+     * File name of Database file to access
+     */
     public final static String FILENAME = "MOBLIMA/database/movieGoers.txt";
+
+    /**
+     * Declaring constant for better readability and easier referencing to attribute
+     */
     public final static int EMAIL = 0;
     public final static int PASSWORDHASHED = 1;
     public final static int ROLE = 2;
     public final static int NAME = 3;
     public final static int MOBILE_NUMBER = 4;
 
+    
+    /** 
+     * CREATE a new MovieGoer and add it into the database file
+     * Used for when we only know the username and encrypted password of the MovieGoer
+     * Attributes are validated before creation
+     * If attributes are not allowed, throw error and do nothing
+     * If Database file exist, existing records are read and new MovieGoer object is aopended before saving
+     * If Database file does not exist, MovieGoer object will be written to a new file and saved
+     * @param username      MovieGoer's username
+     * @param password      MovieGoer's password (non-encrypted)
+     */
     public void create(String username, String password) {
         if (UsersLayer.isValidUser(username)) {
             try {
@@ -43,6 +61,19 @@ public class MovieGoersController {
         }
     }
 
+    
+    /** 
+     * CREATE a new MovieGoer and add it into the database file
+     * Used for when we know all the details of a MovieGoer
+     * Attributes are validated before creation
+     * If attributes are not allowed, throw error and do nothing
+     * If Database file exist, existing records are read and new MovieGoer object is aopended before saving
+     * If Database file does not exist, MovieGoer object will be written to a new file and saved
+     * @param username      MovieGoer's username
+     * @param password      MovieGoer's password (non-encrypted)
+     * @param name          MovieGoer's name
+     * @param mobileNumber  MovieGoer's mobile number
+     */
     public void create(String username, String password, String name, String mobileNumber) {   
         if (!(UsersLayer.isValidUser(username))) {
             try {
@@ -62,6 +93,12 @@ public class MovieGoersController {
         }
     }
 
+    
+    /** 
+     * READ and return every Cineplex in the Database file
+     * If Database file not found, ignore error and return empty list
+     * @return ArrayList<Movie_Goer>  Return list of Cineplexes if any, else empty list
+     */
     @SuppressWarnings("unchecked")
     public ArrayList<Movie_Goer> read() {
         try {
@@ -75,6 +112,12 @@ public class MovieGoersController {
         return new ArrayList<Movie_Goer>();
     }
 
+    
+    /** 
+     * READ and return MovieGoer based on email passed in the Database file
+     * @param valueToSearch     Email of MovieGoer to search for
+     * @return Movie_Goer       Return MovieGoer if found, else null object
+     */
     public Movie_Goer readByEmail(String valueToSearch) {
         ArrayList<Movie_Goer> allData = read();
         for (int i=0; i<allData.size(); i++){
@@ -85,6 +128,15 @@ public class MovieGoersController {
         return null;
     }
 
+    
+    /** 
+     * UPDATE an MovieGoer's password in Database file
+     * Validate user's input of current password to ensure password is correct before updating it
+     * @param email             Email of MovieGoer who password will be updated
+     * @param currentPassword   Current password (Unencrypted) of MovieGoer
+     * @param newPassword       New password (Unencrypted) of MovieGoer
+     *
+     */
     public void updatePasswordHashed(String email, String currentPassword, String newPassword) {
         ArrayList<Movie_Goer> allData = read();
         ArrayList<Movie_Goer> returnData = new ArrayList<Movie_Goer>();
@@ -99,6 +151,13 @@ public class MovieGoersController {
         replaceExistingFile(FILENAME, returnData);
     }
 
+    
+    /** 
+     * UPDATE MovieGoer's with new value based on a given attribute and the current value in Database file
+     * @param col       Given attribute to be check for (based on constant as defined)
+     * @param oldValue  Attribute with matching value, to be updated
+     * @param newValue  New value of MovieGoer's attribute
+     */
     public void updateByAttribute(int col, Object oldValue, Object newValue) {
         ArrayList<Movie_Goer> allData = read();
         ArrayList<Movie_Goer> returnData = new ArrayList<Movie_Goer>();
@@ -124,6 +183,11 @@ public class MovieGoersController {
         replaceExistingFile(FILENAME, returnData);
     }
 
+    
+    /** 
+     * Delete an MovieGoer in the Database file, based on the email attribute passed
+     * @param email Email of MovieGoer who will be deleted
+     */
     public void deleteByEmail(String email) {
         ArrayList<Movie_Goer> allData = read();
         ArrayList<Movie_Goer> returnData = new ArrayList<Movie_Goer>();
@@ -137,6 +201,12 @@ public class MovieGoersController {
         replaceExistingFile(FILENAME, returnData);
     }
 
+    
+    /** 
+     * Overwrite Database file with new data of list of Admin
+     * @param filename      Filename to check for
+     * @param returnData    New ArrayList of MovieGoer to be written to the file
+     */
     public void replaceExistingFile(String filename, ArrayList<Movie_Goer> returnData) {
         File tempFile = new File(filename);
         if (tempFile.exists())
