@@ -17,9 +17,6 @@ public class TransactionsLayer {
         if(CinemasLayer.isExistingCinema(cinemaCode) == false)
             isValid = false;
 
-        if(UsersLayer.isExistingUser(email) == false) 
-            isValid = false;
-
         if (!isValid){
             try {
                 throw new InvalidTransactionException();

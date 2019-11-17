@@ -5,8 +5,6 @@ import java.util.ArrayList;
 import Controller.MoviesController;
 import CustomException.ReviewsException.StarsOutOfRangeException;
 
-import BusinessLayer.UsersLayer;
-
 import Model.Movie;
 import Model.Review;
 
@@ -17,9 +15,6 @@ public class ReviewsLayer {
     public static boolean isReviewValid(Movie movie, String username, double numOfStars, String additionalComment) {
 
         boolean isValid = true;
-
-        if (UsersLayer.isExistingUser(username) == false)
-            isValid = false;
 
         if (isNumOfStarsValid(numOfStars) == false)
             isValid = false;
