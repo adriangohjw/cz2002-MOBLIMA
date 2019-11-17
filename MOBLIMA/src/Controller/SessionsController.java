@@ -414,6 +414,31 @@ public class SessionsController {
         }
     }
 
+    
+    /** 
+     * Delete Sessions in the Database file with a specific MovieID
+     * @param movieID   Sessions with this MovieID will be deleted
+     */
+    @SuppressWarnings("static-access")
+    public void deleteByMovie(int movieID) {
+        ArrayList<Cinema> allCinemas = this.cinemasCtrl.read();
+        ArrayList<Session> allSessions = new ArrayList<Session>();
+        ArrayList<Session> returnSessions = new ArrayList<Session>();
+        Session s = null;
+
+        for (int i=0; i<allCinemas.size(); i++) {
+            Cinema cinema_i = allCinemas.get(i);
+            allSessions = cinema_i.getSessions();
+            returnSessions.clear();  // ensure it started without existing session
+            for (int j=0; j<allSessions.size(); j++){
+                s = allSessions.get(j);
+                if (!(s.getMovie().getId() == movieID))
+                    returnSessions.add(s);
+            }
+            this.cinemasCtrl.updateByAttribute(cinemasCtrl.SESSIONS, cinema_i.getCode(), returnSessions);
+        }
+    }
+
 
     /** 
      * Return the ID of the last Movie in the Database field

@@ -157,6 +157,7 @@ delete
 ~~~java
 public void delete(String cinemaCode, String sessionDateTime);
 public void delete(int id);
+public void deleteByMovie(int movieID);
 ~~~
 
 others
