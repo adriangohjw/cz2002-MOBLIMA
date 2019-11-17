@@ -6,26 +6,44 @@ import Model.*;
 import java.util.*;
 
 public class SearchMovieUI {
+	/** 
+     * Variables to store movie title, movie type and user's choice in display() method
+     */
     private String title;
     private String type;
     private int option;
+    
+    /** 
+     * All controllers (movie)
+     */
     private MoviesController moviesCtrl;
 
+    /** 
+     * Default constructor
+     */
     SearchMovieUI() {
         this.moviesCtrl = new MoviesController();
     }
-
+    /** 
+     * Default constructor with controller's state
+     * @param moviesCtrl	State of movie controller
+     */
     SearchMovieUI(MoviesController moviesCtrl) {
         this.moviesCtrl = moviesCtrl;
     }
 
-
+    /** 
+     * Main method for the UI - display while not quitting
+     */
     public void main(){
         while (option!=4) {
             display();
         }
     }
 
+    /** 
+     * Display all search options and ask user to choose one
+     */
     public void display(){
         System.out.println("1. Search by movie title");
         System.out.println("2. Search by movie type");
@@ -49,6 +67,10 @@ public class SearchMovieUI {
         }
     }
 
+    /** 
+     * Searching a movie by title
+     * @return If there is a movie for that title 
+     */
     public boolean searchByTitle(){
         System.out.println("Enter movie title: ");
         title = InputController.getStringFromUser();
@@ -62,7 +84,10 @@ public class SearchMovieUI {
             return true;
         }
     }
-
+    /** 
+     * Searching a movie by type
+     * @return If there is a movie for that type
+     */
     public boolean searchByType(){
         System.out.println("Enter movie type: ");
         type = InputController.getStringFromUser();
@@ -77,7 +102,9 @@ public class SearchMovieUI {
         }
     }
    
-    
+    /** 
+     * List all available movies
+     */
     public boolean listAllMovies(){
         ArrayList<Movie> movieList = moviesCtrl.read();
         if(movieList.isEmpty()){
@@ -90,6 +117,10 @@ public class SearchMovieUI {
         }
     }
     
+    /** 
+     * Print a movie's detail
+     * @param movie		Movie to print the details
+     */
     public void printMovie(Movie movie){
         int id = movie.getId();
         String title = movie.getTitle();
