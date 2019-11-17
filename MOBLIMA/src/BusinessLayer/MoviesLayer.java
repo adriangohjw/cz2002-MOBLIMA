@@ -3,19 +3,26 @@ package BusinessLayer;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
+import Controller.MoviesController;
+import CustomException.MoviesExceptions.ExistingMovieException;
 import CustomException.MoviesExceptions.EmptyCastException;
 import CustomException.MoviesExceptions.EmptyStringException;
 import CustomException.MoviesExceptions.EndBeforeReleaseException;
 import CustomException.MoviesExceptions.NegativeDurationException;
-
+import Model.Movie;
 import Model.MovieType;
 
 public class MoviesLayer {
+
+    static MoviesController moviesCtrl = new MoviesController();
 
     public static boolean isMovieValid(
         String title, MovieType type, String synopsis, String rating, double duration, LocalDate movieReleaseDate, LocalDate movieEndDate, String director, ArrayList<String> cast
     ) {
         boolean isValid = true;
+
+        if (isExistingMovie(title))
+            isValid = false;
         
         if (isEmpty_title(title))
             isValid = false;
@@ -39,6 +46,21 @@ public class MoviesLayer {
             isValid = false;
         
         return isValid;
+    }
+
+    public static boolean isExistingMovie(String title) {
+        ArrayList<Movie> allMovies = moviesCtrl.read();
+        for (Movie movie : allMovies) {
+            if (movie.getTitle().equals(title)){
+                try {
+                    throw new ExistingMovieException();
+                } catch (ExistingMovieException e) {
+                    System.out.println(e);
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 
     public static boolean isEmpty_title(String title) {

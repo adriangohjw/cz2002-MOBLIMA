@@ -3,6 +3,13 @@ package CustomException;
 public class MoviesExceptions {
 
     @SuppressWarnings("serial")
+    public static class ExistingMovieException extends Exception {
+        public ExistingMovieException() {
+            super("Movie already existed");
+        }
+    }
+
+    @SuppressWarnings("serial")
     public static class EndBeforeReleaseException extends Exception {
         public EndBeforeReleaseException() {
             super("End Date is before Release Date");
