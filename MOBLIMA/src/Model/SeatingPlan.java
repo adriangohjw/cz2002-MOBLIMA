@@ -2,6 +2,7 @@ package Model;
 
 import java.io.Serializable;
 
+@SuppressWarnings("serial")
 public class SeatingPlan implements Serializable {
 	private Seat [][] layout;
 	private int row;

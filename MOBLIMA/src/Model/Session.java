@@ -5,6 +5,7 @@ import java.time.DayOfWeek;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
+@SuppressWarnings("serial")
 public class Session implements Serializable {
 
     private Movie movie;

@@ -2,10 +2,8 @@ package Boundary;
 
 import Controller.*;
 import Model.*;
-import jdk.internal.util.xml.impl.Input;
 
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 public class MakeBookingUI {
@@ -20,7 +18,6 @@ public class MakeBookingUI {
     private CineplexesController cineplexesCtrl;
     private CinemasController cinemaCtrl;
     private MoviesController movieCtrl;
-    private MovieGoersController movieGoerCtrl;
     private SessionsController sessCtrl;
     private PriceController priceCtrl;
     private TransactionsController transCtrl;
@@ -29,7 +26,6 @@ public class MakeBookingUI {
         this.cineplexesCtrl = new CineplexesController();
         this.cinemaCtrl = new CinemasController();
         this.movieCtrl = new MoviesController();
-        this.movieGoerCtrl = new MovieGoersController();
         this.transCtrl = new TransactionsController();
         this.priceCtrl = new PriceController();
         this.sessCtrl = new SessionsController();
@@ -40,7 +36,6 @@ public class MakeBookingUI {
         this.cineplexesCtrl = new CineplexesController();
         this.cinemaCtrl = new CinemasController();
         this.movieCtrl = new MoviesController();
-        this.movieGoerCtrl = new MovieGoersController();
         this.transCtrl = new TransactionsController();
         this.sessCtrl = new SessionsController();
         this.priceCtrl = new PriceController();

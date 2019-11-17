@@ -8,6 +8,7 @@ import java.security.NoSuchAlgorithmException;
  * CRUD top viewing movies by ticket sales OR ratings
  */
 
+@SuppressWarnings("serial")
 public class Admin extends User {
 	
 	public Admin(String username, String password) throws NoSuchAlgorithmException {

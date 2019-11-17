@@ -2,11 +2,11 @@ package Model;
 
 import java.security.NoSuchAlgorithmException;
 
+@SuppressWarnings("serial")
 public class Movie_Goer extends User {
 	
 	private String name;
 	private String mobileNumber;
-	private String email;
 
 	// user can create account without name and mobile number 
 	public Movie_Goer(String username, String password) 

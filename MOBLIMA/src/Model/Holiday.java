@@ -2,9 +2,9 @@ package Model;
 
 import java.io.Serializable;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
+@SuppressWarnings("serial")
 public class Holiday implements Serializable {
 
     private LocalDate holidayDate;

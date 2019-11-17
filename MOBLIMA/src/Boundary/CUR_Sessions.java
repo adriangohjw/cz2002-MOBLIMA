@@ -1,14 +1,11 @@
 package Boundary;
 
-import java.io.IOException;
 import java.time.LocalDateTime;
 
 import Controller.*;
 import Model.*;
 
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.Scanner;
 
 public class CUR_Sessions {
 	private MoviesController movieCtrl = new MoviesController();

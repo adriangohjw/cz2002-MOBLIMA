@@ -2,6 +2,7 @@ package Model;
 
 import java.io.Serializable;
 
+@SuppressWarnings("serial")
 public class Seat implements Serializable {
 	private int seatID;
 	private boolean occupied = false;

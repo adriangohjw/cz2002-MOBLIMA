@@ -2,6 +2,7 @@ package Model;
 
 import java.io.Serializable;
 
+@SuppressWarnings("serial")
 public class Review implements Serializable {
 
 	private String username;

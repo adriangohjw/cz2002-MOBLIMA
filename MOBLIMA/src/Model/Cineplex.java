@@ -3,6 +3,7 @@ package Model;
 import java.io.Serializable;
 import java.util.ArrayList;
 
+@SuppressWarnings("serial")
 public class Cineplex implements Serializable {
 
 	private String name;

@@ -7,7 +7,6 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 import Model.*;
@@ -33,6 +32,7 @@ public class HolidaysController {
         }
     } 
 
+    @SuppressWarnings("unchecked")
     public ArrayList<Holiday> read() {
         try {
             ObjectInputStream ois = new ObjectInputStream(new FileInputStream(FILENAME));   

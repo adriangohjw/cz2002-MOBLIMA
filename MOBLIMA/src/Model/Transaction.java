@@ -4,6 +4,7 @@ import java.util.Date;
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
 
+@SuppressWarnings("serial")
 public class Transaction implements Serializable {
 
 	private String TID; // XXXYYYYMMDDhhmm (XXX is cinema code and YYYYDDMMhhmm is datetime)

@@ -7,6 +7,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.io.Serializable;
 
+@SuppressWarnings("serial")
 public class Movie implements Serializable {
 
     private int id;

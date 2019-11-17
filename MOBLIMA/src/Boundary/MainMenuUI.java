@@ -5,13 +5,9 @@ import Controller.CineplexesController;
 import Controller.InputController;
 import Model.Cinema;
 import Model.CinemaType;
-import Model.Cineplex;
 import Model.SeatingPlan;
 
 import java.util.ArrayList;
-import java.util.Scanner;
-
-import static Controller.InputController.*;
 
 public class MainMenuUI {
 	
