@@ -357,7 +357,85 @@ public class SessionsController {
         }
     } 
 
-    
+    /**
+     * UPDATE a Movie's attribute in Session with matching movieID Database file 
+     * @param col           Attribute of movie to update
+     * @param movieID       ID of Movie to search for  
+     * @param newValue      New value of Movie's attribute
+     */
+    @SuppressWarnings({"static-access", "unchecked"})
+    public void updateByMovie(int col, int movieID, Object newValue) {
+        ArrayList<Cinema> allCinemas  = this.cinemasCtrl.read();
+        ArrayList<Session> allSessions = new ArrayList<Session>();
+        ArrayList<Session> returnSessions = new ArrayList<Session>();
+        Session s = null;
+
+        for (int i=0; i<allCinemas.size(); i++) {
+            Cinema cinema_i = allCinemas.get(i);
+            allSessions = cinema_i.getSessions();
+            returnSessions.clear();  // ensure it started without existing session
+            for (int j=0; j<allSessions.size(); j++){
+                s = allSessions.get(j);
+                if (s.getMovie().getId() == movieID){
+                    
+                    switch (col){
+
+                        case (MoviesController.ID):
+                            s.getMovie().setId((int) newValue);
+                            break;
+
+                        case (MoviesController.TITLE):
+                            s.getMovie().setTitle((String) newValue);
+                            break;
+
+                        case (MoviesController.TYPE):
+                            s.getMovie().setType((MovieType) newValue);
+                            break;
+
+                        case (MoviesController.SYNOPSIS):
+                            s.getMovie().setSynopsis((String) newValue);
+                            break;
+
+                        case (MoviesController.RATING):
+                            s.getMovie().setRating((String) newValue);
+                            break;
+
+                        case (MoviesController.DURATION):
+                            s.getMovie().setDuration((double) newValue);
+                            break;
+                            
+                        case (MoviesController.MOVIE_RELEASE_DATE):
+                            s.getMovie().setMovieReleaseDate((LocalDate) newValue);
+                            break;
+
+                        case (MoviesController.MOVIE_END_DATE):
+                            s.getMovie().setMovieEndDate((LocalDate) newValue);
+                            break;
+
+                        case (MoviesController.DIRECTOR):
+                            s.getMovie().setDirector((String) newValue);
+                            break;
+
+                        case (MoviesController.CAST):
+                            s.getMovie().setCast((ArrayList<String>) newValue);
+                            break;
+
+                        case (MoviesController.REVIEWS):
+                            s.getMovie().setReviews((ArrayList<Review>) newValue);
+                            break;
+
+                        default:
+                            break;
+                    }
+                }
+                returnSessions.add(s);
+            }
+
+            // update DB and break (stop searching other cinema if already found one with matching code)
+            this.cinemasCtrl.updateByAttribute(cinemasCtrl.SESSIONS, cinema_i.getCode(), returnSessions);
+        }
+    }
+
     /** 
      * Delete a Session in the Database file, based on the cinema code and datetime attribute passed
      * @param cinemaCode        Code of cinema which will be deleted

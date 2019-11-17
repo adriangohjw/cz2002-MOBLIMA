@@ -151,6 +151,7 @@ update
 public void updateByAttribute(int col, String cinemaCode, Object oldValue, Object newValue);
 public void updateById(int col, int id, Object newValue);
 public void updateSeatsAvailability(int id, SeatingPlan newSeatsAvailabiity);
+public void updateByMovie(int col, int movieID, Object newValue);
 ~~~
 
 delete

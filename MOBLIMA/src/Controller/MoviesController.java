@@ -184,6 +184,9 @@ public class MoviesController {
     public void updateById(int col, int id, Object newValue) {
         ArrayList<Movie> allData = read();
         ArrayList<Movie> returnData = new ArrayList<Movie>();
+
+        // Delete Sessions with MovieID equal to MovieID passed in
+        sessionsCtrl.updateByMovie(col, id, newValue);
                 
         for (int i=0; i<allData.size(); i++){
             Movie m = allData.get(i);
