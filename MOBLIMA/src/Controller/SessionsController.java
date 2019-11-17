@@ -11,7 +11,6 @@ import Model.*;
 public class SessionsController {
 
     private CinemasController cinemasCtrl = new CinemasController();
-    private MoviesController movieCtrl = new MoviesController();
     public String FILENAME;
     
     public final static int MOVIE = 0;
@@ -79,7 +78,7 @@ public class SessionsController {
                         returnData.add(s);
                         break;
                 case SESSION_DATETIME:
-                    if (s.getSessionDateTime().equals((String) valueToSearch))
+                    if (s.getSessionDateTime().equals((LocalDateTime) valueToSearch))
                         returnData.add(s);
                         break;
                 default:
@@ -89,6 +88,7 @@ public class SessionsController {
         return returnData;
     }; 
 
+    @SuppressWarnings("static-access")
     public Session readBySession(String cinemaCode, LocalDateTime sessionDateTime) {
         ArrayList<Cinema> cinemas = this.cinemasCtrl.readByAttribute(cinemasCtrl.CODE, cinemaCode);
         Cinema c = null;
@@ -121,6 +121,7 @@ public class SessionsController {
         return s;
     }; 
 
+    @SuppressWarnings("static-access")
     public void updateByAttribute(int col, String cinemaCode, Object oldValue, Object newValue) {
         ArrayList<Cinema> allCinemas  = this.cinemasCtrl.read();
         ArrayList<Session> allSessions = new ArrayList<Session>();
@@ -142,7 +143,7 @@ public class SessionsController {
                                 s.setMovie((Movie) newValue);
                             break;
                         case SESSION_DATETIME:
-                            if (s.getSessionDateTime().equals((String) oldValue))
+                            if (s.getSessionDateTime().equals((LocalDateTime) oldValue))
                                 s.setSessionDateTime((LocalDateTime) newValue);
                             break;
                         case ID:
@@ -162,6 +163,7 @@ public class SessionsController {
         }
     } 
 
+    @SuppressWarnings("static-access")
     public void updateById(int col, int id, Object newValue) {
         ArrayList<Cinema> allCinemas  = this.cinemasCtrl.read();
         ArrayList<Session> allSessions = new ArrayList<Session>();
@@ -196,6 +198,7 @@ public class SessionsController {
         }
     }
 
+    @SuppressWarnings("static-access")
     public void updateSeatsAvailability(int id, SeatingPlan newSeatsAvailabiity) {
         ArrayList<Cinema> allCinemas  = this.cinemasCtrl.read();
         ArrayList<Session> allSessions = new ArrayList<Session>();
@@ -219,7 +222,8 @@ public class SessionsController {
         }
     } 
 
-    public void delete(String cinemaCode, String sessionDateTime){
+    @SuppressWarnings("static-access")
+    public void delete(String cinemaCode, LocalDateTime sessionDateTime){
         ArrayList<Cinema> allCinemas  = this.cinemasCtrl.read();
         ArrayList<Session> allSessions = new ArrayList<Session>();
         ArrayList<Session> returnSessions = new ArrayList<Session>();
@@ -245,6 +249,7 @@ public class SessionsController {
         }
     }
 
+    @SuppressWarnings("static-access")
     public void delete(int id){
         ArrayList<Cinema> allCinemas  = this.cinemasCtrl.read();
         ArrayList<Session> allSessions = new ArrayList<Session>();
@@ -260,7 +265,6 @@ public class SessionsController {
                     returnSessions.add(s);
             }
             this.cinemasCtrl.updateByAttribute(cinemasCtrl.SESSIONS, cinema_i.getCode(), returnSessions);
-            break;
         }
     }
 
