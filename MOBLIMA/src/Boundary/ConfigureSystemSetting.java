@@ -7,13 +7,14 @@ import Controller.*;
 import Model.*;
 
 public class ConfigureSystemSetting {
+	/** 
+     * All controllers - holCtrl, priceCtrl
+     */
 	private HolidaysController holCtrl = new HolidaysController();
 	private PriceController priceCtrl = new PriceController();
 	
 	/** 
-     * Main method
-     * @param exit				If the user wants to quit or not
-     * @param choice			User's choice for the method selection
+     * Main method to load - display all available options and ask user to choose one
      */
 	public void main() {
 		boolean exit  = false;
@@ -67,8 +68,8 @@ public class ConfigureSystemSetting {
 	}
 	
 	/** 
-     * Create a new holiday
-     * @param holiday			User's input for a new holiday (date-wise)
+     * Create a new holiday - ask user to enter date
+     * If the holiday already exists, the user has to try again
      */
 	public void createHoliday() {
 		System.out.println("Enter holiday date: ");
@@ -81,9 +82,8 @@ public class ConfigureSystemSetting {
 	}
 
 	/** 
-     * List all available holidays
-     * @param holList			List of available holidays
-     * @return					If there are available holidays or not
+     * List all available holidays (If there are any)
+     * @return		If there are available holidays or not
      */
 	public boolean listAllHolidays(){
 		ArrayList<Holiday> holList = holCtrl.read();
@@ -101,7 +101,7 @@ public class ConfigureSystemSetting {
 	
 	/** 
      * Delete a holiday from database
-     * @param holiday			User's input for a new holiday (date-wise)
+     * If the user's input is invalid, they have to try again
      */
 	public void deleteHoliday() {
 		if(listAllHolidays()){
@@ -116,9 +116,8 @@ public class ConfigureSystemSetting {
 	}
 	
 	/** 
-     * Update the price of a specific movie type
-     * @param choice			User's input for movie type
-     * @param newPrice			New price for that movie type
+     * Update the price of a specific movie type (user's choosing)
+     * Invalid choice will return the user back to main menu
      */
 	public void updateMovieTypePrice() {
 		System.out.println("Choose Movie Type: \n" +
@@ -146,9 +145,8 @@ public class ConfigureSystemSetting {
 	}
 	
 	/** 
-     * Update the price of a specific cinema type
-     * @param choice			User's input for cinema type
-     * @param newPrice			New price for that cinema type
+     * Update the price of a specific cinema type (user's choosing)
+     * Invalid choice will return the user back to main menu
      */
 	public void updateCinemaTypePrice() {
 		System.out.println("Choose Cinema Type: \n" +
@@ -172,9 +170,7 @@ public class ConfigureSystemSetting {
 	}
 	
 	/** 
-     * Update the price of a specific ticket type
-     * @param choice			User's input for ticket type
-     * @param newPrice			New price for that ticket type
+     * Update the price of a specific ticket type (user's choosing)
      */
 	public void updatePriceType(int choice) {
 		System.out.println("Enter new price: ");
@@ -199,7 +195,7 @@ public class ConfigureSystemSetting {
 	}
 	
 	/** 
-     * Print a holiday
+     * Print a holiday's date
      */
 	public void printHol(Holiday holiday) {
 		System.out.println(holiday.getHolidayDateToString());

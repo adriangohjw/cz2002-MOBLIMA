@@ -8,15 +8,18 @@ import java.time.LocalDateTime;
 import java.util.*;
 
 public class CheckSeatUI {
+	
+	/** 
+     * Temporary seating plan storage & all necessary controllers (session, cineplex, cinema)
+     */
     private SeatingPlan seatsAvailability;
     private SessionsController sessionsCtrl;
     private CineplexesController cineplexesCtrl;
     private CinemasController cinemasCtrl;
     
     /** 
-     * Default Constructor - call the necessary controllers
+     * Default Constructor - make the necessary controllers
      */
-    
     public CheckSeatUI(){
         this.sessionsCtrl = new SessionsController();
         this.cineplexesCtrl = new CineplexesController();
@@ -24,7 +27,7 @@ public class CheckSeatUI {
     }
 
     /** 
-     * Main method to load - if there are available sessions, users can choose one to load the layout
+     * Main method to load - if there are available sessions, user can choose one to load the layout
      */
     public void main(){
         if(showAvailableSessions()){
@@ -36,12 +39,9 @@ public class CheckSeatUI {
     }
 
     /** 
-     * Print the layout.
-     * @param choice			User's choice - 1 to exit
-     * @param cinemaCode		Cinema's code
-     * @param sessionDateTime	The date time from user's input
-     * @param session			The queried session
-     * @param seatsAvailability	The queried session's seat layout
+     * Print the layout - ask the user to input cinema code and date
+     * If any input is invalid, the user will have to re-input
+     * User can return to main menu with a choice
      */
     public void printLayout(){
         int choice = 0;
@@ -69,11 +69,12 @@ public class CheckSeatUI {
 
     /** 
      * Check if there are availablle sessions.
-     * @param validInput		If the user's cineplex input is valid or not
-     * @param choice			User's choice for the cineplex
-     * @param cinemas			List of the cinemas in that cineplex
-     * @param counter			Number of cinemas in that cineplex
-     * @return					If there are available sessions or not
+     * If there are no cineplex, return false
+     * If there are, display all cineplexes and ask the user to choose one.
+     * Any invalid input will prompt the user to try again
+     * If there are no available sessions within a cineplex, return false
+     * Else, display all sessions and return true
+     * @return	If there are available sessions or not
      */
     private boolean showAvailableSessions(){
         ArrayList<Cineplex> cineplexes = cineplexesCtrl.read();
