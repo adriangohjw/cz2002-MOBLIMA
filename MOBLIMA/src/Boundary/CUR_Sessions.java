@@ -8,11 +8,17 @@ import Model.*;
 import java.util.ArrayList;
 
 public class CUR_Sessions {
+	/** 
+     * All controllers (movie, cinema, cineplex, session)
+     */
 	private MoviesController movieCtrl = new MoviesController();
 	private CinemasController cinemaCtrl = new CinemasController();
 	private CineplexesController cineplexCtrl = new CineplexesController();
 	private SessionsController sessionCtrl = new SessionsController();
 	
+	/** 
+     * Main method to load - display all options and ask user to choose one
+     */
 	public void main(){
 		boolean exit = false;
 		while(!exit) {
@@ -43,7 +49,11 @@ public class CUR_Sessions {
 			}
 		}
 	}
-
+	
+	/** 
+     * Create a new session with user's input
+     * Any invalid input will return user to main menu
+     */
 	public void createSession() {
 
 		System.out.println("Creating Session...\n\n");
@@ -93,6 +103,10 @@ public class CUR_Sessions {
 
 	}
 	
+	/** 
+     * Update an existing session of user's choosing
+     * Any invalid input will return user to main menu
+     */
 	public void updateSession() {
 		
 		System.out.println("Updating Session...\n\n");
@@ -151,7 +165,10 @@ public class CUR_Sessions {
 		System.out.println("Session " + session_id + " successfully updated!");
 	}
 	
-		
+	/** 
+     * Remove an existing session of user's choosing
+     * Any invalid input will return user to main menu
+     */
 	public void removeSession() {
 		
 		System.out.println("Deleting Session...\n\n");
@@ -185,6 +202,9 @@ public class CUR_Sessions {
 		System.out.println("Session " + sessionId + " successfully deleted!");
 	}
 	
+	/** 
+     * List all existing sessions
+     */
 	public void listSessions() {
 		System.out.println("\nCineplex List:");
 		ArrayList<Cineplex> cineplexList = cineplexCtrl.read();
@@ -206,22 +226,34 @@ public class CUR_Sessions {
 		cinemaList.forEach(Cinema -> printCinema(Cinema));
 	}
 	
+	/** 
+     * Print all sessions of a cinema
+     */
 	public void printCinema(Cinema cinema) {
 		System.out.println("\nCinema code: " + cinema.getCode());
 		ArrayList<Session> sessionList = cinema.getSessions();
 		sessionList.forEach(session -> printSession(session));
 	}
 	
+	/** 
+     * Print a cinema's code
+     */
 	public void printCinemaCode(Cinema cinema) {
 		System.out.println("Cinema code: " + cinema.getCode());
 	}
 	
+	/** 
+     * Print a session - id, title, date
+     */
 	public void printSession(Session session) {
 		System.out.print("\n\tSession id: " + session.getId() + "\n" +
 						   "\tMovie title: " + session.getMovie().getTitle() + "\n" +
 						   "\tDate: " + session.getSessionDateTimeToString() + "\n");
 	}
 	
+	/** 
+     * Print a cineplex's name
+     */
 	public void printCineplex(Cineplex cineplex) {
 		System.out.println("Name: " + cineplex.getName());
 	}

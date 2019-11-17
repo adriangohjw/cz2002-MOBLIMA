@@ -6,8 +6,14 @@ import java.time.LocalDate;
 import java.util.*;
 
 public class CUR_Movie_Listing {
+	/** 
+     * All controllers (movie)
+     */
 	private static MoviesController movieCtrl = new MoviesController();
 
+	/** 
+     * Main method to load - display all options and ask the user to choose one
+     */
 	public void main() {
 		boolean exit = false;
 		while (!exit) {
@@ -35,7 +41,10 @@ public class CUR_Movie_Listing {
 		}
 	}
 	
-	
+	/** 
+     * Create a new movie
+     * Invalid input will return the user back to main menu
+     */
 	public void createMovie() {
 
 		System.out.println("Creating movie listing....");
@@ -110,7 +119,10 @@ public class CUR_Movie_Listing {
 		System.out.println("\n\nMovie created....");
 	}
 
-
+	/** 
+     * Update an existing movie
+     * Invalid input will return the user back to main menu
+     */
 	public void updateMovie() {
 
 		System.out.println("Updating movie...");
@@ -242,8 +254,10 @@ public class CUR_Movie_Listing {
 		}
 	}
 	
-	
-
+	/** 
+     * Remove an existing movie of user's choosing
+     * Invalid input will return the user back to main menu
+     */
 	public void removeMovie(){
 		System.out.println("Deleting movie...");
 		SearchMovieUI listMovie = new SearchMovieUI();

@@ -6,22 +6,34 @@ import Model.*;
 import java.util.*;
 
 public class ListTopMovieUI {
+	/** 
+     * User's choice and the movie controller
+     */
 	private int choice;
 	private MoviesController moviesCtrl;
 
+	/** 
+     * Default constructor
+     */
 	public ListTopMovieUI() {
 		this.moviesCtrl = new MoviesController();
 	}
-
+	/** 
+     * Constructor with a specific controller state
+     */
 	public ListTopMovieUI(MoviesController moviesCtrl) {
 		this.moviesCtrl = moviesCtrl;
 	}
-
+	/** 
+     * Main method to load - show display while the choice is not to return
+     */
 	public void main(){
 		while (choice != 3)
 			display();
 	}
-
+	/** 
+     * Display all available options and ask user to choose one
+     */
 	public void display() {
 		System.out.println("Select 1 to list top 5 movies according to ratings.");
 		System.out.println("Select 2 to list top 5 movies according to ticket sales.");
@@ -42,9 +54,11 @@ public class ListTopMovieUI {
 			System.out.println("Invalid input! Please try again.");
 		}
 	}
-
+	/** 
+     * List top movies, ranked by ratings
+     */
 	public void listWithRatings(){
-		ArrayList<Movie> movieList = moviesCtrl.read(); // there are two readByAttribute, which to be used?
+		ArrayList<Movie> movieList = moviesCtrl.read();
 		Collections.sort(movieList, new SortByRating());
 		int amount = 0;
 		if(movieList.size()<5){
@@ -59,9 +73,11 @@ public class ListTopMovieUI {
 		ViewMovieDetailUI view = new ViewMovieDetailUI();
 		view.main();
 	}
-
+	/** 
+     * List top movies, ranked by ticket sales
+     */
 	public void listWithSales(){
-		ArrayList<Movie> movieList = moviesCtrl.read(); // there are two readByAttribute, which to be used?
+		ArrayList<Movie> movieList = moviesCtrl.read();
 		Collections.sort(movieList, new SortBySales());
 		int amount = 0;
 		if(movieList.size()<5){
@@ -76,7 +92,10 @@ public class ListTopMovieUI {
 		ViewMovieDetailUI view = new ViewMovieDetailUI();
 		view.main();
 	}
-    
+
+	/** 
+     * Print a movie's detail
+     */
     public void printMovie(Movie movie){
 		System.out.println("ID: " + movie.getId());
         System.out.println("Title: " + movie.getTitle());
@@ -86,6 +105,10 @@ public class ListTopMovieUI {
 }
 
 class SortByRating implements Comparator<Movie> {
+
+	/** 
+     * Implementing the compare method to use in Collections.sort()
+     */
 	public int compare(Movie a, Movie b) {
 		String ratingA = a.getOverallReviews();
 		String ratingB = b.getOverallReviews();
@@ -100,6 +123,9 @@ class SortByRating implements Comparator<Movie> {
 }
 
 class SortBySales implements Comparator<Movie> {
+	/** 
+     * Implementing the compare method to use in Collections.sort()
+     */
 	public int compare(Movie a, Movie b) {
 		TransactionsController transCtrl = new TransactionsController();
 		ArrayList<Transaction> transList = transCtrl.read();
