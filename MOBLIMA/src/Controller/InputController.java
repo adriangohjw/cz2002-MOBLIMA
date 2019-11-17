@@ -84,6 +84,23 @@ public class InputController {
         return input;
     }
 
+    public static int getPositiveIntFromUser(){
+        int input = -1;
+        boolean validInput = false;
+        while(!validInput) {
+            if(sc.hasNextInt()){
+                input = sc.nextInt();
+                if(input>0)
+                    validInput = true;
+            }
+            else{
+                System.out.println("Wrong input!");
+            }
+            sc.nextLine();
+        }
+        return input;
+    }
+
     public static double getDoubleFromUser(int range){
         double input = -1;
         boolean validInput = false;

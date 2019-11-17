@@ -14,6 +14,7 @@ public class MakeBookingUI {
     private Cinema queriedCinema;
     private Session queriedSession;
     private SeatingPlan seatAvailability;
+    private int amountOfTickets;
 
     private CineplexesController cineplexesCtrl;
     private CinemasController cinemaCtrl;
@@ -167,38 +168,49 @@ public class MakeBookingUI {
     
     public void reserveSeat() {
     	int id;
+    	int amountLeft = amountOfTickets;
+    	int counter = 1;
     	boolean seatReserved = false;
     	seatAvailability.printLayout();
     	do{
-			System.out.println("Choose your seat id: ");
+			System.out.println("Choose seat id for " + counter + " ticket: ");
 			id = InputController.getIntFromUser(); //from 0 to row * column - 1
 			seatReserved = sessCtrl.assignSeat(seatAvailability, id, queriedSession.getId());
-		}while(!seatReserved);
+			if(seatReserved){
+				amountLeft--;
+				counter++;
+			}
+		}while(amountLeft>0);
 		makeTransaction();
 	}
     
     public void priceShowcase() {
     	double price = 0;
-    	boolean validInput = false;
-    	while(!validInput){
-			System.out.println("Enter your age type (Student, Senior, Standard): ");
-			String priceTypeString = InputController.getStringFromUser();
-			if (priceTypeString.equals("Student")){
-				price = priceCtrl.computePrice(queriedSession, queriedCinema, PriceType.STUDENT);
-				validInput = true;
-			}
-			else if (priceTypeString.equals("Senior")){
-				price = priceCtrl.computePrice(queriedSession, queriedCinema, PriceType.SENIOR_CITIZEN);
-				validInput = true;
-			}
-			else if(priceTypeString.equals("Standard")){
-				price = priceCtrl.computePrice(queriedSession, queriedCinema, PriceType.NORMAL);
-				validInput = true;
-			}
-			else{
-				System.out.println("Wrong input!");
+    	System.out.print("Enter the amount of tickets: ");
+    	amountOfTickets = InputController.getPositiveIntFromUser();
+    	for(int i = 0;i<amountOfTickets;i++){
+			boolean validInput = false;
+			while(!validInput){
+				System.out.println("Enter age type for " + (i+1) + " ticket (Student, Senior, Standard): ");
+				String priceTypeString = InputController.getStringFromUser();
+				if (priceTypeString.equals("Student")){
+					price += priceCtrl.computePrice(queriedSession, queriedCinema, PriceType.STUDENT);
+					validInput = true;
+				}
+				else if (priceTypeString.equals("Senior")){
+					price += priceCtrl.computePrice(queriedSession, queriedCinema, PriceType.SENIOR_CITIZEN);
+					validInput = true;
+				}
+				else if(priceTypeString.equals("Standard")){
+					price += priceCtrl.computePrice(queriedSession, queriedCinema, PriceType.NORMAL);
+					validInput = true;
+				}
+				else{
+					System.out.println("Wrong input!");
+				}
 			}
 		}
+
     	System.out.println("Total price is equal: " + price + " SGD");
     	System.out.print("Do you want to continue? Yes (0)/ No (1): ");
     	int choice = InputController.getYesOrNoFromUser();
