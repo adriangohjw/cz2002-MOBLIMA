@@ -20,7 +20,10 @@ public class UsersLayer {
 
         boolean isValid = true;
 
-        if (isEmailValid(username) == false) {
+        if (isEmailValid(username) == false)
+            isValid = false;
+            
+        if (isExistingUser(username)){
             try {
                 throw new ExistingUserException();
             } catch (ExistingUserException e) {
@@ -28,10 +31,6 @@ public class UsersLayer {
             }
             isValid = false;
         }
-            
-
-        if (isExistingUser(username))
-            isValid = false;
         
         return isValid;
     }
