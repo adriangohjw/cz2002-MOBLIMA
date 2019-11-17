@@ -88,7 +88,7 @@ public class MoviesController {
                         returnData.add(m);
                     break;
                 case TYPE:
-                    if (m.getType().equals((MovieType) valueToSearch))
+                    if (m.getType().toString().equals((String) valueToSearch))
                         returnData.add(m);
                     break;
                 case RATING:
