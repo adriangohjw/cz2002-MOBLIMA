@@ -2,8 +2,10 @@ package Boundary;
 
 import Controller.CineplexesController;
 import Controller.InputController;
+import Controller.MoviesController;
 import Model.Cinema;
 import Model.CinemaType;
+import Model.MovieType;
 import Model.SeatingPlan;
 
 import java.util.ArrayList;
@@ -47,22 +49,30 @@ public class MainMenuUI {
 
 	private static void initializeSystem() {
 		CineplexesController cineplexesController = new CineplexesController();
+		MoviesController moviesController = new MoviesController();
 
 		ArrayList<Cinema> cinemasOne = new ArrayList<>();
 		ArrayList<Cinema> cinemasTwo = new ArrayList<>();
+		ArrayList<Cinema> cinemasThree = new ArrayList<>();
 
-		cinemasOne.add(new Cinema("GHK",CinemaType.PREMIUM,new SeatingPlan(10,10)));
+		cinemasOne.add(new Cinema("RTU",CinemaType.PREMIUM,new SeatingPlan(10,10)));
 		cinemasOne.add(new Cinema("DFK",CinemaType.PREMIUM,new SeatingPlan(10,10)));
 		cinemasOne.add(new Cinema("TYU",CinemaType.STANDARD,new SeatingPlan(10,10)));
 		cinemasTwo.add(new Cinema("XDP",CinemaType.PREMIUM,new SeatingPlan(10,10)));
 		cinemasTwo.add(new Cinema("PUP",CinemaType.PREMIUM,new SeatingPlan(10,10)));
 		cinemasTwo.add(new Cinema("VAL",CinemaType.STANDARD,new SeatingPlan(10,10)));
+		cinemasThree.add(new Cinema("TIR", CinemaType.STANDARD, new SeatingPlan(10,10)));
+		cinemasThree.add(new Cinema("EFG",CinemaType.STANDARD, new SeatingPlan(10,10)));
+		cinemasThree.add(new Cinema("IUT",CinemaType.PREMIUM, new SeatingPlan(10,10)));
 
 		if(cineplexesController.read().size()==0){
 			System.out.println(cinemasOne.size());
-			cineplexesController.create("First", cinemasOne);
-			cineplexesController.create("Second", cinemasTwo);
+			cineplexesController.create("Orchard Movies Cineplex", cinemasOne);
+			cineplexesController.create("Sentosa Beach Cineplex", cinemasTwo);
+			cineplexesController.create("Movie Base Cineplex", cinemasThree);
 		}
+
+
 	}
 
 	public static void admin_login(){
