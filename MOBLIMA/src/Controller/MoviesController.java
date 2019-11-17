@@ -11,6 +11,7 @@ import java.util.ArrayList;
 
 import BusinessLayer.MoviesLayer;
 import Model.Movie;
+import Model.MovieStatus;
 import Model.MovieType;
 import Model.Review;
 
@@ -173,6 +174,23 @@ public class MoviesController {
         return returnData;
     }
 
+
+    /**
+     * READ and return every Movie that are still available for booking in the Database file
+     * @return Movie    Return list of Movies if any, else empty list
+     */
+    public ArrayList<Movie> readAvailableMovies() {
+        ArrayList<Movie> allData = read();
+        ArrayList<Movie> returnData = new ArrayList<Movie>();
+        
+        for (Movie movie : allData) {
+            MovieStatus movieShowStatus = movie.getShowStatus();
+            if (movieShowStatus == MovieStatus.PREVIEW || movieShowStatus == MovieStatus.NOW_SHOWING) 
+                returnData.add(movie);
+        }
+        
+        return returnData;
+    }
     
     /** 
      * UPDATE a Movie's attribute based on a given movie's id in Database file 

@@ -12,6 +12,7 @@ read
 public ArrayList<Movie> read(); 
 public Movie readByID(int valueToSearch);
 public ArrayList<Movie> readByAttribute(int col, String valueToSearch);
+public ArrayList<Movie> readAvailableMovies();
 ~~~
 
 update
