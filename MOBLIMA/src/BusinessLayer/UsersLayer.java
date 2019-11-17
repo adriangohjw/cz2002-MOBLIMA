@@ -1,8 +1,10 @@
 package BusinessLayer;
 
 import java.util.ArrayList;
+import java.util.regex.Pattern;
 
 import CustomException.UsersExceptions.ExistingUserException;
+import CustomException.UsersExceptions.InvalidEmailAddressException;
 
 import Model.Admin;
 import Model.Movie_Goer;
@@ -13,6 +15,19 @@ public class UsersLayer {
 
     static AdminsController adminsCtrl = new AdminsController();
     static MovieGoersController movieGoersCtrl = new MovieGoersController();
+
+    public static boolean isValidUser(String username) {
+
+        boolean isValid = true;
+
+        if (isEmailValid(username) == false)
+            isValid = false;
+
+        if (isExistingUser(username))
+            isValid = false;
+        
+        return isValid;
+    }
 
     public static boolean isExistingUser(String username) {
 
@@ -42,5 +57,23 @@ public class UsersLayer {
         }
 
         return false;
+    }
+
+    public static boolean isEmailValid(String email) { 
+        String emailRegex = "^[a-zA-Z0-9_+&*-]+(?:\\."+ 
+                            "[a-zA-Z0-9_+&*-]+)*@" + 
+                            "(?:[a-zA-Z0-9-]+\\.)+[a-z" + 
+                            "A-Z]{2,7}$"; 
+                              
+        Pattern pat = Pattern.compile(emailRegex); 
+        if (email == null) {
+            try {
+                throw new InvalidEmailAddressException();
+            } catch (InvalidEmailAddressException e) {
+                System.out.println(e);
+            }
+            return false; 
+        }
+        return pat.matcher(email).matches(); 
     }
 }

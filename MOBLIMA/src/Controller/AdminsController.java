@@ -21,7 +21,7 @@ public class AdminsController {
     public final static int ROLE = 2;
 
     public void create(String username, String password) {
-        if (UsersLayer.isExistingUser(username)){
+        if (UsersLayer.isValidUser(username)){
             // do nothing
         } else {
             try {

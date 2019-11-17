@@ -8,4 +8,11 @@ public class UsersExceptions {
             super("User already existed");
         }
     }
+
+    @SuppressWarnings("serial")
+    public static class InvalidEmailAddressException extends Exception {
+        public InvalidEmailAddressException() {
+            super("Email address is invalid (wrong format)");
+        }
+    }
 }

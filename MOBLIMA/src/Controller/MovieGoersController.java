@@ -23,7 +23,7 @@ public class MovieGoersController {
     public final static int MOBILE_NUMBER = 4;
 
     public void create(String username, String password) {
-        if (UsersLayer.isExistingUser(username)) {
+        if (UsersLayer.isValidUser(username)) {
             // do nothing
         } else {
             try {
