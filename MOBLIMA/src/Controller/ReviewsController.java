@@ -48,7 +48,7 @@ public class ReviewsController {
 
     /** 
      * Change the Movie Controller that this controller is referencing
-     * @return MoviesController     This controller's Movie Controller
+     * @param moviesCtrl     This controller's new Movie Controller
      */
     public void setMoviesCtrl(MoviesController moviesCtrl){
         this.movieCtrl = moviesCtrl;

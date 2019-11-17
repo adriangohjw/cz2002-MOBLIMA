@@ -97,7 +97,7 @@ public class MovieGoersController {
     /** 
      * READ and return every Cineplex in the Database file
      * If Database file not found, ignore error and return empty list
-     * @return ArrayList<Movie_Goer>  Return list of Cineplexes if any, else empty list
+     * @return Model.{@link Movie_Goer}  Return list of Cineplexes if any, else empty list
      */
     @SuppressWarnings("unchecked")
     public ArrayList<Movie_Goer> read() {

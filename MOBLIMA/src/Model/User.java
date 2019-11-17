@@ -11,13 +11,19 @@ import java.security.NoSuchAlgorithmException;
 @SuppressWarnings("serial")
 public class User implements Serializable {
 
+	 /**
+	  * this User's email (username)
+	  */
+	private String email;
+	
 	/**
-	 * @param email				this User's email
-	 * @param passwordHashed	this User's password (hashed and encrypted with SHA256)
-	 * @param role				this User's role (used to determine if Admin or Movie_Goer)
+	 * this User's password (hashed and encrypted with SHA256)
 	 */
-    private String email;  // username 
-    private String passwordHashed;
+	private String passwordHashed;
+	
+	/**
+	 * this User's role (used to determine if Admin or Movie_Goer)
+	 */
 	private int role; 
 	
 	/**

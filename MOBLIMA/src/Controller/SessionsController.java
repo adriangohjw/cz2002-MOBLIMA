@@ -72,9 +72,9 @@ public class SessionsController {
      * If attributes are not allowed, throw error and do nothing
      * If Database file exist, existing records are read and new Session object is aopended before saving
      * If Database file does not exist, Session object will be written to a new file and saved
-     * @param cinemaCode
-     * @param movie
-     * @param sessionDateTime
+     * @param cinemaCode        This Sessions's cinema code
+     * @param movie             This Sessions's movie
+     * @param sessionDateTime   This Sessions's date and time
      */
     public void create(String cinemaCode, Movie movie, LocalDateTime sessionDateTime) {
         if (SessionsLayer.isSessionValid(cinemaCode, movie, sessionDateTime)) {
@@ -101,7 +101,7 @@ public class SessionsController {
     
     /** 
      * READ and return every Cinema in the Database file
-     * @return ArrayList<Session>   Return list of Sessions if found, else empty list
+     * @return Model.{@link Session}   Return list of Sessions if found, else empty list
      */
     public ArrayList<Session> read() {
         ArrayList<Cinema> allCinemas  = this.cinemasCtrl.read();
@@ -117,9 +117,9 @@ public class SessionsController {
     
     /** 
      * READ and return every Session based on a certain value of a given attribute in the Database file
-     * @param col                   Given attribute to be check for (based on constant as defined)
-     * @param valueToSearch         Value of given attribute to search for
-     * @return ArrayList<Session>   Return list of Sessions if any, else empty list
+     * @param col                       Given attribute to be check for (based on constant as defined)
+     * @param valueToSearch             Value of given attribute to search for
+     * @return Model.{@link Session}    Return list of Sessions if any, else empty list
      */
     public ArrayList<Session> readByAttributes(int col, Object valueToSearch) {
         ArrayList<Session> allData = read();
@@ -147,9 +147,9 @@ public class SessionsController {
     
     /** 
      * READ and return every Session of a cinema on a speficic date in the Database file
-     * @param cinemaCode            Cinema's code to be check for
-     * @param sessionDate           Value of date to search for
-     * @return ArrayList<Session>   Return list of Sessions if any, else empty list
+     * @param cinemaCode                Cinema's code to be check for
+     * @param sessionDate               Value of date to search for
+     * @return Model.{@link Session}    Return list of Sessions if any, else empty list
      */
     @SuppressWarnings("static-access")
     public ArrayList<Session> readByAttributes(String cinemaCode, LocalDate sessionDate) {

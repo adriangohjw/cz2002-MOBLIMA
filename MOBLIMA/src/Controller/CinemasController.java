@@ -102,7 +102,7 @@ public class CinemasController {
     
     /** 
      * READ and return every Cinema in the Database file
-     * @return ArrayList<Cinema>    Return list of Cinemas if found, else empty list
+     * @return Model.{@link Cinema}    Return list of Cinemas if found, else empty list
      */
     public ArrayList<Cinema> read() {
         ArrayList<Cinema> returnData = new ArrayList<Cinema>();
@@ -120,7 +120,7 @@ public class CinemasController {
     /** 
      * READ and return every Cinema of a given Cineplex in the Database file
      * @param name                  Name of cineplex to search for
-     * @return ArrayList<Cinema>    Return list of Cinemas if found, else empty list
+     * @return Model.{@link Cinema}    Return list of Cinemas if found, else empty list
      */
     public ArrayList<Cinema> readByCineplexName(String name){
         ArrayList<Cinema> returnData = new ArrayList<Cinema>();
@@ -141,7 +141,7 @@ public class CinemasController {
      * READ and return every Cinema based on a certain value of a given attribute in the Database file
      * @param col                   Given attribute to be check for (based on constant as defined)
      * @param valueToSearch         Value of given attribute to search for
-     * @return ArrayList<Cinema>    Return list of Cinemas if any, else empty list
+     * @return Model.{@link Cinema}    Return list of Cinemas if any, else empty list
      */
     public ArrayList<Cinema> readByAttribute(int col, Object valueToSearch) {
         ArrayList<Cinema> returnData = new ArrayList<Cinema>();

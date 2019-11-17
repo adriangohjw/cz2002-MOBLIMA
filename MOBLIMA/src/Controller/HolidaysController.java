@@ -25,7 +25,7 @@ public class HolidaysController {
      * If attributes are not allowed, throw error and do nothing
      * If Database file exist, existing records are read and new holiday object is aopended before saving
      * If Database file does not exist, holiday object will be written to a new file and saved
-     * @param holidayDate
+     * @param holidayDate   Date of this Holiday
      */
     public void create(LocalDate holidayDate) {
         Holiday holiday = new Holiday(holidayDate);
@@ -48,7 +48,7 @@ public class HolidaysController {
     /** 
      * READ and return every Cineplex in the Database file
      * If Database file not found, ignore error and return empty list
-     * @return ArrayList<Holiday>   Return list of Holidays if any, else empty list
+     * @return Model.{@link Holiday}   Return list of Holidays if any, else empty list
      */
     @SuppressWarnings("unchecked")
     public ArrayList<Holiday> read() {
@@ -100,7 +100,7 @@ public class HolidaysController {
     /** 
      * Overwrite Database file with new data of list of Admin
      * @param filename      Filename to check for
-     * @param returnData    New ArrayList of Holiday to be written to the file
+     * @param data          New ArrayList of Holiday to be written to the file
      */
     public void replaceExistingFile(String filename, ArrayList<Holiday> data){
         File tempFile = new File(filename);

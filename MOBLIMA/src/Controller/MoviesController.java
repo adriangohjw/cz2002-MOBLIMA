@@ -80,7 +80,7 @@ public class MoviesController {
     
     /** 
      * READ and return every Movies in the Database file
-     * @return ArrayList<Movie>     Return list of Movies if found, else empty list
+     * @return Movie    Return list of Movies if found, else empty list
      */
     @SuppressWarnings("unchecked")
     public ArrayList<Movie> read() {
@@ -116,7 +116,7 @@ public class MoviesController {
      * READ and return every Movie based on a certain value of a given attribute in the Database file
      * @param col                   Given attribute to be check for (based on constant as defined)
      * @param valueToSearch         Value of given attribute to search for
-     * @return ArrayList<Movie>     Return list of Movies if any, else empty list
+     * @return Movie                Return list of Movies if any, else empty list
      */
     public ArrayList<Movie> readByAttribute(int col, Object valueToSearch) {
         ArrayList<Movie> allData = read();
@@ -295,7 +295,7 @@ public class MoviesController {
     /** 
      * Overwrite Database file with new data of list of Admin
      * @param filename      Filename to check for
-     * @param returnData    New ArrayList of Movies to be written to the file
+     * @param data    New ArrayList of Movies to be written to the file
      */
     public void replaceExistingFile(String filename, ArrayList<Movie> data){
         File tempFile = new File(filename);

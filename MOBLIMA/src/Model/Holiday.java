@@ -12,7 +12,7 @@ import java.time.format.DateTimeFormatter;
 public class Holiday implements Serializable {
 
     /**
-     * @param holidayDate       this Holiday's date
+     * this Holiday's date
      */
     private LocalDate holidayDate;
 
