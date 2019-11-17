@@ -39,7 +39,7 @@ public class MoviesLayer {
             try {
                 throw new ExistingMovieException();
             } catch (ExistingMovieException e) {
-                System.out.println(e);
+                System.out.println(e.getMessage());
             }
             isValid = false;
         }
@@ -110,7 +110,7 @@ public class MoviesLayer {
             try {
                 throw new EmptyStringException("synopsis");
             } catch (EmptyStringException e) {
-                System.out.println(e);
+                System.out.println(e.getMessage());
             }
             return true;
         } else {
@@ -128,7 +128,7 @@ public class MoviesLayer {
             try {
                 throw new EmptyStringException("rating");
             } catch (EmptyStringException e) {
-                System.out.println(e);
+                System.out.println(e.getMessage());
             }
             return true;
         } else {
@@ -146,7 +146,7 @@ public class MoviesLayer {
             try {
                 throw new NegativeDurationException();
             } catch (NegativeDurationException e) {
-                System.out.println(e);
+                System.out.println(e.getMessage());
             }
             return true;
         } else {
@@ -167,7 +167,7 @@ public class MoviesLayer {
             try {
                 throw new EndBeforeReleaseException();
             } catch (EndBeforeReleaseException e) {
-                System.out.println(e);
+                System.out.println(e.getMessage());
             }
             return false;
         }
@@ -183,7 +183,7 @@ public class MoviesLayer {
             try {
                 throw new EmptyStringException("director");
             } catch (EmptyStringException e) {
-                System.out.println(e);
+                System.out.println(e.getMessage());
             }
             return true;
         } else {
@@ -201,7 +201,7 @@ public class MoviesLayer {
             try {
                 throw new EmptyCastException();
             } catch (EmptyCastException e) {
-                System.out.println(e);
+                System.out.println(e.getMessage());
             }
             return true;
         } else {

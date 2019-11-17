@@ -31,7 +31,7 @@ public class TransactionsLayer {
             try {
                 throw new InvalidTransactionException();
             } catch (InvalidTransactionException e) {
-                System.out.println(e);
+                System.out.println(e.getMessage());
             }
         }
 
