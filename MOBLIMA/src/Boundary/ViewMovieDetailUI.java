@@ -3,11 +3,9 @@ package Boundary;
 import Controller.*;
 import Model.*;
 
-import java.util.*;
 
 public class ViewMovieDetailUI {
     private MoviesController moviesCtrl;
-    Scanner sc = new Scanner(System.in);
 
     ViewMovieDetailUI() {
         this.moviesCtrl = new MoviesController();

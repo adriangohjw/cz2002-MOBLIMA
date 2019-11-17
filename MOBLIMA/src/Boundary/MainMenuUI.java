@@ -1,6 +1,5 @@
 package Boundary;
 
-import Controller.CinemasController;
 import Controller.CineplexesController;
 import Controller.InputController;
 import Model.Cinema;
@@ -64,9 +63,6 @@ public class MainMenuUI {
 			cineplexesController.create("First", cinemasOne);
 			cineplexesController.create("Second", cinemasTwo);
 		}
-		/*for(Cineplex cineplex: cineplexesController.read()){
-			System.out.println(cineplex.toString());
-		}*/
 	}
 
 	public static void admin_login(){
@@ -94,8 +90,8 @@ public class MainMenuUI {
 					curSessions.main();
 					break;
 				case 3:
-					ConfigureSystemSetting Conf = new ConfigureSystemSetting();
-					Conf.main();
+					ConfigureSystemSetting conf = new ConfigureSystemSetting();
+					conf.main();
 					break;
 				case 4:
 					SearchMovieUI searchMovieUI = new SearchMovieUI();
@@ -119,7 +115,6 @@ public class MainMenuUI {
 	}
 	
 	public static void movie_goer() {
-		LoginUI movie_goer_login = new LoginUI(0);
 		boolean exit = false;
 		while (!exit) {
 			System.out.println("\n|=========================================|");
@@ -137,16 +132,16 @@ public class MainMenuUI {
 					   "\nSelect action: ");
 			switch(InputController.getIntFromUser()) {
 				case 1:
-					SearchMovieUI search_movie_ui = new SearchMovieUI();
-					search_movie_ui.main();
+					SearchMovieUI searchMovieUI = new SearchMovieUI();
+					searchMovieUI.main();
 					break;
 				case 2:
-					ViewMovieDetailUI view_movie_detail_ui = new ViewMovieDetailUI();
-					view_movie_detail_ui.main();
+					ViewMovieDetailUI viewMovieDetailUI = new ViewMovieDetailUI();
+					viewMovieDetailUI.main();
 					break;
 				case 3:
-					CheckSeatUI check_seat_ui = new CheckSeatUI();
-					check_seat_ui.main();
+					CheckSeatUI checkSeatUI = new CheckSeatUI();
+					checkSeatUI.main();
 					break;
 				case 4:
 					MakeBookingUI makeBookingUI = new MakeBookingUI();
@@ -178,8 +173,8 @@ public class MainMenuUI {
 	}
 	
 	public static void register(){
-		RegisterUI register_ui = new RegisterUI();
-		register_ui.main();
+		RegisterUI registerUI = new RegisterUI();
+		registerUI.main();
 		
 	}
 }

@@ -14,12 +14,11 @@ public class RegisterUI {
     private boolean consistentPassword = false;
     private MovieGoersController movieGoersCtrl;
     private AdminsController adminsCtrl;
-    Scanner sc = new Scanner(System.in);
 
     RegisterUI() {
         this.movieGoersCtrl = new MovieGoersController();
         this.adminsCtrl = new AdminsController();
-    };
+    }
 
     RegisterUI(MovieGoersController movieGoersCtrl, AdminsController adminsCtrl){
         this.movieGoersCtrl = movieGoersCtrl;
