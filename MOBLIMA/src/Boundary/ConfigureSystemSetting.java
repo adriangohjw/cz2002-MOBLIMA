@@ -10,6 +10,11 @@ public class ConfigureSystemSetting {
 	private HolidaysController holCtrl = new HolidaysController();
 	private PriceController priceCtrl = new PriceController();
 	
+	/** 
+     * Main method
+     * @param exit				If the user wants to quit or not
+     * @param choice			User's choice for the method selection
+     */
 	public void main() {
 		boolean exit  = false;
 		int choice;
@@ -61,6 +66,10 @@ public class ConfigureSystemSetting {
 
 	}
 	
+	/** 
+     * Create a new holiday
+     * @param holiday			User's input for a new holiday (date-wise)
+     */
 	public void createHoliday() {
 		System.out.println("Enter holiday date: ");
 		LocalDate holiday = InputController.getDateFromUser();
@@ -71,6 +80,11 @@ public class ConfigureSystemSetting {
 		holCtrl.create(holiday);
 	}
 
+	/** 
+     * List all available holidays
+     * @param holList			List of available holidays
+     * @return					If there are available holidays or not
+     */
 	public boolean listAllHolidays(){
 		ArrayList<Holiday> holList = holCtrl.read();
 		if(holList.isEmpty()){
@@ -85,6 +99,10 @@ public class ConfigureSystemSetting {
 		return true;
 	}
 	
+	/** 
+     * Delete a holiday from database
+     * @param holiday			User's input for a new holiday (date-wise)
+     */
 	public void deleteHoliday() {
 		if(listAllHolidays()){
 			System.out.println("Enter holiday date to delete: ");
@@ -97,6 +115,11 @@ public class ConfigureSystemSetting {
 		}
 	}
 	
+	/** 
+     * Update the price of a specific movie type
+     * @param choice			User's input for movie type
+     * @param newPrice			New price for that movie type
+     */
 	public void updateMovieTypePrice() {
 		System.out.println("Choose Movie Type: \n" +
 						   "1. 2D\n" +
@@ -122,6 +145,11 @@ public class ConfigureSystemSetting {
 		}
 	}
 	
+	/** 
+     * Update the price of a specific cinema type
+     * @param choice			User's input for cinema type
+     * @param newPrice			New price for that cinema type
+     */
 	public void updateCinemaTypePrice() {
 		System.out.println("Choose Cinema Type: \n" +
 						   "1. Standard\n" +
@@ -143,6 +171,11 @@ public class ConfigureSystemSetting {
 		}
 	}
 	
+	/** 
+     * Update the price of a specific ticket type
+     * @param choice			User's input for ticket type
+     * @param newPrice			New price for that ticket type
+     */
 	public void updatePriceType(int choice) {
 		System.out.println("Enter new price: ");
 		double newPrice = InputController.getDoubleFromUser();
@@ -165,6 +198,9 @@ public class ConfigureSystemSetting {
 		}
 	}
 	
+	/** 
+     * Print a holiday
+     */
 	public void printHol(Holiday holiday) {
 		System.out.println(holiday.getHolidayDateToString());
 	}

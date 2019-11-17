@@ -8,6 +8,11 @@ import java.util.*;
 public class CUR_Movie_Listing {
 	private static MoviesController movieCtrl = new MoviesController();
 
+	/** 
+     * Main method to load
+     * @param exit			Indicate if the user wants to quit or not
+     * @param option		User's choice for an appropriate method
+     */
 	public void main() {
 		boolean exit = false;
 		while (!exit) {
@@ -35,7 +40,20 @@ public class CUR_Movie_Listing {
 		}
 	}
 	
-	
+	/** 
+     * Create a new movie
+     * @param title				Title for the new movie
+     * @param typeNo			User's choice for the movie type
+     * @param movieType			The movie type
+     * @param synopsis			The movie's synopsis
+     * @param rating			The movie's rating
+     * @param duration			The movie's duration
+     * @param movieReleaseDate	The movie's release date
+     * @param movieEndDate		The movie's end date
+     * @param director			The movie's director
+     * @param numCast			The movie's number of actors and actresses
+     * @param cast				The movie's cast
+     */
 	public void createMovie() {
 
 		System.out.println("Creating movie listing....");
@@ -110,7 +128,23 @@ public class CUR_Movie_Listing {
 		System.out.println("\n\nMovie created....");
 	}
 
-
+	/** 
+     * Update an existing movie
+     * @param listMovie			The UI for searching a movie
+     * @param movie_id			Movie's ID
+     * @param choice			User's choice for an appropriate method
+     * @param title				New title for the movie
+     * @param typeNo			User's choice for the movie type
+     * @param movieType			The new movie type
+     * @param synopsis			The movie's new synopsis
+     * @param rating			The movie's new rating
+     * @param duration			The movie's new duration
+     * @param movieReleaseDate	The movie's new release date
+     * @param endOfShowing		The movie's new end date
+     * @param director			The movie's new director
+     * @param numCast			The movie's new number of actors and actresses
+     * @param cast				The movie's new cast
+     */
 	public void updateMovie() {
 
 		System.out.println("Updating movie...");
@@ -242,8 +276,11 @@ public class CUR_Movie_Listing {
 		}
 	}
 	
-	
-
+	/** 
+     * Remove an existing movie
+     * @param listMovie			The UI for searching a movie
+     * @param movieId			Movie's ID
+     */
 	public void removeMovie(){
 		System.out.println("Deleting movie...");
 		SearchMovieUI listMovie = new SearchMovieUI();

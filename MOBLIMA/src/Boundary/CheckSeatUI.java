@@ -8,22 +8,24 @@ import java.time.LocalDateTime;
 import java.util.*;
 
 public class CheckSeatUI {
-    private SessionsController sessionsCtrl;
     private SeatingPlan seatsAvailability;
+    private SessionsController sessionsCtrl;
     private CineplexesController cineplexesCtrl;
     private CinemasController cinemasCtrl;
-
+    
+    /** 
+     * Default Constructor - call the necessary controllers
+     */
+    
     public CheckSeatUI(){
         this.sessionsCtrl = new SessionsController();
         this.cineplexesCtrl = new CineplexesController();
         this.cinemasCtrl = new CinemasController();
     }
 
-    public CheckSeatUI(SessionsController sessionsCtrl){
-        this.sessionsCtrl = sessionsCtrl;
-    }
-
-
+    /** 
+     * Main method to load - if there are available sessions, users can choose one to load the layout
+     */
     public void main(){
         if(showAvailableSessions()){
             printLayout();
@@ -33,6 +35,14 @@ public class CheckSeatUI {
         }
     }
 
+    /** 
+     * Print the layout.
+     * @param choice			User's choice - 1 to exit
+     * @param cinemaCode		Cinema's code
+     * @param sessionDateTime	The date time from user's input
+     * @param session			The queried session
+     * @param seatsAvailability	The queried session's seat layout
+     */
     public void printLayout(){
         int choice = 0;
         System.out.println("Select session: (Cinema code, Date)");
@@ -57,6 +67,14 @@ public class CheckSeatUI {
         }
     }
 
+    /** 
+     * Check if there are availablle sessions.
+     * @param validInput		If the user's cineplex input is valid or not
+     * @param choice			User's choice for the cineplex
+     * @param cinemas			List of the cinemas in that cineplex
+     * @param counter			Number of cinemas in that cineplex
+     * @return					If there are available sessions or not
+     */
     private boolean showAvailableSessions(){
         ArrayList<Cineplex> cineplexes = cineplexesCtrl.read();
         boolean validInput = false;
