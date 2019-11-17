@@ -23,7 +23,9 @@ public class MovieGoersController {
     public final static int MOBILE_NUMBER = 4;
 
     public void create(String username, String password) {
-        if (!(UsersLayer.isExistingUser(username))) {
+        if (UsersLayer.isExistingUser(username)) {
+            // do nothing
+        } else {
             try {
                 Movie_Goer movieGoer = new Movie_Goer(username, password);
                 ArrayList<Movie_Goer> allData = new ArrayList<Movie_Goer>();
@@ -60,6 +62,7 @@ public class MovieGoersController {
         }
     }
 
+    @SuppressWarnings("unchecked")
     public ArrayList<Movie_Goer> read() {
         try {
             ObjectInputStream ois = new ObjectInputStream(new FileInputStream(FILENAME));

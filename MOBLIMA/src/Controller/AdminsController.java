@@ -21,7 +21,9 @@ public class AdminsController {
     public final static int ROLE = 2;
 
     public void create(String username, String password) {
-        if (!(UsersLayer.isExistingUser(username))){
+        if (UsersLayer.isExistingUser(username)){
+            // do nothing
+        } else {
             try {
                 Admin admin = new Admin(username, password);
                 ArrayList<Admin> allData = new ArrayList<Admin>();
@@ -39,6 +41,7 @@ public class AdminsController {
         }
     }
 
+    @SuppressWarnings("unchecked")
     public ArrayList<Admin> read() {
         try {
             ObjectInputStream ois = new ObjectInputStream(new FileInputStream(FILENAME));
