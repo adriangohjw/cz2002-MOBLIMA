@@ -44,7 +44,7 @@ public class MovieGoersController {
     }
 
     public void create(String username, String password, String name, String mobileNumber) {   
-        if (!(UsersLayer.isExistingUser(username))) {
+        if (!(UsersLayer.isValidUser(username))) {
             try {
                 Movie_Goer movieGoer = new Movie_Goer(username, password, name, mobileNumber);
                 ArrayList<Movie_Goer> allData = new ArrayList<Movie_Goer>();
