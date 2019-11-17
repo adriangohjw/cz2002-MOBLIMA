@@ -2,6 +2,7 @@ package Controller;
 
 import java.util.ArrayList;
 
+import BusinessLayer.ReviewsLayer;
 import Model.*;
 
 public class ReviewsController {
@@ -22,19 +23,23 @@ public class ReviewsController {
     }
 
     public void create(Movie movie, String username, double numOfStars, String additionalComment) {
-        Review review = new Review(username, numOfStars, additionalComment);
-        ArrayList<Movie> allData = this.movieCtrl.read();
-        ArrayList<Movie> returnData = new ArrayList<Movie>();
-        for (int i=0; i<allData.size(); i++){
-            Movie m = allData.get(i);
-            if (m.equals(movie)){
-                ArrayList<Review> reviews = m.getReviews();
-                reviews.add(review);
-                m.setReviews(reviews);
+        if (ReviewsLayer.isReviewValid(movie, username, numOfStars, additionalComment)) {
+            Review review = new Review(username, numOfStars, additionalComment);
+            ArrayList<Movie> allData = this.movieCtrl.read();
+            ArrayList<Movie> returnData = new ArrayList<Movie>();
+            for (int i=0; i<allData.size(); i++){
+                Movie m = allData.get(i);
+                if (m.equals(movie)){
+                    ArrayList<Review> reviews = m.getReviews();
+                    reviews.add(review);
+                    m.setReviews(reviews);
+                }
+                returnData.add(m);
             }
-            returnData.add(m);
+            this.movieCtrl.replaceExistingFile(FILENAME, returnData);
+        } else {
+            // do nothing
         }
-        this.movieCtrl.replaceExistingFile(FILENAME, returnData);
     } 
 
     public MoviesController getMovieCtrl(){
