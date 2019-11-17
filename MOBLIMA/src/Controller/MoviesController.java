@@ -48,6 +48,8 @@ public class MoviesController {
             } catch (IOException e) {
                 // ignore error
             }
+        } else {
+            // do nothing
         }
     } 
 
@@ -118,39 +120,83 @@ public class MoviesController {
             Movie m = allData.get(i);
             if (m.getId() == id){
                 switch(col) {
+
                     case ID:
                         m.setId((int) newValue);
                         break;
+
                     case TITLE:
-                        m.setTitle((String) newValue);
+                        if (MoviesLayer.isEmpty_title((String) newValue)) {
+                            // do nothing
+                        } else {
+                            m.setTitle((String) newValue);
+                        }
                         break;
+
                     case TYPE:
                         m.setType((MovieType) newValue);
                         break;
+
                     case SYNOPSIS:
-                        m.setSynopsis((String) newValue);
+                        if (MoviesLayer.isEmpty_synopsis((String) newValue)) {
+                            // do nothing
+                        } else {
+                            m.setSynopsis((String) newValue);
+                        }
                         break;
+
                     case RATING:
-                        m.setRating((String) newValue);
+                        if (MoviesLayer.isEmpty_rating((String) newValue)) {
+                            // do nothing
+                        } else {
+                            m.setRating((String) newValue);
+                        }
                         break;
+
                     case DURATION:
-                        m.setDuration((double) newValue);
+                        if (MoviesLayer.isDurationNegative((double) newValue)) {
+                            // do nothing
+                        } else {
+                            m.setDuration((double) newValue);
+                        }
                         break;
+
                     case MOVIE_RELEASE_DATE:
-                        m.setMovieReleaseDate((LocalDate) newValue);
+                        if (MoviesLayer.areDatesValid((LocalDate) newValue, m.getMovieEndDate())) {
+                            m.setMovieReleaseDate((LocalDate) newValue);
+                        } else {
+                            // do nothing
+                        }
                         break;
+
                     case MOVIE_END_DATE:
-                        m.setMovieEndDate((LocalDate) newValue);
+                        if (MoviesLayer.areDatesValid(m.getMovieReleaseDate(), (LocalDate) newValue)) {
+                            m.setMovieEndDate((LocalDate) newValue);
+                        } else {
+                            // do nothing
+                        }
                         break;
+
                     case DIRECTOR:
-                        m.setDirector((String) newValue);
+                        if (MoviesLayer.isEmpty_director((String) newValue)) {
+                            // do nothing
+                        } else {
+                            m.setDirector((String) newValue);
+                        }
                         break;
+
                     case CAST:
-                        m.setCast((ArrayList<String>) newValue);
+                        if (MoviesLayer.isEmpty_cast((ArrayList<String>) newValue)) {
+                            // do nothing
+                        } else {
+                            m.setCast((ArrayList<String>) newValue);
+                        }
                         break;
+
                     case REVIEWS:
                         m.setReviews((ArrayList<Review>) newValue);
                         break;
+
                     default:   
                         break;
                 }
