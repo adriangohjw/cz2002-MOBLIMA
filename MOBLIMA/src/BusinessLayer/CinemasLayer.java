@@ -20,6 +20,11 @@ public class CinemasLayer {
         boolean isValid = true;
 
         if (isExistingCinema(code))
+            try {
+                throw new ExistingCinemaException();
+            } catch (ExistingCinemaException e) {
+                System.out.println(e);
+            }
             isValid = false;
         
         if (isCinemaCode3Char(code) == false) 
@@ -36,14 +41,8 @@ public class CinemasLayer {
         ArrayList<Cinema> allCinemas = cinemasCtrl.read();
 
         for (int i=0; i<allCinemas.size(); i++) {
-            if (allCinemas.get(i).getCode().equals(code)){
-                try {
-                    throw new ExistingCinemaException();
-                } catch (ExistingCinemaException e) {
-                    System.out.println(e);
-                }
+            if (allCinemas.get(i).getCode().equals(code))
                 return true;
-            }
         }
 
         return false;

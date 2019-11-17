@@ -40,8 +40,6 @@ public class CinemasController {
             String cineplexName, String code, CinemaType cinemaType, SeatingPlan seatingPlan 
     ) {
         if (CinemasLayer.isCinemaValid(cineplexName, code, cinemaType, seatingPlan)){
-            // do nothing 
-        } else {
             Cinema cinema = new Cinema(code, cinemaType, seatingPlan);
             ArrayList<Cineplex> allData = this.cineplexesCtrl.read();
             ArrayList<Cineplex> returnData = new ArrayList<Cineplex>();
@@ -55,6 +53,8 @@ public class CinemasController {
                 returnData.add(cineplex_i);
             }
             this.cineplexesCtrl.replaceExistingFile(FILENAME, returnData);
+        } else {
+            // do nothing
         }
     } 
 

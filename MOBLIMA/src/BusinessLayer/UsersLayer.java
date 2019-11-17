@@ -20,8 +20,15 @@ public class UsersLayer {
 
         boolean isValid = true;
 
-        if (isEmailValid(username) == false)
+        if (isEmailValid(username) == false) {
+            try {
+                throw new ExistingUserException();
+            } catch (ExistingUserException e) {
+                System.out.println(e);
+            }
             isValid = false;
+        }
+            
 
         if (isExistingUser(username))
             isValid = false;
@@ -35,25 +42,13 @@ public class UsersLayer {
         ArrayList<Movie_Goer> allMovieGoers = movieGoersCtrl.read();
 
         for (int i=0; i<allAdmins.size(); i++) {
-            if (allAdmins.get(i).getEmail().equals(username)){
-                try {
-                    throw new ExistingUserException();
-                } catch (ExistingUserException e) {
-                    System.out.println(e);
-                }
+            if (allAdmins.get(i).getEmail().equals(username))
                 return true;
-            }
         }
 
         for (int j=0; j<allMovieGoers.size(); j++) {
-            if (allMovieGoers.get(j).getEmail().equals(username)){
-                try {
-                    throw new ExistingUserException();
-                } catch (ExistingUserException e) {
-                    System.out.println(e);
-                }
+            if (allMovieGoers.get(j).getEmail().equals(username))
                 return true;
-            }
         }
 
         return false;

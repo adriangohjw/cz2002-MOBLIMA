@@ -21,9 +21,15 @@ public class MoviesLayer {
     ) {
         boolean isValid = true;
 
-        if (isExistingMovie(title))
+        if (isExistingMovie(title)){
+            try {
+                throw new ExistingMovieException();
+            } catch (ExistingMovieException e) {
+                System.out.println(e);
+            }
             isValid = false;
-        
+        }
+            
         if (isEmpty_title(title))
             isValid = false;
 
@@ -51,14 +57,8 @@ public class MoviesLayer {
     public static boolean isExistingMovie(String title) {
         ArrayList<Movie> allMovies = moviesCtrl.read();
         for (Movie movie : allMovies) {
-            if (movie.getTitle().equals(title)){
-                try {
-                    throw new ExistingMovieException();
-                } catch (ExistingMovieException e) {
-                    System.out.println(e.getMessage());
-                    return true;
-                }
-            }
+            if (movie.getTitle().equals(title))
+                return true;
         }
         return false;
     }

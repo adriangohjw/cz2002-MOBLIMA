@@ -17,9 +17,15 @@ public class CineplexesLayer {
 
         boolean isValid = true;
 
-        if (isExistingCineplex(name)) 
+        if (isExistingCineplex(name)){
+            try {
+                throw new ExistingCineplexException();
+            } catch (ExistingCineplexException e) {
+                System.out.println(e);
+            }
             isValid = false;
-
+        }
+        
         if (isEmpty_name(name))
             isValid = false;
 
@@ -34,14 +40,8 @@ public class CineplexesLayer {
         ArrayList<Cineplex> allCineplexes = cineplexesCtrl.read();
 
         for (int i=0; i<allCineplexes.size(); i++) {
-            if (allCineplexes.get(i).getName().equals(name)){
-                try {
-                    throw new ExistingCineplexException();
-                } catch (ExistingCineplexException e) {
-                    System.out.println(e);
-                }
+            if (allCineplexes.get(i).getName().equals(name))
                 return true;
-            }
         }
         return false;
     }
