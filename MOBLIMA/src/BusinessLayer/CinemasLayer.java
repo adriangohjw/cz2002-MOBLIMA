@@ -3,6 +3,7 @@ package BusinessLayer;
 import java.util.ArrayList;
 
 import CustomException.CinemasExceptions.ExistingCinemaException;
+import CustomException.CinemasExceptions.CinemaCodeNot3CharException;
 import CustomException.CinemasExceptions.EmptyStringException;
 
 import Model.Cinema;
@@ -19,6 +20,9 @@ public class CinemasLayer {
         boolean isValid = true;
 
         if (isExistingCinema(code))
+            isValid = false;
+        
+        if (isCinemaCode3Char(code) == false) 
             isValid = false;
 
         if (isEmpty_code(code))
@@ -43,6 +47,19 @@ public class CinemasLayer {
         }
 
         return false;
+    }
+
+    public static boolean isCinemaCode3Char(String code) {
+        if (code.length() != 3) {
+            try {
+                throw new CinemaCodeNot3CharException();
+            } catch (CinemaCodeNot3CharException e) {
+                System.out.println(e);
+            }
+            return false;
+        } else {
+            return true;
+        }
     }
 
     public static boolean isEmpty_code(String code) {

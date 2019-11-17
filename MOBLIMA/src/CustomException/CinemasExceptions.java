@@ -10,6 +10,13 @@ public class CinemasExceptions {
     }
 
     @SuppressWarnings("serial")
+    public static class CinemaCodeNot3CharException extends Exception {
+        public CinemaCodeNot3CharException() {
+            super("Cinema's code have to be 3 characters");
+        }
+    }
+
+    @SuppressWarnings("serial")
     public static class EmptyStringException extends Exception {
         public EmptyStringException(String errorMessage){
             super(errorMessage);
