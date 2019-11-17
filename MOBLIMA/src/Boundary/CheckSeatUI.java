@@ -8,8 +8,6 @@ import java.time.LocalDateTime;
 import java.util.*;
 
 public class CheckSeatUI {
-    private String cinemaCode;
-    private String sessionDateTime;
     private SessionsController sessionsCtrl;
     private SeatingPlan seatsAvailability;
     private CineplexesController cineplexesCtrl;
