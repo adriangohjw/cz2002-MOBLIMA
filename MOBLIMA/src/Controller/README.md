@@ -141,6 +141,7 @@ read
 ~~~java
 public ArrayList<Session> read(); 
 public ArrayList<Session> readByAttributes(int col, Object valueToSearch);
+public ArrayList<Session> readByAttributes(String cinemaCode, LocalDate sessionDate);
 public Session readBySession(String cinemaCode, String sessionDateTime);
 public Session readById(int id);
 ~~~

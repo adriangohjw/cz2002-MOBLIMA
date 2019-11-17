@@ -1,5 +1,6 @@
 package Controller;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
@@ -87,6 +88,24 @@ public class SessionsController {
         }
         return returnData;
     }; 
+
+    @SuppressWarnings("static-access")
+    public ArrayList<Session> readByAttributes(String cinemaCode, LocalDate sessionDate) {
+        ArrayList<Cinema> cinemas = this.cinemasCtrl.readByAttribute(cinemasCtrl.CODE, cinemaCode);
+        if (cinemas.isEmpty()) {
+            return null;
+        } else {
+            ArrayList<Session> allDate = cinemas.get(0).getSessions();
+            ArrayList<Session> returnData = new ArrayList<Session>();
+            Session s = null;
+            for (int i=0; i<allDate.size(); i++) {
+                s = allDate.get(i);
+                if (s.getSessionDateTime().toLocalDate().equals(sessionDate))
+                    returnData.add(s);
+            }
+            return returnData;
+        }        
+    }
 
     @SuppressWarnings("static-access")
     public Session readBySession(String cinemaCode, LocalDateTime sessionDateTime) {
