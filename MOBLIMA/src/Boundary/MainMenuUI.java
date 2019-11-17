@@ -10,6 +10,9 @@ import java.util.ArrayList;
 
 public class MainMenuUI {
 	
+	/** 
+     * Main method to display while loading the app
+     */
 	public static void main(String[] args) {
 		initializeSystem();
 
@@ -45,6 +48,9 @@ public class MainMenuUI {
 		}
 	}
 
+	/** 
+     * Initializing the system (adding cinemas and cineplexes)
+     */
 	private static void initializeSystem() {
 		CineplexesController cineplexesController = new CineplexesController();
 
@@ -65,6 +71,9 @@ public class MainMenuUI {
 		}
 	}
 
+	/** 
+     * Main method to display after logging in as an admin - ask user to pick one of the options
+     */
 	public static void admin_login(){
 		LoginUI admin_login = new LoginUI(1);
 		boolean loggedIn = admin_login.main();
@@ -114,6 +123,9 @@ public class MainMenuUI {
 		}
 	}
 	
+	/** 
+     * Main method to display after logging in as a movie goer - ask user to pick one of the options
+     */
 	public static void movie_goer() {
 		boolean exit = false;
 		while (!exit) {
@@ -172,6 +184,9 @@ public class MainMenuUI {
 
 	}
 	
+	/** 
+     * Loading up the register UI if the user is new
+     */
 	public static void register(){
 		RegisterUI registerUI = new RegisterUI();
 		registerUI.main();

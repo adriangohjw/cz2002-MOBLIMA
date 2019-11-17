@@ -8,10 +8,16 @@ import Model.Movie;
 import java.util.ArrayList;
 
 public class RateMovieUI {
+	/** 
+     * All controllers (movie, review) and SearchMovieUI() method
+     */
     private MoviesController moviesController = new MoviesController();
     private ReviewsController reviewsController = new ReviewsController();
     private SearchMovieUI searchMovieUI = new SearchMovieUI();
 
+    /** 
+     * Main method to display - pass the controller to search movie UI for user to pick a movie to review
+     */
     public void display(){
         System.out.println("Input your username: ");
         String username = InputController.getStringFromUser();
