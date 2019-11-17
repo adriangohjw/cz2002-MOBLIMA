@@ -55,7 +55,7 @@ public class MoviesLayer {
                 try {
                     throw new ExistingMovieException();
                 } catch (ExistingMovieException e) {
-                    System.out.println(e);
+                    System.out.println(e.getMessage());
                     return true;
                 }
             }
@@ -68,7 +68,7 @@ public class MoviesLayer {
             try {
                 throw new EmptyStringException("title");
             } catch (EmptyStringException e) {
-                System.out.println(e);
+                System.out.println(e.getMessage());
             }
             return true;
         } else {

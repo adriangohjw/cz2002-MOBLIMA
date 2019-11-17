@@ -19,6 +19,11 @@ public class RateMovieUI {
             System.out.print("Select the title of movie which you want to rate: ");
             String title = InputController.getStringFromUser();
             ArrayList<Movie> movie = moviesController.readByAttribute(MoviesController.TITLE, title);
+            if(movie.isEmpty()){
+                System.out.println("\nMovie with this title doesn't exist!");
+                System.out.println("Returning to menu...\n");
+                return;
+            }
             System.out.println("Input number of stars (0-5):");
             double stars = InputController.getDoubleFromUser(5);
             System.out.println("Input additional comment");

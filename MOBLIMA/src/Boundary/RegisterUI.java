@@ -30,10 +30,7 @@ public class RegisterUI {
         do {
             inputRegister();
             if(consistentPassword){
-                if(role == 1)
-                    movieGoersCtrl.create(email, password);
-                else 
-                    adminsCtrl.create(email, password);
+                adminsCtrl.create(email, password);
                 System.out.println("You have registered successfully");
             }
             else {
@@ -45,13 +42,11 @@ public class RegisterUI {
 
     public void inputRegister(){
         System.out.println("Please enter your email: ");
-        email = sc.next();
-        System.out.println("Your role: 1 for [movie-goer], 2 for [admin]");
-        role = sc.nextInt();
+        email = InputController.getEmailFromUser();
         System.out.println("Password: ");
-        password = sc.next();
+        password = InputController.getStringFromUser();
         System.out.println("Password again to verify: ");
-        password2 = sc.next();
+        password2 = InputController.getStringFromUser();
         consistentPassword = password.equals(password2);
     }
 }

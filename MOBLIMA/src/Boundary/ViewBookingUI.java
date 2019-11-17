@@ -25,7 +25,7 @@ public class ViewBookingUI {
     public void main(){
         System.out.print("Enter your email: ");
         email = InputController.getEmailFromUser();
-        System.out.println("Here is booking history of " + email + ":");
+        System.out.println("\nHere is booking history of " + email + ":\n");
         display();
     }
 

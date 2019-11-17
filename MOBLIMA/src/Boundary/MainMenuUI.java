@@ -22,7 +22,7 @@ public class MainMenuUI {
 					"\n\n" +
 					"1. Admin\n" +
 					"2. Movie Goer\n" +
-					"3. New user\n" +
+					"3. New admin account\n" +
 					"4. Exit\n");
 			System.out.print("Select action: ");
 		switch(InputController.getIntFromUser()) {
@@ -122,7 +122,10 @@ public class MainMenuUI {
 		LoginUI movie_goer_login = new LoginUI(0);
 		boolean exit = false;
 		while (!exit) {
-			System.out.println("Select action:\n"+
+			System.out.println("\n|=========================================|");
+			System.out.println("|================|MOBLIMA|================|");
+			System.out.println("|=========================================|");
+			System.out.print("\n"+
 					   "1. Search/List movie\n"+
 					   "2. View movie details\n"+
 					   "3. Check seat availibility\n" +
@@ -130,7 +133,8 @@ public class MainMenuUI {
 					   "5. View booking history\n" +
 					   "6. List Top 5 movies\n" +
 					   "7. Rate Movie\n" +
-					   "8. Exit");
+					   "8. Exit\n" +
+					   "\nSelect action: ");
 			switch(InputController.getIntFromUser()) {
 				case 1:
 					SearchMovieUI search_movie_ui = new SearchMovieUI();
