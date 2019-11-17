@@ -8,6 +8,8 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
+import BusinessLayer.TransactionsLayer;
+
 import Model.*;
 
 public class TransactionsController {
@@ -15,21 +17,27 @@ public class TransactionsController {
     public final static String FILENAME = "MOBLIMA/database/transactions.txt";
 
     public void create(String cinemaCode, String name, String email, String mobileNumber, Movie movie) {
-        ArrayList<Transaction> allData = new ArrayList<Transaction>();
-        File tempFile = new File(FILENAME);
-        if (tempFile.exists())
-            allData = read();
-        try {
-            ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(FILENAME));
-            allData.add(new Transaction(cinemaCode, name, email, mobileNumber, movie));
-            out.writeObject(allData);
-            out.flush();
-            out.close();
-        } catch (IOException e) {
-            // ignore error
+        if (TransactionsLayer.isTransactionValid(cinemaCode, name, email, mobileNumber, movie)) {
+            ArrayList<Transaction> allData = new ArrayList<Transaction>();
+            File tempFile = new File(FILENAME);
+            if (tempFile.exists())
+                allData = read();
+            try {
+                ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(FILENAME));
+                allData.add(new Transaction(cinemaCode, name, email, mobileNumber, movie));
+                out.writeObject(allData);
+                out.flush();
+                out.close();
+            } catch (IOException e) {
+                // ignore error
+            }
+        }
+        else {
+            // do nothing
         }
     }
 
+    @SuppressWarnings("unchecked")
     public ArrayList<Transaction> read() {
         try {
             ObjectInputStream ois = new ObjectInputStream(new FileInputStream(FILENAME));
