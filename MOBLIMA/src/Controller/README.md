@@ -38,7 +38,7 @@ public ReviewsController(MoviesController movieCtrl);
 
 create
 ~~~java
-public void create (Movie movie, Review review);
+public void create(Movie movie, String username, double numOfStars, String additionalComment);
 ~~~
 
 others

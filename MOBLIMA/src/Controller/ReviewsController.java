@@ -9,17 +9,20 @@ public class ReviewsController {
     private MoviesController movieCtrl;
     public String FILENAME;
 
+    @SuppressWarnings("static-access")
     public ReviewsController(){
         this.movieCtrl = new MoviesController();
         this.FILENAME = movieCtrl.FILENAME;
     }
 
+    @SuppressWarnings("static-access")
     public ReviewsController(MoviesController movieCtrl){
         this.movieCtrl = movieCtrl;
         this.FILENAME = movieCtrl.FILENAME;
     }
 
-    public void create(Movie movie, Review review) {
+    public void create(Movie movie, String username, double numOfStars, String additionalComment) {
+        Review review = new Review(username, numOfStars, additionalComment);
         ArrayList<Movie> allData = this.movieCtrl.read();
         ArrayList<Movie> returnData = new ArrayList<Movie>();
         for (int i=0; i<allData.size(); i++){
@@ -36,5 +39,5 @@ public class ReviewsController {
 
     public MoviesController getMovieCtrl(){
         return this.movieCtrl;
-    };
+    }
 }

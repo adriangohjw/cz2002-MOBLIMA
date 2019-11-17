@@ -4,7 +4,6 @@ import Controller.InputController;
 import Controller.MoviesController;
 import Controller.ReviewsController;
 import Model.Movie;
-import Model.Review;
 
 import java.util.ArrayList;
 
@@ -24,7 +23,7 @@ public class RateMovieUI {
             double stars = InputController.getDoubleFromUser(5);
             System.out.println("Input additional comment");
             String comment = InputController.getStringFromUser();
-            reviewsController.create(movie.get(0), new Review(username, stars, comment));
+            reviewsController.create(movie.get(0), username, stars, comment);
         }
     }
 }
