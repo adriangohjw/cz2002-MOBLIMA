@@ -8,22 +8,27 @@ import java.time.LocalDateTime;
 import java.util.*;
 
 public class CheckSeatUI {
-    private SessionsController sessionsCtrl;
+	
+	/** 
+     * Temporary seating plan storage & all necessary controllers (session, cineplex, cinema)
+     */
     private SeatingPlan seatsAvailability;
+    private SessionsController sessionsCtrl;
     private CineplexesController cineplexesCtrl;
     private CinemasController cinemasCtrl;
-
+    
+    /** 
+     * Default Constructor - make the necessary controllers
+     */
     public CheckSeatUI(){
         this.sessionsCtrl = new SessionsController();
         this.cineplexesCtrl = new CineplexesController();
         this.cinemasCtrl = new CinemasController();
     }
 
-    public CheckSeatUI(SessionsController sessionsCtrl){
-        this.sessionsCtrl = sessionsCtrl;
-    }
-
-
+    /** 
+     * Main method to load - if there are available sessions, user can choose one to load the layout
+     */
     public void main(){
         if(showAvailableSessions()){
             printLayout();
@@ -33,6 +38,11 @@ public class CheckSeatUI {
         }
     }
 
+    /** 
+     * Print the layout - ask the user to input cinema code and date
+     * If any input is invalid, the user will have to re-input
+     * User can return to main menu with a choice
+     */
     public void printLayout(){
         int choice = 0;
         System.out.println("Select session: (Cinema code, Date)");
@@ -57,6 +67,15 @@ public class CheckSeatUI {
         }
     }
 
+    /** 
+     * Check if there are availablle sessions.
+     * If there are no cineplex, return false
+     * If there are, display all cineplexes and ask the user to choose one.
+     * Any invalid input will prompt the user to try again
+     * If there are no available sessions within a cineplex, return false
+     * Else, display all sessions and return true
+     * @return	If there are available sessions or not
+     */
     private boolean showAvailableSessions(){
         ArrayList<Cineplex> cineplexes = cineplexesCtrl.read();
         boolean validInput = false;

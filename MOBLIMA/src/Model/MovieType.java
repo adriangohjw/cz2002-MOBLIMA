@@ -1,5 +1,8 @@
 package Model;
 
+/**
+ * Enumerated type for better readability and easier referencing to attribute 
+ */
 public enum MovieType implements PriceChanger {
     TWO_D("2D"),
     THREE_D("3D"),

@@ -1,5 +1,8 @@
 package Model;
 
+/**
+ * Enumerated type for better readability and easier referencing to attribute 
+ */
 public enum MovieStatus{
     COMING_SOON("Coming soon"),
     PREVIEW("Preview"),

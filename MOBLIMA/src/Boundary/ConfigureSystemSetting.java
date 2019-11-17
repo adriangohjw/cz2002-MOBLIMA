@@ -7,9 +7,15 @@ import Controller.*;
 import Model.*;
 
 public class ConfigureSystemSetting {
+	/** 
+     * All controllers - holCtrl, priceCtrl
+     */
 	private HolidaysController holCtrl = new HolidaysController();
 	private PriceController priceCtrl = new PriceController();
 	
+	/** 
+     * Main method to load - display all available options and ask user to choose one
+     */
 	public void main() {
 		boolean exit  = false;
 		int choice;
@@ -61,6 +67,10 @@ public class ConfigureSystemSetting {
 
 	}
 	
+	/** 
+     * Create a new holiday - ask user to enter date
+     * If the holiday already exists, the user has to try again
+     */
 	public void createHoliday() {
 		System.out.println("Enter holiday date: ");
 		LocalDate holiday = InputController.getDateFromUser();
@@ -71,6 +81,10 @@ public class ConfigureSystemSetting {
 		holCtrl.create(holiday);
 	}
 
+	/** 
+     * List all available holidays (If there are any)
+     * @return		If there are available holidays or not
+     */
 	public boolean listAllHolidays(){
 		ArrayList<Holiday> holList = holCtrl.read();
 		if(holList.isEmpty()){
@@ -85,6 +99,10 @@ public class ConfigureSystemSetting {
 		return true;
 	}
 	
+	/** 
+     * Delete a holiday from database
+     * If the user's input is invalid, they have to try again
+     */
 	public void deleteHoliday() {
 		if(listAllHolidays()){
 			System.out.println("Enter holiday date to delete: ");
@@ -97,6 +115,10 @@ public class ConfigureSystemSetting {
 		}
 	}
 	
+	/** 
+     * Update the price of a specific movie type (user's choosing)
+     * Invalid choice will return the user back to main menu
+     */
 	public void updateMovieTypePrice() {
 		System.out.println("Choose Movie Type: \n" +
 						   "1. 2D\n" +
@@ -122,6 +144,10 @@ public class ConfigureSystemSetting {
 		}
 	}
 	
+	/** 
+     * Update the price of a specific cinema type (user's choosing)
+     * Invalid choice will return the user back to main menu
+     */
 	public void updateCinemaTypePrice() {
 		System.out.println("Choose Cinema Type: \n" +
 						   "1. Standard\n" +
@@ -143,6 +169,9 @@ public class ConfigureSystemSetting {
 		}
 	}
 	
+	/** 
+     * Update the price of a specific ticket type (user's choosing)
+     */
 	public void updatePriceType(int choice) {
 		System.out.println("Enter new price: ");
 		double newPrice = InputController.getDoubleFromUser();
@@ -165,6 +194,9 @@ public class ConfigureSystemSetting {
 		}
 	}
 	
+	/** 
+     * Print a holiday's date
+     */
 	public void printHol(Holiday holiday) {
 		System.out.println(holiday.getHolidayDateToString());
 	}
