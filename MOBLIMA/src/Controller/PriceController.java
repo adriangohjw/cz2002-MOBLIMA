@@ -48,7 +48,7 @@ public class PriceController {
     }
 
     /**
-     * Change the price of given price changer.
+     * Change the price of given price changer if it exists.
      * @param priceChanger Price changer to be changed
      * @param newPrice New value for this price changer
      */
@@ -59,7 +59,7 @@ public class PriceController {
     }
 
     /**
-     * Remove the price changer
+     * Remove the price changer.
      * @param priceChanger Price changer to be removed
      */
     public void removePriceChanger(PriceChanger priceChanger){
@@ -67,7 +67,7 @@ public class PriceController {
     }
 
     /**
-     * Return all price changers and their values
+     * Return all price changers and their values.
      * @return Map of all price changers and their values
      */
     public Map<PriceChanger,Double> getAllPriceChangers(){
@@ -75,7 +75,7 @@ public class PriceController {
     }
 
     /**
-     * Return all price changers and their values as string
+     * Return all price changers and their values as string.
      * @return String made from all price changers and their values
      */
     public String getAllPriceChangersToString(){
@@ -89,7 +89,7 @@ public class PriceController {
     /**
      * Return value for given price changer.
      * @param priceChanger Price changer, whose value is to be retrieved
-     * @return The value of given price changer
+     * @return Double The value of given price changer
      */
     public double getPrice(PriceChanger priceChanger){
         return priceMap.getOrDefault(priceChanger, 0.0);
@@ -100,7 +100,7 @@ public class PriceController {
      * @param session Session for which price needs to be calculated
      * @param cinema Cinema for which price needs to be calculated
      * @param priceType Price type for which price needs to be calculated
-     * @return The price of the ticket with given parameters
+     * @return Double The price of the ticket with given parameters
      */
     public double computePrice(Session session, Cinema cinema, PriceType priceType){
         double addToPrice   = getPrice(session.getMovie().getType()) 

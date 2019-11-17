@@ -17,6 +17,7 @@ public class InputController {
 
     /**
      * Get a non-empty string from user.
+     * Ask for input until it is correct.
      * @return Non-empty String inserted by user
      */
     public static String getStringFromUser(){
@@ -32,6 +33,7 @@ public class InputController {
 
     /**
      * Get a string that matches email pattern from user.
+     * Ask for input until it is correct.
      * @return Non-empty String that matches email pattern
      */
     public static String getEmailFromUser(){
@@ -52,6 +54,7 @@ public class InputController {
 
     /**
      * Get a mobile number with valid Singapore pattern (8 digits, starts with 8 or 9)
+     * Ask for input until it is correct.
      * @return Non-empty String that matches the pattern of mobile number in Singapore
      */
     public static String getMobileNumberFromUser(){
@@ -72,6 +75,7 @@ public class InputController {
 
     /**
      * Get an integer which indicate yes or no from user
+     * Ask for input until it is correct.
      * @return Integer that equals to 0 or 1, based on user input
      */
     public static int getYesOrNoFromUser(){
@@ -90,7 +94,8 @@ public class InputController {
     }
 
     /**
-     * Get an integer from user
+     * Get an integer from user.
+     * Ask for input until it is correct.
      * @return Valid integer
      */
     public static int getIntFromUser(){
@@ -110,7 +115,8 @@ public class InputController {
     }
 
     /**
-     * Get positive integer from user
+     * Get positive integer from user.
+     * Ask for input until it is correct.
      * @return Positive integer (greater than 0)
      */
     public static int getPositiveIntFromUser(){
@@ -132,6 +138,7 @@ public class InputController {
 
     /**
      * Get a double between 0 and given range from user
+     * Ask for input until it is correct.
      * @param range Maximum value of input
      * @return Double between 0 and given value
      */
@@ -157,7 +164,8 @@ public class InputController {
     }
 
     /**
-     * Get the date and time from user
+     * Get the date and time from user.
+     * Ask for String input until it is correct (match pattern)
      * @return LocalDateTime based on user's input
      */
     public static LocalDateTime getDateTimeFromUser(){
@@ -178,7 +186,8 @@ public class InputController {
     }
 
     /**
-     * Get the date from user
+     * Get the date from user.
+     * Ask for String input until it is correct (match pattern)
      * @return LocalDate based on user's input
      */
     public static LocalDate getDateFromUser(){
@@ -199,7 +208,8 @@ public class InputController {
     }
 
     /**
-     * Get a double from user
+     * Get a double from user.
+     * Ask for input until it is correct.
      * @return Valid double
      */
     public static double getDoubleFromUser(){
