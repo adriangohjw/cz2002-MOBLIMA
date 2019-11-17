@@ -24,8 +24,6 @@ public class MovieGoersController {
 
     public void create(String username, String password) {
         if (UsersLayer.isValidUser(username)) {
-            // do nothing
-        } else {
             try {
                 Movie_Goer movieGoer = new Movie_Goer(username, password);
                 ArrayList<Movie_Goer> allData = new ArrayList<Movie_Goer>();
@@ -40,6 +38,8 @@ public class MovieGoersController {
             } catch (IOException | NoSuchAlgorithmException e) {
                 // ignore error
             }
+        } else {
+            // do nothing
         }
     }
 

@@ -22,8 +22,6 @@ public class AdminsController {
 
     public void create(String username, String password) {
         if (UsersLayer.isValidUser(username)){
-            // do nothing
-        } else {
             try {
                 Admin admin = new Admin(username, password);
                 ArrayList<Admin> allData = new ArrayList<Admin>();
@@ -38,6 +36,8 @@ public class AdminsController {
             } catch (IOException | NoSuchAlgorithmException e) {
                 // ignore error
             }
+        } else {
+            // do nothing
         }
     }
 

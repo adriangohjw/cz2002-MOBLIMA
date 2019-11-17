@@ -34,7 +34,9 @@ public class CineplexesController {
             } catch (IOException e) {
                 // ignore error
             }
-        } 
+        } else {
+            // do nothing
+        }
     }
 
     @SuppressWarnings("unchecked")
