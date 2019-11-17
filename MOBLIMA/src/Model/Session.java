@@ -3,6 +3,7 @@ package Model;
 import java.io.Serializable;
 import java.time.DayOfWeek;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 
 @SuppressWarnings("serial")
@@ -66,6 +67,14 @@ public class Session implements Serializable {
         else{
             return false;
         }
+    }
+
+    public LocalTime getStartTime() {
+        return getSessionDateTime().toLocalTime();
+    }
+
+    public LocalTime getEndTime() {
+        return getStartTime().plusMinutes((long) (60.0 * getMovie().getDuration()));
     }
 
     public String toString() {

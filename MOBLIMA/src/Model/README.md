@@ -191,6 +191,8 @@ public Session(
 public boolean isWeekend(){...};
 private String getDayOfWeekString(){...};
 private LocalTime getTime(){...}
+public LocalTime getStartTime(){...}
+public LocalTime getEndTime(){...}
 ~~~
 
 ## Holiday
