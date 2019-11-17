@@ -171,6 +171,7 @@ public class ConfigureSystemSetting {
 	
 	/** 
      * Update the price of a specific ticket type (user's choosing)
+	 * @param choice 	Execute different price change based on user's input
      */
 	public void updatePriceType(int choice) {
 		System.out.println("Enter new price: ");
@@ -196,6 +197,7 @@ public class ConfigureSystemSetting {
 	
 	/** 
      * Print a holiday's date
+	 * @param holiday 	The date of holiday to be printed
      */
 	public void printHol(Holiday holiday) {
 		System.out.println(holiday.getHolidayDateToString());

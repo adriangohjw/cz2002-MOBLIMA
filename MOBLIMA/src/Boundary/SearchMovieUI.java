@@ -104,6 +104,7 @@ public class SearchMovieUI {
    
     /** 
      * List all available movies
+     * @return boolean  return true if movie list is not empty, else false
      */
     public boolean listAllMovies(){
         ArrayList<Movie> movieList = moviesCtrl.read();
