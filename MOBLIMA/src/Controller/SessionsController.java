@@ -13,32 +13,69 @@ import Model.*;
 
 public class SessionsController {
 
+    /**
+     * The Cineplex Controller that this controller will reference
+     */
     private CinemasController cinemasCtrl = new CinemasController();
+
+    /**
+     * The file name of the database file that this controller will access
+     */
     public String FILENAME;
     
+    /**
+     * Declaring constant for better readability and easier referencing to attribute
+     */
     public final static int MOVIE = 0;
     public final static int SESSION_DATETIME = 1;
     public final static int SEATS_AVAILABILITY = 2;
     public final static int ID = 3;
 
+    
+    /** 
+     * Default constructor
+     */
     public SessionsController(){
         this.cinemasCtrl = new CinemasController();
         this.FILENAME = cinemasCtrl.FILENAME;
     }
 
+    
+    /** 
+     * Parameterized constructor with user-defined Cinema Controller
+     * @param cinemasCtrl    Non-default Cinema Controller to be referenced instead
+     */
     public SessionsController(CinemasController cinemasCtrl){
         this.cinemasCtrl = cinemasCtrl;
         this.FILENAME = cinemasCtrl.FILENAME;
     }
 
-    public void setCinemasController(CinemasController cinemasCtrl) {
-        this.cinemasCtrl = cinemasCtrl;
-    }
-
+    /** 
+     * Gets the Cinema Controller that this controller is referencing
+     * @return CinemasController     This controller's Cinema Controller
+     */
     public CinemasController getCinemasController(){
         return this.cinemasCtrl;
     }
 
+    /** 
+     * Change the Cinema Controller that this controller is referencing
+     * @param cinemasCtrl   This controller's Cinema Controller
+     */
+    public void setCinemasController(CinemasController cinemasCtrl) {
+        this.cinemasCtrl = cinemasCtrl;
+    }
+    
+    /** 
+     * CREATE a new Session and add it into the database file
+     * Attributes are validated before creation
+     * If attributes are not allowed, throw error and do nothing
+     * If Database file exist, existing records are read and new Session object is aopended before saving
+     * If Database file does not exist, Session object will be written to a new file and saved
+     * @param cinemaCode
+     * @param movie
+     * @param sessionDateTime
+     */
     public void create(String cinemaCode, Movie movie, LocalDateTime sessionDateTime) {
         if (SessionsLayer.isSessionValid(cinemaCode, movie, sessionDateTime)) {
             SeatingPlan seatingPlan = cinemasCtrl.readByAttribute(CODE, cinemaCode).get(0).getSeatingPlan();
@@ -61,6 +98,11 @@ public class SessionsController {
         }
     }
 
+    
+    /** 
+     * READ and return every Cinema in the Database file
+     * @return ArrayList<Session>   Return list of Sessions if found, else empty list
+     */
     public ArrayList<Session> read() {
         ArrayList<Cinema> allCinemas  = this.cinemasCtrl.read();
         ArrayList<Session> allSessions = new ArrayList<Session>();
@@ -72,6 +114,13 @@ public class SessionsController {
         return allSessions;
     }; 
 
+    
+    /** 
+     * READ and return every Session based on a certain value of a given attribute in the Database file
+     * @param col                   Given attribute to be check for (based on constant as defined)
+     * @param valueToSearch         Value of given attribute to search for
+     * @return ArrayList<Session>   Return list of Sessions if any, else empty list
+     */
     public ArrayList<Session> readByAttributes(int col, Object valueToSearch) {
         ArrayList<Session> allData = read();
         ArrayList<Session> returnData = new ArrayList<Session>();
@@ -95,6 +144,13 @@ public class SessionsController {
         return returnData;
     }; 
 
+    
+    /** 
+     * READ and return every Session of a cinema on a speficic date in the Database file
+     * @param cinemaCode            Cinema's code to be check for
+     * @param sessionDate           Value of date to search for
+     * @return ArrayList<Session>   Return list of Sessions if any, else empty list
+     */
     @SuppressWarnings("static-access")
     public ArrayList<Session> readByAttributes(String cinemaCode, LocalDate sessionDate) {
         ArrayList<Cinema> cinemas = this.cinemasCtrl.readByAttribute(cinemasCtrl.CODE, cinemaCode);
@@ -113,6 +169,13 @@ public class SessionsController {
         }        
     }
 
+    
+    /** 
+     * READ and return a session of a given cinema on a specific date and time in the Database file
+     * @param cinemaCode        Cinema's code to be check for
+     * @param sessionDateTime   Value of date and time to search for
+     * @return Session          Return Session if found, else null object
+     */
     @SuppressWarnings("static-access")
     public Session readBySession(String cinemaCode, LocalDateTime sessionDateTime) {
         ArrayList<Cinema> cinemas = this.cinemasCtrl.readByAttribute(cinemasCtrl.CODE, cinemaCode);
@@ -134,6 +197,12 @@ public class SessionsController {
         return null;
     }; 
 
+    
+    /** 
+     * READ and return a session of a given session ID in the Database file
+     * @param id            Session's ID to check for
+     * @return Session      Return Session if found, else null object
+     */
     public Session readById(int id) {
         ArrayList<Session> allData = read();
         Session s = null;
@@ -146,6 +215,14 @@ public class SessionsController {
         return s;
     }; 
 
+    
+    /** 
+     * UPDATE a Session's with new value based on a given attribute and cinema code in Database file
+     * @param col           Given attribute to be check for (based on constant as defined)
+     * @param cinemaCode    Code of cinema to be updated
+     * @param oldValue      Value of given attribute to search for
+     * @param newValue      New value of session's attribute 
+     */
     @SuppressWarnings("static-access")
     public void updateByAttribute(int col, String cinemaCode, Object oldValue, Object newValue) {
         ArrayList<Cinema> allCinemas  = this.cinemasCtrl.read();
@@ -199,6 +276,13 @@ public class SessionsController {
         }
     } 
 
+    
+    /** 
+     * UPDATE a Session of a given session ID based on given attribute in Database file 
+     * @param col           Given attribute to be check for (based on constant as defined)
+     * @param id            Session's ID to check for
+     * @param newValue      New value of session's attribute 
+     */
     @SuppressWarnings("static-access")
     public void updateById(int col, int id, Object newValue) {
         ArrayList<Cinema> allCinemas  = this.cinemasCtrl.read();
@@ -243,6 +327,12 @@ public class SessionsController {
         }
     }
 
+    
+    /** 
+     * UPDATE a Session's seats availability of a given session ID in Database file 
+     * @param id                    Session's ID to check for
+     * @param newSeatsAvailabiity   New value of session's seats availability 
+     */
     @SuppressWarnings("static-access")
     public void updateSeatsAvailability(int id, SeatingPlan newSeatsAvailabiity) {
         ArrayList<Cinema> allCinemas  = this.cinemasCtrl.read();
@@ -267,6 +357,12 @@ public class SessionsController {
         }
     } 
 
+    
+    /** 
+     * Delete a Session in the Database file, based on the cinema code and datetime attribute passed
+     * @param cinemaCode        Code of cinema which will be deleted
+     * @param sessionDateTime   Date and time of session which will be deleted
+     */
     @SuppressWarnings("static-access")
     public void delete(String cinemaCode, LocalDateTime sessionDateTime){
         ArrayList<Cinema> allCinemas  = this.cinemasCtrl.read();
@@ -294,6 +390,11 @@ public class SessionsController {
         }
     }
 
+    
+    /** 
+     * Delete a Session in the Database file, based on the session ID
+     * @param id    ID of session which will be deleted
+     */
     @SuppressWarnings("static-access")
     public void delete(int id){
         ArrayList<Cinema> allCinemas  = this.cinemasCtrl.read();
@@ -313,6 +414,11 @@ public class SessionsController {
         }
     }
 
+
+    /** 
+     * Return the ID of the last Movie in the Database field
+     * @return int      ID of last Movie in the Database
+     */
     public int getLastId(){
         int lastId = -1;
         int sessionId;
@@ -325,6 +431,15 @@ public class SessionsController {
         return lastId;
     }
 
+    
+    /** 
+     * Mark a seat of a session as occupied, based on the seat id and session ID
+     * @param seatingPlan   Seating Plan of the session
+     * @param seatId        Seat ID to be marked as occupied
+     * @param sessionId     Session ID in which the seat will be marked occupied
+     * @return boolean      Return true if seat has been marked occupied
+     *                      Return false if seat was already marked occupied prior to this
+     */
     public boolean assignSeat(SeatingPlan seatingPlan, int seatId, int sessionId){
         if(!seatingPlan.checkSeats(seatId)){
             seatingPlan.assignSeats(seatId);

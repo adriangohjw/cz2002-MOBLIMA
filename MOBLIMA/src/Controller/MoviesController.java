@@ -16,7 +16,14 @@ import Model.Review;
 
 public class MoviesController {
 
+    /**
+     * The file name of the database file that this controller will access
+     */
     public final static String FILENAME = "MOBLIMA/database/movies.txt";
+
+    /**
+     * Declaring constant for better readability and easier referencing to attribute
+     */
     public final static int ID = 0;
     public final static int TITLE = 1;
     public final static int TYPE = 2;
@@ -29,6 +36,23 @@ public class MoviesController {
     public final static int CAST = 9;
     public final static int REVIEWS = 10;
 
+    
+    /** 
+     * CREATE a new Movie and add it into the database file
+     * Attributes are validated before creation
+     * If attributes are not allowed, throw error and do nothing
+     * If Database file exist, existing records are read and new Movie object is aopended before saving
+     * If Database file does not exist, Movie object will be written to a new file and saved
+     * @param title             This movie's title
+     * @param type              This movie's type
+     * @param synopsis          This movie's synopsis
+     * @param rating            This movie's rating
+     * @param duration          This movie's duration
+     * @param movieReleaseDate  This movie's release date
+     * @param movieEndDate      This movie's end date
+     * @param director          This movie's director
+     * @param cast              This movie's list of cast
+     */
     public void create(String title, MovieType type, String synopsis, String rating, double duration,
             LocalDate movieReleaseDate, LocalDate movieEndDate, String director, ArrayList<String> cast) {
         if (MoviesLayer.isMovieValid(title, type, synopsis, rating, duration, movieReleaseDate, movieEndDate,
@@ -53,6 +77,11 @@ public class MoviesController {
         }
     } 
 
+    
+    /** 
+     * READ and return every Movies in the Database file
+     * @return ArrayList<Movie>     Return list of Movies if found, else empty list
+     */
     @SuppressWarnings("unchecked")
     public ArrayList<Movie> read() {
         try {
@@ -66,6 +95,12 @@ public class MoviesController {
         return new ArrayList<Movie>();
     }
 
+    
+    /** 
+     * READ and return every Movie of a given ID in the Database file
+     * @param valueToSearch     Id of movie to search for
+     * @return Movie            Return Movie if found, else null object
+     */
     public Movie readByID(int valueToSearch) {
         ArrayList<Movie> allData = read();
         for (int i=0; i<allData.size(); i++){
@@ -76,6 +111,13 @@ public class MoviesController {
         return null;
     }
 
+    
+    /** 
+     * READ and return every Movie based on a certain value of a given attribute in the Database file
+     * @param col                   Given attribute to be check for (based on constant as defined)
+     * @param valueToSearch         Value of given attribute to search for
+     * @return ArrayList<Movie>     Return list of Movies if any, else empty list
+     */
     public ArrayList<Movie> readByAttribute(int col, Object valueToSearch) {
         ArrayList<Movie> allData = read();
         ArrayList<Movie> returnData = new ArrayList<Movie>();
@@ -111,6 +153,13 @@ public class MoviesController {
         return returnData;
     }
 
+    
+    /** 
+     * UPDATE a Movie's attribute based on a given movie's id in Database file 
+     * @param col           Attribute of movie to update
+     * @param id            ID of Movie to search for    
+     * @param newValue      New value of Movie's attribute
+     */
     @SuppressWarnings("unchecked")
     public void updateById(int col, int id, Object newValue) {
         ArrayList<Movie> allData = read();
@@ -207,6 +256,11 @@ public class MoviesController {
         replaceExistingFile(FILENAME, returnData);
     }
 
+    
+    /**
+     * Delete a Movie in the Database file, based on the ID attribute passed 
+     * @param id    ID of Movie which will be deleted
+     */
     public void deleteById(int id) {
         ArrayList<Movie> allData = read();
         ArrayList<Movie> returnData = new ArrayList<Movie>();
@@ -220,6 +274,11 @@ public class MoviesController {
         replaceExistingFile(FILENAME, returnData);
     }
 
+    
+    /** 
+     * Return the ID of the last Movie in the Database field
+     * @return int      ID of last Movie in the Database
+     */
     public int getLastId(){
         int lastId = -1;
         int movieID;
@@ -232,6 +291,12 @@ public class MoviesController {
         return lastId;
     }
 
+    
+    /** 
+     * Overwrite Database file with new data of list of Admin
+     * @param filename      Filename to check for
+     * @param returnData    New ArrayList of Movies to be written to the file
+     */
     public void replaceExistingFile(String filename, ArrayList<Movie> data){
         File tempFile = new File(filename);
         if (tempFile.exists()) 
