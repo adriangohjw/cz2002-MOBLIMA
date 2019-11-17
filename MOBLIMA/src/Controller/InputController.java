@@ -150,7 +150,6 @@ public class InputController {
                 input = sc.nextDouble();
                 if(input>=0 && input<=5){
                     validInput = true;
-                    sc.nextLine();
                 }
                 else{
                     System.out.println("Must be within range 0-5! ");
@@ -159,6 +158,7 @@ public class InputController {
             else{
                 System.out.println("Must be double type! (decimal number)");
             }
+            sc.nextLine();
         }
         return input;
     }
@@ -219,11 +219,11 @@ public class InputController {
             if(sc.hasNextDouble()){
                 input = sc.nextDouble();
                 validInput = true;
-                sc.nextLine();
             }
             else{
                 System.out.println("Must be a double type! (decimal number)");
             }
+            sc.nextLine();
         }
         return input;
     }
