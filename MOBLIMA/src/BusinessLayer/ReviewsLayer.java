@@ -43,7 +43,7 @@ public class ReviewsLayer {
     }
 
     public static boolean isNumOfStarsValid(double numOfStars) {
-        if (numOfStars < 0 || numOfStars > 10) {
+        if (numOfStars < 0 || numOfStars > 5) {
             try {
                 throw new StarsOutOfRangeException();
             } catch (StarsOutOfRangeException e) {

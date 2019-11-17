@@ -12,7 +12,7 @@ public class ReviewsException {
     @SuppressWarnings("serial")
     public static class StarsOutOfRangeException extends Exception {
         public StarsOutOfRangeException() {
-            super("Stars given should be between 0 and 10 (inclusive)");
+            super("Stars given should be between 0 and 5 (inclusive)");
         }
     }
 }
