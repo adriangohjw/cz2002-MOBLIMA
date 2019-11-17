@@ -48,19 +48,20 @@ public class MainMenuUI {
 
 	private static void initializeSystem() {
 		CineplexesController cineplexesController = new CineplexesController();
-		CinemasController cinemasController = new CinemasController();
-		if(cinemasController.read().size()==0){
-			cinemasController.create("First",String.valueOf(100),CinemaType.PREMIUM,new SeatingPlan(10,10));
-			cinemasController.create("First",String.valueOf(101),CinemaType.PREMIUM,new SeatingPlan(10,10));
-			cinemasController.create("First",String.valueOf(102),CinemaType.STANDARD,new SeatingPlan(10,10));
-			cinemasController.create("Second","XDD",CinemaType.PREMIUM,new SeatingPlan(10,10));
-			cinemasController.create("Second","PUP",CinemaType.PREMIUM,new SeatingPlan(10,10));
-			cinemasController.create("Second","VAL",CinemaType.STANDARD,new SeatingPlan(10,10));
-		}
+
+		ArrayList<Cinema> cinemasOne = new ArrayList<>();
+		ArrayList<Cinema> cinemasTwo = new ArrayList<>();
+
+		cinemasOne.add(new Cinema("GHK",CinemaType.PREMIUM,new SeatingPlan(10,10)));
+		cinemasOne.add(new Cinema("DFK",CinemaType.PREMIUM,new SeatingPlan(10,10)));
+		cinemasOne.add(new Cinema("TYU",CinemaType.STANDARD,new SeatingPlan(10,10)));
+		cinemasTwo.add(new Cinema("XDP",CinemaType.PREMIUM,new SeatingPlan(10,10)));
+		cinemasTwo.add(new Cinema("PUP",CinemaType.PREMIUM,new SeatingPlan(10,10)));
+		cinemasTwo.add(new Cinema("VAL",CinemaType.STANDARD,new SeatingPlan(10,10)));
+
 		if(cineplexesController.read().size()==0){
-			ArrayList<Cinema> cinemasOne = cinemasController.readByCineplexName("First");
+			System.out.println(cinemasOne.size());
 			cineplexesController.create("First", cinemasOne);
-			ArrayList<Cinema> cinemasTwo = cinemasController.readByCineplexName("Second");
 			cineplexesController.create("Second", cinemasTwo);
 		}
 		/*for(Cineplex cineplex: cineplexesController.read()){

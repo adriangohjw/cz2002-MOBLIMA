@@ -168,16 +168,13 @@ public class MakeBookingUI {
     
     public void reserveSeat() {
     	int id;
+    	boolean seatReserved = false;
     	seatAvailability.printLayout();
-    	System.out.println("Choose your seat id: ");
-    	id = InputController.getIntFromUser(); //from 0 to row * column - 1
-    	while (seatAvailability.checkSeats(id)) {
-    		System.out.println("Seat already taken! Try again.");
-        	System.out.println("Choose your seat id: ");
-        	id = InputController.getIntFromUser();
-    	}
-    	seatAvailability.assignSeats(id);
-    	sessCtrl.updateSeatsAvailability(queriedSession.getId(), seatAvailability);
+    	do{
+			System.out.println("Choose your seat id: ");
+			id = InputController.getIntFromUser(); //from 0 to row * column - 1
+			seatReserved = sessCtrl.assignSeat(seatAvailability, id, queriedSession.getId());
+		}while(!seatReserved);
     }
     
     public void priceShowcase() {

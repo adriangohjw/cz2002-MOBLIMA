@@ -324,4 +324,16 @@ public class SessionsController {
         }
         return lastId;
     }
+
+    public boolean assignSeat(SeatingPlan seatingPlan, int seatId, int sessionId){
+        if(!seatingPlan.checkSeats(seatId)){
+            seatingPlan.assignSeats(seatId);
+            this.updateSeatsAvailability(sessionId, seatingPlan);
+            return true;
+        }
+        else{
+            System.out.println("Seat already taken!");
+            return false;
+        }
+    }
 }
