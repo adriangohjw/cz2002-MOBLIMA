@@ -7,22 +7,83 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.io.Serializable;
 
+/**
+ * Represents a Movie 
+ */
 @SuppressWarnings("serial")
 public class Movie implements Serializable {
 
+    /**
+     * This movie's unique ID
+     */
     private int id;
+
+    /**
+     * This movie's title
+     */
     private String title;
+
+    /**
+     * This movie's type
+     */
     private MovieType type;
+
+    /**
+     * This movie's synopsis
+     */
     private String synopsis;
+
+    /**
+     * This movie's rating
+     */
     private String rating;
+
+    /**
+     * This movie's duration
+     */
     private double duration;
+
+    /**
+     * This movie's release date
+     */
     private LocalDate movieReleaseDate;
+
+    /**
+     * This movie's end date
+     */
     private LocalDate movieEndDate;
+
+    /**
+     * This movie's director
+     */
     private String director;
+
+    /** 
+     * This movie's list of cast 
+     */
     private ArrayList<String> cast;
+
+    /**
+     * This movie's list of reviews
+     */
     private ArrayList<Review> reviews; 
     
 
+    
+    /** 
+     * Creates a Movie with the given attribute
+     * Default for reviews is empty (no reviews assigned to movie during movie listing)
+     * @param id                    This Movie's unique ID
+     * @param title                 This Movie's title
+     * @param type                  This Movie's type
+     * @param synopsis              This Movie's synopsis
+     * @param rating                This Movie's rating
+     * @param duration              This Movie's duration (in hours) e.g. 1.5 == 1hours 30mins
+     * @param movieReleaseDate      This Movie's release date
+     * @param movieEndDate          This Movie's end date
+     * @param director              This Movie's director
+     * @param cast                  This Movie's list of casts
+     */
     public Movie(
             int id, String title, MovieType type, String synopsis, String rating, double duration, LocalDate movieReleaseDate, LocalDate movieEndDate, String director, ArrayList<String> cast
     ){
@@ -31,7 +92,7 @@ public class Movie implements Serializable {
         this.type = type;
         this.synopsis = synopsis;
         this.rating = rating;
-        this.duration = duration;  // in hours e.g. 1.5 == 1hours 30mins
+        this.duration = duration; 
         this.movieReleaseDate = movieReleaseDate;
         this.movieEndDate = movieEndDate;
         this.director = director;
@@ -39,47 +100,229 @@ public class Movie implements Serializable {
         this.reviews = new ArrayList<Review>();
     }
 
-    public int getId() {return this.id;}
-    public void setId(int id) {this.id = id;}
-
-	public String getTitle() {return this.title;}
-    public void setTitle(String title){this.title = title;}
-
-    public MovieType getType(){return this.type;}
-    public void setType(MovieType type){this.type = type;}
-
-    public String getSynopsis(){return this.synopsis;}
-    public void setSynopsis(String synopsis){this.synopsis = synopsis;}
     
-    public String getRating() {return this.rating;}
-    public void setRating(String rating){this.rating = rating;}
+    /** 
+     * Get the unique ID of this Movie
+     * @return int      Unique ID of this Movie
+     */
+    public int getId() {
+        return this.id;
+    }
+    
+    
+    /** 
+     * Change the unique ID of this Movie
+     * @param id    New unique ID of this Movie
+     */
+    public void setId(int id) {
+        this.id = id;
+    }
 
-    public double getDuration() {return this.duration;}
-    public void setDuration(double duration) {this.duration = duration;}
+	
+    /** 
+     * Get the title of this Movie
+     * @return String   Title of this Movie
+     */
+    public String getTitle() {
+        return this.title;
+    }
+    
+    
+    /** 
+     * Set the title of this Movie
+     * @param title     New title of this Movie
+     */
+    public void setTitle(String title){
+        this.title = title;
+    }
 
-    public LocalDate getMovieReleaseDate(){return this.movieReleaseDate;}
-    public void setMovieReleaseDate(LocalDate movieReleaseDate){this.movieReleaseDate = movieReleaseDate;}
+    
+    /** 
+     * Get the MovieType of this Movie
+     * @return MovieType    MovieType of this Movie
+     */
+    public MovieType getType(){
+        return this.type;
+    }
+    
+    
+    /** 
+     * Change the MovieType of this Movie
+     * @param type  New MovieType of this Movie
+     */
+    public void setType(MovieType type){
+        this.type = type;
+    }
 
+    
+    /** 
+     * Get the synopsis of this Movie
+     * @return String   Synopsis of this Movie
+     */
+    public String getSynopsis(){
+        return this.synopsis;
+    }
+    
+    
+    /** 
+     * Change the synopsis of this Movie
+     * @param synopsis      New synopsis of this Movie    
+     */
+    public void setSynopsis(String synopsis){
+        this.synopsis = synopsis;
+    }
+    
+    
+    /** 
+     * Get the rating of this Movie
+     * @return String       Rating of this Movie
+     */
+    public String getRating() {
+        return this.rating;
+    }
+    
+    
+    /** 
+     * Change the rating of this Movie
+     * @param rating    New rating of this Movie
+     */
+    public void setRating(String rating){
+        this.rating = rating;
+    }
+
+    
+    /** 
+     * Get the duration of this Movie
+     * @return double       Duration of this Movie
+     */
+    public double getDuration() {
+        return this.duration;
+    }
+    
+    
+    /** 
+     * Change the duration of this Movie
+     * @param duration      New duration of this Movie
+     */
+    public void setDuration(double duration) {
+        this.duration = duration;
+    }
+
+    
+    /** 
+     * Get the release date of this Movie
+     * @return LocalDate    Release date of this Movie
+     */
+    public LocalDate getMovieReleaseDate(){
+        return this.movieReleaseDate;
+    }
+    
+    
+    /** 
+     * Change the release date of this Movie
+     * @param movieReleaseDate      New release date of this Movie
+     */
+    public void setMovieReleaseDate(LocalDate movieReleaseDate){
+        this.movieReleaseDate = movieReleaseDate;
+    }
+
+    
+    /** 
+     * Get the release date of this Movie in another format
+     * Mainly for readability reason
+     * @return String   Release date of this Movie in the format of "EEEE, dd/MM/yyyy"
+     */
     public String getMovieReleaseDateToString(){
         return movieReleaseDate.format(DateTimeFormatter.ofPattern("EEEE, dd/MM/yyyy"));
     }
 
+    
+    /** 
+     * Get the end date of this Movie in another format
+     * Mainly for readability reason
+     * @return String   End date of this Movie in the format of "EEEE, dd/MM/yyyy"
+     */
     public String getMovieEndDateToString(){
         return movieEndDate.format(DateTimeFormatter.ofPattern("EEEE, dd/MM/yyyy"));
     }
 
-    public LocalDate getMovieEndDate(){return this.movieEndDate;}
-    public void setMovieEndDate(LocalDate movieEndDate){this.movieEndDate = movieEndDate;}
     
-    public String getDirector(){return this.director;}
-    public void setDirector(String director){this.director = director;}
+    /** 
+     * Get the end date of this Movie
+     * @return LocalDate    End date of this Movie
+     */
+    public LocalDate getMovieEndDate(){
+        return this.movieEndDate;
+    }
+    
+    
+    /** 
+     * Change the end date of this Movie
+     * @param movieEndDate  New end date of this Movie
+     */
+    public void setMovieEndDate(LocalDate movieEndDate){
+        this.movieEndDate = movieEndDate;
+    }
+    
+    
+    /** 
+     * Get the director for this Movie
+     * @return String       Director of this Movie
+     */
+    public String getDirector(){
+        return this.director;
+    }
+    
+    
+    /** 
+     * Change the director for this Movie
+     * @param director      New director of this Movie
+     */
+    public void setDirector(String director){
+        this.director = director;
+    }
 
-    public ArrayList<String> getCast(){return this.cast;}
-    public void setCast(ArrayList<String> cast){this.cast = cast;}
+    
+    /** 
+     * Get the list of casts for this Movie
+     * @return ArrayList<String>    List of casts of this Movie
+     */
+    public ArrayList<String> getCast(){
+        return this.cast;
+    }
+    
+    
+    /** 
+     * Change the list of casts for this Movie
+     * @param cast      New list of casts of this Movie
+     */
+    public void setCast(ArrayList<String> cast){
+        this.cast = cast;
+    }
 
-    public ArrayList<Review> getReviews(){return this.reviews;}
-    public void setReviews(ArrayList<Review> reviews){this.reviews = reviews;}
+    
+    /** 
+     * Get the list of reviews for this Movie
+     * @return ArrayList<Review>    List of reviews for this Movie
+     */
+    public ArrayList<Review> getReviews(){
+        return this.reviews;
+    }
+    
+    
+    /** 
+     * Change the list of Movie for this Movie
+     * @param reviews   New list of reviews for this Movie
+     */
+    public void setReviews(ArrayList<Review> reviews){
+        this.reviews = reviews;
+    }
 
+    
+    /** 
+	 * String to return when this Movie is being called
+	 * @return String
+	 */
     public String toString(){
         String castString = "";
         for (int i=0; i<getCast().size(); i++)
@@ -110,6 +353,12 @@ public class Movie implements Serializable {
         return details + "\n";
     }
 
+    
+    /** 
+     * Get the overall (Average) number of stars for this Movie
+     * If no review for this movie at the moment, return "N/A"
+     * @return String   Overall number of stars of this Movie
+     */
     public String getOverallReviews(){
         double sum = 0;
         if(reviews.size()>1){
@@ -124,6 +373,16 @@ public class Movie implements Serializable {
         }
     }
 
+    
+    /** 
+     * Get the screening status of the Movie
+     * Screening status derived from finding the difference between the start/end date and today's date
+     * If today's date is after the end date of the movie, it will display "END OF SHOWING"
+     * Else, if days difference between today and Movie's start date is more than 7, it is "COMING SOON"
+     * Else, if days difference between today and Movie's start date is less than 7, it is "PREVIEW"
+     * Else, if today is after Movie's start date and before Movie's end date, it is "NOW SHOWING"
+     * @return MovieStatus  Screening status of the movie
+     */
     public MovieStatus getShowStatus() {
         LocalDate current = LocalDate.now();
         if (current.isAfter(movieEndDate))
@@ -140,6 +399,12 @@ public class Movie implements Serializable {
         }
     }
 
+    
+    /** 
+     * Compare and check if object is identical to this Movie
+     * @param movie     item to be compared to
+     * @return boolean  Return true if item is identical to this Movie, else false
+     */
     @Override
     public boolean equals(Object movie) {
         if (!(movie instanceof Movie)) {
