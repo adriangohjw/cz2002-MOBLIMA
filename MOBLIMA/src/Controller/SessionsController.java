@@ -4,6 +4,8 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
+import BusinessLayer.SessionsLayer;
+
 import static Controller.CinemasController.SESSIONS;
 import static Controller.CinemasController.CODE;
 
@@ -38,20 +40,24 @@ public class SessionsController {
     }
 
     public void create(String cinemaCode, Movie movie, LocalDateTime sessionDateTime) {
-        SeatingPlan seatingPlan = cinemasCtrl.readByAttribute(CODE, cinemaCode).get(0).getSeatingPlan();
-        Session session = new Session(movie, sessionDateTime, seatingPlan, getLastId()+1);
-        ArrayList<Cinema> allData  = this.cinemasCtrl.read();
-        ArrayList<Session> sessions = new ArrayList<Session>();
-        for (int i=0; i<allData.size(); i++){
-            Cinema cinema_i = allData.get(i);
-            if (cinema_i.getCode().equals(cinemaCode)){
-                sessions = cinema_i.getSessions();
-                sessions.add(session);
-                cinema_i.setSessions(sessions);
-                this.cinemasCtrl.updateByAttribute(SESSIONS, cinemaCode, sessions);
-                sessions.clear();
-                break;
+        if (SessionsLayer.isSessionValid(cinemaCode, movie, sessionDateTime)) {
+            SeatingPlan seatingPlan = cinemasCtrl.readByAttribute(CODE, cinemaCode).get(0).getSeatingPlan();
+            Session session = new Session(movie, sessionDateTime, seatingPlan, getLastId()+1);
+            ArrayList<Cinema> allData  = this.cinemasCtrl.read();
+            ArrayList<Session> sessions = new ArrayList<Session>();
+            for (int i=0; i<allData.size(); i++){
+                Cinema cinema_i = allData.get(i);
+                if (cinema_i.getCode().equals(cinemaCode)){
+                    sessions = cinema_i.getSessions();
+                    sessions.add(session);
+                    cinema_i.setSessions(sessions);
+                    this.cinemasCtrl.updateByAttribute(SESSIONS, cinemaCode, sessions);
+                    sessions.clear();
+                    break;
+                }
             }
+        } else {
+            // do nothing
         }
     }
 
@@ -154,23 +160,34 @@ public class SessionsController {
                 // loop through all sessions of the matched cinema and update if necessary
                 allSessions = cinema_i.getSessions();
                 returnSessions.clear();  // ensure it started without existing session
+                
                 for (int j=0; j<allSessions.size(); j++){
                     Session s = allSessions.get(j);
+
                     switch(col) {
+                
                         case MOVIE:  // Movies going to be compared by movie ID
-                            if (s.getMovie().getId() == (int) oldValue)
-                                s.setMovie((Movie) newValue);
+                            if (s.getMovie().getId() == (int) oldValue) {
+                                if (SessionsLayer.isSessionValid(cinemaCode, (Movie) newValue, s.getSessionDateTime()))
+                                    s.setMovie((Movie) newValue);
+                            }
                             break;
+
                         case SESSION_DATETIME:
-                            if (s.getSessionDateTime().equals((LocalDateTime) oldValue))
-                                s.setSessionDateTime((LocalDateTime) newValue);
+                            if (s.getSessionDateTime().equals((LocalDateTime) oldValue)) {
+                                if (SessionsLayer.isSessionValid(cinemaCode, s.getMovie(), (LocalDateTime) newValue)) 
+                                    s.setSessionDateTime((LocalDateTime) newValue);
+                            }
                             break;
+
                         case ID:
                             if (s.getId() == (int) oldValue)
                                 s.setId((int) newValue);
                             break;
+
                         default:
                             break;
+
                     }
                     returnSessions.add(s);
                 }
@@ -193,21 +210,30 @@ public class SessionsController {
             Cinema cinema_i = allCinemas.get(i);
             allSessions = cinema_i.getSessions();
             returnSessions.clear();// ensure it started without existing session
+
             for (int j=0; j<allSessions.size(); j++){
                 s = allSessions.get(j);
                 if (s.getId() == id)
+
                     switch (col){
+
                         case MOVIE:
-                            s.setMovie((Movie) newValue);
+                            if (SessionsLayer.isSessionValid(cinema_i.getCode(), (Movie) newValue, s.getSessionDateTime())) 
+                                s.setMovie((Movie) newValue);
                             break;
+
                         case SESSION_DATETIME:
-                            s.setSessionDateTime((LocalDateTime) newValue);
+                            if (SessionsLayer.isSessionValid(cinema_i.getCode(), s.getMovie(), (LocalDateTime) newValue))
+                                s.setSessionDateTime((LocalDateTime) newValue);
                             break;
+
                         case SEATS_AVAILABILITY:
                             s.setSeatsAvailability((SeatingPlan) newValue);
                             break;
+
                         default:
                             break;
+
                     }
                 returnSessions.add(s);
             }
