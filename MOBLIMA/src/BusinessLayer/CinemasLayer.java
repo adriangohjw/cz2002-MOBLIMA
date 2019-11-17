@@ -15,6 +15,15 @@ public class CinemasLayer {
 
     static CinemasController cinemasCtrl = new CinemasController();
 
+    
+    /** 
+     * Check if cinema can be created based on parameters passed
+     * @param cineplexName  Name of Cineplex that this cinema will be added to
+     * @param code          Cinema's code
+     * @param cinemaType    Cinema's type
+     * @param seatingPlan   Cinema's seating plan
+     * @return              Return true if cinema can be created, else false
+     */
     public static boolean isCinemaValid(String cineplexName, String code, CinemaType cinemaType, SeatingPlan seatingPlan){
         
         boolean isValid = true;
@@ -36,6 +45,12 @@ public class CinemasLayer {
         return isValid;
     }
 
+    
+    /** 
+     * Check if cinema exist based on cinema code passed
+     * @param code      Cinema code to check for
+     * @return boolean  Return true if cinema already exist, else false
+     */
     public static boolean isExistingCinema(String code) {
 
         ArrayList<Cinema> allCinemas = cinemasCtrl.read();
@@ -48,6 +63,12 @@ public class CinemasLayer {
         return false;
     }
 
+    
+    /** 
+     * Check if cinema code is 3 character in length
+     * @param code      Cinema code to check for
+     * @return boolean  Return true if length of cinema code is 3 characters, else false 
+     */
     public static boolean isCinemaCode3Char(String code) {
         if (code.length() != 3) {
             try {
@@ -61,6 +82,12 @@ public class CinemasLayer {
         }
     }
 
+    
+    /** 
+     * Check if cinema code is empty
+     * @param code      Cinema code to check for
+     * @return boolean  Return true if cinema code is empty, else false
+     */
     public static boolean isEmpty_code(String code) {
         if (isStringEmpty(code)){
             try {
@@ -74,6 +101,12 @@ public class CinemasLayer {
         }
     }
 
+    
+    /** 
+     * Check if a string is empty
+     * @param item      String to check for
+     * @return boolean  Return true if string is empty, else false
+     */
     private static boolean isStringEmpty(String item) {
         return item.equals("");
     }

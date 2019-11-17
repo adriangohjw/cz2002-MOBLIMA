@@ -16,6 +16,12 @@ public class UsersLayer {
     static AdminsController adminsCtrl = new AdminsController();
     static MovieGoersController movieGoersCtrl = new MovieGoersController();
 
+    
+    /** 
+     * Check if user can be created based on parameters passed
+     * @param username  Email of user to be created
+     * @return boolean  Return true if user can be created, else false
+     */
     public static boolean isValidUser(String username) {
 
         boolean isValid = true;
@@ -35,6 +41,12 @@ public class UsersLayer {
         return isValid;
     }
 
+    
+    /**
+     * Check if user exist based on username passed 
+     * @param username  Username to check for
+     * @return boolean  Return true if user already exist, else false
+     */
     public static boolean isExistingUser(String username) {
 
         ArrayList<Admin> allAdmins = adminsCtrl.read();
@@ -53,6 +65,12 @@ public class UsersLayer {
         return false;
     }
 
+    
+    /** 
+     * Check if email is in the right format e.g. xxx@yyy.com
+     * @param email     Email to check for
+     * @return boolean  Return true if email is in the right format, else false
+     */
     public static boolean isEmailValid(String email) { 
         String emailRegex = "^[a-zA-Z0-9_+&*-]+(?:\\."+ 
                             "[a-zA-Z0-9_+&*-]+)*@" + 

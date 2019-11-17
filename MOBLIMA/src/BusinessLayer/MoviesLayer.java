@@ -16,6 +16,20 @@ public class MoviesLayer {
 
     static MoviesController moviesCtrl = new MoviesController();
 
+    
+    /** 
+     * Check if movie can be created based on parameters passed
+     * @param title             Movie's title
+     * @param type              Movie's type
+     * @param synopsis          Movie's synopsis
+     * @param rating            Movie's rating
+     * @param duration          Movie's duration
+     * @param movieReleaseDate  Movie's release date
+     * @param movieEndDate      Movie's end date
+     * @param director          Movie's director
+     * @param cast              Movie's cast
+     * @return boolean          Return true if movie can be created, else false
+     */
     public static boolean isMovieValid(
         String title, MovieType type, String synopsis, String rating, double duration, LocalDate movieReleaseDate, LocalDate movieEndDate, String director, ArrayList<String> cast
     ) {
@@ -54,6 +68,11 @@ public class MoviesLayer {
         return isValid;
     }
 
+    
+    /** Check if movie exist based on movie's title passed
+     * @param title     Movie's name to check for
+     * @return boolean  Return true if movie already exist, else false
+     */
     public static boolean isExistingMovie(String title) {
         ArrayList<Movie> allMovies = moviesCtrl.read();
         for (Movie movie : allMovies) {
@@ -63,6 +82,11 @@ public class MoviesLayer {
         return false;
     }
 
+    
+    /** Check if movie's title is empty
+     * @param title     Movie's title to check for
+     * @return boolean  Return true if movie's title is empty, else false
+     */
     public static boolean isEmpty_title(String title) {
         if (isStringEmpty(title)){
             try {
@@ -76,6 +100,11 @@ public class MoviesLayer {
         }
     }
 
+    
+    /** Check if movie's synopsis is empty
+     * @param synopsis  Movie's synopsis to check for
+     * @return boolean  Return true if movie's synopsis is empty, else false
+     */
     public static boolean isEmpty_synopsis(String synopsis) {
         if (isStringEmpty(synopsis)){
             try {
@@ -89,6 +118,11 @@ public class MoviesLayer {
         }
     }
 
+    
+    /** Check if movie's rating is empty
+     * @param rating    Movie's rating to check for
+     * @return boolean  Return true if movie's rating is empty, else false
+     */
     public static boolean isEmpty_rating(String rating) {
         if (isStringEmpty(rating)){
             try {
@@ -102,6 +136,11 @@ public class MoviesLayer {
         }
     }
 
+    
+    /** Check if movie's duration is negative
+     * @param duration  Movie's duration to check for
+     * @return boolean  Return true if movie's duration is negative, else false
+     */
     public static boolean isDurationNegative(double duration){
         if (duration < 0){
             try {
@@ -115,6 +154,12 @@ public class MoviesLayer {
         }
     }
 
+    
+    /** Check if movie's end date is before the release date
+     * @param movieReleaseDate  Movie's release date to check for
+     * @param movieEndDate      Movie's end date to check for
+     * @return boolean          Return true if end date is before release date, else false
+     */
     public static boolean areDatesValid(LocalDate movieReleaseDate, LocalDate movieEndDate){
         if (movieReleaseDate.isBefore(movieEndDate)){
             return true;
@@ -128,6 +173,11 @@ public class MoviesLayer {
         }
     }
 
+    
+    /** Check if movie's director is empty
+     * @param director  Movie's director to check for
+     * @return boolean  Return true if movie's diirector is empty, else false
+     */
     public static boolean isEmpty_director(String director) {
         if (isStringEmpty(director)){
             try {
@@ -141,6 +191,11 @@ public class MoviesLayer {
         }
     }
 
+    
+    /** Check if movie's list of cast is empty
+     * @param cast      Movie's list of cast to check for
+     * @return boolean  Return true if movie's list of cast is empty, else false
+     */
     public static boolean isEmpty_cast(ArrayList<String> cast) {
         if (cast.isEmpty()){
             try {
@@ -154,6 +209,12 @@ public class MoviesLayer {
         }
     }
 
+    
+    /** 
+     * Check if a string is empty
+     * @param item      String to check for
+     * @return boolean  Return true if string is empty, else false
+     */
     private static boolean isStringEmpty(String item) {
         return item.equals("");
     }

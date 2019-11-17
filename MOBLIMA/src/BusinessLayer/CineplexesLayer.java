@@ -13,6 +13,13 @@ public class CineplexesLayer {
 
     static CineplexesController cineplexesCtrl = new CineplexesController();
 
+    
+    /** 
+     * Check if cineplex can be created based on parameters passed
+     * @param name      Cineplex's name
+     * @param cinemas   List of Cinemas in the Cineplex
+     * @return boolean  Return true if cineplex can be created, else false
+     */
     public static boolean isCineplexValid(String name, ArrayList<Cinema> cinemas) {
 
         boolean isValid = true;
@@ -35,6 +42,12 @@ public class CineplexesLayer {
         return isValid;
     }
 
+    
+    /** 
+     * Check if cineplex exist based on cineplex's name passed
+     * @param name      Cineplex's name to check for
+     * @return boolean  Return true if cineplex already exist, else false
+     */
     public static boolean isExistingCineplex(String name) {
 
         ArrayList<Cineplex> allCineplexes = cineplexesCtrl.read();
@@ -46,6 +59,12 @@ public class CineplexesLayer {
         return false;
     }
 
+    
+    /** 
+     * Check if a list of cinemas has at least 3 cinemas
+     * @param cinemas   List of cinemas to check for
+     * @return boolean  Return true if list of cinemas already exist, else false
+     */
     public static boolean hasLessThan3Cinemas(ArrayList<Cinema> cinemas) {
         if (cinemas.size() < 3) {
             try {
@@ -59,6 +78,12 @@ public class CineplexesLayer {
         }
     }
 
+    
+    /** 
+     * Check if cineplex name is empty
+     * @param name      Cineplex's name to check for
+     * @return boolean  Return true if cineplex's name is empty, else false
+     */
     public static boolean isEmpty_name(String name) {
         if (isStringEmpty(name)){
             try {
@@ -72,6 +97,12 @@ public class CineplexesLayer {
         }
     }
 
+    
+    /** 
+     * Check if a string is empty
+     * @param item      String to check for
+     * @return boolean  Return true if string is empty, else false
+     */
     private static boolean isStringEmpty(String item) {
         return item.equals("");
     }

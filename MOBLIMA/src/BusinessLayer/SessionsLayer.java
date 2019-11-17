@@ -16,6 +16,14 @@ public class SessionsLayer {
 
     static SessionsController sessionsCtrl = new SessionsController();
 
+    
+    /** 
+     * Check if session can be created based on parameters passed
+     * @param cinemaCode        Code of cinema's that this session will be added to
+     * @param movie             Movie that this session will be screening
+     * @param sessionDateTime   Date and time which the session will begin screening
+     * @return boolean          Return true if session can be created, else false
+     */
     public static boolean isSessionValid(String cinemaCode, Movie movie, LocalDateTime sessionDateTime) {
 
         // get start and end time of new session
