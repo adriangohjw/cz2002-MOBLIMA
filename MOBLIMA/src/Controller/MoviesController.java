@@ -22,6 +22,26 @@ public class MoviesController {
     public final static String FILENAME = "MOBLIMA/database/movies.txt";
 
     /**
+     * The Review Controller that this controller will reference
+     */
+    public SessionsController sessionsCtrl;
+    
+    /**
+     * Default Constructor
+     */
+    public MoviesController() {
+        this.sessionsCtrl = new SessionsController();
+    } 
+
+    /** 
+     * Parameterized constructor with user-defined Session Controller
+     * @param sessionsCtrl    Non-default Session Controller to be referenced instead
+     */
+    public MoviesController(SessionsController sessionsCtrl) {
+        this.sessionsCtrl = sessionsCtrl;
+    } 
+
+    /**
      * Declaring constant for better readability and easier referencing to attribute
      */
     public final static int ID = 0;
@@ -264,6 +284,9 @@ public class MoviesController {
     public void deleteById(int id) {
         ArrayList<Movie> allData = read();
         ArrayList<Movie> returnData = new ArrayList<Movie>();
+
+        // Delete Sessions with MovieID equal to MovieID passed in
+        sessionsCtrl.deleteByMovie(id);
         
         for (int i=0; i<allData.size(); i++){
             Movie m = allData.get(i);
@@ -295,7 +318,7 @@ public class MoviesController {
     /** 
      * Overwrite Database file with new data of list of Admin
      * @param filename      Filename to check for
-     * @param data    New ArrayList of Movies to be written to the file
+     * @param data          New ArrayList of Movies to be written to the file
      */
     public void replaceExistingFile(String filename, ArrayList<Movie> data){
         File tempFile = new File(filename);
