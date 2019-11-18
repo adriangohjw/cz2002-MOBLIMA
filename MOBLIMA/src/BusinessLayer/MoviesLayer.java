@@ -10,6 +10,7 @@ import CustomException.MoviesExceptions.EmptyStringException;
 import CustomException.MoviesExceptions.EndBeforeReleaseException;
 import CustomException.MoviesExceptions.NegativeDurationException;
 import Model.Movie;
+import Model.MovieStatus;
 import Model.MovieType;
 
 public class MoviesLayer {
@@ -217,5 +218,19 @@ public class MoviesLayer {
      */
     private static boolean isStringEmpty(String item) {
         return item.equals("");
+    }
+
+    
+    /**
+     * Check if movie is available for booking based on the show status
+     * @param movie     Movie to check for
+     * @return boolean  Return true if movie is available for booking, else false
+     */
+    public static boolean isAvailableForBooking(Movie movie){
+        MovieStatus showStatus = movie.getShowStatus();
+        if (showStatus == MovieStatus.PREVIEW || showStatus == MovieStatus.NOW_SHOWING) 
+            return true;
+        else    
+            return false;
     }
 }
