@@ -12,6 +12,7 @@ read
 public ArrayList<Movie> read(); 
 public Movie readByID(int valueToSearch);
 public ArrayList<Movie> readByAttribute(int col, String valueToSearch);
+public ArrayList<Movie> readAvailableMovies();
 ~~~
 
 update
@@ -151,12 +152,14 @@ update
 public void updateByAttribute(int col, String cinemaCode, Object oldValue, Object newValue);
 public void updateById(int col, int id, Object newValue);
 public void updateSeatsAvailability(int id, SeatingPlan newSeatsAvailabiity);
+public void updateByMovie(int col, int movieID, Object newValue);
 ~~~
 
 delete
 ~~~java
 public void delete(String cinemaCode, String sessionDateTime);
 public void delete(int id);
+public void deleteByMovie(int movieID);
 ~~~
 
 others

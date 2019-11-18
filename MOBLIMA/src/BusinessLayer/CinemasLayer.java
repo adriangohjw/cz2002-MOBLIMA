@@ -32,7 +32,7 @@ public class CinemasLayer {
             try {
                 throw new ExistingCinemaException();
             } catch (ExistingCinemaException e) {
-                System.out.println(e);
+                System.out.println(e.getMessage());
             }
             isValid = false;
         
@@ -74,7 +74,7 @@ public class CinemasLayer {
             try {
                 throw new CinemaCodeNot3CharException();
             } catch (CinemaCodeNot3CharException e) {
-                System.out.println(e);
+                System.out.println(e.getMessage());
             }
             return false;
         } else {
@@ -93,7 +93,7 @@ public class CinemasLayer {
             try {
                 throw new EmptyStringException("code");
             } catch (EmptyStringException e) {
-                System.out.println(e);
+                System.out.println(e.getMessage());
             }
             return true;
         } else {

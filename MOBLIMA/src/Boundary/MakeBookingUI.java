@@ -7,21 +7,37 @@ import java.time.LocalDateTime;
 import java.util.*;
 
 public class MakeBookingUI {
+	/** 
+     * Necessary variables to make a booking (movie title, cinema code, viewing date and time
+     */
     private String movieTitle;
     private String cinemaCode;
     private LocalDateTime viewingDateTime;
+    
+    /** 
+     * Variables to store the selected cinema, session and seating plan
+     */
     private Cinema queriedCinema;
     private Session queriedSession;
     private SeatingPlan seatAvailability;
+    
+    /** 
+     * Variables to store the number of tickets
+     */
     private int amountOfTickets;
 
+    /** 
+     * All controllers (cineplex, cinema, movie, session, price, transaction)
+     */
     private CineplexesController cineplexesCtrl;
     private CinemasController cinemaCtrl;
     private MoviesController movieCtrl;
     private SessionsController sessCtrl;
     private PriceController priceCtrl;
     private TransactionsController transCtrl;
-    
+    /** 
+     * Default constructors to call all controllers
+     */
     public MakeBookingUI() {
         this.cineplexesCtrl = new CineplexesController();
         this.cinemaCtrl = new CinemasController();
@@ -32,22 +48,43 @@ public class MakeBookingUI {
         this.cineplexesCtrl = new CineplexesController();
     }
     
+    /** 
+     * Set the cinema controller to a specific state
+     * @param cinemaCtrl The state for the cinema controller
+     */
     public void setCinemaCtrl (CinemasController cinemaCtrl) {
     	this.cinemaCtrl = cinemaCtrl;
     }
     
+    /** 
+     * Set the movie controller to a specific state
+     * @param movieCtrl The state for the movie controller
+     */
     public void setMovieCtrl (MoviesController movieCtrl) {
     	this.movieCtrl = movieCtrl;
     }
     
+    /** 
+     * Set the transaction controller to a specific state
+     * @param transCtrl The state for the transaction controller
+     */
     public void setTransCtrl (TransactionsController transCtrl) {
     	this.transCtrl = transCtrl;
     }
     
+    /** 
+     * Set the session controller to a specific state
+     * @param sessCtrl The state for the session controller
+     */
     public void setSessCtrl (SessionsController sessCtrl) {
     	this.sessCtrl = sessCtrl;
     }
     
+    /** 
+     * Main method for the UI - display all available movies and ask them to pick the cineplex to view
+     * If no cinema are available to show the movie for a cineplex, user will be asked to repick the cineplex
+     * Then, pass to the other methods to pick date, time and showcase ticket price
+     */
     public void main() {
     	ArrayList<Cinema> cinemaList = new ArrayList<Cinema>();
     	int choice;
@@ -83,6 +120,9 @@ public class MakeBookingUI {
 
     }
     
+    /** 
+     * Show all available movies (with now showing or preview state)
+     */
     public void showAvailableMovies() {
 		System.out.println();
     	ArrayList<Movie> movieList = movieCtrl.read();
@@ -94,6 +134,11 @@ public class MakeBookingUI {
     	System.out.println();
     }
     
+    /** 
+     * Show all available sessions for a cineplex knowing the movie
+     * @param cineplexName		Name of chosen cineplex
+     * @return a list of cinema that can show the movie for that cineplex
+     */
     public ArrayList<Cinema> showAvailableSessions(String cineplexName) {
     	Session tempSession;
     	Cinema tempCinema;
@@ -132,6 +177,10 @@ public class MakeBookingUI {
     	return tempCinemaList;
     }
     
+    /** 
+     * Allow user to pick date and time for their viewing session
+     * @param mainCinemaList		List of chosen cinemas
+     */
     public void pickDateTimeCode(ArrayList<Cinema> mainCinemaList) {
     	Session tempSession;
     	Cinema tempCinema;
@@ -155,6 +204,9 @@ public class MakeBookingUI {
     	}
 	}
     
+    /** 
+     * Allow user to reserve seats knowing the seating plan
+     */
     public void reserveSeat() {
     	int id;
     	int amountLeft = amountOfTickets;
@@ -173,6 +225,10 @@ public class MakeBookingUI {
 		makeTransaction();
 	}
     
+    /** 
+     * Showcasing the price of the tickets
+     * Pass to method reserveSeat if the user want to reserve seats
+     */
     public void priceShowcase() {
     	double price = 0;
     	System.out.print("Enter the amount of tickets: ");
@@ -212,6 +268,9 @@ public class MakeBookingUI {
 		}
     }
     
+    /** 
+     * Make the transaction with user's info
+     */
     public void makeTransaction() {
     	System.out.print("Enter your name: ");
     	String name = InputController.getStringFromUser();

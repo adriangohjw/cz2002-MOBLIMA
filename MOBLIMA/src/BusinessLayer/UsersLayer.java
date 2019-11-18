@@ -33,7 +33,7 @@ public class UsersLayer {
             try {
                 throw new ExistingUserException();
             } catch (ExistingUserException e) {
-                System.out.println(e);
+                System.out.println(e.getMessage());
             }
             isValid = false;
         }
@@ -82,7 +82,7 @@ public class UsersLayer {
             try {
                 throw new InvalidEmailAddressException();
             } catch (InvalidEmailAddressException e) {
-                System.out.println(e);
+                System.out.println(e.getMessage());
             }
             return false; 
         }

@@ -28,7 +28,7 @@ public class CineplexesLayer {
             try {
                 throw new ExistingCineplexException();
             } catch (ExistingCineplexException e) {
-                System.out.println(e);
+                System.out.println(e.getMessage());
             }
             isValid = false;
         }
@@ -70,7 +70,7 @@ public class CineplexesLayer {
             try {
                 throw new LessThan3CinemasException();
             } catch (LessThan3CinemasException e) {
-                System.out.println(e);
+                System.out.println(e.getMessage());
             }
             return true;
         } else {
@@ -89,7 +89,7 @@ public class CineplexesLayer {
             try {
                 throw new EmptyStringException("name");
             } catch (EmptyStringException e) {
-                System.out.println(e);
+                System.out.println(e.getMessage());
             }
             return true;
         } else {

@@ -60,7 +60,7 @@ public class CineplexesController {
     /**
      * READ and return every Cineplex in the Database file
      * If Database file not found, ignore error and return empty list
-     * @return ArrayList<Cineplex>  Return list of Cineplexes if any, else empty list
+     * @return Model.{@link Cineplex}  Return list of Cineplexes if any, else empty list
      */
     @SuppressWarnings("unchecked")
     public ArrayList<Cineplex> read(){
@@ -137,7 +137,7 @@ public class CineplexesController {
     /** 
      * Overwrite Database file with new data of list of Admin
      * @param filename      Filename to check for
-     * @param returnData    New ArrayList of Cineplex to be written to the file
+     * @param data    New ArrayList of Cineplex to be written to the file
      */
     public void replaceExistingFile(String filename, ArrayList<Cineplex> data){
         File tempFile = new File(filename);

@@ -20,6 +20,7 @@ public class ListTopMovieUI {
 	}
 	/** 
      * Constructor with a specific controller state
+     * @param moviesCtrl	The state to be set for the movie controller
      */
 	public ListTopMovieUI(MoviesController moviesCtrl) {
 		this.moviesCtrl = moviesCtrl;
@@ -95,6 +96,7 @@ public class ListTopMovieUI {
 
 	/** 
      * Print a movie's detail
+     * @param movie		Movie to be printed
      */
     public void printMovie(Movie movie){
 		System.out.println("ID: " + movie.getId());
@@ -108,6 +110,8 @@ class SortByRating implements Comparator<Movie> {
 
 	/** 
      * Implementing the compare method to use in Collections.sort()
+     * @param a			Movie 1 to be compared
+     * @param b			Movie 1 to be compared
      */
 	public int compare(Movie a, Movie b) {
 		String ratingA = a.getOverallReviews();
@@ -125,6 +129,8 @@ class SortByRating implements Comparator<Movie> {
 class SortBySales implements Comparator<Movie> {
 	/** 
      * Implementing the compare method to use in Collections.sort()
+     * @param a			Movie 1 to be compared
+     * @param b			Movie 1 to be compared
      */
 	public int compare(Movie a, Movie b) {
 		TransactionsController transCtrl = new TransactionsController();

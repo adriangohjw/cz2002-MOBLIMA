@@ -30,7 +30,7 @@ public class Movie_Goer extends User {
 	 * Used when only username and password of MovieGoer known during account creation
 	 * @param username						This Admin's username (email)
 	 * @param password						This Admin's password (unencrypted)
-\	 * @throws NoSuchAlgorithmException		Thrown due to SHA256 encryption required but not available in the environment
+	 * @throws NoSuchAlgorithmException		Thrown due to SHA256 encryption required but not available in the environment
 	 */
 	public Movie_Goer(String username, String password) 
 			throws NoSuchAlgorithmException {
@@ -45,7 +45,7 @@ public class Movie_Goer extends User {
 	 * @param password						This MovieGoer's password (unencrypted)
 	 * @param name							This MovieGoer's name
 	 * @param mobileNumber					This MovieGoer's mobile number
-\	 * @throws NoSuchAlgorithmException		Thrown due to SHA256 encryption required but not available in the environment
+	 * @throws NoSuchAlgorithmException		Thrown due to SHA256 encryption required but not available in the environment
 	 */
 	public Movie_Goer(String username, String password, String name, String mobileNumber) 
 			throws NoSuchAlgorithmException {

@@ -37,7 +37,6 @@ public class Cinema implements Serializable {
 	 * @param code			This Cinema's code
 	 * @param cinemaType	This Cinema's type
 	 * @param seatingPlan 	This Cinema's seating plan
-	 * @return 
 	 */
 	public Cinema (String code, CinemaType cinemaType, SeatingPlan seatingPlan) {
 		this.code = code;
@@ -102,7 +101,7 @@ public class Cinema implements Serializable {
 	
 	/** 
 	 * Get the list of sessions for this Cinema
-	 * @return ArrayList<Session>	this Cinema's list of sessions
+	 * @return Model.{@link Session}	this Cinema's list of sessions
 	 */
 	public ArrayList<Session> getSessions() {
 		return sessions;

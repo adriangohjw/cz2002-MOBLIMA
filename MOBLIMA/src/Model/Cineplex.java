@@ -54,7 +54,7 @@ public class Cineplex implements Serializable {
 	
 	/** 
 	 * Get the list of cinemas for this Cineplex
-	 * @return ArrayList<Cinema>	this Cineplex's list of cinemas
+	 * @return Model.{@link Cinema}	this Cineplex's list of cinemas
 	 */
 	public ArrayList<Cinema> getCinemas() {
 		return cinemas;

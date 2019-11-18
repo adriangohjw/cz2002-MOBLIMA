@@ -24,6 +24,13 @@ public class MoviesExceptions {
     }
 
     @SuppressWarnings("serial")
+    public static class MovieUnavailableException extends Exception {
+        public MovieUnavailableException() {
+            super("Movie is unavailable for booking");
+        }
+    }
+
+    @SuppressWarnings("serial")
     public static class EmptyCastException extends Exception {
         public EmptyCastException() {
             super("Cast list is empty");

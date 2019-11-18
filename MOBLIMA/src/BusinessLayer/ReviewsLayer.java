@@ -64,7 +64,7 @@ public class ReviewsLayer {
             try {
                 throw new StarsOutOfRangeException();
             } catch (StarsOutOfRangeException e) {
-                System.out.println(e);
+                System.out.println(e.getMessage());
             }
             return false;
         } else {

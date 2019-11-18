@@ -228,6 +228,7 @@ public class CUR_Sessions {
 	
 	/** 
      * Print all sessions of a cinema
+     * @param cinema	Cinema to be printed
      */
 	public void printCinema(Cinema cinema) {
 		System.out.println("\nCinema code: " + cinema.getCode());
@@ -237,6 +238,7 @@ public class CUR_Sessions {
 	
 	/** 
      * Print a cinema's code
+     * @param cinema	Cinema to have its code printed
      */
 	public void printCinemaCode(Cinema cinema) {
 		System.out.println("Cinema code: " + cinema.getCode());
@@ -244,6 +246,7 @@ public class CUR_Sessions {
 	
 	/** 
      * Print a session - id, title, date
+     * @param session	Session to be printed
      */
 	public void printSession(Session session) {
 		System.out.print("\n\tSession id: " + session.getId() + "\n" +
@@ -253,6 +256,7 @@ public class CUR_Sessions {
 	
 	/** 
      * Print a cineplex's name
+     * @param cineplex	Cineplex to have its name printed
      */
 	public void printCineplex(Cineplex cineplex) {
 		System.out.println("Name: " + cineplex.getName());

@@ -26,11 +26,11 @@ public class TransactionsController {
      * If attributes are not allowed, throw error and do nothing
      * If Database file exist, existing records are read and new Transaction object is aopended before saving
      * If Database file does not exist, Transaction object will be written to a new file and saved
-     * @param cinemaCode
-     * @param name
-     * @param email
-     * @param mobileNumber
-     * @param movie
+     * @param cinemaCode        This Transaction's cinema code
+     * @param name              Name of MovieGoer of This Transaction
+     * @param email             Email of MovieGoer of This Transactins
+     * @param mobileNumber      Mobile number of MovieGoer of This Transaction
+     * @param movie             Movie of This Transaction
      */
     public void create(String cinemaCode, String name, String email, String mobileNumber, Movie movie) {
         if (TransactionsLayer.isTransactionValid(cinemaCode, name, email, mobileNumber, movie)) {
@@ -57,7 +57,7 @@ public class TransactionsController {
     /** 
      * READ and return every Cineplex in the Database file
      * If Database file not found, ignore error and return empty list
-     * @return ArrayList<Transaction>  Return list of Transaction if any, else empty list
+     * @return Model.@{@link Transaction}  Return list of Transaction if any, else empty list
      */
     @SuppressWarnings("unchecked")
     public ArrayList<Transaction> read() {
@@ -75,8 +75,8 @@ public class TransactionsController {
     
     /** 
      * READ and return every Transaction of a given TID in the Database file
-     * @param TID                       Transaction ID of Transaction to search for
-     * @return ArrayList<Transaction>   Return list of Transaction if found, else empty list
+     * @param TID                           Transaction ID of Transaction to search for
+     * @return Model.@{@link Transaction}   Return list of Transaction if found, else empty list
      */
     public ArrayList<Transaction> readByTID(String TID) {
         ArrayList<Transaction> allData = read();
@@ -94,8 +94,8 @@ public class TransactionsController {
     
     /** 
      * READ and return every Transaction of a given MovieGoer's username in the Database file
-     * @param movieGoerUsername         MovieGoer's username of Transaction to search for
-     * @return ArrayList<Transaction>   Return list of Transaction if found, else empty list
+     * @param movieGoerUsername             MovieGoer's username of Transaction to search for
+     * @return Model.@{@link Transaction}   Return list of Transaction if found, else empty list
      */
     public ArrayList<Transaction> readByMovieGoerUsername(String movieGoerUsername) {
         ArrayList<Transaction> allData = read();

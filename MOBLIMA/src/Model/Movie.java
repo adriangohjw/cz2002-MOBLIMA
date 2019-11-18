@@ -285,7 +285,7 @@ public class Movie implements Serializable {
     
     /** 
      * Get the list of casts for this Movie
-     * @return ArrayList<String>    List of casts of this Movie
+     * @return String    List of casts of this Movie
      */
     public ArrayList<String> getCast(){
         return this.cast;
@@ -303,7 +303,7 @@ public class Movie implements Serializable {
     
     /** 
      * Get the list of reviews for this Movie
-     * @return ArrayList<Review>    List of reviews for this Movie
+     * @return Model.{@link Review}    List of reviews for this Movie
      */
     public ArrayList<Review> getReviews(){
         return this.reviews;

@@ -11,6 +11,7 @@ import java.util.ArrayList;
 
 import BusinessLayer.MoviesLayer;
 import Model.Movie;
+import Model.MovieStatus;
 import Model.MovieType;
 import Model.Review;
 
@@ -20,6 +21,26 @@ public class MoviesController {
      * The file name of the database file that this controller will access
      */
     public final static String FILENAME = "MOBLIMA/database/movies.txt";
+
+    /**
+     * The Review Controller that this controller will reference
+     */
+    public SessionsController sessionsCtrl;
+    
+    /**
+     * Default Constructor
+     */
+    public MoviesController() {
+        this.sessionsCtrl = new SessionsController();
+    } 
+
+    /** 
+     * Parameterized constructor with user-defined Session Controller
+     * @param sessionsCtrl    Non-default Session Controller to be referenced instead
+     */
+    public MoviesController(SessionsController sessionsCtrl) {
+        this.sessionsCtrl = sessionsCtrl;
+    } 
 
     /**
      * Declaring constant for better readability and easier referencing to attribute
@@ -80,7 +101,7 @@ public class MoviesController {
     
     /** 
      * READ and return every Movies in the Database file
-     * @return ArrayList<Movie>     Return list of Movies if found, else empty list
+     * @return Movie    Return list of Movies if found, else empty list
      */
     @SuppressWarnings("unchecked")
     public ArrayList<Movie> read() {
@@ -116,7 +137,7 @@ public class MoviesController {
      * READ and return every Movie based on a certain value of a given attribute in the Database file
      * @param col                   Given attribute to be check for (based on constant as defined)
      * @param valueToSearch         Value of given attribute to search for
-     * @return ArrayList<Movie>     Return list of Movies if any, else empty list
+     * @return Movie                Return list of Movies if any, else empty list
      */
     public ArrayList<Movie> readByAttribute(int col, Object valueToSearch) {
         ArrayList<Movie> allData = read();
@@ -153,6 +174,23 @@ public class MoviesController {
         return returnData;
     }
 
+
+    /**
+     * READ and return every Movie that are still available for booking in the Database file
+     * @return Movie    Return list of Movies if any, else empty list
+     */
+    public ArrayList<Movie> readAvailableMovies() {
+        ArrayList<Movie> allData = read();
+        ArrayList<Movie> returnData = new ArrayList<Movie>();
+        
+        for (Movie movie : allData) {
+            MovieStatus movieShowStatus = movie.getShowStatus();
+            if (movieShowStatus == MovieStatus.PREVIEW || movieShowStatus == MovieStatus.NOW_SHOWING) 
+                returnData.add(movie);
+        }
+        
+        return returnData;
+    }
     
     /** 
      * UPDATE a Movie's attribute based on a given movie's id in Database file 
@@ -164,6 +202,9 @@ public class MoviesController {
     public void updateById(int col, int id, Object newValue) {
         ArrayList<Movie> allData = read();
         ArrayList<Movie> returnData = new ArrayList<Movie>();
+
+        // Delete Sessions with MovieID equal to MovieID passed in
+        sessionsCtrl.updateByMovie(col, id, newValue);
                 
         for (int i=0; i<allData.size(); i++){
             Movie m = allData.get(i);
@@ -264,6 +305,9 @@ public class MoviesController {
     public void deleteById(int id) {
         ArrayList<Movie> allData = read();
         ArrayList<Movie> returnData = new ArrayList<Movie>();
+
+        // Delete Sessions with MovieID equal to MovieID passed in
+        sessionsCtrl.deleteByMovie(id);
         
         for (int i=0; i<allData.size(); i++){
             Movie m = allData.get(i);
@@ -295,7 +339,7 @@ public class MoviesController {
     /** 
      * Overwrite Database file with new data of list of Admin
      * @param filename      Filename to check for
-     * @param returnData    New ArrayList of Movies to be written to the file
+     * @param data          New ArrayList of Movies to be written to the file
      */
     public void replaceExistingFile(String filename, ArrayList<Movie> data){
         File tempFile = new File(filename);

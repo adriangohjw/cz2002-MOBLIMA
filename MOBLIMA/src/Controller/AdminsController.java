@@ -62,7 +62,7 @@ public class AdminsController {
     /** 
      * READ and return every Admin in the Database file
      * If Database file not found, ignore error and return empty list
-     * @return ArrayList<Admin>     Return list of Admins if found, else empty list
+     * @return Model.{@link Admin}     Return list of Admins if found, else empty list
      */
     @SuppressWarnings("unchecked")
     public ArrayList<Admin> read() {

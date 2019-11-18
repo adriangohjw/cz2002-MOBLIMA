@@ -68,7 +68,7 @@ public class SessionsLayer {
         try {
             throw new InvalidSessionDateTimeException();
         } catch (InvalidSessionDateTimeException e) {
-            System.out.println(e);
+            System.out.println(e.getMessage());
         }
 
         return false;

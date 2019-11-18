@@ -27,11 +27,14 @@ public class TransactionsLayer {
         if(CinemasLayer.isExistingCinema(cinemaCode) == false)
             isValid = false;
 
+        if(MoviesLayer.isAvailableForBooking(movie) == false)
+            isValid = false;
+
         if (!isValid){
             try {
                 throw new InvalidTransactionException();
             } catch (InvalidTransactionException e) {
-                System.out.println(e);
+                System.out.println(e.getMessage());
             }
         }
 

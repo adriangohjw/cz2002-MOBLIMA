@@ -72,9 +72,9 @@ public class SessionsController {
      * If attributes are not allowed, throw error and do nothing
      * If Database file exist, existing records are read and new Session object is aopended before saving
      * If Database file does not exist, Session object will be written to a new file and saved
-     * @param cinemaCode
-     * @param movie
-     * @param sessionDateTime
+     * @param cinemaCode        This Sessions's cinema code
+     * @param movie             This Sessions's movie
+     * @param sessionDateTime   This Sessions's date and time
      */
     public void create(String cinemaCode, Movie movie, LocalDateTime sessionDateTime) {
         if (SessionsLayer.isSessionValid(cinemaCode, movie, sessionDateTime)) {
@@ -101,7 +101,7 @@ public class SessionsController {
     
     /** 
      * READ and return every Cinema in the Database file
-     * @return ArrayList<Session>   Return list of Sessions if found, else empty list
+     * @return Model.{@link Session}   Return list of Sessions if found, else empty list
      */
     public ArrayList<Session> read() {
         ArrayList<Cinema> allCinemas  = this.cinemasCtrl.read();
@@ -117,9 +117,9 @@ public class SessionsController {
     
     /** 
      * READ and return every Session based on a certain value of a given attribute in the Database file
-     * @param col                   Given attribute to be check for (based on constant as defined)
-     * @param valueToSearch         Value of given attribute to search for
-     * @return ArrayList<Session>   Return list of Sessions if any, else empty list
+     * @param col                       Given attribute to be check for (based on constant as defined)
+     * @param valueToSearch             Value of given attribute to search for
+     * @return Model.{@link Session}    Return list of Sessions if any, else empty list
      */
     public ArrayList<Session> readByAttributes(int col, Object valueToSearch) {
         ArrayList<Session> allData = read();
@@ -147,9 +147,9 @@ public class SessionsController {
     
     /** 
      * READ and return every Session of a cinema on a speficic date in the Database file
-     * @param cinemaCode            Cinema's code to be check for
-     * @param sessionDate           Value of date to search for
-     * @return ArrayList<Session>   Return list of Sessions if any, else empty list
+     * @param cinemaCode                Cinema's code to be check for
+     * @param sessionDate               Value of date to search for
+     * @return Model.{@link Session}    Return list of Sessions if any, else empty list
      */
     @SuppressWarnings("static-access")
     public ArrayList<Session> readByAttributes(String cinemaCode, LocalDate sessionDate) {
@@ -357,7 +357,85 @@ public class SessionsController {
         }
     } 
 
-    
+    /**
+     * UPDATE a Movie's attribute in Session with matching movieID Database file 
+     * @param col           Attribute of movie to update
+     * @param movieID       ID of Movie to search for  
+     * @param newValue      New value of Movie's attribute
+     */
+    @SuppressWarnings({"static-access", "unchecked"})
+    public void updateByMovie(int col, int movieID, Object newValue) {
+        ArrayList<Cinema> allCinemas  = this.cinemasCtrl.read();
+        ArrayList<Session> allSessions = new ArrayList<Session>();
+        ArrayList<Session> returnSessions = new ArrayList<Session>();
+        Session s = null;
+
+        for (int i=0; i<allCinemas.size(); i++) {
+            Cinema cinema_i = allCinemas.get(i);
+            allSessions = cinema_i.getSessions();
+            returnSessions.clear();  // ensure it started without existing session
+            for (int j=0; j<allSessions.size(); j++){
+                s = allSessions.get(j);
+                if (s.getMovie().getId() == movieID){
+                    
+                    switch (col){
+
+                        case (MoviesController.ID):
+                            s.getMovie().setId((int) newValue);
+                            break;
+
+                        case (MoviesController.TITLE):
+                            s.getMovie().setTitle((String) newValue);
+                            break;
+
+                        case (MoviesController.TYPE):
+                            s.getMovie().setType((MovieType) newValue);
+                            break;
+
+                        case (MoviesController.SYNOPSIS):
+                            s.getMovie().setSynopsis((String) newValue);
+                            break;
+
+                        case (MoviesController.RATING):
+                            s.getMovie().setRating((String) newValue);
+                            break;
+
+                        case (MoviesController.DURATION):
+                            s.getMovie().setDuration((double) newValue);
+                            break;
+                            
+                        case (MoviesController.MOVIE_RELEASE_DATE):
+                            s.getMovie().setMovieReleaseDate((LocalDate) newValue);
+                            break;
+
+                        case (MoviesController.MOVIE_END_DATE):
+                            s.getMovie().setMovieEndDate((LocalDate) newValue);
+                            break;
+
+                        case (MoviesController.DIRECTOR):
+                            s.getMovie().setDirector((String) newValue);
+                            break;
+
+                        case (MoviesController.CAST):
+                            s.getMovie().setCast((ArrayList<String>) newValue);
+                            break;
+
+                        case (MoviesController.REVIEWS):
+                            s.getMovie().setReviews((ArrayList<Review>) newValue);
+                            break;
+
+                        default:
+                            break;
+                    }
+                }
+                returnSessions.add(s);
+            }
+
+            // update DB and break (stop searching other cinema if already found one with matching code)
+            this.cinemasCtrl.updateByAttribute(cinemasCtrl.SESSIONS, cinema_i.getCode(), returnSessions);
+        }
+    }
+
     /** 
      * Delete a Session in the Database file, based on the cinema code and datetime attribute passed
      * @param cinemaCode        Code of cinema which will be deleted
@@ -408,6 +486,31 @@ public class SessionsController {
             for (int j=0; j<allSessions.size(); j++){
                 Session s = allSessions.get(j);
                 if (!(s.getId() == id))
+                    returnSessions.add(s);
+            }
+            this.cinemasCtrl.updateByAttribute(cinemasCtrl.SESSIONS, cinema_i.getCode(), returnSessions);
+        }
+    }
+
+    
+    /** 
+     * Delete Sessions in the Database file with a specific MovieID
+     * @param movieID   Sessions with this MovieID will be deleted
+     */
+    @SuppressWarnings("static-access")
+    public void deleteByMovie(int movieID) {
+        ArrayList<Cinema> allCinemas = this.cinemasCtrl.read();
+        ArrayList<Session> allSessions = new ArrayList<Session>();
+        ArrayList<Session> returnSessions = new ArrayList<Session>();
+        Session s = null;
+
+        for (int i=0; i<allCinemas.size(); i++) {
+            Cinema cinema_i = allCinemas.get(i);
+            allSessions = cinema_i.getSessions();
+            returnSessions.clear();  // ensure it started without existing session
+            for (int j=0; j<allSessions.size(); j++){
+                s = allSessions.get(j);
+                if (!(s.getMovie().getId() == movieID))
                     returnSessions.add(s);
             }
             this.cinemasCtrl.updateByAttribute(cinemasCtrl.SESSIONS, cinema_i.getCode(), returnSessions);
